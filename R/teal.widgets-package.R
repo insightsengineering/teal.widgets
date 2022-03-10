@@ -8,4 +8,5 @@
 "_PACKAGE"
 
 #' @import shiny
+#' @importFrom lifecycle badge
 NULL

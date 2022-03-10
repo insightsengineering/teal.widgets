@@ -21,15 +21,13 @@ Depends:
 Imports:
     checkmate,
     ggplot2,
-    glue,
     graphics,
     lifecycle,
     methods,
     rtables (>= 0.4.1),
     shiny,
     shinyjs,
-    shinyWidgets,
-    stats
+    shinyWidgets
 Suggests:
     knitr,
     magrittr,

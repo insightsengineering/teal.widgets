@@ -67,7 +67,7 @@ app <- shinyApp(
           rtables::split_cols_by("Species") %>%
           rtables::analyze(vars = "Sepal.Length", afun = function(x) {
             rtables::in_rows(
-              "Median (sd)" = rtables::rcell(c(stats::median(x), stats::sd(x)), format = "xx.xx (xx.xx)"),
+              "Mean" = rtables::rcell(mean(x), format = "xx.xx"),
               "Range" = rtables::rcell(range(x), format = "xx.xx - xx.xx")
             )
           })
