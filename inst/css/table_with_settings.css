@@ -1,0 +1,66 @@
+.table-settings-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.table-settings-buttons .btn {
+  font-size: inherit;
+  background: inherit;
+  border: none;
+  background-color: transparent;
+}
+.table-settings-buttons .dropdown .dropdown-toggle .caret {
+  display: none;
+}
+.table-modal .modal .modal-dialog {
+  width: 90%;
+}
+.table_out_container {
+  overflow-x: auto;
+}
+.table_out_container div:nth-child(1) {
+  margin-top: 30px;
+} /* margin for the buttons */
+.table-modal
+  .modal
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .table-modal-sliders {
+  overflow: hidden;
+}
+.table-modal
+  .modal
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .table-modal-sliders
+  div:nth-child(1) {
+  float: left;
+  width: 40%;
+}
+.table-modal
+  .modal
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .table-modal-sliders
+  div:nth-child(2) {
+  float: right;
+  width: 40%;
+}
+.table-settings-table {
+  overflow-x: scroll;
+}
+.modal-download-ui-table-container {
+  width: 250px;
+}
+.lock-btn {
+  right: 120px;
+  position: absolute;
+}
+.error {
+  color: #bb0000;
+  font-size: smaller;
+}

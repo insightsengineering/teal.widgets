@@ -1,5 +1,43 @@
 ---
-url: https://insightsengineering.github.io/nesttemplate/
+url: https://github.com/insightsengineering/teal.widgets
 
 template:
-  package: nesttemplate
+  params:
+    bootswatch: cerulean
+
+navbar:
+  right:
+    - icon: fa-github
+      href: https://github.com/insightsengineering/teal.widgets
+
+reference:
+  - title: "User interface functions"
+    desc: "Functions providing special user-interface elements"
+    contents:
+      - clean_brushedPoints
+      - get_dt_rows
+      - optionalSelectInput
+      - optionalSliderInput
+      - optionalSliderInputValMinMax
+      - panel_group
+      - panel_item
+      - plot_height_input
+      - plot_height_output
+      - plot_with_height
+      - plot_with_settings_srv
+      - plot_with_settings_ui
+      - srv_dich_trich_widget
+      - standard_layout
+      - table_with_settings_srv
+      - table_with_settings_ui
+      - updateOptionalSelectInput
+      - white_small_well
+  - title: "ggplot2 and basic_table arguments"
+    desc: "Aggregation and validation of arguments"
+    contents:
+      - basic_table_args
+      - ggplot2_args
+      - parse_ggplot2_args
+      - parse_basic_table_args
+      - resolve_basic_table_args
+      - resolve_ggplot2_args
