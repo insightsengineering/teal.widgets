@@ -30,8 +30,8 @@ For multi-plot modules the step `if (is_ggplot2_args) ggplot2_args <- list(defau
 3. Aggregating and reducing all `ggplot2_args` sources with `resolve_ggplot2_args()`.
 4. Usage of the `parse_ggplot2_args()` function which will parse inputs
 to list of expressions.
-5. Adding the created expression to the last chunk of a plot. `teal::calls_combine_by("+", list(...))` function could be 
-helpful at this step.
+5. Adding the created expression to the last chunk of a plot. `Reduce(function(x, y) call("+", x, y), list(...)` 
+function could be helpful at this step.
 
 The `resolve_ggplot2_args()` function picks the first non NULL value for each argument, checking in order:
 
