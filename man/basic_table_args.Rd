@@ -18,7 +18,7 @@ This function has to be used to build an input for a \code{basic_table_args} arg
 The \code{basic_table_args} argument should be a part of every module which contains any \code{rtables} object.
 Arguments are validated to match their \code{rtables} equivalents.
 
-For more details see the vignette: \code{vignette("custom-basic-table-arguments", package = "teal.devel")}.
+For more details see the vignette: \code{vignette("custom-basic-table-arguments", package = "teal.widgets")}.
 }
 \examples{
 basic_table_args(subtitles = "SUBTITLE")

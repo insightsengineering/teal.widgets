@@ -5,7 +5,7 @@
 #' The `basic_table_args` argument should be a part of every module which contains any `rtables` object.
 #' Arguments are validated to match their `rtables` equivalents.
 #'
-#' For more details see the vignette: `vignette("custom-basic-table-arguments", package = "teal.devel")`.
+#' For more details see the vignette: `vignette("custom-basic-table-arguments", package = "teal.widgets")`.
 #'
 #' @seealso
 #' * [resolve_basic_table_args()] to resolve multiple objects into one using pre-defined priorities.
