@@ -1,5 +1,5 @@
 ---
-title: "Custom ggplot2 arguments module"
+title: "Custom `ggplot2` arguments module"
 author: "Maciej Nasiński"
 date: "2021-12-01"
 output: rmarkdown::html_vignette
@@ -10,7 +10,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-This vignette will guide you through implementation of custom `ggplot2::labs` and `ggplot2::theme` for ggplot2 graphics 
+This vignette will guide you through implementation of custom `ggplot2::labs` and `ggplot2::theme` for `ggplot2` graphics 
 based modules.
 We will enable 2 ways of updating `ggplot2::labs` and `ggplot2::theme` by the end users.
 The `ggplot2` specification could be updated with the `teal.ggplot2_args` `options` variable or a `ggplot2_args` 
@@ -42,7 +42,7 @@ For multi-plot case, per plot (`user_plot`) and then default (`user_default`) se
 
 ### Additional topics
 
-When a more complex ggplot2 object has to be used inside the `teal.widgets::ggplot2_args` function, then a `base::quote` 
+When a more complex `ggplot2` object has to be used inside the `teal.widgets::ggplot2_args` function, then a `base::quote` 
 function would prevent an object expansion in Show R Code. For example the `ggplot2::element_text` function returns a 
 complex object, then we should use code like 
 `teal.widgets::ggplot2_args(theme = list(plot.title = quote(ggplot2::element_text(size = 20))))` to prevent Show R Code 
