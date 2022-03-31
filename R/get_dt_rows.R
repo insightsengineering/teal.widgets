@@ -1,8 +1,8 @@
 #' Maps the `lengthMenu`selected value property of `DT::datatable` to a Shiny variable.
 #'
 #' @description `r lifecycle::badge("stable")`
-#' @param dt_name \code{ns()} of inputId of the `DT::datatable`
-#' @param dt_rows \code{ns()} of inputId of the variable that holds the current selected value of `lengthMenu`
+#' @param dt_name \code{ns()} of `inputId` of the `DT::datatable`
+#' @param dt_rows \code{ns()} of `inputId` of the variable that holds the current selected value of `lengthMenu`
 #'
 #' @name get_dt_rows
 #'
