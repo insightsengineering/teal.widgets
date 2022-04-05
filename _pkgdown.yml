@@ -21,6 +21,9 @@ reference:
       - optionalSliderInputValMinMax
       - panel_group
       - panel_item
+      - plot_height_input
+      - plot_height_output
+      - plot_with_height
       - plot_with_settings_srv
       - plot_with_settings_ui
       - srv_dich_trich_widget
