@@ -17,7 +17,7 @@
 #' @param post_output (`shiny.tag`, optional) with text placed after the output to put the output
 #' into context. For example the [shiny::helpText()] elements are useful.
 #'
-#' @return an object of class \code{shiny.tag} with the UI code.
+#' @return an object of class \code{shiny.tag} with the ui code.
 #'
 #' @export
 standard_layout <- function(output,

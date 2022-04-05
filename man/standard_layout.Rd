@@ -32,7 +32,7 @@ with text placed before the output to put the output into context. For example a
 into context. For example the \code{\link[shiny:helpText]{shiny::helpText()}} elements are useful.}
 }
 \value{
-an object of class \code{shiny.tag} with the UI code.
+an object of class \code{shiny.tag} with the ui code.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}

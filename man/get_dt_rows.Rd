@@ -7,9 +7,9 @@
 get_dt_rows(dt_name, dt_rows)
 }
 \arguments{
-\item{dt_name}{\code{ns()} of \code{inputId} of the \code{DT::datatable}}
+\item{dt_name}{\code{ns()} of inputId of the \code{DT::datatable}}
 
-\item{dt_rows}{\code{ns()} of \code{inputId} of the variable that holds the current selected value of \code{lengthMenu}}
+\item{dt_rows}{\code{ns()} of inputId of the variable that holds the current selected value of \code{lengthMenu}}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
