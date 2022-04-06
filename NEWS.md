@@ -4,6 +4,6 @@
 
 ## Changes (from behavior when functionality was part of `teal`)
 
-### Bugfixes
+### Bugfix
 
 * Fixed location of pagination toggle for downloading tables using `table_with_settings`.
