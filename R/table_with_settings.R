@@ -160,7 +160,7 @@ type_download_ui_table <- function(id) {
             value = formals(rtables::paginate_table)$lpp,
             icon = list("lines / page")
           ),
-        uiOutput(ns("lpp_warning"))
+          uiOutput(ns("lpp_warning"))
         )
       ),
       conditionalPanel(
