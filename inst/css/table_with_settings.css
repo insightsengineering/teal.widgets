@@ -57,8 +57,14 @@
   width: 250px;
 }
 .lock-btn {
-  right: 120px;
-  position: absolute;
+  top: 0.5em;
+  left: 45%;
+  position: relative;
+}
+.paginate-ui {
+  position: relative;
+  bottom: 2em;
+  margin-bottom: -40px;
 }
 .error {
   color: #bb0000;
