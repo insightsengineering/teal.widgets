@@ -64,6 +64,7 @@
 .paginate-ui {
   position: relative;
   bottom: 2em;
+  margin-bottom: -40px;
 }
 .error {
   color: #bb0000;
