@@ -152,13 +152,16 @@ type_download_ui_table <- function(id) {
             animation = "pulse"
           )
         ),
-        shinyWidgets::numericInputIcon(
-          inputId = ns("lpp"),
-          label = "Paginate table:",
-          value = formals(rtables::paginate_table)$lpp,
-          icon = list("lines / page")
-        ),
+        div(
+          class = "paginate-ui",
+          shinyWidgets::numericInputIcon(
+            inputId = ns("lpp"),
+            label = "Paginate table:",
+            value = formals(rtables::paginate_table)$lpp,
+            icon = list("lines / page")
+          ),
         uiOutput(ns("lpp_warning"))
+        )
       ),
       conditionalPanel(
         condition = paste0("input['", ns("file_name"), "'] != ''"),
