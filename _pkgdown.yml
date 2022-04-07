@@ -23,7 +23,6 @@ reference:
       - panel_item
       - plot_with_settings_srv
       - plot_with_settings_ui
-      - srv_dich_trich_widget
       - standard_layout
       - table_with_settings_srv
       - table_with_settings_ui
