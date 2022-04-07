@@ -24,7 +24,7 @@ Imports:
     graphics,
     lifecycle,
     methods,
-    rtables (>= 0.4.1),
+    rtables (>= 0.5.0),
     shiny,
     shinyjs,
     shinyWidgets
