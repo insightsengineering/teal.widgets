@@ -1,4 +1,8 @@
-# teal.widgets 0.0.0.9007
+# teal.widgets 0.1.0.9000
+
+* No changes since last release
+
+# teal.widgets 0.1.0
 
 * Initial release of `teal.widgets` a package providing shiny widgets for `teal` applications.
 
