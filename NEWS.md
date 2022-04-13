@@ -1,6 +1,8 @@
 # teal.widgets 0.1.0.9000
 
-* No changes since last release
+### Bug fixes
+
+* Fixed an edge case bug where zooming in or out from the browser would cause a plot of a `grob` object to not re-render instead displaying a blank white space.
 
 # teal.widgets 0.1.0
 

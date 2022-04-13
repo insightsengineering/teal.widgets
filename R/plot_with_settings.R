@@ -309,6 +309,11 @@ plot_with_settings_srv <- function(id,
       if (plot_type() == "gg" && dblclicking) {
         plot_r() +
           ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
+      } else if (plot_type() == "grob") {
+        # calling grid.draw on plot_r() is needed;
+        # otherwise the plot will not re-render if the user triggers the zoom in or out feature of the browser.
+        grid::grid.newpage()
+        grid::grid.draw(plot_r())
       } else {
         plot_r()
       }
