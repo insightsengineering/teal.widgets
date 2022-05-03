@@ -34,3 +34,6 @@ downstream_repos:
   insightsengineering/teal.modules.hermes:
     repo: insightsengineering/teal.modules.hermes
     host: https://github.com
+  nest/r-packages/teal.gallery:
+    repo: nest/r-packages/teal.gallery
+    host: https://code.roche.com
