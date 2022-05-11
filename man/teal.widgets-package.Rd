@@ -11,23 +11,16 @@ for teal module development. The Package is dedicated to allow developers to ext
 functionality by additional inputs and output controls.
 }
 \author{
-\strong{Maintainer}: NEST \email{basel.nestcicd@roche.com}
+\strong{Maintainer}: Dawid Kaledkowski \email{dawid.kaledkowski@roche.com}
 
 Authors:
 \itemize{
-  \item Nikolas Burkoff \email{nikolas.burkoff@roche.com}
-  \item Mahmoud Hallal \email{mahmoud.hallal@roche.com}
-  \item Dawid Kaledkowski \email{dawid.kaledkowski@roche.com}
-  \item Maciej Nasinski \email{maciej.nasinski@contractors.roche.com}
-  \item Konrad Pagacz \email{konrad.pagacz@contractors.roche.com}
-  \item Pawel Rucki \email{pawel.rucki@contractors.roche.com}
-  \item Junlue Zhao \email{zhaoj88@gene.com}
+  \item Pawel Rucki \email{pawel.rucki@roche.com}
 }
 
 Other contributors:
 \itemize{
-  \item Tadeusz Lewandowski \email{tadeusz.lewandowski@roche.com} [contributor]
-  \item Roche [copyright holder, funder]
+  \item F. Hoffmann-La Roche AG [copyright holder, funder]
 }
 
 }
