@@ -586,7 +586,7 @@ get_plot_dpi <- function() {
   default_dpi <- 72
   dpi <- getOption("teal.plot_dpi", default_dpi)
   if (!checkmate::test_integerish(dpi, lower = 24, any.missing = FALSE, len = 1)) {
-    warning(paste("Invalid value for option 'teal.plot_dpi', using ", default_dpi))
+    warning(paste("Invalid value for option 'teal.plot_dpi', therefore defaulting to", default_dpi, "dpi"))
     dpi <- default_dpi
   }
   dpi
