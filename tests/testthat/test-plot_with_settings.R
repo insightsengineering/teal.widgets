@@ -37,7 +37,7 @@ testthat::test_that("if teal.plot_dpi is an integer value less 24 then get_plot_
       list(teal.plot_dpi = 0),
       testthat::expect_equal(get_plot_dpi(), 72)
     ),
-  "teal.plot_dpi"
+    "teal.plot_dpi"
   )
 })
 
