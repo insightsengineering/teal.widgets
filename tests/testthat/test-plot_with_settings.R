@@ -25,25 +25,36 @@ testthat::test_that("if teal.plot_dpi is an integer value at least 24 then get_p
 })
 
 testthat::test_that("if teal.plot_dpi is an integer value less 24 then get_plot_dpi returns 72", {
-  teal.logger::suppress_logs()
-  withr::with_options(
-    list(teal.plot_dpi = 23),
-    testthat::expect_equal(get_plot_dpi(), 72)
+  testthat::expect_warning(
+    withr::with_options(
+      list(teal.plot_dpi = 23),
+      testthat::expect_equal(get_plot_dpi(), 72)
+    ),
+    "teal.plot_dpi"
   )
-  withr::with_options(
-    list(teal.plot_dpi = 0),
-    testthat::expect_equal(get_plot_dpi(), 72)
+  testthat::expect_warning(
+    withr::with_options(
+      list(teal.plot_dpi = 0),
+      testthat::expect_equal(get_plot_dpi(), 72)
+    ),
+  "teal.plot_dpi"
   )
 })
 
 testthat::test_that("if teal.plot_dpi is not an integer value then get_plot_dpi returns 72", {
-  teal.logger::suppress_logs()
-  withr::with_options(
-    list(teal.plot_dpi = c(72, 96)),
-    testthat::expect_equal(get_plot_dpi(), 72)
+  testthat::expect_warning(
+    withr::with_options(
+      list(teal.plot_dpi = c(72, 96)),
+      testthat::expect_equal(get_plot_dpi(), 72)
+    ),
+    "teal.plot_dpi"
   )
-  withr::with_options(
-    list(teal.plot_dpi = "foo"),
-    testthat::expect_equal(get_plot_dpi(), 72)
+
+  testthat::expect_warning(
+    withr::with_options(
+      list(teal.plot_dpi = "foo"),
+      testthat::expect_equal(get_plot_dpi(), 72)
+    ),
+    "teal.plot_dpi"
   )
 })

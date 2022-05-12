@@ -3,7 +3,7 @@
 ### Enhancements
 
 * The `option` `teal.plot_dpi` controls the `dpi` for rendering and downloading plots in `plot_with_settings`. If `option` not used then a default of `72dpi` is used
-(which is unchanged from the previous behaviour).
+(which is unchanged from the previous behavior).
 
 ### Bug fixes
 
