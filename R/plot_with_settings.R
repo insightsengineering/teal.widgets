@@ -95,7 +95,8 @@ plot_with_settings_ui <- function(id) {
 #'  the main page.
 #'
 #' @details By default the plot is rendered with `72 dpi`. In order to change this, to for example 96 set
-#' `options(teal.plot_dpi = 96)`
+#' `options(teal.plot_dpi = 96)`. The minimum allowed `dpi` value is `24` and it must be a whole number.
+#' If an invalid value is set then the default value is used and a warning is output.
 #'
 #' @examples
 #' \dontrun{
