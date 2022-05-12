@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">teal.widgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9001</span>
       </span>
     </div>
 
@@ -126,6 +126,12 @@ the one displayed in modal). All the hovering data is stored as a reactive objec
 one of <code>"left"</code> (default), <code>"center"</code>, <code>"right"</code> or <code>"justify"</code>. The alignment of the graph on
 the main page.</p></dd>
 </dl></div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>By default the plot is rendered with <code>72 dpi</code>. In order to change this, to for example 96 set
+<code>options(teal.plot_dpi = 96)</code>. The minimum allowed <code>dpi</code> value is <code>24</code> and it must be a whole number.
+If an invalid value is set then the default value is used and a warning is outputted to the console.</p>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
@@ -224,14 +230,11 @@ the main page.</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by NEST, Nikolas Burkoff, Mahmoud Hallal, Dawid
-Kaledkowski, Maciej Nasinski, Konrad Pagacz, Pawel Rucki, Junlue Zhao,
-Roche.</p>
+  <p></p><p>Developed by NEST, Nikolas Burkoff, Mahmoud Hallal, Dawid Kaledkowski, Maciej Nasinski, Konrad Pagacz, Pawel Rucki, Junlue Zhao, Roche.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>

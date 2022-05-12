@@ -1,10 +1,10 @@
 pandoc: 2.17.1.1
-pkgdown: 2.0.2
+pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   custom-basic-table-arguments: custom-basic-table-arguments.html
   custom-ggplot2-arguments: custom-ggplot2-arguments.html
-last_built: 2022-04-14T19:13Z
+last_built: 2022-05-12T14:10Z
 urls:
   reference: https://github.com/insightsengineering/teal.widgets/reference
   article: https://github.com/insightsengineering/teal.widgets/articles
