@@ -94,6 +94,9 @@ plot_with_settings_ui <- function(id) {
 #'  one of `"left"` (default), `"center"`, `"right"` or `"justify"`. The alignment of the graph on
 #'  the main page.
 #'
+#' @details By default the plot is rendered with `72 dpi`. In order to change this, to for example 96 set
+#' `options(teal.plot_dpi = 96)`
+#'
 #' @examples
 #' \dontrun{
 #' library(shiny)
@@ -305,19 +308,22 @@ plot_with_settings_srv <- function(id,
       }
     })
 
-    output$plot_modal <- output$plot_main <- renderPlot({
-      if (plot_type() == "gg" && dblclicking) {
-        plot_r() +
-          ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
-      } else if (plot_type() == "grob") {
-        # calling grid.draw on plot_r() is needed;
-        # otherwise the plot will not re-render if the user triggers the zoom in or out feature of the browser.
-        grid::grid.newpage()
-        grid::grid.draw(plot_r())
-      } else {
-        plot_r()
-      }
-    })
+    output$plot_modal <- output$plot_main <- renderPlot(
+      expr = {
+        if (plot_type() == "gg" && dblclicking) {
+          plot_r() +
+            ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
+        } else if (plot_type() == "grob") {
+          # calling grid.draw on plot_r() is needed;
+          # otherwise the plot will not re-render if the user triggers the zoom in or out feature of the browser.
+          grid::grid.newpage()
+          grid::grid.draw(plot_r())
+        } else {
+          plot_r()
+        }
+      },
+      res = get_plot_dpi()
+    )
 
     output$plot_out_main <- renderUI({
       div(
@@ -487,11 +493,11 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
           width <- `if`(!is.null(plot_w()), plot_w(), default_w())
           height <- `if`(!is.null(plot_h()), plot_h(), default_h())
 
-          # svg and pdf have width in inches and 1 inch = 72 pixels
+          # svg and pdf have width in inches and 1 inch = get_plot_dpi() pixels
           switch(input$file_format,
             png = grDevices::png(file, width, height),
-            pdf = grDevices::pdf(file, width / 72, height / 72),
-            svg = grDevices::svg(file, width / 72, height / 72)
+            pdf = grDevices::pdf(file, width / get_plot_dpi(), height / get_plot_dpi()),
+            svg = grDevices::svg(file, width / get_plot_dpi(), height / get_plot_dpi())
           )
 
           if (plot_type() == "other") {
@@ -573,4 +579,15 @@ clean_brushedPoints <- function(data, brush) { # nolintr
   # filter out rows that are only NAs
   df <- df[rowSums(is.na(df)) != ncol(df), ]
   df
+}
+
+
+get_plot_dpi <- function() {
+  default_dpi <- 72
+  dpi <- getOption("teal.plot_dpi", default_dpi)
+  if (!checkmate::test_integerish(dpi, lower = 24, any.missing = FALSE, len = 1)) {
+    logger::log_warn(paste("Invalid value for option 'teal.plot_dpi', using ", default_dpi))
+    dpi <- default_dpi
+  }
+  dpi
 }

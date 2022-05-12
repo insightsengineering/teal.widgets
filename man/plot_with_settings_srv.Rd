@@ -64,6 +64,10 @@ the main page.}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
+\details{
+By default the plot is rendered with \verb{72 dpi}. In order to change this, to for example 96 set
+\code{options(teal.plot_dpi = 96)}
+}
 \examples{
 \dontrun{
 library(shiny)
