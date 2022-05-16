@@ -1,0 +1,17 @@
+.elements {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.element {
+  background-color: hsl(0, 0%, 95%);
+  border: solid 1px darkgrey;
+  border-radius: 3px;
+}
+
+.bucket {
+  display: flex;
+  min-width: 2rem;
+  min-height: 2rem;
+  border: solid 1px pink;
+}
