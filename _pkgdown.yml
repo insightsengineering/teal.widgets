@@ -15,6 +15,7 @@ reference:
     desc: "Functions providing special user-interface elements"
     contents:
       - clean_brushedPoints
+      - draggable_buckets
       - get_dt_rows
       - optionalSelectInput
       - optionalSliderInput

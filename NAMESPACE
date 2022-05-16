@@ -2,6 +2,7 @@
 
 export(basic_table_args)
 export(clean_brushedPoints)
+export(draggable_buckets)
 export(get_dt_rows)
 export(ggplot2_args)
 export(optionalSelectInput)
