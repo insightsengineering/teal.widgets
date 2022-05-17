@@ -6,7 +6,7 @@
 (which is unchanged from the previous behavior).
 
 ### New features
-* Add ability to pin and un-pin the main panel in the `standard_layout`. 
+* Add ability to pin and unpin the main panel in the `standard_layout`. 
 
 ### Bug fixes
 
