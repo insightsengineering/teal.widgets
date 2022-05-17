@@ -19,14 +19,17 @@ $.extend(draggableBuckets, {
   },
   getValue: function (el) {
     const buckets = $(el).find(".bucket").toArray();
-    return buckets.map((bucket) => {
+    const ret = {};
+    buckets.forEach((bucket, index) => {
       const items = [...bucket.childNodes].map(node => node.textContent);
       console.log(items);
-      return {
+      ret[index] = {
         name: bucket.dataset.label,
         elements: items,
       };
     });
+    console.dir(ret);
+    return ret;
   },
   setValue: function (el, value) {
     $(el).text(value);

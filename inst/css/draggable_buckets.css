@@ -1,6 +1,14 @@
+.draggableBuckets {
+  display: block;
+  gap: 1rem;
+}
+
 .elements {
   display: flex;
   gap: 0.5rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  border: solid 1px red;
 }
 
 .element {
@@ -11,6 +19,7 @@
 
 .bucket {
   display: flex;
+  gap: 0.5rem;
   min-width: 2rem;
   min-height: 2rem;
   border: solid 1px pink;

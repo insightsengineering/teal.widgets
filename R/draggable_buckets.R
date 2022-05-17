@@ -25,15 +25,17 @@
 #'
 draggable_buckets <- function(input_id, elements, buckets) {
   shiny::tagList(
-    shiny::tags$head(shiny::includeScript("../inst/widgets/draggable_buckets.js")),
-    shiny::tags$head(shiny::includeCSS("../inst/css/draggable_buckets.css")),
+    shiny::tags$head(shiny::includeScript(system.file("widgets/draggable_buckets.js", package = "teal.widgets"))),
+    shiny::tags$head(shiny::includeCSS(system.file("css/draggable_buckets.css", package = "teal.widgets"))),
     shiny::div(
       shiny::tags$div(
         lapply(seq_along(elements), function(index) {
           render_draggable_element(value = elements[index], id = paste0(input_id, "draggable", index))
         }),
         id = "elements",
-        class = "elements"
+        class = "elements",
+        ondragover = "allowDrop(event)",
+        ondrop = "drop(event)"
       ),
       shiny::tags$div(lapply(buckets, render_bucket)),
       class = "draggableBuckets",
