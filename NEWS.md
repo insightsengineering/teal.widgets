@@ -1,4 +1,9 @@
-# teal.widgets 0.1.0.9001
+# teal.widgets 0.1.0.9002
+
+### Enhancements
+
+* The `option` `teal.plot_dpi` controls the `dpi` for rendering and downloading plots in `plot_with_settings`. If `option` not used then a default of `72dpi` is used
+(which is unchanged from the previous behavior).
 
 ### New features
 * Add ability to pin and un-pin the main panel in the `standard_layout`. 

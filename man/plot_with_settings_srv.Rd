@@ -64,6 +64,11 @@ the main page.}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
+\details{
+By default the plot is rendered with \verb{72 dpi}. In order to change this, to for example 96 set
+\code{options(teal.plot_dpi = 96)}. The minimum allowed \code{dpi} value is \code{24} and it must be a whole number.
+If an invalid value is set then the default value is used and a warning is outputted to the console.
+}
 \examples{
 \dontrun{
 library(shiny)
