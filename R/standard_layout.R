@@ -51,8 +51,7 @@ standard_layout <- function(output,
         tags$a(
           href = "javascript:void(0)",
           class = "action-button",
-          onclick = "var element = document.getElementById(\"standard_layout_output_panel\");
-                    element.classList.toggle(\"pinned\");",
+          onclick = "document.getElementById(\"standard_layout_output_panel\").classList.toggle(\"pinned\");",
           title = "Pin content",
           tags$span(icon("thumbtack", lib = "font-awesome"))
         )
