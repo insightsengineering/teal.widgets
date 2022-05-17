@@ -1,5 +1,8 @@
 # teal.widgets 0.1.0.9001
 
+### New features
+* Add ability to pin and un-pin the main panel in the `standard_layout`. 
+
 ### Bug fixes
 
 * Fixed an edge case bug where zooming in or out from the browser would cause a plot of a `grob` object to not re-render instead displaying a blank white space.

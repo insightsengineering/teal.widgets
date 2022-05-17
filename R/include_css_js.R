@@ -8,7 +8,7 @@
 #'
 #' @return HTML code that includes `CSS` files
 #' @keywords internal
-include_css_files <- function(pattern = "*") {
+include_css_files <- function(pattern = NULL) {
   css_files <- list.files(
     system.file("css", package = "teal.widgets", mustWork = TRUE),
     pattern = pattern, full.names = TRUE

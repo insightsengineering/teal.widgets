@@ -41,12 +41,27 @@ standard_layout <- function(output,
   }
 
   # if encoding=NULL then forms is placed below output
-
   tag_output <- div(
-    class = "well",
-    div(id = "pre-output", pre_output),
-    div(id = "output", output),
-    div(id = "post-output", post_output)
+    include_css_files("pinned.css"),
+    div(
+      class = "well",
+      id = "standard_layout_output_panel",
+      tags$div(
+        class = "col-sm-3",
+        tags$a(
+          href = "javascript:void(0)",
+          class = "action-button",
+          onclick = "var element = document.getElementById(\"standard_layout_output_panel\");
+                    element.classList.toggle(\"pinned\");",
+          title = "Pin content",
+          tags$span(icon("thumbtack", lib = "font-awesome"))
+        )
+      ),
+      tags$br(),
+      div(id = "pre-output", pre_output),
+      div(id = "output", output),
+      div(id = "post-output", post_output)
+    )
   )
 
   tag_enc_out <- if (!is.null(encoding)) {
