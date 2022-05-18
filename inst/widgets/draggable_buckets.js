@@ -9,7 +9,12 @@ const drag = (event) => {
 const drop = (event) => {
   event.preventDefault();
   const data = event.dataTransfer.getData("element");
-  if (data !== null) event.target.appendChild(document.getElementById(data));
+  if (
+    data !== null &&
+    (event.target.classList.contains("bucket") ||
+      event.target.classList.contains("elements"))
+  )
+    event.target.appendChild(document.getElementById(data));
 };
 
 var draggableBuckets = new Shiny.InputBinding();
@@ -21,14 +26,14 @@ $.extend(draggableBuckets, {
     const buckets = $(el).find(".bucket").toArray();
     const ret = {};
     buckets.forEach((bucket, index) => {
-      const items = [...bucket.childNodes].map(node => node.textContent);
-      console.log(items);
+      const items = [...bucket.childNodes]
+        .filter((child) => child.classList !== undefined && child.classList.contains("element"))
+        .map((node) => node.textContent);
       ret[index] = {
         name: bucket.dataset.label,
         elements: items,
       };
     });
-    console.dir(ret);
     return ret;
   },
   setValue: function (el, value) {
@@ -40,7 +45,7 @@ $.extend(draggableBuckets, {
     this.observers[el].observe(el, {
       subtree: true,
       childList: true,
-      attributes: true
+      attributes: true,
     });
   },
   unsubscribe: function (el) {

@@ -1,6 +1,7 @@
 .draggableBuckets {
   display: block;
   gap: 1rem;
+  margin: 2px;
 }
 
 .elements {
@@ -16,6 +17,7 @@
   border: solid 1px darkgrey;
   border-radius: 3px;
   cursor: grab;
+  padding: 0px 1px 1px 1px;
 }
 
 .bucket {

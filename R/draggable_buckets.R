@@ -3,6 +3,7 @@
 #' A custom widget with draggable elements that can be put into buckets.
 #'
 #' @param input_id (`character(1)`) the `HTML` id of this widget
+#' @param label (`character(1)`) the header of this widget
 #' @param elements (`character`) the elements to drag into buckets
 #' @param buckets (`character`) the names of the buckets the elements can but put in
 #'
@@ -11,8 +12,8 @@
 #'
 #' @examples
 #' ui <- shiny::fluidPage(
-#'   draggable_buckets("id", c("a", "b"), c("bucket1", "bucket2")),
-#'   # draggable_buckets("id2", c("a", "b"), c("bucket1", "bucket2")),
+#'   draggable_buckets("id", "Choices #1", c("a", "b"), c("bucket1", "bucket2")),
+#'   draggable_buckets("id2", "Choices #2", letters, c("vowels", "consonants")),
 #'   shiny::verbatimTextOutput("out")
 #' )
 #' server <- function(input, output) {
@@ -23,7 +24,7 @@
 #' }
 #' if (interactive()) shiny::shinyApp(ui, server)
 #'
-draggable_buckets <- function(input_id, elements, buckets) {
+draggable_buckets <- function(input_id, label, elements, buckets) {
   shiny::tagList(
     shiny::tags$head(
       shiny::singleton(shiny::includeScript(system.file("widgets/draggable_buckets.js", package = "teal.widgets")))
@@ -32,6 +33,7 @@ draggable_buckets <- function(input_id, elements, buckets) {
       shiny::includeCSS(system.file("css/draggable_buckets.css", package = "teal.widgets"))
     )),
     shiny::div(
+      shiny::tags$span(label),
       shiny::tags$div(
         lapply(seq_along(elements), function(index) {
           render_draggable_element(value = elements[index], id = paste0(input_id, "draggable", index))
@@ -54,6 +56,7 @@ render_draggable_element <- function(value, id) {
 
 render_bucket <- function(name) {
   shiny::tags$div(
+    shiny::tags$div(paste0(name, ":")),
     class = c("form-control", "bucket"), ondragover = "allowDrop(event)", ondrop = "drop(event)", `data-label` = name
   )
 }
