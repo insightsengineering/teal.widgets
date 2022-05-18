@@ -1,3 +1,31 @@
 .pinned {
-  position: fixed;
+  position: sticky;
+  top: 0;
+}
+
+.pin-container {
+  overflow: visible;
+}
+
+.pin--inactive {
+  display: inline;
+  position: absolute;
+  z-index: 2;
+
+  color: gray;
+  cursor: pointer;
+}
+
+.pin--inactive:hover {
+  color: lightblue;
+}
+
+.pin--active {
+  display: inline;
+  position: absolute;
+  z-index: 2;
+
+  color: red;
+  cursor: pointer;
+  z-index: 2;
 }

@@ -47,20 +47,19 @@ standard_layout <- function(output,
       class = "well",
       id = "standard_layout_output_panel",
       tags$div(
-        class = "col-sm-3",
-        tags$a(
-          href = "javascript:void(0)",
-          class = "action-button",
-          onclick = "document.getElementById(\"standard_layout_output_panel\").classList.toggle(\"pinned\");",
-          title = "Pin content",
-          tags$span(icon("thumbtack", lib = "font-awesome"))
-        )
+        id = "pin",
+        class = "pin--inactive",
+        onclick = "togglePin(event)",
+        shiny::tags$head(
+          shiny::singleton(shiny::includeScript(system.file("js/togglePin.js", package = "teal.widgets")))
+        ),
+        icon("thumbtack", lib = "font-awesome")
       ),
-      tags$br(),
       div(id = "pre-output", pre_output),
       div(id = "output", output),
       div(id = "post-output", post_output)
-    )
+    ),
+    id = "output-container"
   )
 
   tag_enc_out <- if (!is.null(encoding)) {
@@ -74,11 +73,11 @@ standard_layout <- function(output,
           div(class = "form-group", forms)
         }
       ),
-      div(class = "col-md-9", tag_output)
+      div(class = "col-md-9 pin-container", tag_output)
     )
   } else {
     div(
-      class = "col-md-12",
+      class = "col-md-12 pin-container",
       tag_output,
       if (is.null(forms)) {
         NULL
