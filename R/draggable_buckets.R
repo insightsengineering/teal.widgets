@@ -25,15 +25,19 @@
 #'
 draggable_buckets <- function(input_id, elements, buckets) {
   shiny::tagList(
-    shiny::tags$head(shiny::includeScript(system.file("widgets/draggable_buckets.js", package = "teal.widgets"))),
-    shiny::tags$head(shiny::includeCSS(system.file("css/draggable_buckets.css", package = "teal.widgets"))),
+    shiny::tags$head(
+      shiny::singleton(shiny::includeScript(system.file("widgets/draggable_buckets.js", package = "teal.widgets")))
+    ),
+    shiny::tags$head(shiny::singleton(
+      shiny::includeCSS(system.file("css/draggable_buckets.css", package = "teal.widgets"))
+    )),
     shiny::div(
       shiny::tags$div(
         lapply(seq_along(elements), function(index) {
           render_draggable_element(value = elements[index], id = paste0(input_id, "draggable", index))
         }),
         id = "elements",
-        class = "elements",
+        class = c("form-control", "elements"),
         ondragover = "allowDrop(event)",
         ondrop = "drop(event)"
       ),
@@ -45,9 +49,11 @@ draggable_buckets <- function(input_id, elements, buckets) {
 }
 
 render_draggable_element <- function(value, id) {
-  shiny::tags$div(value, id = id, class = "element", draggable = "true", ondragstart = "drag(event)")
+  shiny::tags$div(value, id = id, class = "element", draggable = "true", ondragstart = "drag(event)", ondrop = "false")
 }
 
 render_bucket <- function(name) {
-  shiny::tags$div(class = "bucket", ondragover = "allowDrop(event)", ondrop = "drop(event)", `data-label` = name)
+  shiny::tags$div(
+    class = c("form-control", "bucket"), ondragover = "allowDrop(event)", ondrop = "drop(event)", `data-label` = name
+  )
 }
