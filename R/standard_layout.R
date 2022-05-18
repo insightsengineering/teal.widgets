@@ -43,27 +43,26 @@ standard_layout <- function(output,
   # if encoding=NULL then forms is placed below output
   tag_output <- div(
     include_css_files("pinned.css"),
+    tags$div(
+      id = "pin",
+      class = "pin--inactive",
+      onclick = "togglePin(event)",
+      shiny::tags$head(
+        shiny::singleton(shiny::includeScript(system.file("js/togglePin.js", package = "teal.widgets")))
+      ),
+      icon("thumbtack", lib = "font-awesome")
+    ),
     div(
       class = "well",
       id = "standard_layout_output_panel",
-      tags$div(
-        id = "pin",
-        class = "pin--inactive",
-        onclick = "togglePin(event)",
-        shiny::tags$head(
-          shiny::singleton(shiny::includeScript(system.file("js/togglePin.js", package = "teal.widgets")))
-        ),
-        icon("thumbtack", lib = "font-awesome")
-      ),
       div(id = "pre-output", pre_output),
       div(id = "output", output),
       div(id = "post-output", post_output)
-    ),
-    id = "output-container"
+    )
   )
 
   tag_enc_out <- if (!is.null(encoding)) {
-    div(
+    shiny::tagList(
       div(
         class = "col-md-3",
         div(class = "well", encoding),
@@ -73,7 +72,7 @@ standard_layout <- function(output,
           div(class = "form-group", forms)
         }
       ),
-      div(class = "col-md-9 pin-container", tag_output)
+      div(id = "output-container", class = "col-md-9", tag_output)
     )
   } else {
     div(
@@ -87,5 +86,5 @@ standard_layout <- function(output,
     )
   }
 
-  fluidRow(tag_enc_out)
+  fluidRow(tag_enc_out, class = "pin-container")
 }

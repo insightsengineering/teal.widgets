@@ -1,6 +1,6 @@
 .pinned {
   position: sticky;
-  top: 0;
+  top: 5px;
 }
 
 .pin-container {
@@ -10,6 +10,8 @@
 .pin--inactive {
   display: inline;
   position: absolute;
+  left: 20px;
+  top: 2px;
   z-index: 2;
 
   color: gray;
@@ -23,6 +25,8 @@
 .pin--active {
   display: inline;
   position: absolute;
+  left: 20px;
+  top: 2px;
   z-index: 2;
 
   color: red;
