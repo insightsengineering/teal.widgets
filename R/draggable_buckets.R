@@ -63,7 +63,7 @@ render_draggable_element <- function(value, id) {
     draggable = "true",
     ondragstart = "drag(event)",
     ondragover = "allowDrop(event)",
-    ondrop = "dropReorder(event)" # or "drop_end(event)"
+    ondrop = "dropReorder(event)"
   )
 }
 
