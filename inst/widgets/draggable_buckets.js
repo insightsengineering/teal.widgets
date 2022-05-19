@@ -17,6 +17,41 @@ const drop = (event) => {
     event.target.appendChild(document.getElementById(data));
 };
 
+const drop_end = (event) => {
+  event.preventDefault();
+  const data = event.dataTransfer.getData("element");
+  if (data !== null && event.target.classList.contains("element"))
+    event.target.parentNode.appendChild(document.getElementById(data));
+};
+
+const drop_reorder = (event) => {
+  event.preventDefault();
+  const data = event.dataTransfer.getData("element");
+  if (data !== null && event.target.classList.contains("element"))
+    event.target.parentNode.insertBefore(
+      document.getElementById(data),
+      document.getElementById(event.target.id))
+    ;
+};
+
+const drop_bucket_name = (event) => {
+  event.preventDefault();
+  const data = event.dataTransfer.getData("element");
+  console.log("sdfs", event.target.parentNode.childNodes, event.target.parentNode)
+  if (data !== null && event.target.classList.contains("bucket-name")) {
+    // needs to be 3 because the name div is surrounded by 2 text div's
+    // so draggable elements starts at index 3
+    if (event.target.parentNode.childNodes.length > 3) {
+      event.target.parentNode.insertBefore(
+        document.getElementById(data),
+        document.getElementById(event.target.parentNode.childNodes[3].id)
+      );
+    } else {
+      event.target.parentNode.appendChild(document.getElementById(data));
+    }
+  }
+};
+
 var draggableBuckets = new Shiny.InputBinding();
 $.extend(draggableBuckets, {
   find: function (scope) {

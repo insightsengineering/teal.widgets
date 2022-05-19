@@ -38,12 +38,12 @@ draggable_buckets <- function(input_id, label, elements, buckets) {
         lapply(seq_along(elements), function(index) {
           render_draggable_element(value = elements[index], id = paste0(input_id, "draggable", index))
         }),
-        id = "elements",
+        id = paste0(input_id, "elements"),
         class = c("form-control", "elements"),
         ondragover = "allowDrop(event)",
         ondrop = "drop(event)"
       ),
-      shiny::tags$div(lapply(buckets, render_bucket)),
+      shiny::tags$div(lapply(buckets, render_bucket, input_id = input_id)),
       class = "draggableBuckets",
       id = input_id
     )
@@ -51,12 +51,29 @@ draggable_buckets <- function(input_id, label, elements, buckets) {
 }
 
 render_draggable_element <- function(value, id) {
-  shiny::tags$div(value, id = id, class = "element", draggable = "true", ondragstart = "drag(event)", ondrop = "false")
+  shiny::tags$div(
+    value,
+    id = id,
+    class = "element",
+    draggable = "true",
+    ondragstart = "drag(event)",
+    ondragover = "allowDrop(event)",
+    ondrop = "drop_reorder(event)" # or "drop_end(event)"
+  )
 }
 
-render_bucket <- function(name) {
+render_bucket <- function(name, input_id) {
   shiny::tags$div(
-    shiny::tags$div(paste0(name, ":")),
-    class = c("form-control", "bucket"), ondragover = "allowDrop(event)", ondrop = "drop(event)", `data-label` = name
+    shiny::tags$div(
+      paste0(name, ":"),
+      class = "bucket-name",
+      ondragover = "allowDrop(event)",
+      ondrop = "drop_bucket_name(event)"
+    ),
+    id = paste0(input_id, "bucket"),
+    class = c("form-control", "bucket"),
+    ondragover = "allowDrop(event)",
+    ondrop = "drop(event)",
+    `data-label` = name
   )
 }
