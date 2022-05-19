@@ -30,8 +30,8 @@ const drop_reorder = (event) => {
   if (data !== null && event.target.classList.contains("element"))
     event.target.parentNode.insertBefore(
       document.getElementById(data),
-      document.getElementById(event.target.id))
-    ;
+      document.getElementById(event.target.id)
+    );
 };
 
 const drop_bucket_name = (event) => {
@@ -40,17 +40,15 @@ const drop_bucket_name = (event) => {
   if (data !== null && event.target.classList.contains("bucket-name")) {
     // needs to be 3 because the name div is surrounded by 2 text div's
     // so draggable elements starts at index 3
-    if (event.target.parentNode.childNodes.length > 3) {
-      event.target.parentNode.insertBefore(
-        document.getElementById(data),
-        document.getElementById(event.target.parentNode.childNodes[3].id)
-      );
-    } else {
-      event.target.parentNode.appendChild(document.getElementById(data));
-    }
+    const thirdChild = event.target.nextSibling.nextSibling;
+    event.target.parentNode.insertBefore(
+      document.getElementById(data),
+      thirdChild
+    );
   }
 };
 
+// Shiny callbacks
 var draggableBuckets = new Shiny.InputBinding();
 $.extend(draggableBuckets, {
   find: function (scope) {
@@ -61,7 +59,10 @@ $.extend(draggableBuckets, {
     const ret = {};
     buckets.forEach((bucket, index) => {
       const items = [...bucket.childNodes]
-        .filter((child) => child.classList !== undefined && child.classList.contains("element"))
+        .filter(
+          (child) =>
+            child.classList !== undefined && child.classList.contains("element")
+        )
         .map((node) => node.textContent);
       ret[index] = {
         name: bucket.dataset.label,

@@ -3,7 +3,7 @@
 #' A custom widget with draggable elements that can be put into buckets.
 #'
 #' @param input_id (`character(1)`) the `HTML` id of this widget
-#' @param label (`character(1)`) the header of this widget
+#' @param label (`character(1)` or `shiny.tag`) the header of this widget
 #' @param elements (`character`) the elements to drag into buckets
 #' @param buckets (`character`) the names of the buckets the elements can but put in
 #'
@@ -25,6 +25,11 @@
 #' if (interactive()) shiny::shinyApp(ui, server)
 #'
 draggable_buckets <- function(input_id, label, elements, buckets) {
+  checkmate::assert_string(input_id)
+  checkmate::assert_true(inherits(label, "character") || inherits(label, "shiny.tag"))
+  checkmate::assert_character(elements, min.len = 1)
+  checkmate::assert_character(buckets, min.len = 1)
+
   shiny::tagList(
     shiny::tags$head(
       shiny::singleton(shiny::includeScript(system.file("widgets/draggable_buckets.js", package = "teal.widgets")))

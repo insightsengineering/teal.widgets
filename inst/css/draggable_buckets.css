@@ -9,7 +9,8 @@
   gap: 0.5rem;
   min-width: 2rem;
   min-height: 2rem;
-  margin: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .element {
@@ -25,5 +26,6 @@
   gap: 0.5rem;
   min-width: 2rem;
   min-height: 2rem;
-  margin: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }

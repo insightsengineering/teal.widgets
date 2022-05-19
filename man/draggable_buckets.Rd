@@ -9,7 +9,7 @@ draggable_buckets(input_id, label, elements, buckets)
 \arguments{
 \item{input_id}{(\code{character(1)}) the \code{HTML} id of this widget}
 
-\item{label}{(\code{character(1)}) the header of this widget}
+\item{label}{(\code{character(1)} or \code{shiny.tag}) the header of this widget}
 
 \item{elements}{(\code{character}) the elements to drag into buckets}
 
