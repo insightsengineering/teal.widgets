@@ -63,7 +63,7 @@ render_draggable_element <- function(value, id) {
     draggable = "true",
     ondragstart = "drag(event)",
     ondragover = "allowDrop(event)",
-    ondrop = "drop_reorder(event)" # or "drop_end(event)"
+    ondrop = "dropReorder(event)" # or "drop_end(event)"
   )
 }
 
@@ -73,7 +73,7 @@ render_bucket <- function(name, input_id) {
       paste0(name, ":"),
       class = "bucket-name",
       ondragover = "allowDrop(event)",
-      ondrop = "drop_bucket_name(event)"
+      ondrop = "dropBucketName(event)"
     ),
     id = paste0(input_id, "bucket"),
     class = c("form-control", "bucket"),

@@ -17,14 +17,7 @@ const drop = (event) => {
     event.target.appendChild(document.getElementById(data));
 };
 
-const drop_end = (event) => {
-  event.preventDefault();
-  const data = event.dataTransfer.getData("element");
-  if (data !== null && event.target.classList.contains("element"))
-    event.target.parentNode.appendChild(document.getElementById(data));
-};
-
-const drop_reorder = (event) => {
+const dropReorder = (event) => {
   event.preventDefault();
   const data = event.dataTransfer.getData("element");
   if (data !== null && event.target.classList.contains("element"))
@@ -34,7 +27,7 @@ const drop_reorder = (event) => {
     );
 };
 
-const drop_bucket_name = (event) => {
+const dropBucketName = (event) => {
   event.preventDefault();
   const data = event.dataTransfer.getData("element");
   if (data !== null && event.target.classList.contains("bucket-name")) {
