@@ -13,7 +13,8 @@ draggable_buckets(input_id, label, elements, buckets)
 
 \item{elements}{(\code{character}) the elements to drag into buckets}
 
-\item{buckets}{(\code{character}) the names of the buckets the elements can but put in}
+\item{buckets}{(\code{character} or \code{list}) the names of the buckets the elements can but put in or a list of key-pair
+values where key is a name of a bucket and value is a character vector of elements in a bucket}
 }
 \value{
 the \code{HTML} code comprising an instance of this widget
@@ -25,6 +26,19 @@ A custom widget with draggable elements that can be put into buckets.
 ui <- shiny::fluidPage(
   draggable_buckets("id", "Choices #1", c("a", "b"), c("bucket1", "bucket2")),
   draggable_buckets("id2", "Choices #2", letters, c("vowels", "consonants")),
+  shiny::verbatimTextOutput("out")
+)
+server <- function(input, output) {
+  shiny::observeEvent(input$id, {
+    print(shiny::isolate(input$id))
+  })
+  output$out <- shiny::renderPrint(input$id)
+}
+if (interactive()) shiny::shinyApp(ui, server)
+
+# With default elements in the bucket
+ui <- shiny::fluidPage(
+  draggable_buckets("id", "Choices #1", c("a", "b"), list(bucket1 = character(), bucket2 = c("c"))),
   shiny::verbatimTextOutput("out")
 )
 server <- function(input, output) {

@@ -5,7 +5,8 @@
 #' @param input_id (`character(1)`) the `HTML` id of this widget
 #' @param label (`character(1)` or `shiny.tag`) the header of this widget
 #' @param elements (`character`) the elements to drag into buckets
-#' @param buckets (`character`) the names of the buckets the elements can but put in
+#' @param buckets (`character` or `list`) the names of the buckets the elements can but put in or a list of key-pair
+#' values where key is a name of a bucket and value is a character vector of elements in a bucket
 #'
 #' @return the `HTML` code comprising an instance of this widget
 #' @export
@@ -24,12 +25,43 @@
 #' }
 #' if (interactive()) shiny::shinyApp(ui, server)
 #'
+#' # With default elements in the bucket
+#' ui <- shiny::fluidPage(
+#'   draggable_buckets("id", "Choices #1", c("a", "b"), list(bucket1 = character(), bucket2 = c("c"))),
+#'   shiny::verbatimTextOutput("out")
+#' )
+#' server <- function(input, output) {
+#'   shiny::observeEvent(input$id, {
+#'     print(shiny::isolate(input$id))
+#'   })
+#'   output$out <- shiny::renderPrint(input$id)
+#' }
+#' if (interactive()) shiny::shinyApp(ui, server)
+#'
 draggable_buckets <- function(input_id, label, elements, buckets) {
   checkmate::assert_string(input_id)
   checkmate::assert_true(inherits(label, "character") || inherits(label, "shiny.tag"))
   checkmate::assert_character(elements, min.len = 1)
-  checkmate::assert_character(buckets, min.len = 1)
+  checkmate::assert(
+    checkmate::check_character(buckets, min.len = 1),
+    checkmate::check_list(buckets, types = "character")
+  )
 
+  elements_iterator <- new.env(parent = emptyenv())
+  elements_iterator$it <- 0
+
+  buckets <- `if`(
+    is.list(buckets),
+    lapply(names(buckets), function(bucket_name) {
+      render_bucket(
+        name = bucket_name,
+        elements = buckets[[bucket_name]],
+        elements_iterator = elements_iterator,
+        input_id = input_id
+      )
+    }),
+    lapply(buckets, render_bucket)
+  )
   shiny::tagList(
     shiny::tags$head(
       shiny::singleton(shiny::includeScript(system.file("widgets/draggable_buckets.js", package = "teal.widgets")))
@@ -40,15 +72,16 @@ draggable_buckets <- function(input_id, label, elements, buckets) {
     shiny::div(
       shiny::tags$span(label),
       shiny::tags$div(
-        lapply(seq_along(elements), function(index) {
-          render_draggable_element(value = elements[index], id = paste0(input_id, "draggable", index))
+        lapply(elements, function(element) {
+          elements_iterator$it <- elements_iterator$it + 1
+          render_draggable_element(value = element, id = paste0(input_id, "draggable", elements_iterator$it))
         }),
         id = paste0(input_id, "elements"),
         class = c("form-control", "elements"),
         ondragover = "allowDrop(event)",
         ondrop = "drop(event)"
       ),
-      shiny::tags$div(lapply(buckets, render_bucket, input_id = input_id)),
+      shiny::tagList(buckets),
       class = "draggableBuckets",
       id = input_id
     )
@@ -67,7 +100,7 @@ render_draggable_element <- function(value, id) {
   )
 }
 
-render_bucket <- function(name, input_id) {
+render_bucket <- function(name, elements = NULL, elements_iterator = NULL, input_id = NULL) {
   shiny::tags$div(
     shiny::tags$div(
       paste0(name, ":"),
@@ -75,7 +108,10 @@ render_bucket <- function(name, input_id) {
       ondragover = "allowDrop(event)",
       ondrop = "dropBucketName(event)"
     ),
-    id = paste0(input_id, "bucket"),
+    lapply(elements, function(element) {
+      elements_iterator$it <- elements_iterator$it + 1
+      render_draggable_element(element, id = paste0(input_id, "draggable", elements_iterator$it))
+    }),
     class = c("form-control", "bucket"),
     ondragover = "allowDrop(event)",
     ondrop = "drop(event)",
