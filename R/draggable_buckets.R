@@ -5,7 +5,7 @@
 #' @param input_id (`character(1)`) the `HTML` id of this widget
 #' @param label (`character(1)` or `shiny.tag`) the header of this widget
 #' @param elements (`character`) the elements to drag into buckets
-#' @param buckets (`character` or `list`) the names of the buckets the elements can but put in or a list of key-pair
+#' @param buckets (`character` or `list`) the names of the buckets the elements can be put in or a list of key-pair
 #' values where key is a name of a bucket and value is a character vector of elements in a bucket
 #'
 #' @return the `HTML` code comprising an instance of this widget
