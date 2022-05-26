@@ -13,7 +13,7 @@ draggable_buckets(input_id, label, elements, buckets)
 
 \item{elements}{(\code{character}) the elements to drag into buckets}
 
-\item{buckets}{(\code{character} or \code{list}) the names of the buckets the elements can but put in or a list of key-pair
+\item{buckets}{(\code{character} or \code{list}) the names of the buckets the elements can be put in or a list of key-pair
 values where key is a name of a bucket and value is a character vector of elements in a bucket}
 }
 \value{
