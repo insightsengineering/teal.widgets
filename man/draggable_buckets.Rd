@@ -4,7 +4,7 @@
 \alias{draggable_buckets}
 \title{Draggable Buckets}
 \usage{
-draggable_buckets(input_id, label, elements, buckets)
+draggable_buckets(input_id, label, elements = character(), buckets)
 }
 \arguments{
 \item{input_id}{(\code{character(1)}) the \code{HTML} id of this widget}
