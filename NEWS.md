@@ -4,8 +4,7 @@
 * Added a new widget `draggable_buckets`.
 
 ### Enhancements
-* The `option` `teal.plot_dpi` controls the `dpi` for rendering and downloading plots in `plot_with_settings`. If `option` is not used then a default of `72dpi` is used
-(unchanged from the previous behavior).
+* The `option` `teal.plot_dpi` controls the `dpi` for rendering and downloading plots in `plot_with_settings`. If `option` is not used then a default of `72dpi` is used (unchanged from the previous behavior).
 
 ### Bug fixes
 * Fixed a bug where zooming in or out from the browser would cause a plot of a `grob` object to not re-render instead displaying a blank white space.
