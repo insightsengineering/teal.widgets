@@ -1,4 +1,4 @@
-# teal.widgets 0.1.0.9006
+# teal.widgets 0.1.0.9007
 
 ### New features
 * Added a new widget `draggable_buckets`.
