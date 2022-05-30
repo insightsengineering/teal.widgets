@@ -38,10 +38,13 @@
 #' }
 #' if (interactive()) shiny::shinyApp(ui, server)
 #'
-draggable_buckets <- function(input_id, label, elements, buckets) {
+draggable_buckets <- function(input_id, label, elements = character(), buckets) {
   checkmate::assert_string(input_id)
   checkmate::assert_true(inherits(label, "character") || inherits(label, "shiny.tag"))
-  checkmate::assert_character(elements, min.len = 1)
+  checkmate::assert(
+    checkmate::check_null(elements),
+    checkmate::check_character(elements, min.len = 0)
+  )
   checkmate::assert(
     checkmate::check_character(buckets, min.len = 1),
     checkmate::check_list(buckets, types = "character")
