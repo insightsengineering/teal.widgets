@@ -1,5 +1,5 @@
 #' @title Draggable Buckets
-#' @description
+#' @description  `r lifecycle::badge("experimental")`
 #' A custom widget with draggable elements that can be put into buckets.
 #'
 #' @param input_id (`character(1)`) the `HTML` id of this widget
