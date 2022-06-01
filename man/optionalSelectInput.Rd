@@ -74,7 +74,7 @@ optionalSelectInput(
   selected = "A"
 )
 
-ADRS <- scda::synthetic_cdisc_data("latest")$adrs
+ADRS <- scda::synthetic_cdisc_data("latest")$adrs # nolint
 optionalSelectInput(
   inputId = "xvar",
   label = "x variable",
