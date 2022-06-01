@@ -74,10 +74,11 @@ optionalSelectInput(
   selected = "A"
 )
 
+ADRS <- scda::synthetic_cdisc_data("latest")$adrs
 optionalSelectInput(
   inputId = "xvar",
   label = "x variable",
-  choices = variable_choices(data = ADRS, subset = c("AGE", "SEX", "PARAMCD")),
+  choices = teal.transform::variable_choices(data = ADRS, subset = c("AGE", "SEX", "PARAMCD")),
   selected = "PARAMCD"
 )
 
@@ -85,7 +86,7 @@ selected_value <- paste0(lapply(ADRS[1, c("PARAMCD", "AVISIT")], as.character), 
 optionalSelectInput(
   inputId = "xvar",
   label = "x variable",
-  choices = value_choices(
+  choices = teal.transform::value_choices(
     data = ADRS,
     var_choices = c("PARAMCD", "AVISIT"),
     var_label = c("PARAM", "AVISIT")
