@@ -11,10 +11,7 @@ optionalSliderInput(inputId, label, min, max, value, label_help = NULL, ...)
 
 \item{label}{Display label for the control, or \code{NULL} for no label.}
 
-\item{min}{The minimum and maximum values (inclusive) that can be
-selected.}
-
-\item{max}{The minimum and maximum values (inclusive) that can be
+\item{min, max}{The minimum and maximum values (inclusive) that can be
 selected.}
 
 \item{value}{The initial value of the slider, either a number, a date
