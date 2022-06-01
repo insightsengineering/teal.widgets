@@ -1,11 +1,11 @@
 ---
-title: "Custom ggplot2 arguments module"
+title: "Custom `ggplot2` arguments module"
 author: "Maciej Nasiński"
 date: "2021-12-01"
 output: rmarkdown::html_vignette
 runtime: shiny
 vignette: >
-  %\VignetteIndexEntry{Custom ggplot2 arguments module}
+  %\VignetteIndexEntry{Custom `ggplot2` arguments module}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
