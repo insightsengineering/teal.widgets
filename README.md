@@ -5,6 +5,8 @@ This package provides various 'widgets' for `teal` applications. Examples includ
 - `standard_layout` for a standard UI layout with output on the right and an encoding panel on the left
 - `plot_with_settings` for a standard plot output UI with resizing and downloading options
 - `table_with_setting` for a standard `rtables` output UI with download and pagination options
+- `ggplot2_args` for a standard `ggplot2` output plot with graphic options
+- `basic_table_args` for a standard `rtables` output table with graphic options
 
 ## Installation
 
