@@ -1,5 +1,5 @@
 #' @title Draggable Buckets
-#' @description
+#' @description  `r lifecycle::badge("experimental")`
 #' A custom widget with draggable elements that can be put into buckets.
 #'
 #' @param input_id (`character(1)`) the `HTML` id of this widget
@@ -41,13 +41,10 @@
 draggable_buckets <- function(input_id, label, elements = character(), buckets) {
   checkmate::assert_string(input_id)
   checkmate::assert_true(inherits(label, "character") || inherits(label, "shiny.tag"))
-  checkmate::assert(
-    checkmate::check_null(elements),
-    checkmate::check_character(elements, min.len = 0)
-  )
+  checkmate::assert_character(c(elements, unlist(buckets)), min.len = 0, null.ok = TRUE, unique = TRUE)
   checkmate::assert(
     checkmate::check_character(buckets, min.len = 1),
-    checkmate::check_list(buckets, types = "character")
+    checkmate::check_list(buckets, types = "character", names = "unique")
   )
 
   elements_iterator <- new.env(parent = emptyenv())
