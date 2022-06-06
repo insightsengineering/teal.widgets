@@ -12,7 +12,8 @@ const drop = (event) => {
   if (
     data !== null &&
     (event.target.classList.contains("bucket") ||
-      event.target.classList.contains("elements"))
+      event.target.classList.contains("elements")) &&
+    areSameWidget(document.getElementById(data), event.target)
   )
     event.target.appendChild(document.getElementById(data));
 };
@@ -20,7 +21,11 @@ const drop = (event) => {
 const dropReorder = (event) => {
   event.preventDefault();
   const data = event.dataTransfer.getData("element");
-  if (data !== null && event.target.classList.contains("element"))
+  if (
+    data !== null &&
+    event.target.classList.contains("element") &&
+    areSameWidget(document.getElementById(data), event.target)
+  )
     event.target.parentNode.insertBefore(
       document.getElementById(data),
       document.getElementById(event.target.id)
@@ -30,7 +35,11 @@ const dropReorder = (event) => {
 const dropBucketName = (event) => {
   event.preventDefault();
   const data = event.dataTransfer.getData("element");
-  if (data !== null && event.target.classList.contains("bucket-name")) {
+  if (
+    data !== null &&
+    event.target.classList.contains("bucket-name") &&
+    areSameWidget(document.getElementById(data), event.target)
+  ) {
     // needs to be 3 because the name div is surrounded by 2 text div's
     // so draggable elements starts at index 3
     const thirdChild = event.target.nextSibling.nextSibling;
@@ -39,6 +48,13 @@ const dropBucketName = (event) => {
       thirdChild
     );
   }
+};
+
+const areSameWidget = (object1, object2) => {
+  return (
+    object1?.dataset.widget !== undefined &&
+    object1.dataset.widget === object2?.dataset.widget
+  );
 };
 
 // Shiny callbacks
