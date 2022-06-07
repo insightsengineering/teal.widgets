@@ -40,7 +40,6 @@
 #'   output$out <- shiny::renderPrint(input$id)
 #' }
 #' if (interactive()) shiny::shinyApp(ui, server)
-#'
 draggable_buckets <- function(input_id, label, elements = character(), buckets) {
   checkmate::assert_string(input_id)
   checkmate::assert_true(inherits(label, "character") || inherits(label, "shiny.tag"))
