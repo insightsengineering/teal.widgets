@@ -73,10 +73,7 @@ $.extend(draggableBuckets, {
             child.classList !== undefined && child.classList.contains("element")
         )
         .map((node) => node.textContent);
-      ret[index] = {
-        name: bucket.dataset.label,
-        elements: items,
-      };
+      ret[bucket.dataset.label] = items;
     });
     return ret;
   },
