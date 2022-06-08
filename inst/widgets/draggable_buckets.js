@@ -51,10 +51,7 @@ const dropBucketName = (event) => {
 };
 
 const areSameWidget = (object1, object2) => {
-  return (
-    object1?.dataset.widget !== undefined &&
-    object1.dataset.widget === object2?.dataset.widget
-  );
+  return object1.dataset.widget === object2.dataset.widget;
 };
 
 // Shiny callbacks
