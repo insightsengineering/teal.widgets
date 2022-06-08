@@ -16,6 +16,9 @@
 }
 
 .element {
+  display:flex;
+  justify-content: center;
+  min-width: 1.5rem;
   background-color: hsl(0, 0%, 95%);
   border: solid 1px darkgrey;
   border-radius: 3px;
