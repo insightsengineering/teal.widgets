@@ -40,8 +40,6 @@ const dropBucketName = (event) => {
     event.target.classList.contains("bucket-name") &&
     areSameWidget(document.getElementById(data), event.target)
   ) {
-    // needs to be 3 because the name div is surrounded by 2 text div's
-    // so draggable elements starts at index 3
     const thirdChild = event.target.nextSibling.nextSibling;
     event.target.parentNode.insertBefore(
       document.getElementById(data),
