@@ -27,13 +27,16 @@ A custom widget with draggable elements that can be put into buckets.
 ui <- shiny::fluidPage(
   draggable_buckets("id", "Choices #1", c("a", "b"), c("bucket1", "bucket2")),
   draggable_buckets("id2", "Choices #2", letters, c("vowels", "consonants")),
-  shiny::verbatimTextOutput("out")
+  shiny::verbatimTextOutput("out"),
+  shiny::verbatimTextOutput("out2")
 )
 server <- function(input, output) {
-  shiny::observeEvent(input$id, {
+  shiny::observeEvent(list(input$id, input$id2), {
     print(shiny::isolate(input$id))
+    print(shiny::isolate(input$id2))
   })
   output$out <- shiny::renderPrint(input$id)
+  output$out2 <- shiny::renderPrint(input$id2)
 }
 if (interactive()) shiny::shinyApp(ui, server)
 
@@ -49,5 +52,4 @@ server <- function(input, output) {
   output$out <- shiny::renderPrint(input$id)
 }
 if (interactive()) shiny::shinyApp(ui, server)
-
 }
