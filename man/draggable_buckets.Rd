@@ -52,5 +52,4 @@ server <- function(input, output) {
   output$out <- shiny::renderPrint(input$id)
 }
 if (interactive()) shiny::shinyApp(ui, server)
-
 }
