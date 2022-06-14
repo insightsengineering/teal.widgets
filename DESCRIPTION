@@ -25,7 +25,8 @@ Imports:
     rtables (>= 0.5.1),
     shiny,
     shinyjs,
-    shinyWidgets
+    shinyWidgets,
+    styler
 Suggests:
     knitr,
     magrittr,
