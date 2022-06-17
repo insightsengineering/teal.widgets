@@ -1,6 +1,6 @@
 #' A `shiny` module that pops up verbatim text
 #' @name verbatim_popup
-#' @description
+#' @description `r lifecycle::badge("experimental")`
 #' This module consists of a button that once clicked pops up a
 #' modal window with verbatim-styled text.
 #'
