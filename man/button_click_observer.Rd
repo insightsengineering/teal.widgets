@@ -24,6 +24,6 @@ button_click_observer(
 \item{modal_content}{(\code{reactive}) the content of the modal window}
 }
 \description{
-Creates a \code{shiny} observer handling button clicks.
+When the button is clicked it pop up a modal window with the text.
 }
 \keyword{internal}

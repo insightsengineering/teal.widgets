@@ -2,7 +2,7 @@
 % Please edit documentation in R/verbatim_popup.R
 \name{disabled_flag_observer}
 \alias{disabled_flag_observer}
-\title{Creates a \code{shiny} observer handling the disabled flag}
+\title{Creates a \code{shiny} observer handling the disabled flag.}
 \usage{
 disabled_flag_observer(disabled_flag, button_id)
 }
@@ -12,7 +12,7 @@ disabled_flag_observer(disabled_flag, button_id)
 \item{button_id}{(\code{character(1)}) the id of the controlled button}
 }
 \description{
-Creates a \code{shiny} observer handling the disabled flag
+Creates a \code{shiny} observer handling the disabled flag.
 }
 \details{
 When the flag is \code{TRUE} the button to open the popup is disabled; it is enabled otherwise.

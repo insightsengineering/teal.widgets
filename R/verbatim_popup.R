@@ -1,11 +1,11 @@
-#' A `shiny` module that pops up verbatim text
+#' A `shiny` module that pops up verbatim text.
 #' @name verbatim_popup
 #' @description `r lifecycle::badge("experimental")`
 #' This module consists of a button that once clicked pops up a
 #' modal window with verbatim-styled text.
 #'
 #' @param id (`character(1)`) the `shiny` id
-#' @param button_label (`charater(1)`) the text printed on the button
+#' @param button_label (`character(1)`) the text printed on the button
 #' @param ... additional arguments to `[shiny::actionButton()]`
 #'
 #' @return the UI function returns a `shiny.tag.list` object
@@ -20,6 +20,7 @@
 #'
 verbatim_popup_ui <- function(id, button_label, ...) {
   checkmate::assert_string(id)
+  checkmate::assert_string(button_label)
   ns <- shiny::NS(id)
   shiny::tagList(
     shiny::tags$head(shiny::singleton(
@@ -64,7 +65,7 @@ verbatim_popup_srv <- function(id, verbatim_content, title, disabled = shiny::re
   })
 }
 
-#' Creates a `shiny` observer handling the disabled flag
+#' Creates a `shiny` observer handling the disabled flag.
 #'
 #' @details
 #' When the flag is `TRUE` the button to open the popup is disabled; it is enabled otherwise.
@@ -86,6 +87,9 @@ disabled_flag_observer <- function(disabled_flag, button_id) {
 }
 
 #' Creates a `shiny` observer handling button clicks.
+#'
+#' @description
+#' When the button is clicked it pop up a modal window with the text.
 #'
 #' @keywords internal
 #' @param click_event `reactive` the click event

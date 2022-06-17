@@ -4,7 +4,7 @@
 \alias{verbatim_popup}
 \alias{verbatim_popup_ui}
 \alias{verbatim_popup_srv}
-\title{A \code{shiny} module that pops up verbatim text}
+\title{A \code{shiny} module that pops up verbatim text.}
 \usage{
 verbatim_popup_ui(id, button_label, ...)
 
@@ -18,7 +18,7 @@ verbatim_popup_srv(
 \arguments{
 \item{id}{(\code{character(1)}) the \code{shiny} id}
 
-\item{button_label}{(\code{charater(1)}) the text printed on the button}
+\item{button_label}{(\code{character(1)}) the text printed on the button}
 
 \item{...}{additional arguments to \verb{[shiny::actionButton()]}}
 
