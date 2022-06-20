@@ -43,7 +43,13 @@
     <loc>https://github.com/insightsengineering/teal.widgets/reference/basic_table_args.html</loc>
   </url>
   <url>
+    <loc>https://github.com/insightsengineering/teal.widgets/reference/button_click_observer.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/insightsengineering/teal.widgets/reference/clean_brushedPoints.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/insightsengineering/teal.widgets/reference/disabled_flag_observer.html</loc>
   </url>
   <url>
     <loc>https://github.com/insightsengineering/teal.widgets/reference/draggable_buckets.html</loc>
@@ -53,6 +59,9 @@
   </url>
   <url>
     <loc>https://github.com/insightsengineering/teal.widgets/reference/extract_raw_choices.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/insightsengineering/teal.widgets/reference/format_content.html</loc>
   </url>
   <url>
     <loc>https://github.com/insightsengineering/teal.widgets/reference/get_dt_rows.html</loc>
@@ -125,6 +134,9 @@
   </url>
   <url>
     <loc>https://github.com/insightsengineering/teal.widgets/reference/variable_type_icons.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/insightsengineering/teal.widgets/reference/verbatim_popup.html</loc>
   </url>
   <url>
     <loc>https://github.com/insightsengineering/teal.widgets/reference/white_small_well.html</loc>

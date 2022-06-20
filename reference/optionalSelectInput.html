@@ -16,7 +16,7 @@ input widgets that provide only a single choice."><!-- mathjax --><script src="h
     
     <a class="navbar-brand me-2" href="../index.html">teal.widgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9001</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,8 +85,12 @@ input widgets that provide only a single choice.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>inputId</dt>
 <dd><p>The <code>input</code> slot that will be used to access the value.</p></dd>
+
+
 <dt>label</dt>
 <dd><p>Display label for the control, or <code>NULL</code> for no label.</p></dd>
+
+
 <dt>choices</dt>
 <dd><p>(<code>character</code>, <code>NULL</code>)<br>
 If <code>choices</code> is <code>NULL</code> no <code>pickerInput</code> widget is displayed and <code>input[[inputId]]</code>
@@ -95,28 +99,43 @@ displayed and the <code>pickerInput</code> widget will be hidden. If the length 
 is more than one the <code>pickerInput</code> element will be displayed.
 If elements of the list are named then that name rather than the value
 is displayed to the user.</p></dd>
+
+
 <dt>selected</dt>
 <dd><p>The initially selected value (or multiple values if <code>multiple = TRUE</code>).
 If not specified then defaults to the first value for single-select lists
 and no values for multiple select lists.</p></dd>
+
+
 <dt>multiple</dt>
 <dd><p>Is selection of multiple items allowed?</p></dd>
+
+
 <dt>sep</dt>
 <dd><p>(<code>character(1)</code>)<br>
 A separator string to split the <code>choices</code> or <code>selected</code> inputs into the values of the different
 columns.</p></dd>
+
+
 <dt>options</dt>
 <dd><p>List of options, see <a href="https://dreamrs.github.io/shinyWidgets/reference/pickerOptions.html" class="external-link">pickerOptions</a> for all available options.
 To limit the number of selection possible, see example below.</p></dd>
+
+
 <dt>label_help</dt>
 <dd><p>(<code>shiny.tag</code> optional)<br>
 e.g. an object returned by <code><a href="https://rdrr.io/pkg/shiny/man/helpText.html" class="external-link">shiny::helpText()</a></code>.</p></dd>
+
+
 <dt>fixed</dt>
 <dd><p>(<code>logical(1)</code> optional)<br>
 whether to block user to select choices.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>(<code>character(1)</code>)<br>
 The width of the input passed to <code>pickerInput</code>  e.g. <code>'auto'</code>, <code>'fit'</code>, <code>'100px'</code> or <code>'75%'</code></p></dd>
+
 </dl></div>
 
     <div class="section level2">
