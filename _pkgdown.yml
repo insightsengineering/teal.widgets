@@ -28,6 +28,7 @@ reference:
       - table_with_settings_ui
       - updateOptionalSelectInput
       - white_small_well
+      - verbatim_popup
   - title: "ggplot2 and basic_table arguments"
     desc: "Aggregation and validation of arguments"
     contents:
