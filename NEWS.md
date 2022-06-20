@@ -1,4 +1,4 @@
-# teal.widgets 0.1.1.9001
+# teal.widgets 0.1.1.9002
 
 ### New features
 * Added a new module - `verbatim_popup`.
