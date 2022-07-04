@@ -451,7 +451,8 @@ plot_with_settings_srv <- function(id,
           input$height
           input$width
           input$plot_hover
-        })
+        }),
+        dim = reactive(c(input$width_in_modal), input$height_in_modal))
       )
     )
   })
