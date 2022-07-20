@@ -7,9 +7,6 @@
 table_with_settings_ui(id, ...)
 }
 \arguments{
-\item{id}{An ID string that corresponds with the ID used to call the module's
-UI function.}
-
 \item{...}{(\code{character})\cr
 Useful for providing additional HTML classes for the output tag.}
 }

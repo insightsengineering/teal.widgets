@@ -6,8 +6,8 @@
 \usage{
 parse_ggplot2_args(
   ggplot2_args = teal.widgets::ggplot2_args(),
-  ggtheme = c("default", "gray", "bw", "linedraw", "light", "dark", "minimal",
-    "classic", "void", "test")
+  ggtheme = c("default", "gray", "bw", "linedraw", "light", "dark", "minimal", "classic",
+    "void", "test")
 )
 }
 \arguments{
