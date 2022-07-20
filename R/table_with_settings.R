@@ -1,7 +1,7 @@
 #' UI part of table-with-settings module
 #'
 #' @description `r lifecycle::badge("stable")`
-#' @inheritParams shiny:::moduleServer
+#' @inheritParams shiny::moduleServer
 #' @param ... (`character`)\cr
 #'  Useful for providing additional HTML classes for the output tag.
 #'
