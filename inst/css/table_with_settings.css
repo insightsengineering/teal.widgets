@@ -1,72 +1,68 @@
 .table-settings-buttons {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: flex-end;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
+
 .table-settings-buttons .btn {
-  font-size: inherit;
-  background: inherit;
-  border: none;
-  background-color: transparent;
+    font-size: inherit;
+    background: inherit;
+    border: none;
+    background-color: transparent;
 }
+
 .table-settings-buttons .dropdown .dropdown-toggle .caret {
-  display: none;
+    display: none;
 }
+
 .table-modal .modal .modal-dialog {
-  width: 90%;
+    width: 90%;
 }
+
 .table_out_container {
-  overflow-x: auto;
+    overflow-x: auto;
 }
+
 .table_out_container div:nth-child(1) {
-  margin-top: 30px;
+    margin-top: 30px;
 } /* margin for the buttons */
-.table-modal
-  .modal
-  .modal-dialog
-  .modal-content
-  .modal-body
-  .table-modal-sliders {
-  overflow: hidden;
+
+.table-modal .modal .modal-dialog .modal-content .modal-body .table-modal-sliders {
+    overflow: hidden;
 }
-.table-modal
-  .modal
-  .modal-dialog
-  .modal-content
-  .modal-body
-  .table-modal-sliders
-  div:nth-child(1) {
-  float: left;
-  width: 40%;
+
+.table-modal .modal .modal-dialog .modal-content .modal-body .table-modal-sliders div:nth-child(1) {
+    float: left;
+    width: 40%;
 }
-.table-modal
-  .modal
-  .modal-dialog
-  .modal-content
-  .modal-body
-  .table-modal-sliders
-  div:nth-child(2) {
-  float: right;
-  width: 40%;
+
+.table-modal .modal .modal-dialog .modal-content .modal-body .table-modal-sliders div:nth-child(2) {
+    float: right;
+    width: 40%;
 }
+
 .table-settings-table {
-  overflow-x: scroll;
+    overflow-x: scroll;
 }
+
 .modal-download-ui-table-container {
-  width: 250px;
+    width: 250px;
 }
+
 .lock-btn {
-  top: 0.5em;
-  left: 45%;
-  position: relative;
+    top: 0.5em;
+    left: 45%;
+    position: relative;
 }
+
 .paginate-ui {
-  position: relative;
-  bottom: 2em;
-  margin-bottom: -40px;
+    position: relative;
+    bottom: 2em;
+    margin-bottom: -40px;
 }
-.error {
-  color: #bb0000;
-  font-size: smaller;
+
+  .error {
+    color: #bb0000;
+    font-size: smaller;
 }

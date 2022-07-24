@@ -34,7 +34,7 @@ plot_with_settings_ui <- function(id) {
         )
       )
     ),
-    include_css_files("plot_modal"),
+    include_css_files("plot_with_settings"),
     tags$div(
       id = ns("plot-with-settings"),
       tags$div(
