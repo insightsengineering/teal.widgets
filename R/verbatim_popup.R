@@ -101,7 +101,8 @@ button_click_observer <- function(click_event, copy_button_id, copied_area_id, m
   shiny::observeEvent(
     click_event(),
     handlerExpr = {
-      shiny::showModal(shiny::modalDialog(
+      shiny::showModal(
+        shiny::modalDialog(
         shiny::tagList(
           shiny::tags$div(
             shiny::actionButton(

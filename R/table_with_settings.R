@@ -99,8 +99,8 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
           modalDialog(
             easyClose = TRUE,
             div(
-              type_download_ui_table(ns("modal_downbutton")),
-              style = "float:right;"
+              class = "float-right",
+              type_download_ui_table(ns("modal_downbutton"))
             ),
             uiOutput(ns("table_out_modal"), class = "table_out_container")
           )
@@ -165,7 +165,7 @@ type_download_ui_table <- function(id) {
       ),
       conditionalPanel(
         condition = paste0("input['", ns("file_name"), "'] != ''"),
-        downloadButton(ns("data_download"), label = character(0), class = "btn-sm", style = "width:100%")
+        downloadButton(ns("data_download"), label = character(0), class = "btn-sm w-full")
       )
     )
   )

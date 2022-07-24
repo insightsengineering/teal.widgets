@@ -50,3 +50,11 @@
 .dropdown-menu {
     background: rgb(255, 255, 255, 1);
 }
+
+.float-right {
+    float: right;
+}
+
+.w-full {
+    width: 100%;
+}

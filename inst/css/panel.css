@@ -5,3 +5,7 @@
 .panel-body {
     background-color: #f5f5f5;
 } /* same as panel-title */
+
+.inline {
+    display: inline;
+}

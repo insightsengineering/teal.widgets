@@ -68,9 +68,8 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
         `aria-expanded` = ifelse(collapsed, "false", "true"),
         icon("angle-down", class = "dropdown-icon"),
         tags$label(
-          class = "panel-title",
+          class = "panel-title inline",
           title,
-          style = "display:inline"
         )
       ),
       tags$div(

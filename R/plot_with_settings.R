@@ -404,8 +404,8 @@ plot_with_settings_srv <- function(id,
               )
             ),
             div(
-              type_download_ui(ns("modal_downbutton")),
-              style = "float:right;"
+              class = "float-right",
+              type_download_ui(ns("modal_downbutton"))
             ),
             div(
               align = "center",
@@ -477,7 +477,7 @@ type_download_ui <- function(id) {
       ),
       conditionalPanel(
         condition = paste0("input['", ns("file_name"), "'] != ''"),
-        downloadButton(ns("data_download"), label = character(0), class = "btn-sm", style = "width:100%")
+        downloadButton(ns("data_download"), label = character(0), class = "btn-sm w-full")
       )
     )
   )
