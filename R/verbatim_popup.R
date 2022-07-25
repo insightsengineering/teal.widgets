@@ -23,9 +23,9 @@ verbatim_popup_ui <- function(id, button_label, ...) {
   checkmate::assert_string(button_label)
   ns <- shiny::NS(id)
   shiny::tagList(
-    shiny::tags$head(shiny::singleton(
+    shiny::singleton(shiny::tags$head(shiny::singleton(
       shiny::includeScript(system.file("js/verbatim_popup.js", package = "teal.widgets"))
-    )),
+    ))),
     shiny::actionButton(ns("button"), label = button_label, ...)
   )
 }
@@ -103,30 +103,31 @@ button_click_observer <- function(click_event, copy_button_id, copied_area_id, m
     handlerExpr = {
       shiny::showModal(
         shiny::modalDialog(
-        shiny::tagList(
-          shiny::tags$div(
+          shiny::tagList(
+            shiny::tags$div(
+              shiny::actionButton(
+                copy_button_id,
+                "Copy to Clipboard",
+                onclick = paste0("copyToClipboard('", copied_area_id, "')")
+              ),
+              shiny::modalButton("Dismiss"),
+              style = "margin-bottom: 15px;"
+            ),
+            shiny::tags$pre(id = copied_area_id, modal_content()),
+          ),
+          title = modal_title,
+          footer = shiny::tagList(
             shiny::actionButton(
               copy_button_id,
               "Copy to Clipboard",
-              onclick = paste0("copyToClipboard('", copied_area_id, "')")
+              onclick = paste0("'copyToClipboard(", copied_area_id, "')")
             ),
-            shiny::modalButton("Dismiss"),
-            style = "margin-bottom: 15px;"
+            shiny::modalButton("Dismiss")
           ),
-          shiny::tags$pre(id = copied_area_id, modal_content()),
-        ),
-        title = modal_title,
-        footer = shiny::tagList(
-          shiny::actionButton(
-            copy_button_id,
-            "Copy to Clipboard",
-            onclick = paste0("'copyToClipboard(", copied_area_id, "')")
-          ),
-          shiny::modalButton("Dismiss")
-        ),
-        size = "l",
-        easyClose = TRUE
-      ))
+          size = "l",
+          easyClose = TRUE
+        )
+      )
     }
   )
 }

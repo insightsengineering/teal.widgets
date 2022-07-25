@@ -10,7 +10,7 @@ plot_with_settings_ui <- function(id) {
   ns <- NS(id)
 
   tagList(
-    tags$head(
+    shiny::singleton(tags$head(
       tags$script(
         # nolint start
         sprintf(
@@ -33,7 +33,7 @@ plot_with_settings_ui <- function(id) {
           ns("plot_modal_width") # session input$ variable name
         )
       )
-    ),
+    )),
     include_css_files("plot_with_settings"),
     tags$div(
       id = ns("plot-with-settings"),
