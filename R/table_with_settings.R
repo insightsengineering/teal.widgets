@@ -194,7 +194,7 @@ type_download_srv_table <- function(id, table_reactive) {
         if (inherits(catch_warning, "try-error")) {
           helpText(
             class = "error",
-            icon("exclamation-triangle"),
+            icon("triangle-exclamation"),
             "Maximum lines per page includes the reprinted header. Please enter a numeric value or increase the value."
           )
         }
