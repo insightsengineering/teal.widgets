@@ -347,7 +347,7 @@ plot_with_settings_srv <- function(id,
       grDevices::dev.off()
       if (`if`(!is.null(input$width), input$width, default_slider_width()[1]) < w) {
         helpText(
-          icon("exclamation-triangle"),
+          icon("triangle-exclamation"),
           "Plot might be cut off for small widths."
         )
       }
