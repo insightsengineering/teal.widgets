@@ -40,10 +40,10 @@ plot_with_settings_ui <- function(id) {
       tags$div(
         class = "plot-settings-buttons",
         type_download_ui(ns("downbutton")),
-        actionButton(ns("expand"), label = character(0), icon = icon("fas fa-expand-alt"), class = "btn-sm"),
+        actionButton(ns("expand"), label = character(0), icon = icon("up-right-and-down-left-from-center"), class = "btn-sm"),
         shinyWidgets::dropdownButton(
           circle = FALSE,
-          icon = icon("fas fa-arrows-alt"),
+          icon = icon("maximize"),
           inline = TRUE,
           right = TRUE,
           label = "",
