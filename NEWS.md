@@ -1,4 +1,4 @@
-# teal.widgets 0.1.1.9006
+# teal.widgets 0.1.1.9007
 
 * Added the `dim` slot to the list returned by the `plot_with_settings` module.
 
