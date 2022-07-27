@@ -49,7 +49,7 @@ srv <- function(input, output) {
     "if (TRUE) { print('Popups are the best') }",
     title = "My custom title",
     style = TRUE
-   )
+  )
 }
 if (interactive()) shiny::shinyApp(ui, srv)
 
