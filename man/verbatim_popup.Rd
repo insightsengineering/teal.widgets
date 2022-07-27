@@ -12,6 +12,7 @@ verbatim_popup_srv(
   id,
   verbatim_content,
   title,
+  style = FALSE,
   disabled = shiny::reactiveVal(FALSE)
 )
 }
@@ -27,6 +28,8 @@ the content to show in the popup modal window}
 
 \item{title}{(\code{character(1)}) the title of the modal window}
 
+\item{style}{(\code{logical(1)}) whether to style the \code{verbatim_content} using \code{styler::style_text}}
+
 \item{disabled}{(\code{reactive(1)}) the \code{shiny} reactive value holding a \code{logical}. The popup button is disabled
 when the flag is \code{TRUE} and enabled otherwise}
 }
@@ -41,7 +44,12 @@ modal window with verbatim-styled text.
 \examples{
 ui <- shiny::fluidPage(verbatim_popup_ui("my_id", button_label = "Open popup"))
 srv <- function(input, output) {
-  verbatim_popup_srv("my_id", "if (TRUE) { print('Popups are the best') }", title = "My custom title")
+  verbatim_popup_srv(
+    "my_id",
+    "if (TRUE) { print('Popups are the best') }",
+    title = "My custom title",
+    style = TRUE
+   )
 }
 if (interactive()) shiny::shinyApp(ui, srv)
 

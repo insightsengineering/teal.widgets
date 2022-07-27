@@ -4,11 +4,13 @@
 \alias{format_content}
 \title{Formats the content of the modal popup window.}
 \usage{
-format_content(verbatim_content)
+format_content(verbatim_content, style)
 }
 \arguments{
 \item{verbatim_content}{(\code{character}, \code{expression} or \code{reactive(1)} holding either)
 the content to show in the popup modal window}
+
+\item{style}{(\code{logical(1)}) whether to style the \code{verbatim_content} using \code{styler::style_text}}
 }
 \value{
 \code{reactive} with the formatted content
@@ -20,7 +22,7 @@ Formats the content of the modal popup window.
 Formats the content:
 \itemize{
 \item concatenates if needed
-\item styles
+\item styles if \code{style} is TRUE
 }
 }
 \keyword{internal}

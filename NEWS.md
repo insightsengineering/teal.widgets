@@ -1,6 +1,7 @@
 # teal.widgets 0.1.1.9008
 
 * Added the `dim` slot to the list returned by the `plot_with_settings` module.
+* Added `style` argument to `verbatim_popup_srv` to control whether the content is styled using `styler::style_text`
 
 ### New features
 * Added a new module - `verbatim_popup`.
