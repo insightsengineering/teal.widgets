@@ -147,15 +147,17 @@ button_click_observer <- function(click_event, copy_button_id, copied_area_id, m
 #' @keywords internal
 #' @inheritParams verbatim_popup
 #' @return `reactive` with the formatted content
-format_content <- function(verbatim_content, style) {
+format_content <- function(verbatim_content, style = FALSE) {
   shiny::reactive({
     if (inherits(verbatim_content, "reactive")) {
       content <- verbatim_content()
     } else {
       content <- verbatim_content
     }
+    content <- paste(as.character(content), collapse = "\n")
+
     if (style) {
-      content <- paste(styler::style_text(paste(as.character(content), collapse = "\n")), collapse = "\n")
+      content <- paste(styler::style_text(content), collapse = "\n")
     }
     content
   })

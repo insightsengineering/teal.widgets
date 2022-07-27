@@ -4,7 +4,7 @@
 \alias{format_content}
 \title{Formats the content of the modal popup window.}
 \usage{
-format_content(verbatim_content, style)
+format_content(verbatim_content, style = FALSE)
 }
 \arguments{
 \item{verbatim_content}{(\code{character}, \code{expression} or \code{reactive(1)} holding either)

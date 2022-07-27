@@ -31,13 +31,15 @@ testthat::test_that("format_content concatenates the passed array of string insi
   testthat::expect_length(result, 1)
 })
 
+
 testthat::test_that(
-  "format_content returns a reactive storing a styled string when passed an expression, character or reactive",
+  "format_content returns a reactive storing a styled string when passed
+  an expression, character or reactive when style = TRUE",
   code = {
     shiny::isolate({
       # Reactive
       test_content <- shiny::reactive(c("Test", "Content"))
-      result <- format_content(test_content)()
+      result <- format_content(test_content, style = TRUE)()
       testthat::expect_equal(result, "Test\nContent")
 
       # Expression
@@ -45,7 +47,7 @@ testthat::test_that(
         print(7)
         if (TRUE) print(8)
       })
-      result <- format_content(test_content)()
+      result <- format_content(test_content, style = TRUE)()
       testthat::expect_equal(result, paste(
         "{",
         "  print(7)",
@@ -58,7 +60,7 @@ testthat::test_that(
 
       # Character
       test_content <- c("Test", "Content")
-      result <- format_content(test_content)()
+      result <- format_content(test_content, style = TRUE)()
       testthat::expect_equal(result, "Test\nContent")
     })
   }
