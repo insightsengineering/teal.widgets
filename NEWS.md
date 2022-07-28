@@ -1,5 +1,6 @@
 # teal.widgets 0.1.1.9009
 
+* Updated `standard_layout` function to contain class not id for each output block.
 * Added the `dim` slot to the list returned by the `plot_with_settings` module.
 
 ### New features

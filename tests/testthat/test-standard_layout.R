@@ -33,9 +33,9 @@ testthat::test_that("Basic output", {
       class = "col-md-12",
       tags$div(
         class = "well",
-        tags$div(id = "pre-output", NULL),
-        tags$div(id = "output", tags$div()),
-        tags$div(id = "post-output", NULL)
+        tags$div(class = "pre-output", NULL),
+        tags$div(class = "output", tags$div()),
+        tags$div(class = "post-output", NULL)
       ),
       NULL
     )
@@ -50,9 +50,9 @@ testthat::test_that("Basic output", {
         class = "col-md-12",
         tags$div(
           class = "well",
-          tags$div(id = "pre-output", tags$div()),
-          tags$div(id = "output", tags$div()),
-          tags$div(id = "post-output", tags$div())
+          tags$div(class = "pre-output", tags$div()),
+          tags$div(class = "output", tags$div()),
+          tags$div(class = "post-output", tags$div())
         ),
         NULL
       )
@@ -67,9 +67,9 @@ testthat::test_that("Basic output", {
         class = "col-md-12",
         tags$div(
           class = "well",
-          tags$div(id = "pre-output", tags$div()),
-          tags$div(id = "output", tags$div()),
-          tags$div(id = "post-output", tags$div())
+          tags$div(class = "pre-output", tags$div()),
+          tags$div(class = "output", tags$div()),
+          tags$div(class = "post-output", tags$div())
         ),
         tags$div(class = "form-group", tags$div())
       )
@@ -90,9 +90,9 @@ testthat::test_that("Basic output", {
           class = "col-md-9",
           tags$div(
             class = "well",
-            tags$div(id = "pre-output", tags$div()),
-            tags$div(id = "output", tags$div()),
-            tags$div(id = "post-output", tags$div())
+            tags$div(class = "pre-output", tags$div()),
+            tags$div(class = "output", tags$div()),
+            tags$div(class = "post-output", tags$div())
           )
         )
       )
@@ -116,9 +116,9 @@ testthat::test_that("Basic output", {
           class = "col-md-9",
           tags$div(
             class = "well",
-            tags$div(id = "pre-output", tags$div()),
-            tags$div(id = "output", tags$div()),
-            tags$div(id = "post-output", tags$div())
+            tags$div(class = "pre-output", tags$div()),
+            tags$div(class = "output", tags$div()),
+            tags$div(class = "post-output", tags$div())
           )
         )
       )

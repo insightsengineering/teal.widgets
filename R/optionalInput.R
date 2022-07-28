@@ -112,6 +112,7 @@ optionalSelectInput <- function(inputId, # nolint
     "show-subtext" = TRUE,
     "live-search" = ifelse(length(choices) > 10, TRUE, FALSE)
   )
+
   options <- if (!identical(options, list())) {
     c(options, default_options[setdiff(names(default_options), names(options))])
   } else {
@@ -141,25 +142,28 @@ optionalSelectInput <- function(inputId, # nolint
     ui[[3]] <- append(ui[[3]], list(div(class = "label-help", label_help)), after = 1)
   }
 
-  if (is.null(choices)) {
-    return(shinyjs::hidden(ui))
-  } else {
-    if (fixed) {
-      return(div(
-        shinyjs::hidden(ui),
-        tags$label(id = paste0(inputId, "_textonly"), class = "control-label", sub(":[[:space:]]+$", "", label)),
-        if (length(selected) > 0) {
-          tags$code(
-            id = paste0(inputId, "_valueonly"),
-            paste(selected, collapse = ", ")
-          )
-        },
-        label_help
-      ))
+  shiny::tagList(
+    include_css_files(pattern = "picker_input"),
+    if (is.null(choices)) {
+      shinyjs::hidden(ui)
     } else {
-      return(ui)
+      if (fixed) {
+        div(
+          shinyjs::hidden(ui),
+          tags$label(id = paste0(inputId, "_textonly"), class = "control-label", sub(":[[:space:]]+$", "", label)),
+          if (length(selected) > 0) {
+            tags$code(
+              id = paste0(inputId, "_valueonly"),
+              paste(selected, collapse = ", ")
+            )
+          },
+          label_help
+        )
+      } else {
+        ui
+      }
     }
-  }
+  )
 }
 
 #' Update `optionalSelectInput`
