@@ -10,8 +10,8 @@ plot_with_settings_ui <- function(id) {
   ns <- NS(id)
 
   tagList(
-    shiny::singleton(tags$head(
-      tags$script(
+    shiny::singleton(shiny::tags$head(
+      shiny::tags$script(
         # nolint start
         sprintf(
           '$(document).on("shiny:connected", function(e) {
