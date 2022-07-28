@@ -15,9 +15,11 @@
 #'
 #' white_small_well(shiny::htmlOutput("summary"))
 white_small_well <- function(...) {
-  tags$div(
-    class = "well well-sm",
-    style = "background-color: white;",
-    ...
+  shiny::tagList(
+    include_css_files(pattern = "custom"),
+    tags$div(
+      class = "well well-sm bg-white",
+      ...
+    )
   )
 }
