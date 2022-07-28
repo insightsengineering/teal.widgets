@@ -53,7 +53,7 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
 
   tagList(
     tags$head(tags$script(if (!is.null(input_id)) panel_status(input_id, div_id, panel_id))),
-    include_css_files(pattern = "panel"),
+    include_css_files(pattern = "panel.css"),
     shinyjs::useShinyjs(),
     # allow input to be accessed on initialization without !is.null
     # if server code runs before input initialized with JS (not teal)
