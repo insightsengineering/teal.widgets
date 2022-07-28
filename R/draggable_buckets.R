@@ -56,7 +56,7 @@ draggable_buckets <- function(input_id, label, elements = character(), buckets) 
     shiny::singleton(shiny::tags$head(
       shiny::includeScript(system.file("widgets/draggable_buckets.js", package = "teal.widgets"))
     )),
-    include_css_files("draggable_buckets.css"),
+    include_css_files("draggable_buckets"),
     shiny::div(
       shiny::tags$span(label),
       render_unbucketed_elements(elements = elements, elements_iterator = elements_iterator, widget_id = input_id),
