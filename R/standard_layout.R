@@ -44,9 +44,9 @@ standard_layout <- function(output,
 
   tag_output <- div(
     class = "well",
-    div(id = "pre-output", pre_output),
-    div(id = "output", output),
-    div(id = "post-output", post_output)
+    div(class = "pre-output", pre_output),
+    div(class = "output", output),
+    div(class = "post-output", post_output)
   )
 
   tag_enc_out <- if (!is.null(encoding)) {

@@ -1,20 +1,5 @@
-/* to set the alignment of pickerInput dropdowns */
-.dropdown-menu.open {
-  width: 100%;
-}
+/* teal.widgets custom css */
 
-/* display waiting box at bottom right corner when Shiny is computing */
-.shinybusymessage {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 140px;
-  margin: 15px;
-  padding: 5px 0 5px 10px;
-  text-align: left;
-  font-weight: bold;
-  font-size: 100%;
-  color: #ffffff;
-  background-color: #347ab7;
-  z-index: 105;
+.bg-white {
+  background-color: white;
 }
