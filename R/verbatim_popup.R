@@ -23,9 +23,9 @@ verbatim_popup_ui <- function(id, button_label, ...) {
   checkmate::assert_string(button_label)
   ns <- shiny::NS(id)
   shiny::tagList(
-    shiny::singleton(shiny::tags$head(shiny::singleton(
-      shiny::includeScript(system.file("js/verbatim_popup.js", package = "teal.widgets"))
-    ))),
+    shiny::singleton(
+      shiny::tags$head(shiny::includeScript(system.file("js/verbatim_popup.js", package = "teal.widgets")))
+    ),
     shiny::actionButton(ns("button"), label = button_label, ...)
   )
 }
