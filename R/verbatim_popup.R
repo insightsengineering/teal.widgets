@@ -14,7 +14,12 @@
 #' @examples
 #' ui <- shiny::fluidPage(verbatim_popup_ui("my_id", button_label = "Open popup"))
 #' srv <- function(input, output) {
-#'   verbatim_popup_srv("my_id", "if (TRUE) { print('Popups are the best') }", title = "My custom title")
+#'   verbatim_popup_srv(
+#'     "my_id",
+#'     "if (TRUE) { print('Popups are the best') }",
+#'     title = "My custom title",
+#'     style = TRUE
+#'   )
 #' }
 #' if (interactive()) shiny::shinyApp(ui, srv)
 #'
@@ -36,31 +41,25 @@ verbatim_popup_ui <- function(id, button_label, ...) {
 #' @param verbatim_content (`character`, `expression` or `reactive(1)` holding either)
 #' the content to show in the popup modal window
 #' @param title (`character(1)`) the title of the modal window
+#' @param style (`logical(1)`) whether to style the `verbatim_content` using `styler::style_text`
 #' @param disabled (`reactive(1)`) the `shiny` reactive value holding a `logical`. The popup button is disabled
 #' when the flag is `TRUE` and enabled otherwise
 #'
-verbatim_popup_srv <- function(id, verbatim_content, title, disabled = shiny::reactiveVal(FALSE)) {
+verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disabled = shiny::reactiveVal(FALSE)) {
   checkmate::assert_string(id)
   checkmate::assert_string(title)
+  checkmate::assert_flag(style)
   checkmate::assert_class(disabled, classes = "reactive")
-  if (inherits(verbatim_content, "reactive")) {
-    shiny::validate(shiny::need(
-      checkmate::assert_multi_class(verbatim_content(), classes = c("expression", "character"))
-    ))
-  } else {
-    checkmate::assert_multi_class(verbatim_content, classes = c("expression", "character"))
-  }
-
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     disabled_flag_observer(disabled, ns("button"))
-    modal_content <- format_content(verbatim_content)
+    modal_content <- format_content(verbatim_content, style)
     button_click_observer(
-      shiny::reactive(input$button),
-      ns("copy_button"),
-      ns("verbatim_content"),
-      title,
-      modal_content
+      click_event = shiny::reactive(input$button),
+      copy_button_id = ns("copy_button"),
+      copied_area_id = ns("verbatim_content"),
+      modal_title = title,
+      modal_content = modal_content
     )
   })
 }
@@ -138,17 +137,28 @@ button_click_observer <- function(click_event, copy_button_id, copied_area_id, m
 #' @details
 #' Formats the content:
 #' * concatenates if needed
-#' * styles
+#' * styles if `style` is TRUE
 #'
 #' @keywords internal
 #' @inheritParams verbatim_popup
 #' @return `reactive` with the formatted content
-format_content <- function(verbatim_content) {
+format_content <- function(verbatim_content, style = FALSE) {
   shiny::reactive({
-    if (inherits(verbatim_content, "reactive")) {
-      paste(styler::style_text(paste(as.character(verbatim_content()), collapse = "\n")), collapse = "\n")
+    content <- if (inherits(verbatim_content, "reactive")) {
+      verbatim_content()
     } else {
-      paste(styler::style_text(paste(as.character(verbatim_content), collapse = "\n")), collapse = "\n")
+      verbatim_content
     }
+    shiny::validate(shiny::need(
+      checkmate::test_multi_class(content, classes = c("expression", "character")),
+      "verbatim_content should be an expression or a character"
+    ))
+
+    content <- paste(as.character(content), collapse = "\n")
+
+    if (style) {
+      content <- paste(styler::style_text(content), collapse = "\n")
+    }
+    content
   })
 }
