@@ -16,5 +16,5 @@ include_css_files <- function(pattern = "*") {
   if (length(css_files) == 0) {
     return(NULL)
   }
-  return(singleton(lapply(css_files, includeCSS)))
+  return(shiny::singleton(shiny::tags$head(lapply(css_files, shiny::includeCSS))))
 }

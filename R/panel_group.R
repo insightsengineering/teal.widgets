@@ -53,7 +53,7 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
 
   tagList(
     tags$head(tags$script(if (!is.null(input_id)) panel_status(input_id, div_id, panel_id))),
-    include_css_files(pattern = "panel.css"),
+    include_css_files(pattern = "panel"),
     shinyjs::useShinyjs(),
     # allow input to be accessed on initialization without !is.null
     # if server code runs before input initialized with JS (not teal)
@@ -68,9 +68,8 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
         `aria-expanded` = ifelse(collapsed, "false", "true"),
         icon("angle-down", class = "dropdown-icon"),
         tags$label(
-          class = "panel-title",
+          class = "panel-title inline",
           title,
-          style = "display:inline"
         )
       ),
       tags$div(

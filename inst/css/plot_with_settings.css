@@ -1,0 +1,62 @@
+/* teal.widgets plot_with_settings css */
+
+.well .output {
+  position: relative;
+}
+
+.plot-settings-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-bottom: -15px;
+}
+
+.plot-settings-buttons .btn {
+  font-size: inherit;
+  background: inherit;
+  border: none;
+  background-color: transparent;
+}
+
+.plot-settings-buttons .dropdown .dropdown-toggle .caret {
+  display: none;
+}
+
+.plot-modal .modal .modal-dialog {
+  width: 90%;
+}
+
+.plot_out_container {
+  overflow-x: auto;
+}
+
+.plot_out_container div:nth-child(1) {
+  margin-top: 30px;
+}
+
+.plot-modal .modal .modal-dialog .modal-content .modal-body .plot-modal-sliders {
+  overflow: hidden;
+}
+
+.plot-modal .modal .modal-dialog .modal-content .modal-body .plot-modal-sliders div:nth-child(1) {
+  float: left;
+  width: 40%;
+}
+
+.plot-modal .modal .modal-dialog .modal-content .modal-body .plot-modal-sliders div:nth-child(2) {
+  float: right;
+  width: 40%;
+}
+
+.dropdown-menu {
+  background: rgb(255, 255, 255, 1);
+}
+
+.float-right {
+  float: right;
+}
+
+.w-full {
+  width: 100%;
+}

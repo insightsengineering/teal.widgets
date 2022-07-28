@@ -126,7 +126,9 @@ optionalSelectInput <- function(inputId, # nolint
   raw_choices <- extract_raw_choices(choices, attr(choices, "sep"))
   raw_selected <- extract_raw_choices(selected, attr(choices, "sep"))
 
-  ui <- shinyWidgets::pickerInput(
+  ui <- shiny::tagList(
+    include_css_files(pattern = "picker_input"),
+    shinyWidgets::pickerInput(
     inputId = inputId,
     label = label,
     choices = raw_choices,
@@ -135,6 +137,7 @@ optionalSelectInput <- function(inputId, # nolint
     width = width,
     options = options,
     choicesOpt = picker_options(choices)
+  )
   )
 
   if (!is.null(label_help)) {
