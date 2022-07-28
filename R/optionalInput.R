@@ -112,6 +112,7 @@ optionalSelectInput <- function(inputId, # nolint
     "show-subtext" = TRUE,
     "live-search" = ifelse(length(choices) > 10, TRUE, FALSE)
   )
+
   options <- if (!identical(options, list())) {
     c(options, default_options[setdiff(names(default_options), names(options))])
   } else {
