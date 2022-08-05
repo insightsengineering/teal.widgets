@@ -15,7 +15,8 @@ button_click_observer(
 \arguments{
 \item{click_event}{\code{reactive} the click event}
 
-\item{copy_button_id}{(\code{character(1)}) the id of the button to copy the modal content}
+\item{copy_button_id}{(\code{character(1)}) the id of the button to copy the modal content.
+Automatically appended with a 1 and 2 suffix for top and bottom buttons respectively.}
 
 \item{copied_area_id}{(\code{character(1)}) the id of the element which contents are copied}
 
