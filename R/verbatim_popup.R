@@ -92,7 +92,8 @@ disabled_flag_observer <- function(disabled_flag, button_id) {
 #'
 #' @keywords internal
 #' @param click_event `reactive` the click event
-#' @param copy_button_id (`character(1)`) the id of the button to copy the modal content
+#' @param copy_button_id (`character(1)`) the id of the button to copy the modal content.
+#' Automatically appended with a 1 and 2 suffix for top and bottom buttons respectively.
 #' @param copied_area_id (`character(1)`) the id of the element which contents are copied
 #' @param modal_title (`character(1)`) the title of the modal window
 #' @param modal_content (`reactive`) the content of the modal window
@@ -107,7 +108,7 @@ button_click_observer <- function(click_event, copy_button_id, copied_area_id, m
             shiny::tags$div(
               class = "mb-4",
               shiny::actionButton(
-                copy_button_id,
+                paste0(copy_button_id, 1),
                 "Copy to Clipboard",
                 onclick = paste0("copyToClipboard('", copied_area_id, "')")
               ),
@@ -118,9 +119,9 @@ button_click_observer <- function(click_event, copy_button_id, copied_area_id, m
           title = modal_title,
           footer = shiny::tagList(
             shiny::actionButton(
-              copy_button_id,
+              paste0(copy_button_id, 2),
               "Copy to Clipboard",
-              onclick = paste0("'copyToClipboard(", copied_area_id, "')")
+              onclick = paste0("copyToClipboard('", copied_area_id, "')")
             ),
             shiny::modalButton("Dismiss")
           ),
