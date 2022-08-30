@@ -22,10 +22,16 @@ A stable release of all `NEST` packages from June 2022 is also available [here](
 
 See package vignettes `browseVignettes(package = "teal.widgets")` for usage of this package.
 
+## Stargazers and Forkers
 
-[![Stargazers repo roster for @insightsengineering/teal.widgets](https://reporoster.com/stars/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/stargazers)
-[![Forkers repo roster for @insightsengineering/teal.widgets](https://reporoster.com/forks/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/network/members)
-
-## Stargazers over time
+### Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/insightsengineering/teal.widgets.svg)](https://starchart.cc/insightsengineering/teal.widgets)
+
+### Stargazers
+
+[![Stargazers repo roster for @insightsengineering/teal.widgets](https://reporoster.com/stars/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/stargazers)
+
+### Stargazers
+
+[![Forkers repo roster for @insightsengineering/teal.widgets](https://reporoster.com/forks/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/network/members)
