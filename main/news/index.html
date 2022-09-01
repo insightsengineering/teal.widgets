@@ -31,12 +31,6 @@
 <li class="active nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" href="https://insightsengineering.github.io/teal.widgets/main">main</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -59,11 +53,18 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1.9012" id="tealwidgets-0119012">teal.widgets 0.1.1.9012<a class="anchor" aria-label="anchor" href="#tealwidgets-0119012"></a></h2>
+<div class="section level4">
+<h4 id="enhancements-0-1-1-9012">Enhancements<a class="anchor" aria-label="anchor" href="#enhancements-0-1-1-9012"></a></h4>
 <ul><li>Updated <code>standard_layout</code> function to contain class not id for each output block.</li>
 <li>Added the <code>dim</code> slot to the list returned by the <code>plot_with_settings</code> module.</li>
 <li>Added <code>style</code> argument to <code>verbatim_popup_srv</code> to control whether the content is styled using <code><a href="https://styler.r-lib.org/reference/style_text.html" class="external-link">styler::style_text</a></code>
 </li>
-</ul><div class="section level4">
+</ul></div>
+<div class="section level4">
+<h4 id="bug-fixes-0-1-1-9012">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-1-1-9012"></a></h4>
+<ul><li>fixed bug in <code>verbatim_popup_srv</code> where <code>disabled</code> argument didn’t influence the popup button.</li>
+</ul></div>
+<div class="section level4">
 <h4 id="new-features-0-1-1-9012">New features<a class="anchor" aria-label="anchor" href="#new-features-0-1-1-9012"></a></h4>
 <ul><li>Added a new module - <code>verbatim_popup</code>.</li>
 </ul></div>
