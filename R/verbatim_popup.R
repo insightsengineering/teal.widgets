@@ -52,7 +52,7 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disab
   checkmate::assert_class(disabled, classes = "reactive")
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
-    disabled_flag_observer(disabled, ns("button"))
+    disabled_flag_observer(disabled, "button")
     modal_content <- format_content(verbatim_content, style)
     button_click_observer(
       click_event = shiny::reactive(input$button),
@@ -101,6 +101,7 @@ button_click_observer <- function(click_event, copy_button_id, copied_area_id, m
   shiny::observeEvent(
     click_event(),
     handlerExpr = {
+      req(modal_content())
       shiny::showModal(
         shiny::modalDialog(
           shiny::tagList(
