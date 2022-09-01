@@ -32,6 +32,6 @@ See package vignettes `browseVignettes(package = "teal.widgets")` for usage of t
 
 [![Stargazers repo roster for @insightsengineering/teal.widgets](https://reporoster.com/stars/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/stargazers)
 
-### Stargazers
+### Forkers
 
 [![Forkers repo roster for @insightsengineering/teal.widgets](https://reporoster.com/forks/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/network/members)
