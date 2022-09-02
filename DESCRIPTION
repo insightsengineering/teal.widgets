@@ -1,5 +1,5 @@
 Package: teal.widgets
-Title: shiny widgets for teal applications
+Title: Shiny Widgets for Teal Applications
 Version: 0.1.1.9013
 Date: 2022-09-01
 Authors@R: c(
@@ -12,7 +12,7 @@ Authors@R: c(
     person("Junlue", "Zhao", , "zhaoj88@gene.com", role = "aut"),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
-Description: shiny widgets for teal applications.
+Description: Collection of shiny widgets to support teal applications.
 License: Apache License 2.0 | file LICENSE
 Depends:
     R (>= 3.6)
