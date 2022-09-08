@@ -1,6 +1,11 @@
 /* teal.widgets picker_input css */
 
 /* to set the alignment of pickerInput dropdowns */
+/* boostrap 3 */
 .dropdown-menu.open {
+  width: 100%;
+}
+/* boostrap 4 and 5 */
+.dropdown-menu.show {
   width: 100%;
 }
