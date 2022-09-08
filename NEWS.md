@@ -1,4 +1,4 @@
-# teal.widgets 0.1.1.9014
+# teal.widgets 0.1.1.9015
 
 ### Enhancements
 * Updated `standard_layout` function to contain class not id for each output block.
