@@ -21,3 +21,17 @@ remotes::install_github("insightsengineering/teal.widgets@*release")
 A stable release of all `NEST` packages from June 2022 is also available [here](https://github.com/insightsengineering/depository#readme).
 
 See package vignettes `browseVignettes(package = "teal.widgets")` for usage of this package.
+
+## Stargazers and Forkers
+
+### Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/insightsengineering/teal.widgets.svg)](https://starchart.cc/insightsengineering/teal.widgets)
+
+### Stargazers
+
+[![Stargazers repo roster for @insightsengineering/teal.widgets](https://reporoster.com/stars/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/stargazers)
+
+### Forkers
+
+[![Forkers repo roster for @insightsengineering/teal.widgets](https://reporoster.com/forks/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/network/members)
