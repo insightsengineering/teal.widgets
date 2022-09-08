@@ -17,7 +17,7 @@ panel_group <- function(..., id = NULL, class = NULL) {
   tags$div(
     id = id,
     class = class,
-    class = "panel-group", # only for bs3
+    class = "panel-group my-4", # only for bs3
     ...
   )
 }
@@ -114,6 +114,9 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
       )
     }
 
-    x
+    tagList(
+      include_css_files(pattern = "panel.css"),
+      x
+    )
   })
 }
