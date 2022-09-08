@@ -1,5 +1,5 @@
 Package: teal.widgets
-Title: Shiny Widgets for Teal Applications
+Title: Shiny Widgets for `teal` Applications
 Version: 0.1.1.9013
 Date: 2022-09-01
 Authors@R: c(
