@@ -60,7 +60,6 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
 
 
   tags$div(.renderHook = function(res_tag) {
-
     bs_version <- get_bs_version()
 
     # alter tag structure

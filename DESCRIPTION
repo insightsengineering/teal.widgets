@@ -17,9 +17,11 @@ License: Apache License 2.0 | file LICENSE
 Depends:
     R (>= 3.6)
 Imports:
+    bslib,
     checkmate,
     ggplot2,
     graphics,
+    htmltools,
     lifecycle,
     methods,
     rtables (>= 0.5.1),
