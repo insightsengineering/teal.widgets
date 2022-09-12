@@ -17,8 +17,21 @@ panel_group <- function(..., id = NULL, class = NULL) {
   tags$div(
     id = id,
     class = class,
-    class = "panel-group my-4", # only for bs3
-    ...
+    ...,
+    .renderHook = function(res_tag) {
+      bs_version <- get_bs_version()
+      if (bs_version == "3") {
+        htmltools::tagAppendAttributes(res_tag, class = "panel-group")
+      } else if (bs_version %in% c("4", "5")) {
+        res_tag <- htmltools::tagAppendAttributes(res_tag, class = "my-4")
+        htmltools::tagQuery(res_tag)$
+          find(".card")$
+          removeClass("my-2")$
+          allTags()
+      } else {
+        stop("Bootstrap 3, 4, and 5 are supported.")
+      }
+    }
   )
 }
 
@@ -46,19 +59,13 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
   panel_id <- paste0(input_id, "_panel_body_", sample(1:10000, 1))
 
 
-  tags$div(.renderHook = function(x) {
-    # get theme and version
-    theme <- bslib::bs_current_theme()
-    version <- if (bslib::is_bs_theme(theme)) {
-      bslib::theme_version(theme)
-    } else {
-      "3"
-    }
+  tags$div(.renderHook = function(res_tag) {
 
+    bs_version <- get_bs_version()
 
     # alter tag structure
-    if (version == "3") {
-      x$children <- list(
+    if (bs_version == "3") {
+      res_tag$children <- list(
         tags$div(
           class = "panel panel-default",
           tags$div(
@@ -83,15 +90,17 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
           )
         )
       )
-    } else if (version %in% c("4", "5")) {
-      x$children <- list(
+    } else if (bs_version %in% c("4", "5")) {
+      res_tag$children <- list(
         tags$div(
-          class = "card",
+          class = "card my-2",
           tags$div(
             class = "card-header",
             tags$div(
               class = ifelse(collapsed, "collapsed", ""),
+              # bs4
               `data-toggle` = "collapse",
+              # bs5
               `data-bs-toggle` = "collapse",
               href = paste0("#", panel_id),
               `aria-expanded` = ifelse(collapsed, "false", "true"),
@@ -112,11 +121,24 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
           )
         )
       )
+    } else {
+      stop("Bootstrap 3, 4, and 5 are supported.")
     }
 
     tagList(
       include_css_files(pattern = "panel.css"),
-      x
+      res_tag
     )
   })
+}
+
+#' Get bootstrap current version
+#' @keywords internal
+get_bs_version <- function() {
+  theme <- bslib::bs_current_theme()
+  if (bslib::is_bs_theme(theme)) {
+    bslib::theme_version(theme)
+  } else {
+    "3"
+  }
 }
