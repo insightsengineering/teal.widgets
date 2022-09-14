@@ -1,7 +1,7 @@
 # teal.widgets 0.1.1.9013
 
 ### Breaking changes
-* `panel_group` and `panel_item` are no longer offer to be optionally a shiny input.
+* `panel_group` and `panel_item` functions are no longer offer to be optionally a shiny input.
 
 ### Enhancements
 * Updated `standard_layout` function to contain class not id for each output block.
