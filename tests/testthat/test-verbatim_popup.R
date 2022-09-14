@@ -31,6 +31,12 @@ testthat::test_that("format_content concatenates the passed array of string insi
   testthat::expect_length(result, 1)
 })
 
+testthat::test_that("format_content concatenates the passed array of string inside a reactive", {
+  test_content <- shiny::reactive(c("Test", "Content"))
+  result <- shiny::isolate(format_content(test_content)())
+  testthat::expect_length(result, 1)
+})
+
 
 testthat::test_that(
   "format_content returns a reactive storing a styled string when passed

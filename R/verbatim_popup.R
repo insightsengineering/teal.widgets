@@ -38,10 +38,11 @@ verbatim_popup_ui <- function(id, button_label, ...) {
 #' @name verbatim_popup
 #' @export
 #'
-#' @param verbatim_content (`character`, `expression` or `reactive(1)` holding either)
-#' the content to show in the popup modal window
+#' @param verbatim_content (`character`, `expression`, `condition` or `reactive(1)`
+#' holding any of the above) the content to show in the popup modal window
 #' @param title (`character(1)`) the title of the modal window
-#' @param style (`logical(1)`) whether to style the `verbatim_content` using `styler::style_text`
+#' @param style (`logical(1)`) whether to style the `verbatim_content` using `styler::style_text`.
+#' If `verbatim_content` is a `condition` or `reactive` holding `condition` then this argument is ignored
 #' @param disabled (`reactive(1)`) the `shiny` reactive value holding a `logical`. The popup button is disabled
 #' when the flag is `TRUE` and enabled otherwise
 #'
@@ -163,7 +164,7 @@ format_content <- function(verbatim_content, style = FALSE) {
 
     content <- paste(as.character(content), collapse = "\n")
 
-    if (style) {
+    if (style && !checkmate::test_class(content, "condition")) {
       content <- paste(styler::style_text(content), collapse = "\n")
     }
     content
