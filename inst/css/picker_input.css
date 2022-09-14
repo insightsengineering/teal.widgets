@@ -8,4 +8,5 @@
 /* boostrap 4 and 5 */
 .dropdown-menu.show {
   width: 100%;
+  overflow: auto;
 }
