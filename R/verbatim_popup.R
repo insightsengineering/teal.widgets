@@ -147,7 +147,12 @@ button_click_observer <- function(click_event, copy_button_id, copied_area_id, m
 format_content <- function(verbatim_content, style = FALSE) {
   shiny::reactive({
     content <- if (inherits(verbatim_content, "reactive")) {
-      verbatim_content()
+      tryCatch(
+        verbatim_content(),
+        error = function(e) {
+          e
+        }
+      )
     } else {
       verbatim_content
     }
