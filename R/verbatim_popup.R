@@ -152,8 +152,8 @@ format_content <- function(verbatim_content, style = FALSE) {
       verbatim_content
     }
     shiny::validate(shiny::need(
-      checkmate::test_multi_class(content, classes = c("expression", "character")),
-      "verbatim_content should be an expression or a character"
+      checkmate::test_multi_class(content, classes = c("expression", "character", "condition")),
+      "verbatim_content should be an expression, character or condition"
     ))
 
     content <- paste(as.character(content), collapse = "\n")
