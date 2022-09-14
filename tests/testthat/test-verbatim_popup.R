@@ -13,6 +13,18 @@ testthat::test_that("format_content returns a `shiny` reactive when passed a rea
   testthat::expect_true(inherits(format_content(test_content), "reactive"))
 })
 
+testthat::test_that("format_content returns a reactive when passed a condition", {
+  test_content <- structure("Test Content", clas = "condition")
+  testthat::expect_true(inherits(format_content(test_content), "reactive"))
+})
+
+testthat::test_that("format_content returns a reactive when passed a reactive holding a condition", {
+  test_content <- shiny::reactive({
+    validate(need(1 > 4, "1 is less than 4"))
+  })
+  testthat::expect_true(inherits(format_content(test_content), "reactive"))
+})
+
 testthat::test_that("format_content concatenates the passed array of strings", {
   test_content <- c("Test", "Content")
   result <- shiny::isolate(format_content(test_content))
@@ -36,7 +48,6 @@ testthat::test_that("format_content concatenates the passed array of string insi
   result <- shiny::isolate(format_content(test_content)())
   testthat::expect_length(result, 1)
 })
-
 
 testthat::test_that(
   "format_content returns a reactive storing a styled string when passed
