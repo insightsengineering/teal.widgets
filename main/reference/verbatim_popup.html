@@ -14,7 +14,7 @@ modal window with verbatim-styled text."><!-- mathjax --><script src="https://cd
     
     <a class="navbar-brand me-2" href="../index.html">teal.widgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9014</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9015</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,12 +35,6 @@ modal window with verbatim-styled text."><!-- mathjax --><script src="https://cd
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/main">main</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -96,8 +90,8 @@ modal window with verbatim-styled text.</p>
 
 
 <dt>verbatim_content</dt>
-<dd><p>(<code>character</code>, <code>expression</code> or <code>reactive(1)</code> holding either)
-the content to show in the popup modal window</p></dd>
+<dd><p>(<code>character</code>, <code>expression</code>, <code>condition</code> or <code>reactive(1)</code>
+holding any of the above) the content to show in the popup modal window</p></dd>
 
 
 <dt>title</dt>
@@ -105,7 +99,8 @@ the content to show in the popup modal window</p></dd>
 
 
 <dt>style</dt>
-<dd><p>(<code>logical(1)</code>) whether to style the <code>verbatim_content</code> using <code><a href="https://styler.r-lib.org/reference/style_text.html" class="external-link">styler::style_text</a></code></p></dd>
+<dd><p>(<code>logical(1)</code>) whether to style the <code>verbatim_content</code> using <code><a href="https://styler.r-lib.org/reference/style_text.html" class="external-link">styler::style_text</a></code>.
+If <code>verbatim_content</code> is a <code>condition</code> or <code>reactive</code> holding <code>condition</code> then this argument is ignored</p></dd>
 
 
 <dt>disabled</dt>
