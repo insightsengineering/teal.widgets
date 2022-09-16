@@ -23,12 +23,13 @@ verbatim_popup_srv(
 
 \item{...}{additional arguments to \verb{[shiny::actionButton()]}}
 
-\item{verbatim_content}{(\code{character}, \code{expression} or \code{reactive(1)} holding either)
-the content to show in the popup modal window}
+\item{verbatim_content}{(\code{character}, \code{expression}, \code{condition} or \code{reactive(1)}
+holding any of the above) the content to show in the popup modal window}
 
 \item{title}{(\code{character(1)}) the title of the modal window}
 
-\item{style}{(\code{logical(1)}) whether to style the \code{verbatim_content} using \code{styler::style_text}}
+\item{style}{(\code{logical(1)}) whether to style the \code{verbatim_content} using \code{styler::style_text}.
+If \code{verbatim_content} is a \code{condition} or \code{reactive} holding \code{condition} then this argument is ignored}
 
 \item{disabled}{(\code{reactive(1)}) the \code{shiny} reactive value holding a \code{logical}. The popup button is disabled
 when the flag is \code{TRUE} and enabled otherwise}

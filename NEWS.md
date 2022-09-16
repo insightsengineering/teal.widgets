@@ -1,12 +1,13 @@
-# teal.widgets 0.1.1.9015
+# teal.widgets 0.1.1.9016
 
 ### Enhancements
 * Updated `standard_layout` function to contain class not id for each output block.
 * Added the `dim` slot to the list returned by the `plot_with_settings` module.
-* Added `style` argument to `verbatim_popup_srv` to control whether the content is styled using `styler::style_text`
+* Added `style` argument to `verbatim_popup_srv` to control whether the content is styled using `styler::style_text`.
+* `condition` objects can now be displayed in `verbatim_popup`.
 
 ### Bug fixes
-* fixed bug in `verbatim_popup_srv` where `disabled` argument didn't influence the popup button. 
+* Fixed bug in `verbatim_popup_srv` where `disabled` argument didn't influence the popup button. 
 
 ### New features
 * Added a new module - `verbatim_popup`.
