@@ -8,7 +8,7 @@
 #' @return (`shiny.tag`)
 #'
 #' @export
-panel_group <- function(..., id = NULL, class = NULL) {
+panel_group <- function(..., id = NULL) {
   checkmate::assert_string(id, null.ok = TRUE)
 
   # panel-group
@@ -16,7 +16,6 @@ panel_group <- function(..., id = NULL, class = NULL) {
 
   tags$div(
     id = id,
-    class = class,
     ...,
     .renderHook = function(res_tag) {
       bs_version <- get_bs_version()

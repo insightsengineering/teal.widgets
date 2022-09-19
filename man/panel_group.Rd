@@ -4,7 +4,7 @@
 \alias{panel_group}
 \title{Panel group widget}
 \usage{
-panel_group(..., id = NULL, class = NULL)
+panel_group(..., id = NULL)
 }
 \arguments{
 \item{...}{(\code{shiny.tag})\cr
