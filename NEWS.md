@@ -8,6 +8,7 @@
 
 ### Bug fixes
 * Fixed bug in `verbatim_popup_srv` where `disabled` argument didn't influence the popup button. 
+* Fixed `optionalSliderInput` validation regarding the possible range.
 
 ### New features
 * Added a new module - `verbatim_popup`.
