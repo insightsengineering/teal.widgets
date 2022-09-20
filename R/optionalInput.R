@@ -367,9 +367,18 @@ extract_raw_choices <- function(choices, sep) {
 #' @examples
 #' optionalSliderInput("a", "b", 0, 1, 0.2)
 optionalSliderInput <- function(inputId, label, min, max, value, label_help = NULL, ...) { # nolint
-  checkmate::assert_number(min)
-  checkmate::assert_number(max)
+  checkmate::assert_number(min, na.ok = TRUE)
+  checkmate::assert_number(max, na.ok = TRUE)
   checkmate::assert_numeric(value, min.len = 1, max.len = 2, any.missing = FALSE)
+
+  is_na_min <- is.na(min)
+  is_na_max <- is.na(max)
+
+  hide <- if (is_na_min || is_na_max) {
+    TRUE
+  } else {
+    FALSE
+  }
 
   if (length(value) == 2) {
     value1 <- value[1]
@@ -379,14 +388,15 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
     value2 <- value
   }
 
-  hide <- if (is.na(min) || is.na(max)) {
+  if (is_na_min) {
     min <- value1 - 1
+  }
+  if (is_na_max) {
     max <- value2 + 1
-    TRUE
-  } else if (min > value1 || max < value2) {
+  }
+
+  if (min > value1 || max < value2) {
     stop("arguments inconsistent: min <= value <= max expected")
-  } else {
-    FALSE
   }
 
   slider <- sliderInput(inputId, label, min, max, value, ...)
