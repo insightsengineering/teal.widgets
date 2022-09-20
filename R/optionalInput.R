@@ -369,7 +369,7 @@ extract_raw_choices <- function(choices, sep) {
 optionalSliderInput <- function(inputId, label, min, max, value, label_help = NULL, ...) { # nolint
   checkmate::assert_number(min)
   checkmate::assert_number(max)
-  checkmate::assert_numeric(value, min.len = 1, max.len = 2)
+  checkmate::assert_numeric(value, min.len = 1, max.len = 2, any.missing = FALSE)
 
   if (length(value) == 2) {
     value1 <- value[1]
