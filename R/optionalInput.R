@@ -374,11 +374,7 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
   is_na_min <- is.na(min)
   is_na_max <- is.na(max)
 
-  hide <- if (is_na_min || is_na_max) {
-    TRUE
-  } else {
-    FALSE
-  }
+  hide <- is_na_min || is_na_max
 
   if (length(value) == 2) {
     value1 <- value[1]
