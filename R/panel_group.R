@@ -129,14 +129,3 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
     )
   })
 }
-
-#' Get bootstrap current version
-#' @keywords internal
-get_bs_version <- function() {
-  theme <- bslib::bs_current_theme()
-  if (bslib::is_bs_theme(theme)) {
-    bslib::theme_version(theme)
-  } else {
-    "3"
-  }
-}
