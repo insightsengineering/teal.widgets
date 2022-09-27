@@ -37,9 +37,6 @@
     <loc>https://github.com/insightsengineering/teal.widgets/main/pull_request_template.html</loc>
   </url>
   <url>
-    <loc>https://github.com/insightsengineering/teal.widgets/main/reference/accordion.html</loc>
-  </url>
-  <url>
     <loc>https://github.com/insightsengineering/teal.widgets/main/reference/basic_table_args.html</loc>
   </url>
   <url>
@@ -62,6 +59,9 @@
   </url>
   <url>
     <loc>https://github.com/insightsengineering/teal.widgets/main/reference/format_content.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/insightsengineering/teal.widgets/main/reference/get_bs_version.html</loc>
   </url>
   <url>
     <loc>https://github.com/insightsengineering/teal.widgets/main/reference/get_dt_rows.html</loc>
@@ -89,9 +89,6 @@
   </url>
   <url>
     <loc>https://github.com/insightsengineering/teal.widgets/main/reference/panel_item.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/insightsengineering/teal.widgets/main/reference/panel_status.html</loc>
   </url>
   <url>
     <loc>https://github.com/insightsengineering/teal.widgets/main/reference/parse_basic_table_args.html</loc>
