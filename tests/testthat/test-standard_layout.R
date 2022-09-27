@@ -80,7 +80,7 @@ testthat::test_that("Basic output", {
     standard_layout(output = tags$div(), pre_output = tags$div(), post_output = tags$div(), encoding = tags$div()),
     tags$div(
       class = "row",
-      tags$div(
+      tagList(
         tags$div(
           class = "col-md-3",
           tags$div(class = "well", tags$div()),
@@ -106,7 +106,7 @@ testthat::test_that("Basic output", {
     ),
     tags$div(
       class = "row",
-      tags$div(
+      tagList(
         tags$div(
           class = "col-md-3",
           tags$div(class = "well", tags$div()),

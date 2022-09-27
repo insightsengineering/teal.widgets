@@ -113,6 +113,10 @@ optionalSelectInput <- function(inputId, # nolint
     "live-search" = ifelse(length(choices) > 10, TRUE, FALSE)
   )
 
+  # if called outside the fluidPage then will assume bs 3
+  bs_version <- get_bs_version()
+  if (isTRUE(bs_version != "3")) default_options[["style"]] <- "btn-outline-secondary"
+
   options <- if (!identical(options, list())) {
     c(options, default_options[setdiff(names(default_options), names(options))])
   } else {
