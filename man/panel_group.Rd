@@ -4,20 +4,17 @@
 \alias{panel_group}
 \title{Panel group widget}
 \usage{
-panel_group(..., input_id = NULL)
+panel_group(..., id = NULL)
 }
 \arguments{
 \item{...}{(\code{shiny.tag})\cr
 panels created by \code{\link[=panel_group]{panel_group()}}}
 
-\item{input_id}{optional, (\code{character})\cr
-name of the panel group element. If supplied, this will register a shiny input variable that
-indicates which panel item is open (accessed with \code{input$input_id}) and will collapse all other
-panel items when one is open.}
+\item{id}{optional, (\code{character})\cr}
 }
 \value{
 (\code{shiny.tag})
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }

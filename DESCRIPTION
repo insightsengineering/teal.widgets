@@ -1,7 +1,7 @@
 Package: teal.widgets
 Title: Shiny Widgets for `teal` Applications
-Version: 0.1.1.9018
-Date: 2022-09-20
+Version: 0.1.1.9019
+Date: 2022-09-27
 Authors@R: c(
     person("Dawid", "Kaledkowski", , "dawid.kaledkowski@roche.com", role = c("aut", "cre")),
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = "aut"),
@@ -17,9 +17,11 @@ License: Apache License 2.0 | file LICENSE
 Depends:
     R (>= 3.6)
 Imports:
+    bslib,
     checkmate,
     ggplot2,
     graphics,
+    htmltools,
     lifecycle,
     methods,
     rtables (>= 0.5.1),
