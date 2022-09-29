@@ -6,8 +6,7 @@ test_that("{shinytest2} recording: tws_screenshot", {
   app$expect_screenshot()
 })
 
-
-test_that("{shinytest2} recording: tws_clicking", {
+test_that("{shinytest2} recording: tws_download", {
   app <- AppDriver$new(variant = platform_variant(), name = "tws_download", height = 823,
       width = 1459)
   app$set_window_size(width = 1459, height = 766)
