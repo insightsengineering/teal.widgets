@@ -1,6 +1,6 @@
 library(shinytest2)
 
-test_that("table with settings", {
+test_that("table-with-settings", {
   skip_on_cran()
 
   appdir <- system.file(package = "teal.widgets", "tws")
