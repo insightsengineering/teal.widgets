@@ -1,0 +1,7 @@
+{
+  "input": {
+    "table_with_settings-downbutton-file_format": ".txt",
+    "table_with_settings-downbutton-lpp": 70,
+    "table_with_settings-downbutton-pagination_switch": false
+  }
+}
