@@ -1,24 +1,23 @@
 library(shinytest2)
 
-test_that("{shinytest2} recording: tws_screenshot", {
-  app <- AppDriver$new(
-    variant = platform_variant(), name = "tws_screenshot",
-    height = 823, width = 1459
-  )
-  app$expect_screenshot()
-})
+test_that("snapshotting inputs", {
 
-test_that("{shinytest2} recording: tws_download", {
-  app <- AppDriver$new(
-    variant = platform_variant(), name = "tws_download", height = 823,
-    width = 1459
+  app <- AppDriver$new(name = 'blah')
+
+  app$expect_values(
+    input = c(
+      'table_with_settings-downbutton-file_format',
+      'table_with_settings-downbutton-lpp',
+      'table_with_settings-downbutton-pagination_switch'
+    )
   )
-  app$set_window_size(width = 1459, height = 766)
-  app$set_inputs(`table_with_settings-downbutton-file_format` = ".csv")
-  app$set_inputs(`table_with_settings-downbutton-file_format` = ".pdf")
-  app$click("table_with_settings-expand")
-  app$set_inputs(`table_with_settings-modal_downbutton-lpp` = 70)
-  app$set_inputs(`table_with_settings-modal_downbutton-file_format` = ".txt")
-  app$set_inputs(`table_with_settings-modal_downbutton-pagination_switch` = FALSE)
-  app$expect_screenshot()
+
+  file_name <- app$get_value(input = 'table_with_settings-downbutton-file_name')
+  file_name <- sub('_\\d{6}$', '', file_name) # remove time
+  expected_file_name <- paste0("table_", strftime(Sys.Date(), format = "%Y%m%d"))
+  testthat::expect_equal(file_name, expected_file_name)
+
+  app$expect_text("table")
+  app$stop()
+
 })
