@@ -1,7 +1,7 @@
 library(shinytest2)
 
 test_that("snapshotting inputs", {
-  app <- AppDriver$new(name = "blah")
+  app <- AppDriver$new(name = "tws")
 
   app$expect_values(
     input = c(
