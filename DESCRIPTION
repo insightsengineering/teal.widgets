@@ -33,6 +33,7 @@ Suggests:
     knitr,
     magrittr,
     rmarkdown,
+    shinytest2,
     testthat (>= 2.0),
     withr
 VignetteBuilder:
