@@ -19,8 +19,10 @@ table_with_settings_ui <- function(id, ...) {
       tags$div(
         class = "table-settings-buttons",
         type_download_ui_table(ns("downbutton")),
-        actionButton(inputId = ns("expand"), label = character(0),
-                     icon = icon("up-right-and-down-left-from-center"), class = "btn-sm"),
+        actionButton(
+          inputId = ns("expand"), label = character(0),
+          icon = icon("up-right-and-down-left-from-center"), class = "btn-sm"
+        ),
       ),
       tags$div(
         class = "table-settings-table",
