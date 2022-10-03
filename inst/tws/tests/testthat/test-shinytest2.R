@@ -1,6 +1,6 @@
 library(shinytest2)
 
-test_that("file download", {
+test_that("txt csv download", {
   app <- AppDriver$new(name = "tws_download", height = 671, width = 1178)
   app$click("ddb")
   app$set_inputs(ddb_state = TRUE)
