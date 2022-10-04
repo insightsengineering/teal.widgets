@@ -157,7 +157,7 @@ type_download_ui_table <- function(id) {
           shinyWidgets::numericInputIcon(
             inputId = ns("lpp"),
             label = "Paginate table:",
-            value = formals(rtables::paginate_table)$lpp,
+            value = 70,
             icon = list("lines / page")
           ),
           uiOutput(ns("lpp_warning"))

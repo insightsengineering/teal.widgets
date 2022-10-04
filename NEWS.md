@@ -1,4 +1,7 @@
-# teal.widgets 0.1.1.9016
+# teal.widgets 0.1.1.9019
+
+### Breaking changes
+* Updated `panel_group` and `panel_item` functions to no longer be an optional shiny input.
 
 ### Enhancements
 * Updated `standard_layout` function to contain class not id for each output block.
@@ -8,6 +11,7 @@
 
 ### Bug fixes
 * Fixed bug in `verbatim_popup_srv` where `disabled` argument didn't influence the popup button. 
+* Fixed `optionalSliderInput` validation to remove a warning message in certain cases.
 
 ### New features
 * Added a new module - `verbatim_popup`.

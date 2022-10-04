@@ -50,7 +50,7 @@ standard_layout <- function(output,
   )
 
   tag_enc_out <- if (!is.null(encoding)) {
-    div(
+    tagList(
       div(
         class = "col-md-3",
         div(class = "well", encoding),
