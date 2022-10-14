@@ -1,4 +1,4 @@
-# teal.widgets 0.1.1.9020
+# teal.widgets 0.2.0
 
 ### Breaking changes
 * Updated `panel_group` and `panel_item` functions to no longer be an optional shiny input.
