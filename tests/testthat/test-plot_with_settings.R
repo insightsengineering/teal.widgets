@@ -1,3 +1,5 @@
+library(shinytest2)
+
 testthat::test_that("if teal.plot_dpi is not set then get_plot_dpi returns 72 ", {
   withr::with_options(
     list(teal.plot_dpi = NULL),
@@ -58,3 +60,12 @@ testthat::test_that("if teal.plot_dpi is not an integer value then get_plot_dpi 
     "teal.plot_dpi"
   )
 })
+
+
+test_that("table-with-settings", {
+  skip_on_cran()
+
+  appdir <- system.file(package = "teal.widgets", "pws1")
+  shinytest2::test_app(appdir)
+})
+
