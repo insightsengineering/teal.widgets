@@ -47,6 +47,7 @@ plot_with_settings_ui <- function(id) {
           inline = TRUE,
           right = TRUE,
           label = "",
+          inputId = ns("expbut"),
           uiOutput(ns("slider_ui")),
           uiOutput(ns("width_warning"))
         )
@@ -466,6 +467,7 @@ type_download_ui <- function(id) {
     inline = TRUE,
     right = TRUE,
     label = "",
+    inputId = ns("downl"),
     div(
       radioButtons(ns("file_format"),
         label = "File type",

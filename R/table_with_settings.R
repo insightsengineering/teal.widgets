@@ -126,7 +126,7 @@ type_download_ui_table <- function(id) {
     inline = TRUE,
     right = TRUE,
     label = "",
-    inputId = "ddb",
+    inputId = ns("dwnl"),
     div(
       class = "modal-download-ui-table-container",
       radioButtons(ns("file_format"),
