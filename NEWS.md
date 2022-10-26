@@ -1,7 +1,7 @@
 # teal.widgets 0.2.0.9000
 
 ### Breaking change
-* Added `ignoreInit` argument to `verbatim_popup_srv`. By default this is set to `TRUE`. To use previous behaviour set it to `FALSE`.
+* Added `ignoreInit` argument to `verbatim_popup_srv`. By default this is set to `TRUE`. To use previous behavior set it to `FALSE`.
 
 # teal.widgets 0.2.0
 

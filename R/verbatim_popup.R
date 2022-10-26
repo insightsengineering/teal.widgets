@@ -48,7 +48,7 @@ verbatim_popup_ui <- function(id, button_label, ...) {
 #' In order for this to be used you need to have `shinyjs::useShinyjs()` in the `UI` of your application.
 #' @param ignoreInit (`logical(1)`) should the observer be ignored on initialization
 verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE,
-                               disabled = shiny::reactiveVal(FALSE), ignoreInit = TRUE) {
+                               disabled = shiny::reactiveVal(FALSE), ignoreInit = TRUE) { # nolint
   checkmate::assert_string(id)
   checkmate::assert_string(title)
   checkmate::assert_flag(style)
@@ -77,7 +77,7 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE,
 #' @param disabled_flag (`reactive`) containing the flag
 #' @param button_id (`character(1)`) the id of the controlled button
 #' @param ignoreInit (`logical(1)`) should the observer be ignored on initialization
-disabled_flag_observer <- function(disabled_flag, button_id, ignoreInit = TRUE) {
+disabled_flag_observer <- function(disabled_flag, button_id, ignoreInit = TRUE) { # nolint
   shiny::observeEvent(
     disabled_flag(),
     handlerExpr = {
