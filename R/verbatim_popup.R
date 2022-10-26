@@ -70,7 +70,6 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE,
       modal_title = title,
       modal_content = modal_content
     )
-
   })
 }
 
