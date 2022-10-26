@@ -77,7 +77,7 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE,
 #' @param disabled_flag (`reactive`) containing the flag
 #' @param button_id (`character(1)`) the id of the controlled button
 #' @param ignoreInit (`logical(1)`) should the observer be ignored on initialization
-disabled_flag_observer <- function(disabled_flag, button_id, ignoreInit) {
+disabled_flag_observer <- function(disabled_flag, button_id, ignoreInit = TRUE) {
   shiny::observeEvent(
     disabled_flag(),
     handlerExpr = {

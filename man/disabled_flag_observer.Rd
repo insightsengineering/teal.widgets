@@ -4,7 +4,7 @@
 \alias{disabled_flag_observer}
 \title{Creates a \code{shiny} observer handling the disabled flag.}
 \usage{
-disabled_flag_observer(disabled_flag, button_id, ignoreInit)
+disabled_flag_observer(disabled_flag, button_id, ignoreInit = TRUE)
 }
 \arguments{
 \item{disabled_flag}{(\code{reactive}) containing the flag}
