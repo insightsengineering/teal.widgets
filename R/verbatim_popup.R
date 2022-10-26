@@ -46,19 +46,16 @@ verbatim_popup_ui <- function(id, button_label, ...) {
 #' @param disabled (`reactive(1)`) the `shiny` reactive value holding a `logical`. The popup button is disabled
 #' when the flag is `TRUE` and enabled otherwise.
 #' In order for this to be used you need to have `shinyjs::useShinyjs()` in the `UI` of your application.
-#' @param ignoreInit (`logical(1)`) should the observer be ignored on initialization
-verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE,
-                               disabled = shiny::reactiveVal(FALSE), ignoreInit = TRUE) { # nolint
+verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disabled = shiny::reactiveVal(FALSE)) {
   checkmate::assert_string(id)
   checkmate::assert_string(title)
   checkmate::assert_flag(style)
   checkmate::assert_class(disabled, classes = "reactive")
-  checkmate::assert_flag(ignoreInit)
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
     output$container <- renderUI({
-      disabled_flag_observer(disabled, "button", ignoreInit)
+      disabled_flag_observer(disabled, "button")
       shiny::actionButton(session$ns("button"), label = "my label")
     })
 
@@ -81,8 +78,7 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE,
 #' @keywords internal
 #' @param disabled_flag (`reactive`) containing the flag
 #' @param button_id (`character(1)`) the id of the controlled button
-#' @param ignoreInit (`logical(1)`) should the observer be ignored on initialization
-disabled_flag_observer <- function(disabled_flag, button_id, ignoreInit = TRUE) { # nolint
+disabled_flag_observer <- function(disabled_flag, button_id) {
   shiny::observeEvent(
     disabled_flag(),
     handlerExpr = {

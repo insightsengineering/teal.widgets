@@ -13,8 +13,7 @@ verbatim_popup_srv(
   verbatim_content,
   title,
   style = FALSE,
-  disabled = shiny::reactiveVal(FALSE),
-  ignoreInit = TRUE
+  disabled = shiny::reactiveVal(FALSE)
 )
 }
 \arguments{
@@ -35,8 +34,6 @@ If \code{verbatim_content} is a \code{condition} or \code{reactive} holding \cod
 \item{disabled}{(\code{reactive(1)}) the \code{shiny} reactive value holding a \code{logical}. The popup button is disabled
 when the flag is \code{TRUE} and enabled otherwise.
 In order for this to be used you need to have \code{shinyjs::useShinyjs()} in the \code{UI} of your application.}
-
-\item{ignoreInit}{(\code{logical(1)}) should the observer be ignored on initialization}
 }
 \value{
 the UI function returns a \code{shiny.tag.list} object
