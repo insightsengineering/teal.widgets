@@ -31,7 +31,7 @@ verbatim_popup_ui <- function(id, button_label, ...) {
     shiny::singleton(
       shiny::tags$head(shiny::includeScript(system.file("js/verbatim_popup.js", package = "teal.widgets")))
     ),
-    shiny::actionButton(ns("button"), label = button_label, ...)
+    shiny::uiOutput(ns("container"))
   )
 }
 
@@ -56,7 +56,12 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE,
   checkmate::assert_flag(ignoreInit)
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
-    disabled_flag_observer(disabled, "button", ignoreInit)
+
+    output$container <- renderUI({
+      disabled_flag_observer(disabled, "button", ignoreInit)
+      shiny::actionButton(session$ns("button"), label = "my label")
+    })
+
     modal_content <- format_content(verbatim_content, style)
     button_click_observer(
       click_event = shiny::reactive(input$button),
@@ -65,6 +70,7 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE,
       modal_title = title,
       modal_content = modal_content
     )
+
   })
 }
 
