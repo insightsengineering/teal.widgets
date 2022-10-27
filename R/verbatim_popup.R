@@ -33,7 +33,7 @@ verbatim_popup_ui <- function(id, button_label, ...) {
     ),
     shiny::actionButton(
       ns("button"),
-      label =  div(
+      label = div(
         button_label,
         uiOutput(ns("disable_controller"), inline = TRUE) # this is dummy output - see the comment in srv
       ),
