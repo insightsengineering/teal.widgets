@@ -6,7 +6,7 @@
 \alias{verbatim_popup_srv}
 \title{A \code{shiny} module that pops up verbatim text.}
 \usage{
-verbatim_popup_ui(id, button_label, ...)
+verbatim_popup_ui(id, button_label, type = c("button", "link")[1], ...)
 
 verbatim_popup_srv(
   id,
@@ -21,7 +21,9 @@ verbatim_popup_srv(
 
 \item{button_label}{(\code{character(1)}) the text printed on the button}
 
-\item{...}{additional arguments to \verb{[shiny::actionButton()]}}
+\item{type}{(\code{button} or \code{link}) should \verb{[shiny::actionButton()]} or \verb{[shiny::actionLink()]} be used.}
+
+\item{...}{additional arguments to \verb{[shiny::actionButton()]}(or \verb{[shiny::actionLink()]}).}
 
 \item{verbatim_content}{(\code{character}, \code{expression}, \code{condition} or \code{reactive(1)}
 holding any of the above) the content to show in the popup modal window}
