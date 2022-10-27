@@ -77,8 +77,8 @@ testthat::test_that(
   }
 )
 
-testthat::test_that("disabled_flag_observer returns an observer", {
-  testthat::expect_true(inherits(disabled_flag_observer(shiny::reactive(FALSE), "test_id"), "Observer"))
+testthat::test_that("disabled_flag_observer returns a shiny.render.function", {
+  testthat::expect_true(inherits(disabled_flag_observer(shiny::reactive(FALSE), "test_id", list()), "shiny.render.function"))
 })
 
 testthat::test_that("button_click_observer returns an observer", {

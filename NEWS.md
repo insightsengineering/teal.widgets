@@ -1,5 +1,9 @@
 # teal.widgets 0.2.0.9000
 
+### Enhancements
+
+* `disabled` in `verbatim_popup_srv` is longer triggered when button is hidden.
+
 # teal.widgets 0.2.0
 
 ### Breaking changes
