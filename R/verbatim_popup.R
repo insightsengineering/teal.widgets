@@ -60,7 +60,11 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disab
   checkmate::assert_class(disabled, classes = "reactive")
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
-    disabled_flag_observer(disabled, "button", output)
+    # In normal case we could enable/disable using observeEvent(disabled_flag(), ...)
+    #  but observeEvent doesn't care whether output is displayed or not
+    #  This means that if we want to prevent calulation of disabled_flag for hidden
+    #  output, we need to use renderUI which triggers when the output is shown.
+    output$disable_controller <- shiny::renderUI(disable_button(disabled, "button"))
     modal_content <- format_content(verbatim_content, style)
     button_click_observer(
       click_event = shiny::reactive(input$button),
@@ -72,7 +76,7 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disab
   })
 }
 
-#' Creates a `shiny` observer handling the disabled flag.
+#' Disables a button
 #'
 #' @details
 #' When the flag is `TRUE` the button to open the popup is disabled; it is enabled otherwise.
@@ -80,20 +84,13 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disab
 #' @keywords internal
 #' @param disabled_flag (`reactive`) containing the flag
 #' @param button_id (`character(1)`) the id of the controlled button
-#' @param output (`shinyoutput`) needed to render output.
-disabled_flag_observer <- function(disabled_flag, button_id, output) {
-  # In normal case we could enable/disable using observeEvent(disabled_flag(), ...)
-  #  but observeEvent doesn't care whether output is displayed or not
-  #  This means that if we want to prevent calulation of disabled_flag for hidden
-  #  output, we need to use renderUI which triggers when the output is shown.
-  output$disable_controller <- shiny::renderUI({
-    if (disabled_flag()) {
-      shinyjs::disable(button_id)
-    } else {
-      shinyjs::enable(button_id)
-    }
-    NULL
-  })
+disable_button <- function(disabled_flag, button_id) {
+  if (disabled_flag()) {
+    shinyjs::disable(button_id)
+  } else {
+    shinyjs::enable(button_id)
+  }
+  NULL
 }
 
 #' Creates a `shiny` observer handling button clicks.

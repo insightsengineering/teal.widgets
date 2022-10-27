@@ -77,8 +77,13 @@ testthat::test_that(
   }
 )
 
-testthat::test_that("disabled_flag_observer returns a shiny.render.function", {
-  testthat::expect_true(inherits(disabled_flag_observer(shiny::reactive(FALSE), "test_id", list()), "shiny.render.function"))
+testthat::test_that("disable_button returns NULL", {
+  shiny::withReactiveDomain(
+    domain = shiny::MockShinySession$new(),
+    expr = testthat::expect_null(
+      isolate(disable_button(shiny::reactive(FALSE), "test_id"))
+    )
+  )
 })
 
 testthat::test_that("button_click_observer returns an observer", {
