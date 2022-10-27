@@ -4,12 +4,14 @@
 \alias{disabled_flag_observer}
 \title{Creates a \code{shiny} observer handling the disabled flag.}
 \usage{
-disabled_flag_observer(disabled_flag, button_id)
+disabled_flag_observer(disabled_flag, button_id, output)
 }
 \arguments{
 \item{disabled_flag}{(\code{reactive}) containing the flag}
 
 \item{button_id}{(\code{character(1)}) the id of the controlled button}
+
+\item{output}{(\code{shinyoutput}) needed to render output.}
 }
 \description{
 Creates a \code{shiny} observer handling the disabled flag.
