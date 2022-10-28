@@ -6,7 +6,7 @@
 \alias{verbatim_popup_srv}
 \title{A \code{shiny} module that pops up verbatim text.}
 \usage{
-verbatim_popup_ui(id, button_label, type = c("button", "link")[1], ...)
+verbatim_popup_ui(id, button_label, type = c("button", "link"), ...)
 
 verbatim_popup_srv(
   id,
