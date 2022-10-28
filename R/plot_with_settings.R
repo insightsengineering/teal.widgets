@@ -40,13 +40,18 @@ plot_with_settings_ui <- function(id) {
       tags$div(
         class = "plot-settings-buttons",
         type_download_ui(ns("downbutton")),
-        actionButton(ns("expand"), label = character(0), icon = icon("up-right-and-down-left-from-center"), class = "btn-sm"),
+        actionButton(
+          ns("expand"), label = character(0),
+          icon = icon("up-right-and-down-left-from-center"),
+          class = "btn-sm"
+          ),
         shinyWidgets::dropdownButton(
           circle = FALSE,
           icon = icon("maximize"),
           inline = TRUE,
           right = TRUE,
           label = "",
+          inputId = ns("expbut"),
           uiOutput(ns("slider_ui")),
           uiOutput(ns("width_warning"))
         )
@@ -466,6 +471,7 @@ type_download_ui <- function(id) {
     inline = TRUE,
     right = TRUE,
     label = "",
+    inputId = ns("downl"),
     div(
       radioButtons(ns("file_format"),
         label = "File type",
