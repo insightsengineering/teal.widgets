@@ -24,17 +24,15 @@
 #' }
 #' if (interactive()) shiny::shinyApp(ui, srv)
 #'
-verbatim_popup_ui <- function(id, button_label, type = c("button", "link")[1], ...) {
+verbatim_popup_ui <- function(id, button_label, type = c("button", "link"), ...) {
   checkmate::assert_string(id)
   checkmate::assert_string(button_label)
-  checkmate::assert_string(type)
-  checkmate::assert_subset(type, c("button", "link"))
 
-  if (type == "button") {
-    ui_function <- shiny::actionButton
-  } else {
-    ui_function <- shiny::actionLink
-  }
+  ui_function <- switch(match.arg(type),
+    "button" = shiny::actionButton,
+    "link"  =  shiny::actionLink,
+    stop("Argument 'type' should be 'button' or 'link'")
+  )
 
   ns <- shiny::NS(id)
   ui_args <- list(
