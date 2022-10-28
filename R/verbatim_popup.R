@@ -6,7 +6,8 @@
 #'
 #' @param id (`character(1)`) the `shiny` id
 #' @param button_label (`character(1)`) the text printed on the button
-#' @param ... additional arguments to `[shiny::actionButton()]`
+#' @param type (`button` or `link`) should `[shiny::actionButton()]` or `[shiny::actionLink()]` be used.
+#' @param ... additional arguments to `[shiny::actionButton()]`(or `[shiny::actionLink()]`).
 #'
 #' @return the UI function returns a `shiny.tag.list` object
 #' @export
@@ -23,22 +24,31 @@
 #' }
 #' if (interactive()) shiny::shinyApp(ui, srv)
 #'
-verbatim_popup_ui <- function(id, button_label, ...) {
+verbatim_popup_ui <- function(id, button_label, type = c("button", "link"), ...) {
   checkmate::assert_string(id)
   checkmate::assert_string(button_label)
+
+  ui_function <- switch(match.arg(type),
+    "button" = shiny::actionButton,
+    "link" = shiny::actionLink,
+    stop("Argument 'type' should be 'button' or 'link'")
+  )
+
   ns <- shiny::NS(id)
+  ui_args <- list(
+    inputId = ns("button"),
+    label = div(
+      button_label,
+      shiny::uiOutput(ns("disable_controller"), inline = TRUE) # this is dummy output - see the comment in srv
+    )
+  )
+
+
   shiny::tagList(
     shiny::singleton(
       shiny::tags$head(shiny::includeScript(system.file("js/verbatim_popup.js", package = "teal.widgets")))
     ),
-    shiny::actionButton(
-      ns("button"),
-      label = div(
-        button_label,
-        uiOutput(ns("disable_controller"), inline = TRUE) # this is dummy output - see the comment in srv
-      ),
-      ...
-    )
+    do.call(ui_function, c(ui_args, list(...)))
   )
 }
 
