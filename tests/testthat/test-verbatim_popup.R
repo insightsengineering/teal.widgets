@@ -118,5 +118,3 @@ testthat::test_that("verbatim_popup_ui with type 'link' produces a link", {
   ui_char <- as.character(verbatim_popup_ui(id = "test_id", button_label = "Test button label", type = "link"))
   testthat::expect_true(grepl("^<a ", ui_char))
 })
-
-
