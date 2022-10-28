@@ -6,7 +6,8 @@
 #'
 #' @param id (`character(1)`) the `shiny` id
 #' @param button_label (`character(1)`) the text printed on the button
-#' @param ... additional arguments to `[shiny::actionButton()]`
+#' @param type (`character(1)`) specifying whether to use `[shiny::actionButton()]` or `[shiny::actionLink()]`.
+#' @param ... additional arguments to `[shiny::actionButton()]`(or `[shiny::actionLink()]`).
 #'
 #' @return the UI function returns a `shiny.tag.list` object
 #' @export
@@ -23,15 +24,31 @@
 #' }
 #' if (interactive()) shiny::shinyApp(ui, srv)
 #'
-verbatim_popup_ui <- function(id, button_label, ...) {
+verbatim_popup_ui <- function(id, button_label, type = c("button", "link"), ...) {
   checkmate::assert_string(id)
   checkmate::assert_string(button_label)
+
+  ui_function <- switch(match.arg(type),
+    "button" = shiny::actionButton,
+    "link" = shiny::actionLink,
+    stop("Argument 'type' should be 'button' or 'link'")
+  )
+
   ns <- shiny::NS(id)
+  ui_args <- list(
+    inputId = ns("button"),
+    label = div(
+      button_label,
+      shiny::uiOutput(ns("disable_controller"), inline = TRUE) # this is dummy output - see the comment in srv
+    )
+  )
+
+
   shiny::tagList(
     shiny::singleton(
       shiny::tags$head(shiny::includeScript(system.file("js/verbatim_popup.js", package = "teal.widgets")))
     ),
-    shiny::actionButton(ns("button"), label = button_label, ...)
+    do.call(ui_function, c(ui_args, list(...)))
   )
 }
 
@@ -53,7 +70,11 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disab
   checkmate::assert_class(disabled, classes = "reactive")
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
-    disabled_flag_observer(disabled, "button")
+    # In normal case we could enable/disable using observeEvent(disabled_flag(), ...)
+    #  but observeEvent doesn't care whether output is displayed or not
+    #  This means that if we want to prevent calulation of disabled_flag for hidden
+    #  output, we need to use renderUI which triggers when the output is shown.
+    output$disable_controller <- shiny::renderUI(disable_button(disabled, "button"))
     modal_content <- format_content(verbatim_content, style)
     button_click_observer(
       click_event = shiny::reactive(input$button),
@@ -65,7 +86,7 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disab
   })
 }
 
-#' Creates a `shiny` observer handling the disabled flag.
+#' Disables a button
 #'
 #' @details
 #' When the flag is `TRUE` the button to open the popup is disabled; it is enabled otherwise.
@@ -73,17 +94,13 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disab
 #' @keywords internal
 #' @param disabled_flag (`reactive`) containing the flag
 #' @param button_id (`character(1)`) the id of the controlled button
-disabled_flag_observer <- function(disabled_flag, button_id) {
-  shiny::observeEvent(
-    disabled_flag(),
-    handlerExpr = {
-      if (disabled_flag()) {
-        shinyjs::disable(button_id)
-      } else {
-        shinyjs::enable(button_id)
-      }
-    }
-  )
+disable_button <- function(disabled_flag, button_id) {
+  if (disabled_flag()) {
+    shinyjs::disable(button_id)
+  } else {
+    shinyjs::enable(button_id)
+  }
+  NULL
 }
 
 #' Creates a `shiny` observer handling button clicks.
