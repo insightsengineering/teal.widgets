@@ -101,3 +101,22 @@ testthat::test_that("verbatim_popup_ui returns a tag list", {
     inherits(verbatim_popup_ui(id = "test_id", button_label = "Test button label"), "shiny.tag.list")
   )
 })
+
+testthat::test_that("verbatim_popup_ui with type not equal to 'button' or 'link' throws error", {
+  testthat::expect_error(
+    verbatim_popup_ui(id = "test_id", button_label = "Test button label", type = "abc"),
+    "" # match.arg explicitly says in documentation not to test specific error message
+  )
+})
+
+testthat::test_that("verbatim_popup_ui with type 'button' produces a button", {
+  ui_char <- as.character(verbatim_popup_ui(id = "test_id", button_label = "Test button label", type = "button"))
+  testthat::expect_true(grepl("^<button ", ui_char))
+})
+
+testthat::test_that("verbatim_popup_ui with type 'link' produces a link", {
+  ui_char <- as.character(verbatim_popup_ui(id = "test_id", button_label = "Test button label", type = "link"))
+  testthat::expect_true(grepl("^<a ", ui_char))
+})
+
+
