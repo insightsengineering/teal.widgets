@@ -6,7 +6,7 @@
 #'
 #' @param id (`character(1)`) the `shiny` id
 #' @param button_label (`character(1)`) the text printed on the button
-#' @param type (`button` or `link`) should `[shiny::actionButton()]` or `[shiny::actionLink()]` be used.
+#' @param type (`character(1)`) specifying whether to use `[shiny::actionButton()]` or `[shiny::actionLink()]`.
 #' @param ... additional arguments to `[shiny::actionButton()]`(or `[shiny::actionLink()]`).
 #'
 #' @return the UI function returns a `shiny.tag.list` object

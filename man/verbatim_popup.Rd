@@ -21,7 +21,7 @@ verbatim_popup_srv(
 
 \item{button_label}{(\code{character(1)}) the text printed on the button}
 
-\item{type}{(\code{button} or \code{link}) should \verb{[shiny::actionButton()]} or \verb{[shiny::actionLink()]} be used.}
+\item{type}{(\code{character(1)}) specifying whether to use \verb{[shiny::actionButton()]} or \verb{[shiny::actionLink()]}.}
 
 \item{...}{additional arguments to \verb{[shiny::actionButton()]}(or \verb{[shiny::actionLink()]}).}
 
