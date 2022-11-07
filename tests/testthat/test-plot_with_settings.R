@@ -68,4 +68,3 @@ test_that("table-with-settings", {
   appdir <- system.file(package = "teal.widgets", "pws1")
   shinytest2::test_app(appdir)
 })
-
