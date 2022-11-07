@@ -1,5 +1,9 @@
 # teal.widgets
 
+<!-- start badges -->
+[![Code Coverage](https://raw.githubusercontent.com/insightsengineering/teal.widgets/_xml_coverage_reports/data/main/badge.svg)](https://raw.githubusercontent.com/insightsengineering/teal.widgets/_xml_coverage_reports/data/main/coverage.xml)
+<!-- end badges -->
+
 This package provides various 'widgets' for `teal` applications. Examples include:
 
 - `standard_layout` for a standard UI layout with output on the right and an encoding panel on the left
