@@ -3,50 +3,76 @@ library(shinytest2)
 
 test_that("{shinytest2} recording: pws_click", {
   app <- AppDriver$new(name = "pws_click", height = 937, width = 1619)
-  app$set_inputs(`plot_with_settings-plot_brush` = c(1.575922029932, 2.2959573557845,
-      1.218473025872, 2.2972720836904, 252, 532, 251, 349, 252, 532, 251, 349, 1,
-      1, "1:5", "1:5", 1, 5, 1, 5, 28.0413099315069, 1583.52054794521, 368.846473150198,
-      5.47945205479452, character(0), character(0), "xy", "plot_with_settings-plot_brush",
-      "plot_with_settings-plot_main"), allow_no_input_binding_ = TRUE)
+  app$set_inputs(`plot_with_settings-plot_brush` = c(
+    1.575922029932, 2.2959573557845,
+    1.218473025872, 2.2972720836904, 252, 532, 251, 349, 252, 532, 251, 349, 1,
+    1, "1:5", "1:5", 1, 5, 1, 5, 28.0413099315069, 1583.52054794521, 368.846473150198,
+    5.47945205479452, character(0), character(0), "xy", "plot_with_settings-plot_brush",
+    "plot_with_settings-plot_main"
+  ), allow_no_input_binding_ = TRUE)
   test1 <- app$get_value(input = "plot_with_settings-plot_brush")
   testthat::expect_equal(
     test1,
-    c(1.575922029932, 2.2959573557845,
+    c(
+      1.575922029932, 2.2959573557845,
       1.218473025872, 2.2972720836904, 252, 532, 251, 349, 252, 532, 251, 349, 1,
       1, "1:5", "1:5", 1, 5, 1, 5, 28.0413099315069, 1583.52054794521, 368.846473150198,
       5.47945205479452, character(0), character(0), "xy", "plot_with_settings-plot_brush",
-      "plot_with_settings-plot_main"))
-  app$set_inputs(`plot_with_settings-plot_hover` = c(2.95684692272772, 2.34130469829519,
+      "plot_with_settings-plot_main"
+    )
+  )
+  app$set_inputs(
+    `plot_with_settings-plot_hover` = c(
+      2.95684692272772, 2.34130469829519,
       789, 247, 789, 247, 1, 1, "1:5", "1:5", 1, 5, 1, 5, 28.0413099315069, 1583.52054794521,
-      368.846473150198, 5.47945205479452, character(0), character(0)), allow_no_input_binding_ = TRUE,
-      priority_ = "event")
+      368.846473150198, 5.47945205479452, character(0), character(0)
+    ), allow_no_input_binding_ = TRUE,
+    priority_ = "event"
+  )
   test2 <- app$get_value(input = "plot_with_settings-plot_hover")
   testthat::expect_equal(
     test2,
-    c(2.95684692272772, 2.34130469829519, 789, 247, 789, 247, 1, 1,
+    c(
+      2.95684692272772, 2.34130469829519, 789, 247, 789, 247, 1, 1,
       "1:5", "1:5", 1, 5, 1, 5, 28.0413099315069, 1583.52054794521,
-      368.846473150198, 5.47945205479452, character(0), character(0)))
+      368.846473150198, 5.47945205479452, character(0), character(0)
+    )
+  )
   app$set_inputs(`plot_with_settings-plot_brush` = character(0), allow_no_input_binding_ = TRUE)
-  app$set_inputs(`plot_with_settings-plot_dblclick` = c(2.95684692272772, 2.34130469829519,
+  app$set_inputs(
+    `plot_with_settings-plot_dblclick` = c(
+      2.95684692272772, 2.34130469829519,
       789, 247, 789, 247, 1, 1, "1:5", "1:5", 1, 5, 1, 5, 28.0413099315069, 1583.52054794521,
-      368.846473150198, 5.47945205479452, character(0), character(0)), allow_no_input_binding_ = TRUE,
-      priority_ = "event")
+      368.846473150198, 5.47945205479452, character(0), character(0)
+    ), allow_no_input_binding_ = TRUE,
+    priority_ = "event"
+  )
   test3 <- app$get_value(input = "plot_with_settings-plot_dblclick")
   testthat::expect_equal(
     test3,
-    c(2.95684692272772, 2.34130469829519, 789, 247, 789, 247, 1, 1,
+    c(
+      2.95684692272772, 2.34130469829519, 789, 247, 789, 247, 1, 1,
       "1:5", "1:5", 1, 5, 1, 5, 28.0413099315069, 1583.52054794521,
-      368.846473150198, 5.47945205479452, character(0), character(0)))
-  app$set_inputs(`plot_with_settings-plot_click` = c(2.95941847746291, 1.9450111668517,
+      368.846473150198, 5.47945205479452, character(0), character(0)
+    )
+  )
+  app$set_inputs(
+    `plot_with_settings-plot_click` = c(
+      2.95941847746291, 1.9450111668517,
       790, 283, 790, 283, 1, 1, "1:5", "1:5", 1, 5, 1, 5, 28.0413099315069, 1583.52054794521,
-      368.846473150198, 5.47945205479452, character(0), character(0)), allow_no_input_binding_ = TRUE,
-      priority_ = "event")
-    test4 <- app$get_value(input = "plot_with_settings-plot_click")
-    testthat::expect_equal(
-      test4,
-      c(2.95941847746291, 1.9450111668517, 790, 283, 790, 283, 1, 1,
-        "1:5", "1:5", 1, 5, 1, 5, 28.0413099315069, 1583.52054794521,
-        368.846473150198, 5.47945205479452, character(0), character(0)))
+      368.846473150198, 5.47945205479452, character(0), character(0)
+    ), allow_no_input_binding_ = TRUE,
+    priority_ = "event"
+  )
+  test4 <- app$get_value(input = "plot_with_settings-plot_click")
+  testthat::expect_equal(
+    test4,
+    c(
+      2.95941847746291, 1.9450111668517, 790, 283, 790, 283, 1, 1,
+      "1:5", "1:5", 1, 5, 1, 5, 28.0413099315069, 1583.52054794521,
+      368.846473150198, 5.47945205479452, character(0), character(0)
+    )
+  )
 })
 
 
