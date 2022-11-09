@@ -64,7 +64,7 @@ testthat::test_that("if teal.plot_dpi is not an integer value then get_plot_dpi 
 
 test_that("table-with-settings", {
   skip_on_cran()
-
-  appdir <- system.file(package = "teal.widgets", "pws1")
+  skip_on_ci()
+  appdir <- system.file(package = "teal.widgets", "pws_click")
   shinytest2::test_app(appdir)
 })
