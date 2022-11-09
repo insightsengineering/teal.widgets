@@ -103,17 +103,6 @@ test_that("{shinytest2} recording: pws_dwnl", {
 })
 
 
-test_that("{shinytest2} recording: pws_svg", {
-  app <- AppDriver$new(name = "pws_svg", height = 880, width = 1619)
-  app$set_inputs(`plot_with_settings-plot_hover` = character(0), allow_no_input_binding_ = TRUE)
-  app$click("plot_with_settings-downbutton-downl")
-  app$set_inputs(`plot_with_settings-downbutton-downl_state` = TRUE)
-  app$set_inputs(`plot_with_settings-downbutton-file_format` = "svg")
-  app$set_inputs(`plot_with_settings-downbutton-file_name` = "plot_svg")
-  app$expect_download("plot_with_settings-downbutton-data_download")
-})
-
-
 test_that("{shinytest2} recording: pws_svg_modal", {
   app <- AppDriver$new(name = "pws_svg_modal", height = 880, width = 1619)
   app$set_inputs(`plot_with_settings-plot_hover` = character(0), allow_no_input_binding_ = TRUE)
@@ -130,4 +119,15 @@ test_that("{shinytest2} recording: pws_svg_modal", {
   app$set_inputs(`plot_with_settings-modal_downbutton-file_format` = "svg")
   app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot_svg")
   app$expect_download("plot_with_settings-modal_downbutton-data_download")
+})
+
+
+test_that("{shinytest2} recording: pws_svg", {
+  app <- AppDriver$new(name = "pws_svg", height = 880, width = 1619)
+  app$set_inputs(`plot_with_settings-plot_hover` = character(0), allow_no_input_binding_ = TRUE)
+  app$click("plot_with_settings-downbutton-downl")
+  app$set_inputs(`plot_with_settings-downbutton-downl_state` = TRUE)
+  app$set_inputs(`plot_with_settings-downbutton-file_format` = "svg")
+  app$set_inputs(`plot_with_settings-downbutton-file_name` = "plot_svg")
+  app$expect_download("plot_with_settings-downbutton-data_download")
 })
