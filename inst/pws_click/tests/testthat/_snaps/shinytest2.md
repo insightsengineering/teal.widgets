@@ -6,11 +6,11 @@
 
     "plot_2.png"
 
-# {shinytest2} recording: pws_svg
+# {shinytest2} recording: pws_svg_modal
 
     "plot_svg.svg"
 
-# {shinytest2} recording: pws_svg_modal
+# {shinytest2} recording: pws_svg
 
     "plot_svg.svg"
 
