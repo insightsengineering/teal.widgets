@@ -1,4 +1,4 @@
-# teal.widgets 0.2.0.9005
+# teal.widgets 0.2.0.9006
 
 ### Enhancements
 
