@@ -15,7 +15,8 @@ shinyApp(
   ),
   server = function(input, output, session) {
     plot_r <- reactive({
-      ggplot2::qplot(x = 1:5, y = 1:5)
+      ggplot2::ggplot(data.frame(x = 1:5, y = 1:5)) +
+        ggplot2::geom_point(ggplot2::aes(x = x, y = y))
     })
 
     plot_data <- plot_with_settings_srv(
