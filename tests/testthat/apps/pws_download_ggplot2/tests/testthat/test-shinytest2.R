@@ -2,6 +2,8 @@ library(shinytest2)
 
 # download as .png
 test_that("{shinytest2} recording: pws_dwnl", {
+  skip_on_cran()
+  skip_on_ci()
 
   app <- AppDriver$new(name = "pws_dwnl", height = 937, width = 1619)
 
@@ -46,6 +48,9 @@ test_that("{shinytest2} recording: pws_dwnl", {
 
 
 test_that("{shinytest2} recording: pws_svg_modal", {
+  skip_on_cran()
+  skip_on_ci()
+
   app <- AppDriver$new(name = "pws_svg_modal", height = 880, width = 1619)
   app$set_inputs(`plot_with_settings-plot_hover` = character(0), allow_no_input_binding_ = TRUE)
   app$click("plot_with_settings-expand")
@@ -67,6 +72,9 @@ test_that("{shinytest2} recording: pws_svg_modal", {
 
 
 test_that("{shinytest2} recording: pws_svg", {
+  skip_on_cran()
+  skip_on_ci()
+
   app <- AppDriver$new(name = "pws_svg", height = 880, width = 1619)
   app$set_inputs(`plot_with_settings-plot_hover` = character(0), allow_no_input_binding_ = TRUE)
   app$click("plot_with_settings-downbutton-downl")
