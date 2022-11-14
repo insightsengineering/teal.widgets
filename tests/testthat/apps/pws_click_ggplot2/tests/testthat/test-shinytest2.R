@@ -1,7 +1,7 @@
 library(shinytest2)
 
 # tests plot clicking functionalities
-test_that("{shinytest2} recording: pws_click", {
+test_that("{shinytest2} plot with settings: click ggplot2", {
 
   skip_on_cran()
   skip_on_ci()

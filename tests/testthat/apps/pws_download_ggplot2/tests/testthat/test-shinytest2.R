@@ -1,39 +1,57 @@
 library(shinytest2)
 
-# download as .png
-test_that("{shinytest2} recording: pws_dwnl", {
+# TODO:
+# exportTestValues for this file
+# exportTestValues for pws_click
+# refactor table with settings tests + exportTestValues
+# almost all above for GRID, lattice
+# test warning for setting width too low
+
+test_that("{shinytest2} plot with settings: output types", {
+  skip_on_cran()
+  skip_on_ci()
+  app <- AppDriver$new(name = "pws_download_ggplot2_types", height = 937, width = 1619)
+  vals <- app$get_values()
+
+  # check if outputs are reactive
+  testthat::expect_true(is(vals$export$'plot_r', "reactiveExpr"))
+  testthat::expect_true(is(vals$export$'plot_r', "reactive"))
+  testthat::expect_true(is(vals$export$'plot_r', "function"))
+  for (react_i in vals$export$'plot_data') {
+    testthat::expect_true(is(react_i, "reactive"))
+  }
+
+  # check if plot is ggplot object
+  testthat::expect_true(is(isolate(rlang::inject(vals$export$'plot_r')()), "ggplot"))
+  testthat::expect_true(is.character(vals$output$`plot_with_settings-plot_main`$src))
+  testthat::expect_true(grepl("data\\:image\\/png\\;base64\\,", vals$output$`plot_with_settings-plot_main`$src))
+  # testthat::expect_equal(nchar(vals$output$`plot_with_settings-plot_main`$src), 8578)
+})
+
+
+test_that("{shinytest2} plot with settings: download ggplot2", {
   skip_on_cran()
   skip_on_ci()
 
-  app <- AppDriver$new(name = "pws_dwnl", height = 937, width = 1619)
-
-  # download plot as initialized
-  # saving images or svg (below) might be brittle
-  # i wonder if the 'compare' argument of AppDriver$expect_download can
-  #  help here
-  # another option might be to use shiny::exportTestValues() within the module
-  #  server
-  # then we could check information about the plot (class, input data, ...)
-  # in that case, maybe an expect_error(app$get_download('..'), NA) could
-  #  suffice for download functionality
+  app <- AppDriver$new(name = "pws_download_ggplot2", height = 937, width = 1619)
   app$click("plot_with_settings-downbutton-downl")
   app$set_inputs(`plot_with_settings-downbutton-downl_state` = TRUE)
   app$set_inputs(`plot_with_settings-downbutton-file_name` = "plot_1")
   app$expect_download("plot_with_settings-downbutton-data_download")
 
-  plot_name1 <- app$get_value(input = "plot_with_settings-downbutton-file_name")
-  testthat::expect_equal(plot_name1, "plot_1")
+  testthat::expect_equal(
+    app$get_value(input = "plot_with_settings-downbutton-file_name"), "plot_1"
+    )
 
   app$set_inputs(`plot_with_settings-downbutton-downl_state` = FALSE)
 
-  # why the change in window size?
   app$set_window_size(width = 1619, height = 880)
   app$click("plot_with_settings-expand")
-  # if we're going to change the values, i would check they update correctly
-  # e.g. height <- app$get_values(input = 'plot_with_settings...)
-  #      expect_equal(heigth, 400)
   app$set_inputs(`plot_with_settings-height_in_modal` = 400)
-  app$set_inputs(`plot_with_settings-width_in_modal` = 1409)
+  expect_equal(
+    app$get_value(input = "plot_with_settings-height_in_modal"), 400
+    )
+
   app$set_inputs(`plot_with_settings-width_in_modal` = 2169)
   app$set_inputs(`plot_with_settings-height_in_modal` = 773)
 
@@ -47,11 +65,11 @@ test_that("{shinytest2} recording: pws_dwnl", {
 })
 
 
-test_that("{shinytest2} recording: pws_svg_modal", {
+test_that("{shinytest2} plot with settings: download ggplot2 svg modal", {
   skip_on_cran()
   skip_on_ci()
 
-  app <- AppDriver$new(name = "pws_svg_modal", height = 880, width = 1619)
+  app <- AppDriver$new(name = "pws_download_ggplot2_svg_modal", height = 880, width = 1619)
   app$set_inputs(`plot_with_settings-plot_hover` = character(0), allow_no_input_binding_ = TRUE)
   app$click("plot_with_settings-expand")
   app$click("plot_with_settings-modal_downbutton-downl")
@@ -64,24 +82,28 @@ test_that("{shinytest2} recording: pws_svg_modal", {
   app$click("plot_with_settings-modal_downbutton-downl")
   app$set_inputs(`plot_with_settings-modal_downbutton-downl_state` = TRUE)
   app$set_inputs(`plot_with_settings-modal_downbutton-file_format` = "svg")
-  app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot_svg")
-  app$expect_download("plot_with_settings-modal_downbutton-data_download")
-
+  app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot_svg_modal")
+  testthat::expect_equal(
+    app$get_value(input = "plot_with_settings-modal_downbutton-file_name"), "plot_svg_modal"
+  )
   app$stop()
 })
 
 
-test_that("{shinytest2} recording: pws_svg", {
+test_that("{shinytest2} plot with settings: download ggplot2 svg", {
   skip_on_cran()
   skip_on_ci()
 
-  app <- AppDriver$new(name = "pws_svg", height = 880, width = 1619)
+  input_vals <- c("1", "TRUE", "svg",  "plot_svg", "0", "0", "1589", "1408.53")
+
+  app <- AppDriver$new(name = "pws_download_ggplot2_svg", height = 880, width = 1619)
   app$set_inputs(`plot_with_settings-plot_hover` = character(0), allow_no_input_binding_ = TRUE)
   app$click("plot_with_settings-downbutton-downl")
   app$set_inputs(`plot_with_settings-downbutton-downl_state` = TRUE)
   app$set_inputs(`plot_with_settings-downbutton-file_format` = "svg")
   app$set_inputs(`plot_with_settings-downbutton-file_name` = "plot_svg")
-  app$expect_download("plot_with_settings-downbutton-data_download")
+  vals <- app$get_values()
+  testthat::expect_equal(as.vector(unlist(vals$input)), input_vals)
 
   app$stop()
 })
