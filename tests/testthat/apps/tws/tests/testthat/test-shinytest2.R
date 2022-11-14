@@ -1,6 +1,9 @@
 library(shinytest2)
 
 test_that("{shinytest2} txt/csv download", {
+  skip_on_cran()
+  skip_on_ci()
+
   app <- AppDriver$new(name = "tws", height = 820, width = 1551)
   # download table in .csv
   app$click("table_with_settings-downbutton-dwnl")
@@ -18,6 +21,9 @@ test_that("{shinytest2} txt/csv download", {
 })
 
 test_that("{shinytest2} snapshotting inputs", {
+  skip_on_cran()
+  skip_on_ci()
+
   app <- AppDriver$new(name = "tws_filename")
   # downloaded file name
   file_name <- app$get_value(input = "table_with_settings-downbutton-file_name")

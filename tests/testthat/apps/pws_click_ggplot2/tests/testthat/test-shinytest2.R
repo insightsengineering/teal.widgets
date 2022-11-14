@@ -3,6 +3,9 @@ library(shinytest2)
 # tests plot clicking functionalities
 test_that("{shinytest2} recording: pws_click", {
 
+  skip_on_cran()
+  skip_on_ci()
+
   brush_vals <- c(
     1.575922029932, 2.2959573557845,
     1.218473025872, 2.2972720836904, 252, 532, 251, 349, 252, 532, 251, 349, 1,

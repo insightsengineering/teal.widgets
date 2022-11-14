@@ -1,6 +1,10 @@
 library(shinytest2)
 
 test_that("{shinytest2} recording: pws_hide3", {
+  skip_on_cran()
+  skip_on_ci()
+
+  # expand plot view
   app <- AppDriver$new(name = "pws_hide3", height = 703, width = 1365)
   app$click("plot_with_settings-expbut")
   app$set_inputs(`plot_with_settings-expbut_state` = TRUE)
@@ -8,6 +12,8 @@ test_that("{shinytest2} recording: pws_hide3", {
   app$set_inputs(`plot_with_settings-height` = 808)
   app$set_inputs(`plot_with_settings-flex_width` = 1318, allow_no_input_binding_ = TRUE)
   app$set_inputs(`plot_with_settings-width` = 568)
+
+  # download plot in .svg
   app$click("plot_with_settings-downbutton-downl")
   app$set_inputs(`plot_with_settings-expbut_state` = FALSE)
   app$set_inputs(`plot_with_settings-downbutton-downl_state` = TRUE)
