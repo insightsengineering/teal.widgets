@@ -141,7 +141,7 @@ type_download_ui_table <- function(id) {
         condition = paste0("input['", ns("file_format"), "'] != '.csv'"),
         div(
           class = "lock-btn",
-          title = "lock / unlock",
+          title = "on / off",
           shinyWidgets::prettyToggle(
             ns("pagination_switch"),
             value = FALSE,

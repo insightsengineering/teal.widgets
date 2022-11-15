@@ -1,9 +1,13 @@
-# teal.widgets 0.2.0.9006
+# teal.widgets 0.2.0.9007
 
 ### Enhancements
 
 * `disabled` in `verbatim_popup_srv` is longer triggered when button is hidden.
 * Added `type` argument to `verbatim_popup_ui` which allows the pop-up to be controlled by a `button` or a `link`.
+
+### Bug fixes
+
+* Added labels to pagination button in `table_with_settings` and fixed alt text.
 
 # teal.widgets 0.2.0
 
