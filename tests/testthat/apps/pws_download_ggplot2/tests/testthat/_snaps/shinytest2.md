@@ -2,7 +2,3 @@
 
     "plot_1.png"
 
----
-
-    "plot_2.png"
-

@@ -47,20 +47,16 @@ test_that("{shinytest2} plot with settings: download ggplot2", {
 
   app$set_window_size(width = 1619, height = 880)
   app$click("plot_with_settings-expand")
-  app$set_inputs(`plot_with_settings-height_in_modal` = 400)
-  expect_equal(
-    app$get_value(input = "plot_with_settings-height_in_modal"), 400
-    )
-
   app$set_inputs(`plot_with_settings-width_in_modal` = 2169)
   app$set_inputs(`plot_with_settings-height_in_modal` = 773)
 
   app$click("plot_with_settings-modal_downbutton-downl")
   app$set_inputs(`plot_with_settings-modal_downbutton-downl_state` = TRUE)
   app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot_2")
-  app$expect_download("plot_with_settings-modal_downbutton-data_download")
   plot_name2 <- app$get_value(input = "plot_with_settings-modal_downbutton-file_name")
   testthat::expect_equal(plot_name2, "plot_2")
+
+
   app$stop()
 })
 
