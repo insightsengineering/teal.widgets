@@ -1,12 +1,5 @@
 library(shinytest2)
 
-# TODO:
-# exportTestValues for this file
-# exportTestValues for pws_click
-# refactor table with settings tests + exportTestValues
-# almost all above for GRID, lattice
-# test warning for setting width too low
-
 test_that("{shinytest2} plot with settings: output types", {
   skip_on_cran()
   skip_on_ci()
@@ -14,18 +7,16 @@ test_that("{shinytest2} plot with settings: output types", {
   vals <- app$get_values()
 
   # check if outputs are reactive
-  testthat::expect_true(is(vals$export$'plot_r', "reactiveExpr"))
   testthat::expect_true(is(vals$export$'plot_r', "reactive"))
-  testthat::expect_true(is(vals$export$'plot_r', "function"))
   for (react_i in vals$export$'plot_data') {
     testthat::expect_true(is(react_i, "reactive"))
   }
 
   # check if plot is ggplot object
-  testthat::expect_true(is(isolate(rlang::inject(vals$export$'plot_r')()), "ggplot"))
-  testthat::expect_true(is.character(vals$output$`plot_with_settings-plot_main`$src))
-  testthat::expect_true(grepl("data\\:image\\/png\\;base64\\,", vals$output$`plot_with_settings-plot_main`$src))
-  # testthat::expect_equal(nchar(vals$output$`plot_with_settings-plot_main`$src), 8578)
+  testthat::expect_s3_class(isolate(eval(vals$export$'plot_r')()), "ggplot")
+  testthat::expect_type(vals$output$`plot_with_settings-plot_main`$src, "character")
+  testthat::expect_true(grepl("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABjUAAAGQCAIAAABp", 
+                              vals$output$`plot_with_settings-plot_main`$src, fixed = TRUE))
 })
 
 
