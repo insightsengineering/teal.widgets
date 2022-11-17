@@ -2,8 +2,8 @@ library(shinytest2)
 
 # tests plot clicking functionalities
 test_that("{shinytest2} plot_with_settings: click functionalities ggplot2", {
-  # skip_on_cran()
-  # skip_on_ci()
+  skip_on_cran()
+  skip_on_ci()
 
   brush_vals <- c(
     1.575922029932, 2.2959573557845,
@@ -78,8 +78,8 @@ test_that("{shinytest2} plot_with_settings: click functionalities ggplot2", {
 })
 
 test_that("{shinytest2} plot_with_settings: output is returned", {
-  #skip_on_cran()
-  #skip_on_ci()
+  skip_on_cran()
+  skip_on_ci()
 
   app <- AppDriver$new(name = "pws_download_ggplot2_types", height = 937, width = 1619)
   vals <- app$get_values()
@@ -100,8 +100,8 @@ test_that("{shinytest2} plot_with_settings: output is returned", {
 })
 
 test_that("{shinytest2} plot_with_settings: download functionality ggplot2", {
-  # skip_on_cran()
-  # skip_on_ci()
+  skip_on_cran()
+  skip_on_ci()
 
   app <- AppDriver$new(name = "pws_download_ggplot2", height = 880, width = 1619)
 
@@ -125,10 +125,10 @@ test_that("{shinytest2} plot_with_settings: download functionality ggplot2", {
   app$stop()
 })
 
-# test downloading with modal
+
 test_that("{shinytest2} plot_with_settings: download ggplot2 modal", {
-  # skip_on_cran()
-  # skip_on_ci()
+  skip_on_cran()
+  skip_on_ci()
   app <- AppDriver$new(name = "pws_download_ggplot2_modal", height = 880, width = 1619)
 
   # default downloading with modal
@@ -162,46 +162,9 @@ test_that("{shinytest2} plot_with_settings: download ggplot2 modal", {
   app$stop()
 })
 
-# test flex
-test_that("{shinytest2} plot_with_settings: download ggplot2 modal", {
-  # skip_on_cran()
-  # skip_on_ci()
-  app <- AppDriver$new(name = "pws_ggplot2_flex", height = 880, width = 1619)
-
-  # default downloading with modal
-  app$set_inputs(`plot_with_settings-plot_hover` = character(0), allow_no_input_binding_ = TRUE)
-  app$click("plot_with_settings-expand")
-  app$click("plot_with_settings-modal_downbutton-downl")
-  vals <- app$get_values()
-  date <- strftime(Sys.time(), format = "%Y%m%d")
-  testthat::expect_true(grepl(paste0("plot_", date), app$get_value(input = "plot_with_settings-downbutton-file_name")))
-
-  # Change width and height of plot on mondal
-  app$click("plot_with_settings-expand")
-  app$set_inputs(`plot_with_settings-width_in_modal` = 2169)
-  app$set_inputs(`plot_with_settings-height_in_modal` = 773)
-  app$set_inputs(`plot_with_settings-modal_downbutton-downl_state` = TRUE)
-  app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot_2")
-  app$set_inputs(`plot_with_settings-modal_downbutton-file_format` = "pdf")
-  app$click("plot_with_settings-modal_downbutton-downl")
-
-  vals <- app$get_values()
-  testthat::expect_equal(app$get_value(input = "plot_with_settings-modal_downbutton-file_name"), "plot_2")
-  testthat::expect_equal(isolate(vals$output$`plot_with_settings-plot_modal`$height), 773)
-  testthat::expect_equal(isolate(vals$output$`plot_with_settings-plot_modal`$width), 2169)
-
-  # change to svg
-  app$set_inputs(`plot_with_settings-modal_downbutton-downl_state` = TRUE)
-  app$set_inputs(`plot_with_settings-modal_downbutton-file_format` = "svg")
-  app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot_svg_modal")
-  testthat::expect_equal(app$get_value(input = "plot_with_settings-modal_downbutton-file_name"), "plot_svg_modal")
-
-  app$stop()
-})
-
 test_that("{shinytest2} plot with settings: download ggplot2 svg", {
-  # skip_on_cran()
-  # skip_on_ci()
+  skip_on_cran()
+  skip_on_ci()
 
   input_vals <- c("0", "1", "TRUE", "svg",  "plot_svg", "0", "0", "1589", "1408.53")
 
@@ -218,8 +181,8 @@ test_that("{shinytest2} plot with settings: download ggplot2 svg", {
 })
 
 test_that("{shinytest2} plot_with_settings: hide/show button", {
-  # skip_on_cran()
-  # skip_on_ci()
+  skip_on_cran()
+  skip_on_ci()
   app <- AppDriver$new(name = "pwd_show_hide", height = 937, width = 1619)
 
   # visible on load
