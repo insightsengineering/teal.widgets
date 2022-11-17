@@ -35,6 +35,7 @@ shinyApp(
       id = "plot_with_settings",
       plot_r = plot_r,
       height = c(400, 100, 1200),
+      width = c(500, 250, 750),
       brushing = TRUE,
       clicking = TRUE,
       dblclicking = TRUE,
