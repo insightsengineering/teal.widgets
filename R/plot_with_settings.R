@@ -376,7 +376,6 @@ plot_with_settings_srv <- function(id,
     })
 
     observeEvent(input$expand, {
-      print("XXXX")
       showModal(
         div(
           class = "plot-modal",

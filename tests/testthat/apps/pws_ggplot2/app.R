@@ -42,11 +42,6 @@ shinyApp(
       show_hide_signal = show_hide_signal
     )
 
-    output$brushing_data <- renderPrint(plot_data$brush())
-    output$clicking_data <- renderPrint(plot_data$click())
-    output$dblclicking_data <- renderPrint(plot_data$dblclick())
-    output$hovering_data <- renderPrint(plot_data$hover())
-
     shiny::exportTestValues(
       plot_r = plot_r,
       plot_data = plot_data

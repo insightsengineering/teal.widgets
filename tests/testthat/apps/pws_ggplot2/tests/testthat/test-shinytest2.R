@@ -31,12 +31,12 @@ test_that("{shinytest2} plot_with_settings: click functionalities ggplot2", {
     368.846473150198, 5.47945205479452, character(0), character(0)
   )
 
-
   app <- AppDriver$new(name = "pws_click", height = 937, width = 1619)
 
   # brushing
   app$set_inputs(`plot_with_settings-plot_brush` = brush_vals, allow_no_input_binding_ = TRUE)
-  test_brush <- app$get_value(input = "plot_with_settings-plot_brush")
+  vals <- app$get_values()
+  test_brush <- isolate(vals$export$plot_data$brush())
   testthat::expect_equal(
     test_brush,
     brush_vals
@@ -48,7 +48,8 @@ test_that("{shinytest2} plot_with_settings: click functionalities ggplot2", {
     `plot_with_settings-plot_hover` = hover_vals, allow_no_input_binding_ = TRUE,
     priority_ = "event"
   )
-  test_hover <- app$get_value(input = "plot_with_settings-plot_hover")
+  vals <- app$get_values()
+  test_hover <- isolate(vals$export$plot_data$hover())
   testthat::expect_equal(
     test_hover,
     hover_vals
@@ -59,7 +60,8 @@ test_that("{shinytest2} plot_with_settings: click functionalities ggplot2", {
     `plot_with_settings-plot_dblclick` = dbl_click_vals, allow_no_input_binding_ = TRUE,
     priority_ = "event"
   )
-  test_dblclick <- app$get_value(input = "plot_with_settings-plot_dblclick")
+  vals <- app$get_values()
+  test_dblclick <- isolate(vals$export$plot_data$dblclick())
   testthat::expect_equal(
     test_dblclick,
     dbl_click_vals
@@ -70,7 +72,8 @@ test_that("{shinytest2} plot_with_settings: click functionalities ggplot2", {
     `plot_with_settings-plot_click` = click_vals, allow_no_input_binding_ = TRUE,
     priority_ = "event"
   )
-  test_click <- app$get_value(input = "plot_with_settings-plot_click")
+  vals <- app$get_values()
+  test_click <- isolate(vals$export$plot_data$click())
   testthat::expect_equal(
     test_click,
     click_vals
@@ -107,7 +110,6 @@ test_that("{shinytest2} plot_with_settings: download functionality ggplot2", {
 
   # test default download options
   app$click("plot_with_settings-downbutton-downl")
-  #app$expect_download("plot_with_settings-downbutton-data_download")
   date <- strftime(Sys.time(), format = "%Y%m%d")
   testthat::expect_true(grepl(paste0("plot_", date), app$get_value(input = "plot_with_settings-downbutton-file_name")))
   testthat::expect_equal(app$get_value(input = "plot_with_settings-downbutton-file_format"), "png")
@@ -162,24 +164,6 @@ test_that("{shinytest2} plot_with_settings: download ggplot2 modal", {
   app$stop()
 })
 
-test_that("{shinytest2} plot with settings: download ggplot2 svg", {
-  skip_on_cran()
-  skip_on_ci()
-
-  input_vals <- c("0", "1", "TRUE", "svg",  "plot_svg", "0", "0", "1589", "1408.53")
-
-  app <- AppDriver$new(name = "pws_download_ggplot2_svg", height = 880, width = 1619)
-  app$set_inputs(`plot_with_settings-plot_hover` = character(0), allow_no_input_binding_ = TRUE)
-  app$click("plot_with_settings-downbutton-downl")
-  app$set_inputs(`plot_with_settings-downbutton-downl_state` = TRUE)
-  app$set_inputs(`plot_with_settings-downbutton-file_format` = "svg")
-  app$set_inputs(`plot_with_settings-downbutton-file_name` = "plot_svg")
-  vals <- app$get_values()
-  testthat::expect_equal(as.vector(unlist(vals$input)), input_vals)
-
-  app$stop()
-})
-
 test_that("{shinytest2} plot_with_settings: hide/show button", {
   skip_on_cran()
   skip_on_ci()
@@ -207,4 +191,5 @@ test_that("{shinytest2} plot_with_settings: hide/show button", {
       "$('#plot_with_settings-plot-with-settings').is(':visible')"
     )
   )
+  app$stop()
 })
