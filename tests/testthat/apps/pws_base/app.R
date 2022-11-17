@@ -3,6 +3,8 @@ library(teal.widgets)
 
 shinyApp(
   ui = fluidPage(
+    shinyjs::useShinyjs(),
+    actionButton("button", "Show/Hide"),
     plot_with_settings_ui(
       id = "plot_with_settings"
     ),
@@ -18,14 +20,26 @@ shinyApp(
       plot(1:5, 1:5)
     })
 
+    show_hide_signal <- reactiveVal(TRUE)
+
+    observeEvent(input$button, {
+      show_hide_signal(
+        isolate(
+          !show_hide_signal()
+        )
+      )
+    })
+
     plot_data <- plot_with_settings_srv(
       id = "plot_with_settings",
       plot_r = plot_r,
       height = c(400, 100, 1200),
+      width = c(500, 250, 750),
       brushing = TRUE,
       clicking = TRUE,
       dblclicking = TRUE,
-      hovering = TRUE
+      hovering = TRUE,
+      show_hide_signal = show_hide_signal
     )
 
     output$brushing_data <- renderPrint(plot_data$brush())
