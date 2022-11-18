@@ -108,7 +108,19 @@ test_that("{shinytest2} plot_with_settings: download functionality ggplot2", {
     app$get_value(input = "plot_with_settings-downbutton-file_name"), "plot_svg"
   )
 
+  # change plot width and height
+  app$click("plot_with_settings-expbut")
+  app$set_inputs(`plot_with_settings-width` = 300)
+  app$set_inputs(`plot_with_settings-height` = 300)
+  app$click("plot_with_settings-downbutton-downl")
+  vals <- app$get_values()
+
+  testthat::expect_equal(app$get_value(input = "plot_with_settings-downbutton-file_name"), "plot_svg")
+  testthat::expect_equal(isolate(vals$output$`plot_with_settings-plot_main`$height), 300)
+  testthat::expect_equal(isolate(vals$output$`plot_with_settings-plot_main`$width), 300)
+
   # reset
+  app$set_inputs(`plot_with_settings-expbut_state` = FALSE)
   app$set_inputs(`plot_with_settings-downbutton-downl_state` = FALSE)
 })
 
