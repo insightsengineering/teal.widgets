@@ -7,12 +7,6 @@ shinyApp(
     actionButton("button", "Show/Hide"),
     plot_with_settings_ui(
       id = "plot_with_settings"
-    ),
-    fluidRow(
-      column(4, h3("Brush"), verbatimTextOutput("brushing_data")),
-      column(4, h3("Click"), verbatimTextOutput("clicking_data")),
-      column(4, h3("DblClick"), verbatimTextOutput("dblclicking_data")),
-      column(4, h3("Hover"), verbatimTextOutput("hovering_data"))
     )
   ),
   server = function(input, output, session) {
