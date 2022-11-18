@@ -60,4 +60,3 @@ testthat::test_that("if teal.plot_dpi is not an integer value then get_plot_dpi 
     "teal.plot_dpi"
   )
 })
-
