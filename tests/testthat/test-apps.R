@@ -11,9 +11,9 @@
 # pws_click_base/tests/testthat/test-shinytest2.R is the test specification
 
 
-skip_if_too_deep(5)
 skip_on_cran()
 skip_on_ci()
+library(shinytest2)
 
 lapply(
   list.files("apps", full.names = TRUE),
