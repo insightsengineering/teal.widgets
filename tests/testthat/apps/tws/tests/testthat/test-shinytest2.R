@@ -1,10 +1,26 @@
 library(shinytest2)
 
-test_that("{shinytest2} txt/csv download", {
-  skip_on_cran()
-  skip_on_ci()
+# launch app for all tests
+app <- AppDriver$new(name = "tws")
 
-  app <- AppDriver$new(name = "tws", height = 820, width = 1551)
+# Testing snapshots
+test_that("{shinytest2} file name and table content", {
+
+  # default file name
+  file_name <- app$get_value(input = "table_with_settings-downbutton-file_name")
+  file_name <- sub("_\\d{6}$", "", file_name)
+  expected_file_name <- paste0("table_", strftime(Sys.Date(),
+                                                  format = "%Y%m%d"
+  ))
+  testthat::expect_equal(file_name, expected_file_name)
+
+  # check for table content
+  app$expect_text("table")
+
+})
+
+# downloading tables
+test_that("{shinytest2} txt/csv download", {
 
   # download table in .csv
   app$click("table_with_settings-downbutton-dwnl")
@@ -20,24 +36,7 @@ test_that("{shinytest2} txt/csv download", {
   app$set_inputs(`table_with_settings-downbutton-file_name` = "tab2")
   app$expect_download("table_with_settings-downbutton-data_download")
 
-  app$stop()
 })
 
-test_that("{shinytest2} snapshotting inputs", {
-  skip_on_cran()
-  skip_on_ci()
-
-  app <- AppDriver$new(name = "tws_filename")
-
-  # downloaded file name
-  file_name <- app$get_value(input = "table_with_settings-downbutton-file_name")
-  file_name <- sub("_\\d{6}$", "", file_name)
-  expected_file_name <- paste0("table_", strftime(Sys.Date(),
-    format = "%Y%m%d"
-  ))
-  testthat::expect_equal(file_name, expected_file_name)
-
-  # check for table content
-  app$expect_text("table")
-  app$stop()
-})
+# stop app for all tests
+app$stop()
