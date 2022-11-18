@@ -109,18 +109,18 @@ test_that("{shinytest2} plot_with_settings: download functionality ggplot2", {
   )
 
   # change plot width and height
-  #app$click("plot_with_settings-expbut")
-  #app$set_inputs(`plot_with_settings-width` = 300)
-  #app$set_inputs(`plot_with_settings-height` = 300)
-  #app$click("plot_with_settings-downbutton-downl")
-  #vals <- app$get_values()
+  # app$click("plot_with_settings-expbut")
+  # app$set_inputs(`plot_with_settings-width` = 300)
+  # app$set_inputs(`plot_with_settings-height` = 300)
+  # app$click("plot_with_settings-downbutton-downl")
+  # vals <- app$get_values()
 
-  #expect_equal(app$get_value(input = "plot_with_settings-downbutton-file_name"), "plot_svg")
-  #expect_equal(isolate(vals$output$`plot_with_settings-plot_main`$height), 300)
-  #expect_equal(isolate(vals$output$`plot_with_settings-plot_main`$width), 300)
+  # expect_equal(app$get_value(input = "plot_with_settings-downbutton-file_name"), "plot_svg")
+  # expect_equal(isolate(vals$output$`plot_with_settings-plot_main`$height), 300)
+  # expect_equal(isolate(vals$output$`plot_with_settings-plot_main`$width), 300)
 
   # reset
-  #app$set_inputs(`plot_with_settings-expbut_state` = FALSE)
+  # app$set_inputs(`plot_with_settings-expbut_state` = FALSE)
   app$set_inputs(`plot_with_settings-downbutton-downl_state` = FALSE)
 })
 
