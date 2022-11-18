@@ -582,7 +582,6 @@ get_plot_dpi <- function() {
 #'  reactive plot type (`gg`, `trel`, `grob`, `other`)
 #'
 #' @return Nothing returned, the plot is printed.
-#' @keywords internal
 #'
 print_plot <- function(plot, plot_type) {
   if (plot_type == "other") {
