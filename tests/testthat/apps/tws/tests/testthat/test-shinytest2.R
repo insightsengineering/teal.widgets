@@ -4,7 +4,7 @@ library(shinytest2)
 app <- AppDriver$new(name = "tws")
 
 # Testing snapshots
-test_that("{shinytest2} file name and table content", {
+testthat::test_that("{shinytest2} file name and table content", {
   # default file name
   file_name <- app$get_value(input = "table_with_settings-downbutton-file_name")
   file_name <- sub("_\\d{6}$", "", file_name)
@@ -18,7 +18,7 @@ test_that("{shinytest2} file name and table content", {
 })
 
 # downloading tables
-test_that("{shinytest2} txt/csv download", {
+testthat::test_that("{shinytest2} txt/csv download", {
   # download table in .csv
   app$click("table_with_settings-downbutton-dwnl")
   app$set_inputs(`table_with_settings-downbutton-dwnl_state` = TRUE)

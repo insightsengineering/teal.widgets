@@ -4,7 +4,7 @@ library(shinytest2)
 app <- AppDriver$new(name = "pws", height = 937, width = 1619)
 
 # tests plot click functionalities
-test_that("{shinytest2} plot_with_settings: click functionalities ggplot2", {
+testthat::test_that("{shinytest2} plot_with_settings: click functionalities ggplot2", {
   # hovering
   app$set_inputs(
     `plot_with_settings-plot_hover` = hover_vals,
@@ -63,7 +63,7 @@ test_that("{shinytest2} plot_with_settings: click functionalities ggplot2", {
 })
 
 # test output that is returned (reactives and graphic encoded in base64)
-test_that("{shinytest2} plot_with_settings: output is returned", {
+testthat::test_that("{shinytest2} plot_with_settings: output is returned", {
   vals <- app$get_values()
 
   # check if outputs are reactive
@@ -85,7 +85,7 @@ test_that("{shinytest2} plot_with_settings: output is returned", {
 
 # download plots. expect_download() might not be stable, hence we test
 # setting inputs and plot name changes
-test_that("{shinytest2} plot_with_settings: download functionality ggplot2", {
+testthat::test_that("{shinytest2} plot_with_settings: download functionality ggplot2", {
   # test default download options
   app$click("plot_with_settings-downbutton-downl")
   date <- strftime(Sys.time(), format = "%Y%m%d")
@@ -125,7 +125,7 @@ test_that("{shinytest2} plot_with_settings: download functionality ggplot2", {
 })
 
 # downloading plot with modal
-test_that("{shinytest2} plot_with_settings: download ggplot2 modal", {
+testthat::test_that("{shinytest2} plot_with_settings: download ggplot2 modal", {
   # default downloading with modal
   app$set_inputs(
     `plot_with_settings-plot_hover` = character(0),
@@ -189,9 +189,9 @@ test_that("{shinytest2} plot_with_settings: download ggplot2 modal", {
 })
 
 # Testing hide and show button
-test_that("{shinytest2} plot_with_settings: hide/show button", {
+testthat::test_that("{shinytest2} plot_with_settings: hide/show button", {
   # visible on load
-  expect_true(
+  testthat::expect_true(
     app$get_js(
       "$('#plot_with_settings-plot-with-settings').is(':visible')"
     )
@@ -199,7 +199,7 @@ test_that("{shinytest2} plot_with_settings: hide/show button", {
 
   # hide
   app$click("button")
-  expect_true(
+  testthat::expect_true(
     app$get_js(
       "$('#plot_with_settings-plot-with-settings').is(':hidden')"
     )
@@ -207,7 +207,7 @@ test_that("{shinytest2} plot_with_settings: hide/show button", {
 
   # unhide
   app$click("button")
-  expect_true(
+  testthat::expect_true(
     app$get_js(
       "$('#plot_with_settings-plot-with-settings').is(':visible')"
     )
@@ -218,14 +218,14 @@ test_that("{shinytest2} plot_with_settings: hide/show button", {
 # note that warning is not hidden/visible in the usual sense.
 # rather, it has the fa icon <span> as a child or it does not.
 # hence we're checking number of children.
-test_that("{shinytest2} plot_with_settings: width warning", {
+testthat::test_that("{shinytest2} plot_with_settings: width warning", {
   app$click("plot_with_settings-expbut")
 
   # starts out visible
-  expect_equal(
+  testthat::expect_equal(
     app$get_js("$('#plot_with_settings-width_warning').children().length"), 1
   )
-  expect_equal(
+  testthat::expect_equal(
     app$get_value(output = "plot_with_settings-width_warning")$html[1],
     paste0(
       "<span class=\"help-block\">\n  <i class=\"fa fa-triangle-exclamation\" role=\"presentation\" aria-label=",
@@ -239,7 +239,7 @@ test_that("{shinytest2} plot_with_settings: width warning", {
   app$wait_for_value(
     output = "plot_with_settings-width_warning", ignore = list("")
   )
-  expect_equal(
+  testthat::expect_equal(
     app$get_js("$('#plot_with_settings-width_warning').children().length"), 0
   )
 
@@ -248,7 +248,7 @@ test_that("{shinytest2} plot_with_settings: width warning", {
   app$wait_for_value(
     output = "plot_with_settings-width_warning", ignore = list("")
   )
-  expect_equal(
+  testthat::expect_equal(
     app$get_js("$('#plot_with_settings-width_warning').children().length"), 1
   )
 })
