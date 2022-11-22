@@ -15,7 +15,7 @@
 * Updated `panel_group` and `panel_item` functions to no longer be an optional shiny input.
 
 ### Enhancements
-* Updated `standard_layout` function to contain class not id for each output block.
+* Updated `standard_layout` function to contain class, not id for each output block.
 * Added the `dim` slot to the list returned by the `plot_with_settings` module.
 * Added `style` argument to `verbatim_popup_srv` to control whether the content is styled using `styler::style_text`.
 * `condition` objects can now be displayed in `verbatim_popup`.
