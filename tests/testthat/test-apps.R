@@ -15,8 +15,6 @@ skip_on_ci()
 lapply(
   list.files("apps", full.names = TRUE),
   function(shiny_app_dir) {
-    testthat::testthat("phonytest", {
-      testthat::expect_equal(6, 6)
-    })
+    shinytest2::test_app(app_dir = shiny_app_dir, name = "app tests")
   }
 )

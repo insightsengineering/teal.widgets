@@ -31,7 +31,6 @@ Imports:
     styler
 Suggests:
     knitr,
-    lattice,
     magrittr,
     rmarkdown,
     shinytest2,
