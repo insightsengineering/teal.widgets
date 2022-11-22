@@ -16,7 +16,7 @@ lapply(
   list.files("apps", full.names = TRUE),
   function(shiny_app_dir) {
     testthat::testthat("phonytest", {
-      testthat::expect_equal(5, 5)
+      testthat::expect_equal(6, 6)
     })
   }
 )
