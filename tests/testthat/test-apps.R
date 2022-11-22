@@ -12,4 +12,11 @@ skip_if_too_deep(5)
 skip_on_cran()
 skip_on_ci()
 
-
+lapply(
+  list.files("apps", full.names = TRUE),
+  function(shiny_app_dir) {
+    testthat::test_that("phony test"{
+      testthat::expect_equal(5, 5)
+    })
+  }
+)
