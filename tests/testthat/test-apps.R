@@ -8,10 +8,17 @@
 # apps/tws tests table with settings: manipulating and downloading
 
 # nolint start
-skip_if_too_deep(5)
+test_shiny_apps <- function() {
+  skip_on_ci()
+  skip_if_too_deep(5)
+  shinytest2::test_app(app_dir = "apps/tws")
+}
+test_shiny_apps()
+
+# skip_if_too_deep(5)
 # skip_on_cran()
-skip_on_ci()
-shinytest2::test_app(app_dir = "apps/tws")
+# skip_on_ci()
+# shinytest2::test_app(app_dir = "apps/tws")
 
 # lapply(
 #   list.files("apps", full.names = TRUE),
