@@ -9,8 +9,8 @@
 
 # nolint start
 # skip_if_too_deep(5)
-# skip_on_cran()
-# skip_on_ci()
+skip_on_cran()
+skip_on_ci()
 
 lapply(
   list.files("apps", full.names = TRUE),
