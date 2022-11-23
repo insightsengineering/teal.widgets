@@ -5,6 +5,8 @@ app <- AppDriver$new(name = "tws")
 
 # Testing snapshots
 testthat::test_that("file name and table content", {
+  skip_on_cran()
+  skip_on_ci()
   # default file name
   file_name <- app$get_value(input = "table_with_settings-downbutton-file_name")
   file_name <- sub("_\\d{6}$", "", file_name)
@@ -19,6 +21,8 @@ testthat::test_that("file name and table content", {
 
 # downloading tables
 testthat::test_that("txt and csv download", {
+  skip_on_cran()
+  skip_on_ci()
   # download table in .csv
   app$click("table_with_settings-downbutton-dwnl")
   app$set_inputs(`table_with_settings-downbutton-dwnl_state` = TRUE)

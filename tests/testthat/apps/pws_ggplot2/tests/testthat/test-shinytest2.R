@@ -6,6 +6,8 @@ app <- AppDriver$new(name = "pws", height = 937, width = 1619)
 # tests plot click functionalities
 testthat::test_that("plot_with_settings: click functionalities ggplot2", {
   # hovering
+  skip_on_cran()
+  skip_on_ci()
   app$set_inputs(
     `plot_with_settings-plot_hover` = hover_vals,
     allow_no_input_binding_ = TRUE, priority_ = "event"
@@ -65,7 +67,8 @@ testthat::test_that("plot_with_settings: click functionalities ggplot2", {
 # test output that is returned (reactives and graphic encoded in base64)
 testthat::test_that("plot_with_settings: output is returned", {
   vals <- app$get_values()
-
+  skip_on_cran()
+  skip_on_ci()
   # check if outputs are reactive
   for (react_i in vals$export$"plot_data") {
     testthat::expect_true(is(react_i, "reactive"))
@@ -87,6 +90,8 @@ testthat::test_that("plot_with_settings: output is returned", {
 # setting inputs and plot name changes
 testthat::test_that("plot_with_settings: download functionality ggplot2", {
   # test default download options
+  skip_on_cran()
+  skip_on_ci()
   app$click("plot_with_settings-downbutton-downl")
   date <- strftime(Sys.time(), format = "%Y%m%d")
   testthat::expect_true(
@@ -127,6 +132,8 @@ testthat::test_that("plot_with_settings: download functionality ggplot2", {
 # downloading plot with modal
 testthat::test_that("plot_with_settings: download ggplot2 modal", {
   # default downloading with modal
+  skip_on_cran()
+  skip_on_ci()
   app$set_inputs(
     `plot_with_settings-plot_hover` = character(0),
     allow_no_input_binding_ = TRUE
@@ -190,6 +197,8 @@ testthat::test_that("plot_with_settings: download ggplot2 modal", {
 
 # Testing hide and show button
 testthat::test_that("plot_with_settings: hide/show button", {
+  skip_on_cran()
+  skip_on_ci()
   # visible on load
   testthat::expect_true(
     app$get_js(
@@ -220,7 +229,8 @@ testthat::test_that("plot_with_settings: hide/show button", {
 # hence we're checking number of children.
 testthat::test_that("plot_with_settings: width warning", {
   app$click("plot_with_settings-expbut")
-
+  skip_on_cran()
+  skip_on_ci()
   # starts out visible
   testthat::expect_equal(
     app$get_js("$('#plot_with_settings-width_warning').children().length"), 1
