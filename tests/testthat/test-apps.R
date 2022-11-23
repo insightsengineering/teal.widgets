@@ -11,11 +11,12 @@
 # skip_if_too_deep(5)
 # skip_on_cran()
 # skip_on_ci()
+shinytest2::test_app(app_dir = "apps/tws")
 
-lapply(
-  list.files("apps", full.names = TRUE),
-  function(shiny_app_dir) {
-    shinytest2::test_app(app_dir = shiny_app_dir, name = "app tests")
-  }
-)
+# lapply(
+#   list.files("apps", full.names = TRUE),
+#   function(shiny_app_dir) {
+#     shinytest2::test_app(app_dir = shiny_app_dir)
+#   }
+# )
 # nolint end
