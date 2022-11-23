@@ -13,8 +13,8 @@ skip_on_cran()
 skip_on_ci()
 
 shinytest2::test_app(
-  app_dir = "tests/testthat/apps/pws_ggplot2", name = "app tests"
+  app_dir = "tests/testthat/apps/tws", name = "app tests"
 )
 shinytest2::test_app(
-  app_dir = "tests/testthat/apps/tws", name = "app tests"
+  app_dir = "tests/testthat/apps/pws_ggplot2", name = "app tests"
 )
