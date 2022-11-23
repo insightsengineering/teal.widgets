@@ -10,7 +10,7 @@
 # nolint start
 # skip_if_too_deep(5)
 # skip_on_cran()
-# skip_on_ci()
+skip_on_ci()
 shinytest2::test_app(app_dir = "apps/tws")
 
 # lapply(
