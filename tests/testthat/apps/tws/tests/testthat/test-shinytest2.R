@@ -2,7 +2,9 @@ library(shinytest2)
 library(testthat)
 
 # launch app for all tests
-app <- AppDriver$new(name = "tws")
+testthat::test_that("launch app", {
+  app <- AppDriver$new(name = "tws")
+})
 
 # Testing snapshots
 testthat::test_that("file name and table content", {
@@ -36,4 +38,6 @@ testthat::test_that("txt and csv download", {
 })
 
 # stop app for all tests
-app$stop()
+testthat::test_that("close app", {
+  app$stop()
+})
