@@ -1,3 +1,5 @@
+app_pws <- function() {
+
 library(shiny)
 library(teal.widgets)
 
@@ -12,7 +14,7 @@ shinyApp(
   server = function(input, output, session) {
     plot_r <- reactive({
       ggplot2::ggplot(data.frame(x = 1:5, y = 1:5)) +
-        ggplot2::geom_point(ggplot2::aes(x = x, y = y))
+        ggplot2::geom_point(ggplot2::aes(x = 1:5, y = 1:5))
     })
 
     show_hide_signal <- reactiveVal(TRUE)
@@ -43,3 +45,4 @@ shinyApp(
     )
   }
 )
+}

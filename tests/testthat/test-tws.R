@@ -2,22 +2,19 @@ library(shinytest2)
 library(testthat)
 
 # launch app for all tests
-# testthat::test_that("launch app", {
-#   # skip_on_cran()
-#   # skip_on_ci()
-# })
-app <- AppDriver$new(name = "tws")
+tws <- app_tws()
+app <- AppDriver$new(tws, name = "tws")
 
 # Testing snapshots
 testthat::test_that("file name and table content", {
-  # skip_on_cran()
-  # skip_on_ci()
+  skip_on_cran()
+  skip_on_ci()
 
   # default file name
   file_name <- app$get_value(input = "table_with_settings-downbutton-file_name")
   file_name <- sub("_\\d{6}$", "", file_name)
   expected_file_name <- paste0("table_", strftime(Sys.Date(),
-    format = "%Y%m%d"
+                                                  format = "%Y%m%d"
   ))
   testthat::expect_equal(file_name, expected_file_name)
 
@@ -44,11 +41,6 @@ testthat::test_that("txt and csv download", {
   app$set_inputs(`table_with_settings-downbutton-file_name` = "tab2")
   app$expect_download("table_with_settings-downbutton-data_download")
 })
+
 app$stop()
-# stop app for all tests
-# testthat::test_that("close app", {
-#   # skip_on_cran()
-#   # skip_on_ci()
-#
-#   app$stop()
-# })
+

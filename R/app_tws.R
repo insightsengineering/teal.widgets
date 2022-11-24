@@ -1,3 +1,4 @@
+app_tws <- function() {
 library(shiny)
 library(rtables)
 library(magrittr)
@@ -22,3 +23,4 @@ shinyApp(
     table_with_settings_srv(id = "table_with_settings", table_r = table_r)
   }
 )
+}
