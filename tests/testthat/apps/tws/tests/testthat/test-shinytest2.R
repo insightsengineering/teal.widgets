@@ -3,14 +3,14 @@ library(testthat)
 
 # launch app for all tests
 testthat::test_that("launch app", {
-  skip_if_too_deep(5)
+  skip_on_cran()
   skip_on_ci()
   app <- AppDriver$new(name = "tws")
 })
 
 # Testing snapshots
 testthat::test_that("file name and table content", {
-  skip_if_too_deep(5)
+  skip_on_cran()
   skip_on_ci()
 
   # default file name
@@ -27,7 +27,7 @@ testthat::test_that("file name and table content", {
 
 # downloading tables
 testthat::test_that("txt and csv download", {
-  skip_if_too_deep(5)
+  skip_on_cran()
   skip_on_ci()
 
   # download table in .csv
@@ -47,7 +47,7 @@ testthat::test_that("txt and csv download", {
 
 # stop app for all tests
 testthat::test_that("close app", {
-  skip_if_too_deep(5)
+  skip_on_cran()
   skip_on_ci()
 
   app$stop()
