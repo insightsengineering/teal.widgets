@@ -1,22 +1,23 @@
 app_tws <- function() {
-  library(shiny)
-  library(rtables)
-  library(magrittr)
-  library(teal.widgets)
-
-  shinyApp(
-    ui = fluidPage(
+  shiny::shinyApp(
+    ui = shiny::fluidPage(
       table_with_settings_ui(
         id = "table_with_settings"
       )
     ),
     server = function(input, output, session) {
-      table_r <- reactive({
-        l <- basic_table() %>%
-          split_cols_by("ARM") %>%
-          analyze(c("SEX", "AGE"))
+      df1 <- data.frame(
+        AGE = c(35, 41),
+        SEX = factor(c("M", "F")),
+        ARM = c("B: Placebo", "C: Combination")
+      )
 
-        tbl <- build_table(l, DM)
+      table_r <- shiny::reactive({
+        l <- rtables::basic_table() %>%
+          rtables::split_cols_by("ARM") %>%
+          rtables::analyze(c("SEX", "AGE"))
+
+        tbl <- rtables::build_table(l, df1)
 
         tbl
       })

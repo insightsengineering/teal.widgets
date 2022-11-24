@@ -1,26 +1,23 @@
 app_pws <- function() {
-  library(shiny)
-  library(teal.widgets)
-
-  shinyApp(
-    ui = fluidPage(
+  shiny::shinyApp(
+    ui = shiny::fluidPage(
       shinyjs::useShinyjs(),
-      actionButton("button", "Show/Hide"),
+      shiny::actionButton("button", "Show/Hide"),
       plot_with_settings_ui(
         id = "plot_with_settings"
       )
     ),
     server = function(input, output, session) {
-      plot_r <- reactive({
+      plot_r <- shiny::reactive({
         ggplot2::ggplot(data.frame(x = 1:5, y = 1:5)) +
           ggplot2::geom_point(ggplot2::aes(x = 1:5, y = 1:5))
       })
 
-      show_hide_signal <- reactiveVal(TRUE)
+      show_hide_signal <- shiny::reactiveVal(TRUE)
 
-      observeEvent(input$button, {
+      shiny::observeEvent(input$button, {
         show_hide_signal(
-          isolate(
+          shiny::isolate(
             !show_hide_signal()
           )
         )
