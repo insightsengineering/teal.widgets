@@ -5,6 +5,9 @@ app <- AppDriver$new(name = "pws", height = 937, width = 1619)
 
 # tests plot click functionalities
 testthat::test_that("plot_with_settings: click functionalities ggplot2", {
+  skip_if_too_deep(5)
+  skip_on_ci()
+
   # hovering
   app$set_inputs(
     `plot_with_settings-plot_hover` = hover_vals,
@@ -64,6 +67,9 @@ testthat::test_that("plot_with_settings: click functionalities ggplot2", {
 
 # test output that is returned (reactives and graphic encoded in base64)
 testthat::test_that("plot_with_settings: output is returned", {
+  skip_if_too_deep(5)
+  skip_on_ci()
+
   vals <- app$get_values()
 
   # check if outputs are reactive
@@ -88,6 +94,9 @@ testthat::test_that("plot_with_settings: output is returned", {
 # download plots. expect_download() might not be stable, hence we test
 # setting inputs and plot name changes
 testthat::test_that("plot_with_settings: download functionality ggplot2", {
+  skip_if_too_deep(5)
+  skip_on_ci()
+
   # test default download options
   app$click("plot_with_settings-downbutton-downl")
   date <- strftime(Sys.time(), format = "%Y%m%d")
@@ -128,6 +137,9 @@ testthat::test_that("plot_with_settings: download functionality ggplot2", {
 
 # downloading plot with modal
 testthat::test_that("plot_with_settings: download ggplot2 modal", {
+  skip_if_too_deep(5)
+  skip_on_ci()
+
   # default downloading with modal
   app$set_inputs(
     `plot_with_settings-plot_hover` = character(0),
@@ -193,6 +205,9 @@ testthat::test_that("plot_with_settings: download ggplot2 modal", {
 
 # Testing hide and show button
 testthat::test_that("plot_with_settings: hide/show button", {
+  skip_if_too_deep(5)
+  skip_on_ci()
+
   # nolint start
   # visible on load
   # testthat::expect_true(
@@ -224,6 +239,9 @@ testthat::test_that("plot_with_settings: hide/show button", {
 # rather, it has the fa icon <span> as a child or it does not.
 # hence we're checking number of children.
 testthat::test_that("plot_with_settings: width warning", {
+  skip_if_too_deep(5)
+  skip_on_ci()
+
   app$click("plot_with_settings-expbut")
 
   # starts out visible

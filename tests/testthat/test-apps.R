@@ -9,8 +9,8 @@
 
 # nolint start
 test_shiny_apps <- function() {
-  skip_on_ci()
-  skip_if_too_deep(5)
+  # skip_on_ci()
+  # skip_if_too_deep(5)
   shinytest2::test_app(app_dir = "apps/tws")
 }
 test_shiny_apps()
