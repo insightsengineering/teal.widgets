@@ -226,11 +226,11 @@ plot_with_settings_srv <- function(id,
     if (is.null(width)) {
       # if width = NULL then set default_slider_width to be the value of the plot width on load
       observeEvent(session$clientData[[paste0("output_", ns("plot_main_width"))]],
-        handlerExpr = {
-          default_slider_width(default_w() * c(1, 0.5, 2.8))
-        },
-        once = TRUE,
-        ignoreNULL = TRUE
+                   handlerExpr = {
+                     default_slider_width(default_w() * c(1, 0.5, 2.8))
+                   },
+                   once = TRUE,
+                   ignoreNULL = TRUE
       )
 
       observeEvent(input$flex_width, {
@@ -315,20 +315,22 @@ plot_with_settings_srv <- function(id,
       }
     })
 
+    plot_reactive <- reactive({
+      if (plot_type() == "gg" && dblclicking) {
+        plot_r() +
+          ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
+      } else if (plot_type() == "grob") {
+        # calling grid.draw on plot_r() is needed;
+        # otherwise the plot will not re-render if the user triggers the zoom in or out feature of the browser.
+        grid::grid.newpage()
+        grid::grid.draw(plot_r())
+      } else {
+        plot_r()
+      }
+    })
+
     output$plot_modal <- output$plot_main <- renderPlot(
-      expr = {
-        if (plot_type() == "gg" && dblclicking) {
-          plot_r() +
-            ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
-        } else if (plot_type() == "grob") {
-          # calling grid.draw on plot_r() is needed;
-          # otherwise the plot will not re-render if the user triggers the zoom in or out feature of the browser.
-          grid::grid.newpage()
-          grid::grid.draw(plot_r())
-        } else {
-          plot_r()
-        }
-      },
+      plot_reactive(),
       res = get_plot_dpi()
     )
 
@@ -475,12 +477,12 @@ type_download_ui <- function(id) {
     inputId = ns("downl"),
     div(
       radioButtons(ns("file_format"),
-        label = "File type",
-        choices = c("png" = "png", "pdf" = "pdf", "svg" = "svg"),
+                   label = "File type",
+                   choices = c("png" = "png", "pdf" = "pdf", "svg" = "svg"),
       ),
       textInput(ns("file_name"),
-        label = "File name (without extension)",
-        value = paste0("plot_", strftime(Sys.time(), format = "%Y%m%d_%H%M%S"))
+                label = "File name (without extension)",
+                value = paste0("plot_", strftime(Sys.time(), format = "%Y%m%d_%H%M%S"))
       ),
       conditionalPanel(
         condition = paste0("input['", ns("file_name"), "'] != ''"),
@@ -504,44 +506,13 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
 
           # svg and pdf have width in inches and 1 inch = get_plot_dpi() pixels
           switch(input$file_format,
-            png = grDevices::png(file, width, height),
-            pdf = grDevices::pdf(file, width / get_plot_dpi(), height / get_plot_dpi()),
-            svg = grDevices::svg(file, width / get_plot_dpi(), height / get_plot_dpi())
+                 png = grDevices::png(file, width, height),
+                 pdf = grDevices::pdf(file, width / get_plot_dpi(), height / get_plot_dpi()),
+                 svg = grDevices::svg(file, width / get_plot_dpi(), height / get_plot_dpi())
           )
 
-          if (plot_type() == "other") {
-            graphics::plot.new()
-            graphics::text(
-              x = graphics::grconvertX(0.5, from = "npc"),
-              y = graphics::grconvertY(0.5, from = "npc"),
-              labels = "This plot graphic type is not yet supported to download"
-            )
-          } else {
-            g <- plot_reactive()
-            wm <- grid::grid.text(
-              "DRAFT",
-              draw = FALSE,
-              rot = -45,
-              gp = grid::gpar(
-                alpha = 0.3,
-                fontface = "bold",
-                cex = 3
-              )
-            )
-            g_fin <- grid::gTree(
-              children = grid::gList(
-                if (plot_type() == "grob") {
-                  g
-                } else if (plot_type() == "gg") {
-                  ggplot2::ggplotGrob(g)
-                } else if (plot_type() == "trel") {
-                  grid::grid.grabExpr(print(g), warn = 0, wrap.grobs = TRUE)
-                },
-                wm
-              )
-            )
-            grid::grid.draw(g_fin)
-          }
+          print_plot(plot_reactive(), plot_type())
+
           grDevices::dev.off()
         }
       )
@@ -574,7 +545,7 @@ clean_brushedPoints <- function(data, brush) { # nolintr
 
   # Keep required rows only based on the value of `brush$panelvar1`
   df <- if (is.null(brush$panelvar1) && is.character(original_panelvar1) &&
-    is.null(brush$panelvar2) && is.character(original_panelvar2)) {
+            is.null(brush$panelvar2) && is.character(original_panelvar2)) {
     df_var1 <- bp_df[is.na(bp_df[[original_panelvar1]]), ]
     df_var1[is.na(df_var1[[original_panelvar2]]), ]
   } else if (is.null(brush$panelvar1) && is.character(original_panelvar1)) {
@@ -590,7 +561,6 @@ clean_brushedPoints <- function(data, brush) { # nolintr
   df
 }
 
-
 get_plot_dpi <- function() {
   default_dpi <- 72
   dpi <- getOption("teal.plot_dpi", default_dpi)
@@ -599,4 +569,50 @@ get_plot_dpi <- function() {
     dpi <- default_dpi
   }
   dpi
+}
+
+#' Print plot for download functionality
+#'
+#' @param plot (`reactive`)\cr
+#'  reactive expression to draw a plot
+#' @param plot_type (`reactive`)\cr
+#'  reactive plot type (`gg`, `trel`, `grob`, `other`)
+#'
+#' @return Nothing returned, the plot is printed.
+#' @keywords internal
+#'
+print_plot <- function(plot, plot_type) {
+  if (plot_type == "other") {
+    graphics::plot.new()
+    graphics::text(
+      x = graphics::grconvertX(0.5, from = "npc"),
+      y = graphics::grconvertY(0.5, from = "npc"),
+      labels = "This plot graphic type is not yet supported to download"
+    )
+  } else {
+    g <- plot
+    wm <- grid::grid.text(
+      "DRAFT",
+      draw = FALSE,
+      rot = -45,
+      gp = grid::gpar(
+        alpha = 0.3,
+        fontface = "bold",
+        cex = 3
+      )
+    )
+    g_fin <- grid::gTree(
+      children = grid::gList(
+        if (plot_type == "grob") {
+          g
+        } else if (plot_type == "gg") {
+          ggplot2::ggplotGrob(g)
+        } else if (plot_type == "trel") {
+          grid::grid.grabExpr(print(g), warn = 0, wrap.grobs = TRUE)
+        },
+        wm
+      )
+    )
+    grid::grid.draw(g_fin)
+  }
 }
