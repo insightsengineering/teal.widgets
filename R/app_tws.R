@@ -1,6 +1,6 @@
 #' Table with settings app
 #'
-#' @description Example table with setting app for testing using shinytest2
+#' @description Example table with setting app for testing using \code{shinytest2}
 #'
 #' @keywords internal
 #'

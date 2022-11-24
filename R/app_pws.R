@@ -1,6 +1,6 @@
 #' Plot with settings app
 #'
-#' @description Example plot with setting app for testing using shinytest2
+#' @description Example plot with setting app for testing using \code{shinytest2}
 #'
 #' @keywords internal
 #'

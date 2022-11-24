@@ -7,6 +7,6 @@
 app_pws()
 }
 \description{
-Example plot with setting app for testing using shinytest2
+Example plot with setting app for testing using \code{shinytest2}
 }
 \keyword{internal}

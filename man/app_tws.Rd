@@ -7,6 +7,6 @@
 app_tws()
 }
 \description{
-Example table with setting app for testing using shinytest2
+Example table with setting app for testing using \code{shinytest2}
 }
 \keyword{internal}
