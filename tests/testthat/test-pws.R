@@ -94,8 +94,8 @@ testthat::test_that("plot_with_settings: click functionalities ggplot2", {
 
 # test output that is returned (reactives and graphic encoded in base64)
 testthat::test_that("plot_with_settings: output is returned", {
-  # skip_on_cran()
-  # skip_on_ci()
+  skip_on_cran()
+  skip_on_ci()
 
   vals <- app$get_values()
 
