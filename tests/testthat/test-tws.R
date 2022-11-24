@@ -14,7 +14,7 @@ testthat::test_that("file name and table content", {
   file_name <- app$get_value(input = "table_with_settings-downbutton-file_name")
   file_name <- sub("_\\d{6}$", "", file_name)
   expected_file_name <- paste0("table_", strftime(Sys.Date(),
-                                                  format = "%Y%m%d"
+    format = "%Y%m%d"
   ))
   testthat::expect_equal(file_name, expected_file_name)
 
@@ -43,4 +43,3 @@ testthat::test_that("txt and csv download", {
 })
 
 app$stop()
-
