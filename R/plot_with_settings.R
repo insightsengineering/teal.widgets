@@ -226,11 +226,11 @@ plot_with_settings_srv <- function(id,
     if (is.null(width)) {
       # if width = NULL then set default_slider_width to be the value of the plot width on load
       observeEvent(session$clientData[[paste0("output_", ns("plot_main_width"))]],
-                   handlerExpr = {
-                     default_slider_width(default_w() * c(1, 0.5, 2.8))
-                   },
-                   once = TRUE,
-                   ignoreNULL = TRUE
+        handlerExpr = {
+          default_slider_width(default_w() * c(1, 0.5, 2.8))
+        },
+        once = TRUE,
+        ignoreNULL = TRUE
       )
 
       observeEvent(input$flex_width, {
@@ -477,12 +477,12 @@ type_download_ui <- function(id) {
     inputId = ns("downl"),
     div(
       radioButtons(ns("file_format"),
-                   label = "File type",
-                   choices = c("png" = "png", "pdf" = "pdf", "svg" = "svg"),
+        label = "File type",
+        choices = c("png" = "png", "pdf" = "pdf", "svg" = "svg"),
       ),
       textInput(ns("file_name"),
-                label = "File name (without extension)",
-                value = paste0("plot_", strftime(Sys.time(), format = "%Y%m%d_%H%M%S"))
+        label = "File name (without extension)",
+        value = paste0("plot_", strftime(Sys.time(), format = "%Y%m%d_%H%M%S"))
       ),
       conditionalPanel(
         condition = paste0("input['", ns("file_name"), "'] != ''"),
@@ -506,9 +506,9 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
 
           # svg and pdf have width in inches and 1 inch = get_plot_dpi() pixels
           switch(input$file_format,
-                 png = grDevices::png(file, width, height),
-                 pdf = grDevices::pdf(file, width / get_plot_dpi(), height / get_plot_dpi()),
-                 svg = grDevices::svg(file, width / get_plot_dpi(), height / get_plot_dpi())
+            png = grDevices::png(file, width, height),
+            pdf = grDevices::pdf(file, width / get_plot_dpi(), height / get_plot_dpi()),
+            svg = grDevices::svg(file, width / get_plot_dpi(), height / get_plot_dpi())
           )
 
           print_plot(plot_reactive(), plot_type())
@@ -545,7 +545,7 @@ clean_brushedPoints <- function(data, brush) { # nolintr
 
   # Keep required rows only based on the value of `brush$panelvar1`
   df <- if (is.null(brush$panelvar1) && is.character(original_panelvar1) &&
-            is.null(brush$panelvar2) && is.character(original_panelvar2)) {
+    is.null(brush$panelvar2) && is.character(original_panelvar2)) {
     df_var1 <- bp_df[is.na(bp_df[[original_panelvar1]]), ]
     df_var1[is.na(df_var1[[original_panelvar2]]), ]
   } else if (is.null(brush$panelvar1) && is.character(original_panelvar1)) {
