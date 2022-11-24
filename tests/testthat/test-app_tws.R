@@ -5,7 +5,7 @@ library(testthat)
 tws <- app_tws()
 app <- AppDriver$new(tws, name = "tws")
 
-# Testing snapshots
+# testing snapshots
 testthat::test_that("file name and table content", {
   skip_on_cran()
   skip_on_ci()
@@ -22,7 +22,7 @@ testthat::test_that("file name and table content", {
   app$expect_text("table")
 })
 
-# downloading tables
+# download tables
 testthat::test_that("txt and csv download", {
   skip_on_cran()
   skip_on_ci()
