@@ -1,3 +1,9 @@
+#' Table with settings app
+#'
+#' @description Example table with setting app for testing using shinytest2
+#'
+#' @keywords internal
+#'
 app_tws <- function() {
   shiny::shinyApp(
     ui = shiny::fluidPage(

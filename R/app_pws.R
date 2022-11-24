@@ -1,3 +1,9 @@
+#' Plot with settings app
+#'
+#' @description Example plot with setting app for testing using shinytest2
+#'
+#' @keywords internal
+#'
 app_pws <- function() {
   shiny::shinyApp(
     ui = shiny::fluidPage(

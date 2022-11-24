@@ -110,7 +110,7 @@ testthat::test_that("plot_with_settings: output is returned", {
   )
   # nolint start
   testthat::expect_true(
-    grepl("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAGQCAIAAADX",
+    grepl("data:image/png;base64,",
       vals$output$`plot_with_settings-plot_main`$src,
       fixed = TRUE
     )
@@ -274,13 +274,6 @@ testthat::test_that("plot_with_settings: width warning", {
   # starts out visible
   testthat::expect_equal(
     app$get_js("$('#plot_with_settings-width_warning').children().length"), 1
-  )
-  testthat::expect_equal(
-    app$get_value(output = "plot_with_settings-width_warning")$html[1],
-    paste0(
-      "<span class=\"help-block\">\n  <i class=\"fa fa-triangle-exclamation\" role=\"presentation\" aria-label=",
-      "\"triangle-exclamation icon\"></i>\n  Plot might be cut off for small widths.\n</span>"
-    )
   )
 
   # now hidden
