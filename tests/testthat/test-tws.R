@@ -1,5 +1,4 @@
 library(shinytest2)
-library(testthat)
 
 # launch app for all tests
 tws <- app_tws()
