@@ -9,6 +9,10 @@
 
 * Added labels to pagination button in `table_with_settings` and fixed alt text.
 
+### Miscellaneous
+
+* Added `shinytest2` tests for `plot_with_settings` and `table_with_settings`.
+
 # teal.widgets 0.2.0
 
 ### Breaking changes
