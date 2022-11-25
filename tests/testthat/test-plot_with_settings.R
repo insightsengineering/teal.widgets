@@ -1,3 +1,5 @@
+library(shinytest2)
+
 testthat::test_that("if teal.plot_dpi is not set then get_plot_dpi returns 72 ", {
   withr::with_options(
     list(teal.plot_dpi = NULL),

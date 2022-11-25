@@ -315,22 +315,20 @@ plot_with_settings_srv <- function(id,
       }
     })
 
-    plot_reactive <- reactive({
-      if (plot_type() == "gg" && dblclicking) {
-        plot_r() +
-          ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
-      } else if (plot_type() == "grob") {
-        # calling grid.draw on plot_r() is needed;
-        # otherwise the plot will not re-render if the user triggers the zoom in or out feature of the browser.
-        grid::grid.newpage()
-        grid::grid.draw(plot_r())
-      } else {
-        plot_r()
-      }
-    })
-
     output$plot_modal <- output$plot_main <- renderPlot(
-      plot_reactive(),
+      expr = {
+        if (plot_type() == "gg" && dblclicking) {
+          plot_r() +
+            ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
+        } else if (plot_type() == "grob") {
+          # calling grid.draw on plot_r() is needed;
+          # otherwise the plot will not re-render if the user triggers the zoom in or out feature of the browser.
+          grid::grid.newpage()
+          grid::grid.draw(plot_r())
+        } else {
+          plot_r()
+        }
+      },
       res = get_plot_dpi()
     )
 
@@ -511,8 +509,39 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
             svg = grDevices::svg(file, width / get_plot_dpi(), height / get_plot_dpi())
           )
 
-          print_plot(plot_reactive(), plot_type())
-
+          if (plot_type() == "other") {
+            graphics::plot.new()
+            graphics::text(
+              x = graphics::grconvertX(0.5, from = "npc"),
+              y = graphics::grconvertY(0.5, from = "npc"),
+              labels = "This plot graphic type is not yet supported to download"
+            )
+          } else {
+            g <- plot_reactive()
+            wm <- grid::grid.text(
+              "DRAFT",
+              draw = FALSE,
+              rot = -45,
+              gp = grid::gpar(
+                alpha = 0.3,
+                fontface = "bold",
+                cex = 3
+              )
+            )
+            g_fin <- grid::gTree(
+              children = grid::gList(
+                if (plot_type() == "grob") {
+                  g
+                } else if (plot_type() == "gg") {
+                  ggplot2::ggplotGrob(g)
+                } else if (plot_type() == "trel") {
+                  grid::grid.grabExpr(print(g), warn = 0, wrap.grobs = TRUE)
+                },
+                wm
+              )
+            )
+            grid::grid.draw(g_fin)
+          }
           grDevices::dev.off()
         }
       )
@@ -561,6 +590,7 @@ clean_brushedPoints <- function(data, brush) { # nolintr
   df
 }
 
+
 get_plot_dpi <- function() {
   default_dpi <- 72
   dpi <- getOption("teal.plot_dpi", default_dpi)
@@ -569,50 +599,4 @@ get_plot_dpi <- function() {
     dpi <- default_dpi
   }
   dpi
-}
-
-#' Print plot for download functionality
-#'
-#' @param plot (`reactive`)\cr
-#'  reactive expression to draw a plot
-#' @param plot_type (`reactive`)\cr
-#'  reactive plot type (`gg`, `trel`, `grob`, `other`)
-#'
-#' @return Nothing returned, the plot is printed.
-#' @keywords internal
-#'
-print_plot <- function(plot, plot_type) {
-  if (plot_type == "other") {
-    graphics::plot.new()
-    graphics::text(
-      x = graphics::grconvertX(0.5, from = "npc"),
-      y = graphics::grconvertY(0.5, from = "npc"),
-      labels = "This plot graphic type is not yet supported to download"
-    )
-  } else {
-    g <- plot
-    wm <- grid::grid.text(
-      "DRAFT",
-      draw = FALSE,
-      rot = -45,
-      gp = grid::gpar(
-        alpha = 0.3,
-        fontface = "bold",
-        cex = 3
-      )
-    )
-    g_fin <- grid::gTree(
-      children = grid::gList(
-        if (plot_type == "grob") {
-          g
-        } else if (plot_type == "gg") {
-          ggplot2::ggplotGrob(g)
-        } else if (plot_type == "trel") {
-          grid::grid.grabExpr(print(g), warn = 0, wrap.grobs = TRUE)
-        },
-        wm
-      )
-    )
-    grid::grid.draw(g_fin)
-  }
 }
