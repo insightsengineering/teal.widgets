@@ -4,7 +4,7 @@
 \alias{print_plot}
 \title{Print plot for download functionality}
 \usage{
-print_plot(plot, plot_type)
+print_plot(plot, plot_type, plot_input_type)
 }
 \arguments{
 \item{plot}{(\code{reactive})\cr
@@ -12,6 +12,9 @@ reactive expression to draw a plot}
 
 \item{plot_type}{(\code{reactive})\cr
 reactive plot type (\code{gg}, \code{trel}, \code{grob}, \code{other})}
+
+\item{plot_input_type}{(\code{logical})\cr
+type of plot_type input given}
 }
 \value{
 Nothing returned, the plot is printed.
