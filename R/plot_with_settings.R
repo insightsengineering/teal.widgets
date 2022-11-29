@@ -252,6 +252,8 @@ plot_with_settings_srv <- function(id,
         "trel"
       } else if (inherits(plot_r(), "grob")) {
         "grob"
+      } else if (inherits(plot_r(), c("NULL", "histogram")) && !inherits(plot_r, "reactive")) {
+        "base"
       } else {
         "other"
       }
@@ -586,16 +588,19 @@ get_plot_dpi <- function() {
 #' @keywords internal
 #'
 print_plot <- function(plot, plot_type) {
-  if (plot_type() == "grob") {
-    grid::grid.draw(plot())
-  } else if (plot_type() == "other") {
-    graphics::plot.new()
-    graphics::text(
-      x = graphics::grconvertX(0.5, from = "npc"),
-      y = graphics::grconvertY(0.5, from = "npc"),
-      labels = "This plot graphic type is not yet supported to download"
-    )
-  } else {
-    print(plot())
-  }
+  switch(plot_type(),
+         "grob" = grid::grid.draw(plot()),
+         "other" = {
+           graphics::plot.new()
+           graphics::text(
+             x = graphics::grconvertX(0.5, from = "npc"),
+             y = graphics::grconvertY(0.5, from = "npc"),
+             labels = "This plot graphic type is not yet supported to download"
+           )
+         },
+         "base" = {
+           plot()
+         },
+         print(plot())
+         )
 }
