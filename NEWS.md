@@ -1,5 +1,9 @@
 # teal.widgets 0.2.0.9010
 
+### New features
+
+* Added support for downloading base plots.
+
 ### Enhancements
 
 * `disabled` in `verbatim_popup_srv` is longer triggered when button is hidden.
@@ -12,6 +16,7 @@
 ### Miscellaneous
 
 * Added `shinytest2` tests for `plot_with_settings` and `table_with_settings`.
+* Removed the `DRAFT` label on downloaded plots.
 
 # teal.widgets 0.2.0
 
