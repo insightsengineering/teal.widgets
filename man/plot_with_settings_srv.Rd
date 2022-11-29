@@ -107,9 +107,9 @@ shinyApp(
       if (input$download_option == "ggplot") {
         ggplot2::qplot(1)
       } else if (input$download_option == "trellis") {
-        densityplot(1)
+        lattice::densityplot(1)
       } else if (input$download_option == "grob") {
-        tr_plot <- densityplot(1)
+        tr_plot <- lattice::densityplot(1)
         ggplotify::as.grob(tr_plot)
       } else if (input$download_option == "base") {
         plot(1)
