@@ -202,7 +202,8 @@ plot_with_settings_srv <- function(id,
                                    hovering = FALSE,
                                    graph_align = "left") {
   checkmate::assert(
-    checkmate::check_class(plot_r, "function")
+    checkmate::check_class(plot_r, "function"),
+    checkmate::check_class(plot_r, "reactive") # to be sure
   )
   checkmate::assert_numeric(height, min.len = 1, any.missing = FALSE)
 
