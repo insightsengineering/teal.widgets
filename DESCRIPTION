@@ -30,7 +30,9 @@ Imports:
     shinyWidgets,
     styler
 Suggests:
+    ggplotify,
     knitr,
+    lattice,
     magrittr,
     rmarkdown,
     shinytest2,
