@@ -589,18 +589,18 @@ get_plot_dpi <- function() {
 #'
 print_plot <- function(plot, plot_type) {
   switch(plot_type(),
-         "grob" = grid::grid.draw(plot()),
-         "other" = {
-           graphics::plot.new()
-           graphics::text(
-             x = graphics::grconvertX(0.5, from = "npc"),
-             y = graphics::grconvertY(0.5, from = "npc"),
-             labels = "This plot graphic type is not yet supported to download"
-           )
-         },
-         "base" = {
-           plot()
-         },
-         print(plot())
-         )
+    "grob" = grid::grid.draw(plot()),
+    "other" = {
+      graphics::plot.new()
+      graphics::text(
+        x = graphics::grconvertX(0.5, from = "npc"),
+        y = graphics::grconvertY(0.5, from = "npc"),
+        labels = "This plot graphic type is not yet supported to download"
+      )
+    },
+    "base" = {
+      plot()
+    },
+    print(plot())
+  )
 }
