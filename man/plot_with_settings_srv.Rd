@@ -115,6 +115,7 @@ shinyApp(
         plot(1)
       }
     }
+
     plot_with_settings_srv(
       id = "plot_with_settings",
       plot_r = plot_r,
