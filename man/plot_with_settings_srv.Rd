@@ -21,8 +21,9 @@ plot_with_settings_srv(
 \item{id}{An ID string that corresponds with the ID used to call the module's
 UI function.}
 
-\item{plot_r}{(\code{reactive})\cr
-reactive expression to draw a plot.}
+\item{plot_r}{(\code{reactive} or \code{function})\cr
+reactive expression or a simple \code{function} to draw a plot.
+A simple \code{function} is needed e.g. for base plots like \code{plot(1)} as the output can not be catch by shiny.}
 
 \item{height}{(\code{numeric}, optional)\cr
 vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in

@@ -68,8 +68,9 @@ plot_with_settings_ui <- function(id) {
 #' @export
 #'
 #' @inheritParams shiny::moduleServer
-#' @param plot_r (`reactive`)\cr
-#'  reactive expression to draw a plot.
+#' @param plot_r (`reactive` or `function`)\cr
+#'  reactive expression or a simple `function` to draw a plot.
+#'  A simple `function` is needed e.g. for base plots like `plot(1)` as the output can not be catch by shiny.
 #' @param height (`numeric`, optional)\cr
 #'  vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
 #'  the main and modal plot display. The value in the modal display is taken from the value of the
