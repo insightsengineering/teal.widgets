@@ -201,7 +201,6 @@ plot_with_settings_srv <- function(id,
                                    hovering = FALSE,
                                    graph_align = "left") {
   checkmate::assert(
-    checkmate::check_class(plot_r, "reactive"),
     checkmate::check_class(plot_r, "function")
   )
   checkmate::assert_numeric(height, min.len = 1, any.missing = FALSE)
@@ -244,7 +243,6 @@ plot_with_settings_srv <- function(id,
       })
     }
 
-    plot_input_type <- inherits(plot_r, "function")
     plot_type <- reactive({
       if (inherits(plot_r(), "ggplot")) {
         "gg"
@@ -369,7 +367,6 @@ plot_with_settings_srv <- function(id,
       id = "downbutton",
       plot_reactive = plot_r,
       plot_type = plot_type,
-      plot_input_type = plot_input_type,
       plot_w = reactive(`if`(!is.null(input$width), input$width, default_slider_width()[1])),
       default_w = default_w,
       plot_h = reactive(`if`(!is.null(input$height), input$height, height[1])),
@@ -433,7 +430,6 @@ plot_with_settings_srv <- function(id,
       id = "modal_downbutton",
       plot_reactive = plot_r,
       plot_type = plot_type,
-      plot_input_type = plot_input_type,
       plot_w = reactive(input$width_in_modal),
       default_w = default_w,
       plot_h = reactive(input$height_in_modal),
@@ -498,7 +494,7 @@ type_download_ui <- function(id) {
   )
 }
 
-type_download_srv <- function(id, plot_reactive, plot_type, plot_input_type, plot_w, default_w, plot_h, default_h) {
+type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, plot_h, default_h) {
   moduleServer(
     id,
     function(input, output, session) {
@@ -517,7 +513,7 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_input_type, plo
             svg = grDevices::svg(file, width / get_plot_dpi(), height / get_plot_dpi())
           )
 
-          print_plot(plot_reactive, plot_type, plot_input_type)
+          print_plot(plot_reactive, plot_type)
 
           grDevices::dev.off()
         }
@@ -583,33 +579,21 @@ get_plot_dpi <- function() {
 #'  reactive expression to draw a plot
 #' @param plot_type (`reactive`)\cr
 #'  reactive plot type (`gg`, `trel`, `grob`, `other`)
-#' @param plot_input_type (`logical`)\cr
-#'  type of plot_type input given
 #'
 #' @return Nothing returned, the plot is printed.
 #' @keywords internal
 #'
-print_plot <- function(plot, plot_type, plot_input_type) {
-  return_plot <- function(plot, plot_type) {
-    if (plot_type() == "grob") {
-      grid::grid.draw(plot())
-    } else {
-      print(plot())
-    }
-  }
-
-  if (plot_input_type) {
-    return_plot(plot, plot_type)
+print_plot <- function(plot, plot_type) {
+  if (plot_type() == "grob") {
+    grid::grid.draw(plot())
+  } else if (plot_type() == "other") {
+    graphics::plot.new()
+    graphics::text(
+      x = graphics::grconvertX(0.5, from = "npc"),
+      y = graphics::grconvertY(0.5, from = "npc"),
+      labels = "This plot graphic type is not yet supported to download"
+    )
   } else {
-    if (plot_type == "other") {
-      graphics::plot.new()
-      graphics::text(
-        x = graphics::grconvertX(0.5, from = "npc"),
-        y = graphics::grconvertY(0.5, from = "npc"),
-        labels = "This plot graphic type is not yet supported to download"
-      )
-    } else {
-      return_plot(plot, plot_type)
-    }
+    print(plot())
   }
 }
