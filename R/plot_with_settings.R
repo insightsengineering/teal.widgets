@@ -70,7 +70,7 @@ plot_with_settings_ui <- function(id) {
 #' @inheritParams shiny::moduleServer
 #' @param plot_r (`reactive` or `function`)\cr
 #'  reactive expression or a simple `function` to draw a plot.
-#'  A simple `function` is needed e.g. for base plots like `plot(1)` as the output can not be catch by shiny.
+#'  A simple `function` is needed e.g. for base plots like `plot(1)` as the output can not be caught when downloading.
 #' @param height (`numeric`, optional)\cr
 #'  vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
 #'  the main and modal plot display. The value in the modal display is taken from the value of the
@@ -107,6 +107,7 @@ plot_with_settings_ui <- function(id) {
 #'
 #' @examples
 #' \dontrun{
+#' # Example using a reactive as input to plot_r
 #' library(shiny)
 #' shinyApp(
 #'   ui = fluidPage(
@@ -119,6 +120,36 @@ plot_with_settings_ui <- function(id) {
 #'       ggplot2::qplot(x = 1, y = 1)
 #'     })
 #'
+#'     plot_with_settings_srv(
+#'       id = "plot_with_settings",
+#'       plot_r = plot_r,
+#'       height = c(400, 100, 1200),
+#'       width = c(500, 250, 750)
+#'     )
+#'   }
+#' )
+#'
+#' # Example using a function as input to plot_r
+#' shinyApp(
+#'   ui = fluidPage(
+#'     radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
+#'     plot_with_settings_ui(
+#'       id = "plot_with_settings"
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     plot_r <- function() {
+#'       if (input$download_option == "ggplot") {
+#'         ggplot2::qplot(1)
+#'       } else if (input$download_option == "trellis") {
+#'         densityplot(1)
+#'       } else if (input$download_option == "grob") {
+#'         tr_plot <- densityplot(1)
+#'         ggplotify::as.grob(tr_plot)
+#'       } else if (input$download_option == "base") {
+#'         plot(1)
+#'       }
+#'     }
 #'     plot_with_settings_srv(
 #'       id = "plot_with_settings",
 #'       plot_r = plot_r,
@@ -203,10 +234,9 @@ plot_with_settings_srv <- function(id,
                                    graph_align = "left") {
   checkmate::assert(
     checkmate::check_class(plot_r, "function"),
-    checkmate::check_class(plot_r, "reactive") # to be sure
+    checkmate::check_class(plot_r, "reactive")
   )
   checkmate::assert_numeric(height, min.len = 1, any.missing = FALSE)
-
   checkmate::assert_numeric(height, len = 3, any.missing = FALSE, finite = TRUE)
   checkmate::assert_numeric(height[1], lower = height[2], upper = height[3], .var.name = "height")
   checkmate::assert_numeric(width, len = 3, any.missing = FALSE, null.ok = TRUE, finite = TRUE)
@@ -252,7 +282,7 @@ plot_with_settings_srv <- function(id,
         "trel"
       } else if (inherits(plot_r(), "grob")) {
         "grob"
-      } else if (inherits(plot_r(), c("NULL", "histogram")) && !inherits(plot_r, "reactive")) {
+      } else if (inherits(plot_r(), c("NULL", "histogram", "list")) && !inherits(plot_r, "reactive")) {
         "base"
       } else {
         "other"
@@ -598,9 +628,7 @@ print_plot <- function(plot, plot_type) {
         labels = "This plot graphic type is not yet supported to download"
       )
     },
-    "base" = {
-      plot()
-    },
+    "base" = plot(),
     print(plot())
   )
 }
