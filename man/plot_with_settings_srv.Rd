@@ -21,8 +21,9 @@ plot_with_settings_srv(
 \item{id}{An ID string that corresponds with the ID used to call the module's
 UI function.}
 
-\item{plot_r}{(\code{reactive})\cr
-reactive expression to draw a plot.}
+\item{plot_r}{(\code{reactive} or \code{function})\cr
+reactive expression or a simple \code{function} to draw a plot.
+A simple \code{function} is needed e.g. for base plots like \code{plot(1)} as the output can not be caught when downloading.}
 
 \item{height}{(\code{numeric}, optional)\cr
 vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
@@ -71,6 +72,7 @@ If an invalid value is set then the default value is used and a warning is outpu
 }
 \examples{
 \dontrun{
+# Example using a reactive as input to plot_r
 library(shiny)
 shinyApp(
   ui = fluidPage(
@@ -82,6 +84,37 @@ shinyApp(
     plot_r <- reactive({
       ggplot2::qplot(x = 1, y = 1)
     })
+
+    plot_with_settings_srv(
+      id = "plot_with_settings",
+      plot_r = plot_r,
+      height = c(400, 100, 1200),
+      width = c(500, 250, 750)
+    )
+  }
+)
+
+# Example using a function as input to plot_r
+shinyApp(
+  ui = fluidPage(
+    radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
+    plot_with_settings_ui(
+      id = "plot_with_settings"
+    )
+  ),
+  server = function(input, output, session) {
+    plot_r <- function() {
+      if (input$download_option == "ggplot") {
+        ggplot2::qplot(1)
+      } else if (input$download_option == "trellis") {
+        lattice::densityplot(1)
+      } else if (input$download_option == "grob") {
+        tr_plot <- lattice::densityplot(1)
+        ggplotify::as.grob(tr_plot)
+      } else if (input$download_option == "base") {
+        plot(1)
+      }
+    }
 
     plot_with_settings_srv(
       id = "plot_with_settings",

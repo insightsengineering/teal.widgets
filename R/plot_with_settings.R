@@ -68,8 +68,9 @@ plot_with_settings_ui <- function(id) {
 #' @export
 #'
 #' @inheritParams shiny::moduleServer
-#' @param plot_r (`reactive`)\cr
-#'  reactive expression to draw a plot.
+#' @param plot_r (`reactive` or `function`)\cr
+#'  reactive expression or a simple `function` to draw a plot.
+#'  A simple `function` is needed e.g. for base plots like `plot(1)` as the output can not be caught when downloading.
 #' @param height (`numeric`, optional)\cr
 #'  vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
 #'  the main and modal plot display. The value in the modal display is taken from the value of the
@@ -106,6 +107,7 @@ plot_with_settings_ui <- function(id) {
 #'
 #' @examples
 #' \dontrun{
+#' # Example using a reactive as input to plot_r
 #' library(shiny)
 #' shinyApp(
 #'   ui = fluidPage(
@@ -117,6 +119,37 @@ plot_with_settings_ui <- function(id) {
 #'     plot_r <- reactive({
 #'       ggplot2::qplot(x = 1, y = 1)
 #'     })
+#'
+#'     plot_with_settings_srv(
+#'       id = "plot_with_settings",
+#'       plot_r = plot_r,
+#'       height = c(400, 100, 1200),
+#'       width = c(500, 250, 750)
+#'     )
+#'   }
+#' )
+#'
+#' # Example using a function as input to plot_r
+#' shinyApp(
+#'   ui = fluidPage(
+#'     radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
+#'     plot_with_settings_ui(
+#'       id = "plot_with_settings"
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     plot_r <- function() {
+#'       if (input$download_option == "ggplot") {
+#'         ggplot2::qplot(1)
+#'       } else if (input$download_option == "trellis") {
+#'         lattice::densityplot(1)
+#'       } else if (input$download_option == "grob") {
+#'         tr_plot <- lattice::densityplot(1)
+#'         ggplotify::as.grob(tr_plot)
+#'       } else if (input$download_option == "base") {
+#'         plot(1)
+#'       }
+#'     }
 #'
 #'     plot_with_settings_srv(
 #'       id = "plot_with_settings",
@@ -200,9 +233,11 @@ plot_with_settings_srv <- function(id,
                                    dblclicking = FALSE,
                                    hovering = FALSE,
                                    graph_align = "left") {
-  checkmate::assert_class(plot_r, c("reactive", "function"))
+  checkmate::assert(
+    checkmate::check_class(plot_r, "function"),
+    checkmate::check_class(plot_r, "reactive")
+  )
   checkmate::assert_numeric(height, min.len = 1, any.missing = FALSE)
-
   checkmate::assert_numeric(height, len = 3, any.missing = FALSE, finite = TRUE)
   checkmate::assert_numeric(height[1], lower = height[2], upper = height[3], .var.name = "height")
   checkmate::assert_numeric(width, len = 3, any.missing = FALSE, null.ok = TRUE, finite = TRUE)
@@ -248,6 +283,8 @@ plot_with_settings_srv <- function(id,
         "trel"
       } else if (inherits(plot_r(), "grob")) {
         "grob"
+      } else if (inherits(plot_r(), c("NULL", "histogram", "list")) && !inherits(plot_r, "reactive")) {
+        "base"
       } else {
         "other"
       }
@@ -511,7 +548,7 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
             svg = grDevices::svg(file, width / get_plot_dpi(), height / get_plot_dpi())
           )
 
-          print_plot(plot_reactive(), plot_type())
+          print_plot(plot_reactive, plot_type)
 
           grDevices::dev.off()
         }
@@ -582,37 +619,17 @@ get_plot_dpi <- function() {
 #' @keywords internal
 #'
 print_plot <- function(plot, plot_type) {
-  if (plot_type == "other") {
-    graphics::plot.new()
-    graphics::text(
-      x = graphics::grconvertX(0.5, from = "npc"),
-      y = graphics::grconvertY(0.5, from = "npc"),
-      labels = "This plot graphic type is not yet supported to download"
-    )
-  } else {
-    g <- plot
-    wm <- grid::grid.text(
-      "DRAFT",
-      draw = FALSE,
-      rot = -45,
-      gp = grid::gpar(
-        alpha = 0.3,
-        fontface = "bold",
-        cex = 3
+  switch(plot_type(),
+    "grob" = grid::grid.draw(plot()),
+    "other" = {
+      graphics::plot.new()
+      graphics::text(
+        x = graphics::grconvertX(0.5, from = "npc"),
+        y = graphics::grconvertY(0.5, from = "npc"),
+        labels = "This plot graphic type is not yet supported to download"
       )
-    )
-    g_fin <- grid::gTree(
-      children = grid::gList(
-        if (plot_type == "grob") {
-          g
-        } else if (plot_type == "gg") {
-          ggplot2::ggplotGrob(g)
-        } else if (plot_type == "trel") {
-          grid::grid.grabExpr(print(g), warn = 0, wrap.grobs = TRUE)
-        },
-        wm
-      )
-    )
-    grid::grid.draw(g_fin)
-  }
+    },
+    "base" = plot(),
+    print(plot())
+  )
 }
