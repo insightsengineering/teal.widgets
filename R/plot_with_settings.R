@@ -233,6 +233,7 @@ plot_with_settings_srv <- function(id,
                                    dblclicking = FALSE,
                                    hovering = FALSE,
                                    graph_align = "left") {
+  checkmate::assert_string(id)
   checkmate::assert(
     checkmate::check_class(plot_r, "function"),
     checkmate::check_class(plot_r, "reactive")
@@ -503,6 +504,7 @@ plot_with_settings_srv <- function(id,
   })
 }
 
+#' @keywords internal
 type_download_ui <- function(id) {
   ns <- NS(id)
   shinyWidgets::dropdownButton(
@@ -529,6 +531,7 @@ type_download_ui <- function(id) {
   )
 }
 
+#' @keywords internal
 type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, plot_h, default_h) {
   moduleServer(
     id,
@@ -569,6 +572,9 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
 #' @export
 #'
 clean_brushedPoints <- function(data, brush) { # nolintr
+  checkmate::assert_data_frame(data)
+  checkmate::assert_list(brush)
+
   # define original panelvar1 and panelvar2 before getting overwritten
   original_panelvar1 <- brush$mapping$panelvar1
   original_panelvar2 <- brush$mapping$panelvar2
