@@ -83,71 +83,80 @@ testthat::test_that("print_plot is able to plot different types of graphics", {
   )
 
   for (p in seq_along(plot_funs)) {
-    testthat::expect_true(is_draw(function() print_plot(plot_funs[[p]], plot_types[[p]])))
+    testthat::expect_true(
+      is_draw(function() print_plot(plot_funs[[p]], plot_types[[p]]))
+    )
   }
 })
 
-
-data <- structure(list(
-  STUDYID = structure(c(
-    "AB12345", "AB12345", "AB12345",
-    "AB12345", "AB12345", "AB12345", "AB12345", "AB12345", "AB12345",
-    "AB12345", "AB12345", "AB12345", "AB12345", "AB12345", "AB12345",
-    "AB12345", "AB12345", "AB12345", "AB12345", "AB12345"
-  ), label = "Study Identifier"),
-  USUBJID = structure(c(
-    "AB12345-CHN-3-id-128", "AB12345-CHN-15-id-262",
-    "AB12345-RUS-3-id-378", "AB12345-CHN-11-id-220", "AB12345-CHN-7-id-267",
-    "AB12345-CHN-15-id-201", "AB12345-USA-1-id-45", "AB12345-USA-1-id-261",
-    "AB12345-NGA-11-id-173", "AB12345-CHN-1-id-307", "AB12345-CHN-7-id-28",
-    "AB12345-CHN-4-id-73", "AB12345-RUS-1-id-52", "AB12345-PAK-11-id-268",
-    "AB12345-CHN-13-id-102", "AB12345-CHN-17-id-84", "AB12345-BRA-11-id-9",
-    "AB12345-CHN-4-id-115", "AB12345-CHN-15-id-245", "AB12345-CHN-4-id-370"
-  ), label = "Unique Subject Identifier"), AGE = structure(c(
-    40L, 24L, 40L, 28L, 37L,
-    40L, 40L, 38L, 34L, 45L, 40L, 24L, 40L, 28L, 37L,
-    40L, 40L, 38L, 34L, 45L
-  ), label = "Age"), BMRKR1 = structure(c(
-    14.424933692778,
-    4.05546277230382, 2.80323956920649, 10.2627340069523, 6.2067627167943,
-    6.9067988141075, 0.463560441314472, 2.85516419937308, 4.99722573047567,
-    4.57499101339464, 11.1444469908374, 2.86312402599659, 7.20634823208459,
-    2.82014082273392, 6.04894627754598, 6.61366727233138, 7.01629609277248,
-    9.00518541690504, 3.68284941334409, 7.09845214575852
-  ), label = "Continuous Level Biomarker 1")
-), row.names = c(
-  NA,
-  -20L
-), label = "Subject Level Analysis Dataset", "`creation date`" = structure(19307, class = "Date"), class = c(
-  "tbl_df",
-  "tbl", "data.frame"
-))
+data <- structure(
+  list(
+    STUDYID = structure(c(
+      "AB12345", "AB12345", "AB12345",
+      "AB12345", "AB12345", "AB12345", "AB12345", "AB12345", "AB12345",
+      "AB12345", "AB12345", "AB12345", "AB12345", "AB12345", "AB12345",
+      "AB12345", "AB12345", "AB12345", "AB12345", "AB12345"
+    ), label = "Study Identifier"),
+    USUBJID = structure(c(
+      "AB12345-CHN-3-id-128", "AB12345-CHN-15-id-262",
+      "AB12345-RUS-3-id-378", "AB12345-CHN-11-id-220", "AB12345-CHN-7-id-267",
+      "AB12345-CHN-15-id-201", "AB12345-USA-1-id-45", "AB12345-USA-1-id-261",
+      "AB12345-NGA-11-id-173", "AB12345-CHN-1-id-307", "AB12345-CHN-7-id-28",
+      "AB12345-CHN-4-id-73", "AB12345-RUS-1-id-52", "AB12345-PAK-11-id-268",
+      "AB12345-CHN-13-id-102", "AB12345-CHN-17-id-84", "AB12345-BRA-11-id-9",
+      "AB12345-CHN-4-id-115", "AB12345-CHN-15-id-245", "AB12345-CHN-4-id-370"
+    ), label = "Unique Subject Identifier"),
+    AGE = structure(c(
+      40L, 24L, 40L, 28L, 37L,
+      40L, 40L, 38L, 34L, 45L, 40L, 24L, 40L, 28L, 37L,
+      40L, 40L, 38L, 34L, 45L
+    ), label = "Age"),
+    BMRKR1 = structure(c(
+      14.424933692778,
+      4.05546277230382, 2.80323956920649, 10.2627340069523, 6.2067627167943,
+      6.9067988141075, 0.463560441314472, 2.85516419937308, 4.99722573047567,
+      4.57499101339464, 11.1444469908374, 2.86312402599659, 7.20634823208459,
+      2.82014082273392, 6.04894627754598, 6.61366727233138, 7.01629609277248,
+      9.00518541690504, 3.68284941334409, 7.09845214575852
+    ), label = "Continuous Level Biomarker 1")
+  ),
+  row.names = c(NA, -20L),
+  label = "Subject Level Analysis Dataset",
+  "`creation date`" = structure(19307, class = "Date"),
+  class = c("tbl_df", "tbl", "data.frame")
+)
 
 
 brush <- list(
-  xmin = 30.461738950382, xmax = 41.763695852997, ymin = 0.73077938561424,
-  ymax = 10.23846022551, coords_css = list(
+  xmin = 30.461738950382, xmax = 41.763695852997, ymin = 0.73077938561424, ymax = 10.23846022551,
+  coords_css = list(
     xmin = 511.458312988281,
     xmax = 1231.45831298828, ymin = 195.642349243164, ymax = 535.642349243164
   ),
   coords_img = list(
     xmin = 460.312444477212, xmax = 1108.31239209208,
     ymin = 176.078114318848, ymax = 482.078114318848
-  ), img_css_ratio = list(
+  ),
+  img_css_ratio = list(
     x = 0.899999927242866, y = 0.9
-  ), mapping = list(
+  ),
+  mapping = list(
     x = "AGE",
     y = "BMRKR1"
-  ), domain = list(
+  ),
+  domain = list(
     left = 22.95, right = 46.05,
     bottom = -0.234508221258705, top = 15.1230023553512
   ),
   range = list(
     left = 29.6253972440434, right = 1354.06849315068,
     bottom = 513.145417973348, top = 18.8715445043173
-  ), log = list(
+  ),
+  log = list(
     x = NULL, y = NULL
-  ), direction = "xy", brushId = "teal-main_ui-root-scatterplot_choices-scatter_plot-plot_brush",
+  ),
+  direction = "xy",
+  brushId = "teal-main_ui-root-scatterplot_choices-scatter_plot-plot_brush",
   outputId = "teal-main_ui-root-scatterplot_choices-scatter_plot-plot_main"
 )
 
@@ -158,10 +167,13 @@ testthat::test_that("clean_brushedPoints assert error", {
 })
 
 testthat::test_that("clean_brushedPoints minimal correct input", {
-  testthat::expect_error(clean_brushedPoints(
-    data.frame(AGE = 1, BMRKR1 = 4),
-    brush[c("direction", "range", "xmin", "xmax", "ymin", "ymax", "mapping")]
-  ), NA)
+  testthat::expect_error(
+    clean_brushedPoints(
+      data.frame(AGE = 1, BMRKR1 = 4),
+      brush[c("direction", "range", "xmin", "xmax", "ymin", "ymax", "mapping")]
+    ),
+    NA
+  )
 })
 
 testthat::test_that("clean_brushedPoints removal of NA points", {
@@ -199,7 +211,10 @@ testthat::test_that("type_download_srv download all types of files with defualt 
         session$setInputs(`file_format` = type)
         session$setInputs(`data_download` = 1)
         testthat::expect_true(file.exists(output$data_download))
-        testthat::expect_identical(basename(output$data_download), paste0(".", type))
+        testthat::expect_identical(
+          basename(output$data_download),
+          paste0(".", type)
+        )
       }
     }
   )
@@ -215,7 +230,10 @@ testthat::test_that("type_download_srv download all types of files and change th
         session$setInputs(`data_download` = 1)
         session$setInputs(`file_name` = "RANDOM_NAME")
         testthat::expect_true(file.exists(output$data_download))
-        testthat::expect_identical(basename(output$data_download), paste0("RANDOM_NAME.", type))
+        testthat::expect_identical(
+          basename(output$data_download),
+          paste0("RANDOM_NAME.", type)
+        )
       }
     }
   )
@@ -259,16 +277,18 @@ testthat::test_that("type_download_srv download a png file with NULL input dimen
   )
 })
 
-plot_with_settings_args <- list(id = "STH",
-                                plot_r = function() plot(1),
-                                height = c(600, 200, 2000),
-                                width = NULL,
-                                show_hide_signal = reactive(TRUE),
-                                brushing = FALSE,
-                                clicking = FALSE,
-                                dblclicking = FALSE,
-                                hovering = FALSE,
-                                graph_align = "left")
+plot_with_settings_args <- list(
+  id = "STH",
+  plot_r = function() plot(1),
+  height = c(600, 200, 2000),
+  width = NULL,
+  show_hide_signal = reactive(TRUE),
+  brushing = FALSE,
+  clicking = FALSE,
+  dblclicking = FALSE,
+  hovering = FALSE,
+  graph_align = "left"
+)
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file", {
   shiny::testServer(
@@ -286,27 +306,6 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
     }
   )
 })
-
-# testthat::test_that("plot_with_settings_srv set dimensions and download a png file from modal", {
-#   shiny::testServer(
-#     teal.widgets:::plot_with_settings_srv,
-#     args = plot_with_settings_args,
-#     expr = {
-#       session$setInputs(`height_in_modal` = 450L)
-#       session$setInputs(`width_in_modal` = 400L)
-#       testthat::expect_identical(
-#         c(output$plot_modal$height, output$plot_modal$width),
-#         c(450L, 400L)
-#       )
-#       session$setInputs(`modal_downbutton-file_format` = "png")
-#       session$setInputs(`modal_downbutton-data_download` = 1)
-#       testthat::expect_identical(
-#         attr(png::readPNG(output$`modal_downbutton-data_download`, info = TRUE), "info")$dim,
-#         c(400L, 450L)
-#       )
-#     }
-#   )
-# })
 
 testthat::test_that("plot_with_settings_srv returns the click ggplot2 functionalities metadata", {
   shiny::testServer(
