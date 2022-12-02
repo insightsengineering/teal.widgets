@@ -141,15 +141,16 @@ plot_with_settings_ui <- function(id) {
 #'   ),
 #'   server = function(input, output, session) {
 #'     plot_r <- function() {
+#'       numbers <- seq_len(input$nums)
 #'       if (input$download_option == "ggplot") {
-#'         ggplot2::qplot(input$nums)
+#'         ggplot2::qplot(numbers)
 #'       } else if (input$download_option == "trellis") {
-#'         lattice::densityplot(input$nums)
+#'         lattice::densityplot(numbers)
 #'       } else if (input$download_option == "grob") {
-#'         tr_plot <- lattice::densityplot(input$nums)
+#'         tr_plot <- lattice::densityplot(numbers)
 #'         ggplotify::as.grob(tr_plot)
 #'       } else if (input$download_option == "base") {
-#'         plot(input$nums)
+#'         plot(numbers)
 #'       }
 #'     }
 #'
