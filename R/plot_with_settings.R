@@ -144,9 +144,9 @@ plot_with_settings_ui <- function(id) {
 #'       } else if (input$download_option == "trellis") {
 #'         lattice::densityplot(1)
 #'       } else if (input$download_option == "grob") {
-#'         grid.newpage()
-#'         l <- linesGrob()
-#'         grid.draw(l)
+#'         grid::grid.newpage()
+#'         l <- grid::linesGrob()
+#'         grid::grid.draw(l)
 #'       } else if (input$download_option == "base") {
 #'         plot(1)
 #'       }
