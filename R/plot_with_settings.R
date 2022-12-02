@@ -374,7 +374,6 @@ plot_with_settings_srv <- function(id,
       }
     })
 
-    # TODO: if needed only for tests?
     p_height <- reactive(`if`(!is.null(input$height), input$height, height[1]))
     p_width <- reactive(`if`(!is.null(input$width), input$width, default_slider_width()[1]))
     output$plot_main <- renderPlot(
@@ -384,7 +383,6 @@ plot_with_settings_srv <- function(id,
       width = p_width
     )
 
-    # TODO: if needed only for tests?
     output$plot_modal <- renderPlot(
       plot_reactive(),
       res = get_plot_dpi(),
