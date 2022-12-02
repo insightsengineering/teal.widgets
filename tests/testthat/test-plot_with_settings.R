@@ -160,13 +160,13 @@ brush <- list(
   outputId = "teal-main_ui-root-scatterplot_choices-scatter_plot-plot_main"
 )
 
-testthat::test_that("clean_brushedPoints assert error", {
+testthat::test_that("clean_brushedPoints returns error with wrong input", {
   testthat::expect_error(clean_brushedPoints())
   testthat::expect_error(clean_brushedPoints(2, list()))
   testthat::expect_error(clean_brushedPoints(data.frame(), list()))
 })
 
-testthat::test_that("clean_brushedPoints minimal correct input", {
+testthat::test_that("clean_brushedPoints returns a data frame with minimal correct input", {
   testthat::expect_error(
     clean_brushedPoints(
       data.frame(AGE = 1, BMRKR1 = 4),
