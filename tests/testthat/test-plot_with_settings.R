@@ -70,7 +70,7 @@ testthat::test_that("print_plot is able to plot different types of graphics", {
     function() ggplotify::as.grob(lattice::densityplot(1)),
     function() plot(1),
     function() boxplot(2),
-    function() hist(1)
+    function() 2
   )
 
   plot_types <- list(
@@ -79,7 +79,7 @@ testthat::test_that("print_plot is able to plot different types of graphics", {
     function() "grob",
     function() "base",
     function() "base",
-    function() "base"
+    function() "other"
   )
 
   for (p in seq_along(plot_funs)) {
@@ -183,15 +183,6 @@ testthat::test_that("clean_brushedPoints removal of NA points", {
   testthat::expect_identical(nrow(clean_brushedPoints(data, brush)), 6L)
 })
 
-
-testthat::test_that("type_download_ui returns shiny.tag", {
-  testthat::expect_s3_class(type_download_ui("STH"), "shiny.tag")
-})
-
-testthat::test_that("plot_with_settings_ui returns shiny.tag.list", {
-  testthat::expect_s3_class(plot_with_settings_ui("STH"), "shiny.tag.list")
-})
-
 download_srv_args <- list(
   id = "STH",
   plot_reactive = function() plot(1),
@@ -279,9 +270,9 @@ testthat::test_that("type_download_srv download a png file with NULL input dimen
 
 plot_with_settings_args <- list(
   id = "STH",
-  plot_r = function() plot(1),
-  height = c(600, 200, 2000),
-  width = NULL,
+  plot_r = NULL,
+  height = c(450, 200, 2000),
+  width = c(450, 200, 2000),
   show_hide_signal = reactive(TRUE),
   brushing = FALSE,
   clicking = FALSE,
@@ -290,13 +281,18 @@ plot_with_settings_args <- list(
   graph_align = "left"
 )
 
-testthat::test_that("plot_with_settings_srv set dimensions and download a png file", {
+testthat::test_that("plot_with_settings_srv set dimensions and download a png file - base", {
+  plot_with_settings_args$plot_r <- function() plot(1)
   shiny::testServer(
     teal.widgets:::plot_with_settings_srv,
     args = plot_with_settings_args,
     expr = {
       session$setInputs(`width` = 300L)
       session$setInputs(`height` = 350L)
+      testthat::expect_identical(
+        c(output$plot_main$width, output$plot_main$height),
+        c(300L, 350L)
+      )
       session$setInputs(`downbutton-file_format` = "png")
       session$setInputs(`downbutton-data_download` = 1)
       testthat::expect_identical(
@@ -307,7 +303,142 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
   )
 })
 
+testthat::test_that("plot_with_settings_srv set dimensions and download a png file - ggplot2", {
+  plot_with_settings_args$plot_r <- function() {
+    ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
+      ggplot2::geom_line()
+  }
+  shiny::testServer(
+    teal.widgets:::plot_with_settings_srv,
+    args = plot_with_settings_args,
+    expr = {
+      session$setInputs(`width` = 300L)
+      session$setInputs(`height` = 350L)
+      testthat::expect_identical(
+        c(output$plot_main$width, output$plot_main$height),
+        c(300L, 350L)
+      )
+      session$setInputs(`downbutton-file_format` = "png")
+      session$setInputs(`downbutton-data_download` = 1)
+      testthat::expect_identical(
+        attr(png::readPNG(output$`downbutton-data_download`, info = TRUE), "info")$dim,
+        c(300L, 350L)
+      )
+    }
+  )
+})
+
+testthat::test_that("plot_with_settings_srv set dimensions and download a png file - grob", {
+  plot_with_settings_args$plot_r <- function() {
+    ggplotify::as.grob(
+      ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
+        ggplot2::geom_line()
+    )
+  }
+  shiny::testServer(
+    teal.widgets:::plot_with_settings_srv,
+    args = plot_with_settings_args,
+    expr = {
+      session$setInputs(`width` = 300L)
+      session$setInputs(`height` = 350L)
+      testthat::expect_identical(
+        c(output$plot_main$width, output$plot_main$height),
+        c(300L, 350L)
+      )
+      session$setInputs(`downbutton-file_format` = "png")
+      session$setInputs(`downbutton-data_download` = 1)
+      testthat::expect_identical(
+        attr(png::readPNG(output$`downbutton-data_download`, info = TRUE), "info")$dim,
+        c(300L, 350L)
+      )
+    }
+  )
+})
+
+testthat::test_that("plot_with_settings_srv set dimensions and download a png file - trellis", {
+  plot_with_settings_args$plot_r <- function() {
+    lattice::densityplot(1)
+  }
+  shiny::testServer(
+    teal.widgets:::plot_with_settings_srv,
+    args = plot_with_settings_args,
+    expr = {
+      session$setInputs(`width` = 300L)
+      session$setInputs(`height` = 350L)
+      testthat::expect_identical(
+        c(output$plot_main$width, output$plot_main$height),
+        c(300L, 350L)
+      )
+      session$setInputs(`downbutton-file_format` = "png")
+      session$setInputs(`downbutton-data_download` = 1)
+      testthat::expect_identical(
+        attr(png::readPNG(output$`downbutton-data_download`, info = TRUE), "info")$dim,
+        c(300L, 350L)
+      )
+    }
+  )
+})
+
+testthat::test_that("plot_with_settings_srv set dimensions and download a png file - WORNG type", {
+  plot_with_settings_args$plot_r <- function() {
+    2
+  }
+  shiny::testServer(
+    teal.widgets:::plot_with_settings_srv,
+    args = plot_with_settings_args,
+    expr = {
+      session$setInputs(`width` = 300L)
+      session$setInputs(`height` = 350L)
+      testthat::expect_identical(
+        c(output$plot_main$width, output$plot_main$height),
+        c(300L, 350L)
+      )
+      session$setInputs(`downbutton-file_format` = "png")
+      session$setInputs(`downbutton-data_download` = 1)
+      testthat::expect_identical(
+        attr(png::readPNG(output$`downbutton-data_download`, info = TRUE), "info")$dim,
+        c(300L, 350L)
+      )
+    }
+  )
+})
+
+testthat::test_that("plot_with_settings_srv expand no error", {
+  plot_with_settings_args[["plot_r"]] <- function() plot(1)
+  shiny::testServer(
+    teal.widgets:::plot_with_settings_srv,
+    args = plot_with_settings_args,
+    expr = {
+      session$setInputs(`expand` = TRUE)
+      testthat::expect_silent(output$plot_main)
+    }
+  )
+})
+
+testthat::test_that("plot_with_settings_srv set dimensions and download a png file from modal", {
+  plot_with_settings_args[["plot_r"]] <- function() plot(1)
+  shiny::testServer(
+    teal.widgets:::plot_with_settings_srv,
+    args = plot_with_settings_args,
+    expr = {
+      session$setInputs(`width_in_modal` = 400L)
+      session$setInputs(`height_in_modal` = 450L)
+      testthat::expect_identical(
+        c(output$plot_modal$width, output$plot_modal$height),
+        c(400L, 450L)
+      )
+      session$setInputs(`modal_downbutton-file_format` = "png")
+      session$setInputs(`modal_downbutton-data_download` = 1)
+      testthat::expect_identical(
+        attr(png::readPNG(output$`modal_downbutton-data_download`, info = TRUE), "info")$dim,
+        c(400L, 450L)
+      )
+    }
+  )
+})
+
 testthat::test_that("plot_with_settings_srv returns the click ggplot2 functionalities metadata", {
+  plot_with_settings_args$plot_r <- function() plot(1)
   shiny::testServer(
     teal.widgets:::plot_with_settings_srv,
     args = plot_with_settings_args,
