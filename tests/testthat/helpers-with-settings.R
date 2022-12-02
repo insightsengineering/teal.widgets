@@ -43,4 +43,3 @@ is_draw <- function(plot_fun) {
   }
   return(FALSE)
 }
-
