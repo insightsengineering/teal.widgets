@@ -109,8 +109,9 @@ shinyApp(
       } else if (input$download_option == "trellis") {
         lattice::densityplot(1)
       } else if (input$download_option == "grob") {
-        tr_plot <- lattice::densityplot(1)
-        ggplotify::as.grob(tr_plot)
+        grid::grid.newpage()
+        l <- grid::linesGrob()
+        grid::grid.draw(l)
       } else if (input$download_option == "base") {
         plot(1)
       }
