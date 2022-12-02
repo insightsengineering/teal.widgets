@@ -273,72 +273,63 @@ testthat::test_that("plot_with_settings_srv assert error", {
   testthat::expect_error(
     shiny::testServer(
       teal.widgets:::plot_with_settings_srv,
-      args = list(id = "STH", plot_r = NULL),
-      expr = {}
+      args = list(id = "STH", plot_r = NULL)
     ),
     "Assertion"
   )
   testthat::expect_error(
     shiny::testServer(
       teal.widgets:::plot_with_settings_srv,
-      args = list(id = "STH", plot_r = function() plot(1), height = "20"),
-      expr = {}
+      args = list(id = "STH", plot_r = function() plot(1), height = "20")
     ),
     "Assertion"
   )
   testthat::expect_error(
     shiny::testServer(
       teal.widgets:::plot_with_settings_srv,
-      args = list(id = "STH", plot_r = function() plot(1), width = c(20, 100, 200)),
-      expr = {}
+      args = list(id = "STH", plot_r = function() plot(1), width = c(20, 100, 200))
     ),
     "Assertion"
   )
   testthat::expect_error(
     shiny::testServer(
       teal.widgets:::plot_with_settings_srv,
-      args = list(id = "STH", plot_r = function() plot(1), show_hide_signal = TRUE),
-      expr = {}
+      args = list(id = "STH", plot_r = function() plot(1), show_hide_signal = TRUE)
     ),
     "Assertion"
   )
   testthat::expect_error(
     shiny::testServer(
       teal.widgets:::plot_with_settings_srv,
-      args = list(id = "STH", plot_r = function() plot(1), brushing = 20),
-      expr = {}
+      args = list(id = "STH", plot_r = function() plot(1), brushing = 20)
     ),
     "Assertion"
   )
   testthat::expect_error(
     shiny::testServer(
       teal.widgets:::plot_with_settings_srv,
-      args = list(id = "STH", plot_r = function() plot(1), clicking = 20),
-      expr = {}
+      args = list(id = "STH", plot_r = function() plot(1), clicking = 20)
     ),
     "Assertion"
   )
   testthat::expect_error(
     shiny::testServer(
       teal.widgets:::plot_with_settings_srv,
-      args = list(id = "STH", plot_r = function() plot(1), dblclicking = 20),
-      expr = {}
+      args = list(id = "STH", plot_r = function() plot(1), dblclicking = 20)
     ),
     "Assertion"
   )
   testthat::expect_error(
     shiny::testServer(
       teal.widgets:::plot_with_settings_srv,
-      args = list(id = "STH", plot_r = function() plot(1), dblclicking = 20),
-      expr = {}
+      args = list(id = "STH", plot_r = function() plot(1), dblclicking = 20)
     ),
     "Assertion"
   )
   testthat::expect_error(
     shiny::testServer(
       teal.widgets:::plot_with_settings_srv,
-      args = list(id = "STH", plot_r = function() plot(1), graph_align = "centery"),
-      expr = {}
+      args = list(id = "STH", plot_r = function() plot(1), graph_align = "centery")
     ),
     "Assertion"
   )
