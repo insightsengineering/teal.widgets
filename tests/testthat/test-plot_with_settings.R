@@ -472,7 +472,6 @@ testthat::test_that("plot_with_settings_srv returns the click ggplot2 functional
       session$setInputs(`plot_dblclick` = "SOMETHING")
       session$setInputs(`plot_click` = "SOMETHING")
       session$setInputs(`plot_brush` = "SOMETHING")
-
       testthat::expect_identical(session$returned$brush(), "SOMETHING")
       testthat::expect_identical(session$returned$hover(), "SOMETHING")
       testthat::expect_identical(session$returned$click(), "SOMETHING")
