@@ -193,7 +193,7 @@ download_srv_args <- list(
   default_h = function() 300
 )
 
-testthat::test_that("type_download_srv download all types of files with defualt name", {
+testthat::test_that("type_download_srv download all types of files with default name", {
   shiny::testServer(
     teal.widgets:::type_download_srv,
     args = download_srv_args,
@@ -446,7 +446,7 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
   )
 })
 
-testthat::test_that("plot_with_settings_srv set dimensions and download a png file - WORNG type", {
+testthat::test_that("plot_with_settings_srv set dimensions and download a png file - WRONG type", {
   plot_with_settings_args$plot_r <- function() {
     2
   }
