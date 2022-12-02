@@ -230,7 +230,7 @@ testthat::test_that("type_download_srv download all types of files and change th
   )
 })
 
-testthat::test_that("type_download_srv download a png file with different dimensions", {
+testthat::test_that("type_download_srv downloads a png file with different dimensions", {
   shiny::testServer(
     teal.widgets:::type_download_srv,
     args = download_srv_args,
@@ -245,7 +245,7 @@ testthat::test_that("type_download_srv download a png file with different dimens
   )
 })
 
-testthat::test_that("type_download_srv download a png file with NULL input dimensions", {
+testthat::test_that("type_download_srv downloads a png file using default dimensions input dimensions are NULL", {
   shiny::testServer(
     teal.widgets:::type_download_srv,
     args = list(
