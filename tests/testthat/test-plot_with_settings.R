@@ -406,7 +406,7 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - WRONG type", {
   plot_with_settings_args$plot_r <- function() 2
-  
+
   shiny::testServer(
     teal.widgets:::plot_with_settings_srv,
     args = plot_with_settings_args,
