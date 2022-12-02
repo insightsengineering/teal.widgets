@@ -397,7 +397,7 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - grob", {
   plot_with_settings_args$plot_r <- function() {
-    ggplotify::as.grob(
+    ggplot2::ggplotGrob(
       ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
         ggplot2::geom_line()
     )
