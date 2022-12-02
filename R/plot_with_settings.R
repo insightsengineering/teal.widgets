@@ -69,8 +69,9 @@ plot_with_settings_ui <- function(id) {
 #'
 #' @inheritParams shiny::moduleServer
 #' @param plot_r (`reactive` or `function`)\cr
-#'  reactive expression or a simple `function` to draw a plot.
+#'  `reactive` expression or a simple `function` to draw a plot.
 #'  A simple `function` is needed e.g. for base plots like `plot(1)` as the output can not be caught when downloading.
+#'  Take into account that simple functions are less efficient than reactive, as not catching the result.
 #' @param height (`numeric`, optional)\cr
 #'  vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
 #'  the main and modal plot display. The value in the modal display is taken from the value of the
@@ -135,19 +136,20 @@ plot_with_settings_ui <- function(id) {
 #'     radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
 #'     plot_with_settings_ui(
 #'       id = "plot_with_settings"
-#'     )
+#'     ),
+#'     sliderInput("nums", "Value", 1, 10, 1)
 #'   ),
 #'   server = function(input, output, session) {
 #'     plot_r <- function() {
 #'       if (input$download_option == "ggplot") {
-#'         ggplot2::qplot(1)
+#'         ggplot2::qplot(input$nums)
 #'       } else if (input$download_option == "trellis") {
-#'         lattice::densityplot(1)
+#'         lattice::densityplot(input$nums)
 #'       } else if (input$download_option == "grob") {
-#'         tr_plot <- lattice::densityplot(1)
+#'         tr_plot <- lattice::densityplot(input$nums)
 #'         ggplotify::as.grob(tr_plot)
 #'       } else if (input$download_option == "base") {
-#'         plot(1)
+#'         plot(input$nums)
 #'       }
 #'     }
 #'
@@ -233,6 +235,7 @@ plot_with_settings_srv <- function(id,
                                    dblclicking = FALSE,
                                    hovering = FALSE,
                                    graph_align = "left") {
+  checkmate::assert_string(id)
   checkmate::assert(
     checkmate::check_class(plot_r, "function"),
     checkmate::check_class(plot_r, "reactive")
@@ -366,9 +369,22 @@ plot_with_settings_srv <- function(id,
       }
     })
 
-    output$plot_modal <- output$plot_main <- renderPlot(
+    # TODO: if needed only for tests?
+    p_height <- reactive(`if`(!is.null(input$height), input$height, height[1]))
+    p_width <- reactive(`if`(!is.null(input$width), input$width, default_slider_width()[1]))
+    output$plot_main <- renderPlot(
       plot_reactive(),
-      res = get_plot_dpi()
+      res = get_plot_dpi(),
+      height = p_height,
+      width = p_width
+    )
+
+    # TODO: if needed only for tests?
+    output$plot_modal <- renderPlot(
+      plot_reactive(),
+      res = get_plot_dpi(),
+      height = reactive(input$height_in_modal),
+      width = reactive(input$width_in_modal)
     )
 
     output$plot_out_main <- renderUI({
@@ -376,8 +392,8 @@ plot_with_settings_srv <- function(id,
         align = graph_align,
         plotOutput(
           ns("plot_main"),
-          height = `if`(!is.null(input$height), input$height, height[1]),
-          width = `if`(!is.null(input$width), input$width, default_slider_width()[1]),
+          height = p_height(),
+          width = p_width(),
           brush = `if`(brushing, brushOpts(ns("plot_brush"), resetOnNew = TRUE), NULL),
           click = `if`(clicking, clickOpts(ns("plot_click")), NULL),
           dblclick = `if`(dblclicking, dblclickOpts(ns("plot_dblclick")), NULL),
@@ -503,6 +519,7 @@ plot_with_settings_srv <- function(id,
   })
 }
 
+#' @keywords internal
 type_download_ui <- function(id) {
   ns <- NS(id)
   shinyWidgets::dropdownButton(
@@ -529,6 +546,7 @@ type_download_ui <- function(id) {
   )
 }
 
+#' @keywords internal
 type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, plot_h, default_h) {
   moduleServer(
     id,
@@ -569,6 +587,9 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
 #' @export
 #'
 clean_brushedPoints <- function(data, brush) { # nolintr
+  checkmate::assert_data_frame(data)
+  checkmate::assert_list(brush)
+
   # define original panelvar1 and panelvar2 before getting overwritten
   original_panelvar1 <- brush$mapping$panelvar1
   original_panelvar2 <- brush$mapping$panelvar2
@@ -598,6 +619,8 @@ clean_brushedPoints <- function(data, brush) { # nolintr
   df
 }
 
+#' @keywords internal
+#'
 get_plot_dpi <- function() {
   default_dpi <- 72
   dpi <- getOption("teal.plot_dpi", default_dpi)

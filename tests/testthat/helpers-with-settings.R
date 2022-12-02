@@ -24,10 +24,23 @@ app_tws <- function() {
           rtables::analyze(c("SEX", "AGE"))
 
         tbl <- rtables::build_table(l, df1)
-
         tbl
       })
       table_with_settings_srv(id = "table_with_settings", table_r = table_r)
     }
   )
 }
+
+#' @keywords internal
+is_draw <- function(plot_fun) {
+  checkmate::assert_function(plot_fun)
+  graphics.off() # close any current graphics devices
+  cdev <- dev.cur()
+  plot_fun()
+  if (cdev != dev.cur()) {
+    on.exit(dev.off())
+    return(TRUE)
+  }
+  return(FALSE)
+}
+

@@ -22,8 +22,9 @@ plot_with_settings_srv(
 UI function.}
 
 \item{plot_r}{(\code{reactive} or \code{function})\cr
-reactive expression or a simple \code{function} to draw a plot.
-A simple \code{function} is needed e.g. for base plots like \code{plot(1)} as the output can not be caught when downloading.}
+\code{reactive} expression or a simple \code{function} to draw a plot.
+A simple \code{function} is needed e.g. for base plots like \code{plot(1)} as the output can not be caught when downloading.
+Take into account that simple functions are less efficient than reactive, as not catching the result.}
 
 \item{height}{(\code{numeric}, optional)\cr
 vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
@@ -100,19 +101,20 @@ shinyApp(
     radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
     plot_with_settings_ui(
       id = "plot_with_settings"
-    )
+    ),
+    sliderInput("nums", "Value", 1, 10, 1)
   ),
   server = function(input, output, session) {
     plot_r <- function() {
       if (input$download_option == "ggplot") {
-        ggplot2::qplot(1)
+        ggplot2::qplot(input$nums)
       } else if (input$download_option == "trellis") {
-        lattice::densityplot(1)
+        lattice::densityplot(input$nums)
       } else if (input$download_option == "grob") {
-        tr_plot <- lattice::densityplot(1)
+        tr_plot <- lattice::densityplot(input$nums)
         ggplotify::as.grob(tr_plot)
       } else if (input$download_option == "base") {
-        plot(1)
+        plot(input$nums)
       }
     }
 
