@@ -108,14 +108,14 @@ shinyApp(
     plot_r <- function() {
       numbers <- seq_len(input$nums)
       if (input$download_option == "ggplot") {
-        ggplot2::ggplot(data.frame(n = 1), ggplot2::aes(n)) +
+        ggplot2::ggplot(data.frame(n = numbers), ggplot2::aes(n)) +
           ggplot2::geom_bar()
       } else if (input$download_option == "trellis") {
         lattice::densityplot(numbers)
       } else if (input$download_option == "grob") {
         tr_plot <- lattice::densityplot(numbers)
         ggplot2::ggplotGrob(
-          ggplot2::ggplot(data.frame(n = 1), ggplot2::aes(n)) +
+          ggplot2::ggplot(data.frame(n = numbers), ggplot2::aes(n)) +
             ggplot2::geom_bar()
         )
       } else if (input$download_option == "base") {
