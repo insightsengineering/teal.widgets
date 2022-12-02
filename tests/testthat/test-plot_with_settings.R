@@ -67,7 +67,12 @@ testthat::test_that("print_plot is able to plot different types of graphics", {
         ggplot2::geom_point())
     },
     function() lattice::densityplot(1),
-    function() ggplotify::as.grob(lattice::densityplot(1)),
+    function() {
+      ggplot2::ggplotGrob(
+        ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
+          ggplot2::geom_point()
+      )
+    },
     function() plot(1),
     function() boxplot(2),
     function() 2
