@@ -59,25 +59,24 @@ testthat::test_that("if teal.plot_dpi is not an integer value then get_plot_dpi 
   )
 })
 
+plot_funs <- list(
+  function() {
+    print(ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
+            ggplot2::geom_point())
+  },
+  function() lattice::densityplot(1),
+  function() {
+    ggplot2::ggplotGrob(
+      ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
+        ggplot2::geom_point()
+    )
+  },
+  function() plot(1),
+  function() boxplot(2),
+  function() 2
+)
 
 testthat::test_that("print_plot is able to plot different types of graphics", {
-  plot_funs <- list(
-    function() {
-      print(ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
-        ggplot2::geom_point())
-    },
-    function() lattice::densityplot(1),
-    function() {
-      ggplot2::ggplotGrob(
-        ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
-          ggplot2::geom_point()
-      )
-    },
-    function() plot(1),
-    function() boxplot(2),
-    function() 2
-  )
-
   plot_types <- list(
     function() "ANYTHING",
     function() "trel",
@@ -486,31 +485,7 @@ testthat::test_that("plot_with_settings_srv returns the click ggplot2 functional
 })
 
 testthat::test_that("plot_with_settings_srv and plot_type reactive types", {
-  plot_funs <- list(
-    function() {
-      print(ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
-        ggplot2::geom_point())
-    },
-    function() lattice::densityplot(1),
-    function() {
-      ggplot2::ggplotGrob(
-        ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
-          ggplot2::geom_point()
-      )
-    },
-    function() plot(1),
-    function() boxplot(2),
-    function() 2
-  )
-
-  plot_types <- c(
-    "gg",
-    "trel",
-    "grob",
-    "base",
-    "base",
-    "other"
-  )
+  plot_types <- c("gg", "trel", "grob", "base", "base", "other")
 
   for (p in seq_along(plot_funs)) {
     plot_with_settings_args[["plot_r"]] <- plot_funs[[p]]
