@@ -489,7 +489,7 @@ testthat::test_that("plot_with_settings_srv and plot_type reactive types", {
   plot_funs <- list(
     function() {
       print(ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
-              ggplot2::geom_point())
+        ggplot2::geom_point())
     },
     function() lattice::densityplot(1),
     function() {
