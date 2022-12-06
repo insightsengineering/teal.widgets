@@ -62,7 +62,7 @@ testthat::test_that("if teal.plot_dpi is not an integer value then get_plot_dpi 
 plot_funs <- list(
   function() {
     print(ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
-            ggplot2::geom_point())
+      ggplot2::geom_point())
   },
   function() lattice::densityplot(1),
   function() {
