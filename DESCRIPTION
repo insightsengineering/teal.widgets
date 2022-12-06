@@ -33,8 +33,9 @@ Suggests:
     knitr,
     lattice,
     magrittr,
+    png,
     rmarkdown,
-    shinytest2,
+    shinytest2 (>= 0.2.0),
     testthat (>= 2.0),
     withr
 VignetteBuilder:
