@@ -486,7 +486,6 @@ testthat::test_that("plot_with_settings_srv returns the click ggplot2 functional
 
 testthat::test_that("plot_with_settings_srv and plot_type reactive types", {
   plot_types <- c("gg", "trel", "grob", "base", "base", "other")
-
   for (p in seq_along(plot_funs)) {
     plot_with_settings_args[["plot_r"]] <- plot_funs[[p]]
     shiny::testServer(
