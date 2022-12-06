@@ -34,6 +34,7 @@ testthat::test_that("txt and csv download", {
   app$set_inputs(`table_with_settings-downbutton-file_name` = "tab1")
   app$expect_download("table_with_settings-downbutton-data_download")
 
+
   # download table in .txt
   app$set_inputs(`table_with_settings-downbutton-file_format` = ".txt")
   app$set_inputs(`table_with_settings-downbutton-dwnl_state` = TRUE)

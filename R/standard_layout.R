@@ -25,7 +25,6 @@ standard_layout <- function(output,
                             forms = NULL,
                             pre_output = NULL,
                             post_output = NULL) {
-
   # checking arguments
   if (!inherits(output, c("shiny.tag", "shiny.tag.list", "html"))) {
     stop("output is supposed to be of class shiny.tag or shiny.tag.list")
