@@ -12,6 +12,7 @@
 ### Bug fixes
 
 * Added labels to pagination button in `table_with_settings` and fixed alt text.
+* Fixed the html structure of `panel_item` function.
 
 ### Miscellaneous
 

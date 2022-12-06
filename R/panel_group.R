@@ -65,9 +65,9 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
     if (bs_version == "3") {
       res_tag$children <- list(
         tags$div(
+          id = div_id,
           class = "panel panel-default",
           tags$div(
-            id = div_id,
             class = paste("panel-heading", ifelse(collapsed, "collapsed", "")),
             `data-toggle` = "collapse",
             href = paste0("#", panel_id),
