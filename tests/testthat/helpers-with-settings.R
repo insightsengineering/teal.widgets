@@ -32,7 +32,7 @@ app_tws <- function() {
 }
 
 #' Function to check if a function has a side effect of drawing something
-#' @param `function` function which possibly draw something.
+#' @param `function` function which possibly draws something.
 #' @return `logical(1)` whether the function has a side effect of drawing a plot.
 #' @note reference to https://stackoverflow.com/questions/74615694/check-if-a-function-draw-plot-something
 #' @keywords internal
