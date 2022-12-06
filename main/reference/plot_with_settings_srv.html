@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">teal.widgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9011</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9012</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,14 +31,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/v0.2.0">v0.2.0</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -88,9 +80,9 @@ UI function.</p></dd>
 
 
 <dt>plot_r</dt>
-<dd><p>(<code>reactive</code> or <code>function</code>)<br>
-reactive expression or a simple <code>function</code> to draw a plot.
-A simple <code>function</code> is needed e.g. for base plots like <code>plot(1)</code> as the output can not be caught when downloading.</p></dd>
+<dd><p>(<code>reactive</code> or <code>function</code>)<br><code>reactive</code> expression or a simple <code>function</code> to draw a plot.
+A simple <code>function</code> is needed e.g. for base plots like <code>plot(1)</code> as the output can not be caught when downloading.
+Take into account that simple functions are less efficient than reactive, as not catching the result.</p></dd>
 
 
 <dt>height</dt>
@@ -184,20 +176,25 @@ If an invalid value is set then the default value is used and a warning is outpu
 <span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/radioButtons.html" class="external-link">radioButtons</a></span><span class="op">(</span><span class="st">"download_option"</span>, <span class="st">"Select the Option"</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"ggplot"</span>, <span class="st">"trellis"</span>, <span class="st">"grob"</span>, <span class="st">"base"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="plot_with_settings_ui.html">plot_with_settings_ui</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      id <span class="op">=</span> <span class="st">"plot_with_settings"</span></span></span>
-<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span><span class="st">"nums"</span>, <span class="st">"Value"</span>, <span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
 <span class="r-in"><span>  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="va">plot_r</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">nums</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">download_option</span> <span class="op">==</span> <span class="st">"ggplot"</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>        <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html" class="external-link">qplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">numbers</span><span class="op">)</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>          <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">download_option</span> <span class="op">==</span> <span class="st">"trellis"</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>        <span class="fu">lattice</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/histogram.html" class="external-link">densityplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="fu">lattice</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/histogram.html" class="external-link">densityplot</a></span><span class="op">(</span><span class="va">numbers</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">download_option</span> <span class="op">==</span> <span class="st">"grob"</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>        <span class="fu">grid</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grid/grid.newpage.html" class="external-link">grid.newpage</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>        <span class="va">l</span> <span class="op">&lt;-</span> <span class="fu">grid</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grid/grid.lines.html" class="external-link">linesGrob</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>        <span class="fu">grid</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grid/grid.draw.html" class="external-link">grid.draw</a></span><span class="op">(</span><span class="va">l</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="va">tr_plot</span> <span class="op">&lt;-</span> <span class="fu">lattice</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/histogram.html" class="external-link">densityplot</a></span><span class="op">(</span><span class="va">numbers</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplotGrob.html" class="external-link">ggplotGrob</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">numbers</span><span class="op">)</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>            <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">download_option</span> <span class="op">==</span> <span class="st">"base"</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">numbers</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">}</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
