@@ -38,3 +38,12 @@
   margin-bottom: 2px;
   height: auto;
 }
+
+.draggableBuckets-invalid {
+  border: solid 1px #a94442;
+}
+
+.draggableBuckets-invalid .feedback-message {
+  display: block;
+  color: #a94442;
+}
