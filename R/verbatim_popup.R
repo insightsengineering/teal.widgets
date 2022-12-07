@@ -57,7 +57,9 @@ verbatim_popup_ui <- function(id, button_label, type = c("button", "link"), ...)
 #' @param style (`logical(1)`) whether to style the `verbatim_content` using `styler::style_text`.
 #' If `verbatim_content` is a `condition` or `reactive` holding `condition` then this argument is ignored
 #' @param disabled (`reactive(1)`) the `shiny` reactive value holding a `logical`. The popup button is disabled
-#' when the flag is `TRUE` and enabled otherwise
+#' when the flag is `TRUE` and enabled otherwise.
+#' Please take into account that `shinyjs` is the dependency for this functionality so the `shinyjs::useShinyjs()` call
+#' has to be part of the main UI of the `shiny` app.
 #'
 verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disabled = shiny::reactiveVal(FALSE)) {
   checkmate::assert_string(id)
