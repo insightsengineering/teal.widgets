@@ -77,15 +77,6 @@ testthat::test_that(
   }
 )
 
-testthat::test_that("disable_button returns NULL", {
-  shiny::withReactiveDomain(
-    domain = shiny::MockShinySession$new(),
-    expr = testthat::expect_null(
-      isolate(disable_button(shiny::reactive(FALSE), "test_id"))
-    )
-  )
-})
-
 testthat::test_that("button_click_observer returns an observer", {
   testthat::expect_true(inherits(button_click_observer(
     click_event = shiny::reactive(0),
