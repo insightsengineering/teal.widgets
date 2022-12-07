@@ -41,9 +41,13 @@
 
 .draggableBuckets-invalid {
   border: solid 1px #a94442;
+  margin-bottom: 15px;
 }
 
-.draggableBuckets-invalid .feedback-message {
+.draggableBuckets-invalid::after {
+  content: attr(data-error-message);
   display: block;
   color: #a94442;
+  position: absolute;
 }
+

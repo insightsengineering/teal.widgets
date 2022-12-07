@@ -74,7 +74,6 @@ draggable_buckets <- function(input_id, label, elements = character(), buckets) 
       shiny::tags$span(label),
       render_unbucketed_elements(elements = elements, elements_iterator = elements_iterator, widget_id = input_id),
       render_buckets(buckets = buckets, elements_iterator = elements_iterator, widget_id = input_id),
-      shiny::tags$span(class = "feedback-message"),
       class = "draggableBuckets",
       id = input_id
     )

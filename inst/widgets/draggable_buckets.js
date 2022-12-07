@@ -79,12 +79,12 @@ $.extend(draggableBuckets, {
   // The following two methods, setInvalid and clearInvalid, will be called
   // whenever this input fails or passes (respectively) validation.
   setInvalid: function(el, data) {
+    el.setAttribute("data-error-message", data.message);
     el.classList.add("draggableBuckets-invalid");
-    el.querySelector(".feedback-message").innerText = data.message;
   },
   clearInvalid: function(el) {
+    el.removeAttribute("data-error-message");
     el.classList.remove("draggableBuckets-invalid");
-    el.querySelector(".feedback-message").innerText = "";
   },
 
   subscribe: function (el, callback) {
