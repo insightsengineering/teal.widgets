@@ -35,10 +35,10 @@ ui <- shiny::fluidPage(
   shiny::verbatimTextOutput("out2")
 )
 server <- function(input, output) {
- iv <- shinyvalidate::InputValidator$new()
+  iv <- shinyvalidate::InputValidator$new()
   iv$add_rule(
     "id",
-    function(data) if(length(data[["bucket1"]]) == 0) "There should be stuff in bucket 1"
+    function(data) if (length(data[["bucket1"]]) == 0) "There should be stuff in bucket 1"
   )
   iv$enable()
 
