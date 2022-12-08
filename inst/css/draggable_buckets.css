@@ -41,7 +41,7 @@
 
 .draggableBuckets-invalid {
   border: solid 1px #a94442;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 }
 
 .draggableBuckets-invalid::after {
