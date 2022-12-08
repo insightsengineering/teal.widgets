@@ -591,7 +591,6 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
 #'
 clean_brushedPoints <- function(data, brush) { # nolintr
   checkmate::assert_data_frame(data)
-  checkmate::assert_list(brush)
 
   # define original panelvar1 and panelvar2 before getting overwritten
   original_panelvar1 <- brush$mapping$panelvar1
