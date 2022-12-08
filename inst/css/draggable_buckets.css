@@ -41,7 +41,7 @@
 
 .draggableBuckets-invalid {
   border: solid 1px #a94442;
-  margin-bottom: 32px;
+  margin-bottom: 48px;
 }
 
 .draggableBuckets-invalid::after {
@@ -49,5 +49,6 @@
   display: block;
   color: #a94442;
   position: absolute;
+  margin-top: 8px;
 }
 
