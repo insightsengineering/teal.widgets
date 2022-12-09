@@ -1,6 +1,6 @@
 Package: teal.widgets
 Title: Shiny Widgets for `teal` Applications
-Version: 0.2.0.9015
+Version: 0.2.0.9016
 Date: 2022-12-09
 Authors@R: c(
     person("Dawid", "Kaledkowski", , "dawid.kaledkowski@roche.com", role = c("aut", "cre")),
