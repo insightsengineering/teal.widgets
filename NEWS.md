@@ -3,6 +3,7 @@
 ### New features
 
 * Added support for downloading base plots.
+* Add support for `draggable_buckets` to use `shinyvalidate` for input validation.
 
 ### Enhancements
 

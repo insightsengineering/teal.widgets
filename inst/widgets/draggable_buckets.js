@@ -75,6 +75,18 @@ $.extend(draggableBuckets, {
   setValue: function (el, value) {
     $(el).text(value);
   },
+
+  // The following two methods, setInvalid and clearInvalid, will be called
+  // whenever this input fails or passes (respectively) validation.
+  setInvalid: function(el, data) {
+    el.setAttribute("data-error-message", data.message);
+    el.classList.add("draggableBuckets-invalid");
+  },
+  clearInvalid: function(el) {
+    el.removeAttribute("data-error-message");
+    el.classList.remove("draggableBuckets-invalid");
+  },
+
   subscribe: function (el, callback) {
     if (this.observers === undefined) this.observers = {};
     this.observers[el] = new MutationObserver(callback);

@@ -23,7 +23,11 @@ the \code{HTML} code comprising an instance of this widget
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 A custom widget with draggable elements that can be put into buckets.
 }
+\details{
+\code{shinyvalidate} validation can be used with this widget. See example below.
+}
 \examples{
+
 ui <- shiny::fluidPage(
   draggable_buckets("id", "Choices #1", c("a", "b"), c("bucket1", "bucket2")),
   draggable_buckets("id2", "Choices #2", letters, c("vowels", "consonants")),
@@ -31,11 +35,21 @@ ui <- shiny::fluidPage(
   shiny::verbatimTextOutput("out2")
 )
 server <- function(input, output) {
+  iv <- shinyvalidate::InputValidator$new()
+  iv$add_rule(
+    "id",
+    function(data) if (length(data[["bucket1"]]) == 0) "There should be stuff in bucket 1"
+  )
+  iv$enable()
+
   shiny::observeEvent(list(input$id, input$id2), {
-    print(shiny::isolate(input$id))
-    print(shiny::isolate(input$id2))
+    print(isolate(input$id))
+    print(isolate(input$id2))
   })
-  output$out <- shiny::renderPrint(input$id)
+  output$out <- shiny::renderPrint({
+    iv$is_valid()
+    input$id
+  })
   output$out2 <- shiny::renderPrint(input$id2)
 }
 if (interactive()) shiny::shinyApp(ui, server)

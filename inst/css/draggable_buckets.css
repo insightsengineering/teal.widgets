@@ -38,3 +38,17 @@
   margin-bottom: 2px;
   height: auto;
 }
+
+.draggableBuckets-invalid {
+  border: solid 1px #a94442;
+  margin-bottom: 48px;
+}
+
+.draggableBuckets-invalid::after {
+  content: attr(data-error-message);
+  display: block;
+  color: #a94442;
+  position: absolute;
+  margin-top: 8px;
+}
+
