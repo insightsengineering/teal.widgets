@@ -34,9 +34,7 @@ holding any of the above) the content to show in the popup modal window}
 If \code{verbatim_content} is a \code{condition} or \code{reactive} holding \code{condition} then this argument is ignored}
 
 \item{disabled}{(\code{reactive(1)}) the \code{shiny} reactive value holding a \code{logical}. The popup button is disabled
-when the flag is \code{TRUE} and enabled otherwise.
-Please take into account that \code{shinyjs} is the dependency for this functionality so the \code{shinyjs::useShinyjs()} call
-has to be part of the main UI of the \code{shiny} app.}
+when the flag is \code{TRUE} and enabled otherwise.}
 }
 \value{
 the UI function returns a \code{shiny.tag.list} object
