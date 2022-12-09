@@ -9,7 +9,8 @@ button_click_observer(
   copy_button_id,
   copied_area_id,
   modal_title,
-  modal_content
+  modal_content,
+  disabled
 )
 }
 \arguments{
@@ -23,6 +24,9 @@ Automatically appended with a 1 and 2 suffix for top and bottom buttons respecti
 \item{modal_title}{(\code{character(1)}) the title of the modal window}
 
 \item{modal_content}{(\code{reactive}) the content of the modal window}
+
+\item{disabled}{(\code{reactive(1)}) the \code{shiny} reactive value holding a \code{logical}. The popup button is disabled
+when the flag is \code{TRUE} and enabled otherwise.}
 }
 \description{
 When the button is clicked it pop up a modal window with the text.
