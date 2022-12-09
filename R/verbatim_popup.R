@@ -94,7 +94,6 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disab
 #' @param disabled (`reactive(1)`) the `shiny` reactive value holding a `logical`. The popup button is disabled
 #' when the flag is `TRUE` and enabled otherwise.
 button_click_observer <- function(click_event, copy_button_id, copied_area_id, modal_title, modal_content, disabled) {
-
   shiny::observeEvent(
     disabled(),
     handlerExpr = {
