@@ -1,29 +1,24 @@
 # teal.widgets
 
 <!-- start badges -->
-[![Check 🛠](https://github.com/insightsengineering//actions/workflows/check.yaml/badge.svg)](https://github.com/insightsengineering//actions/workflows/check.yaml)
-[![Docs 📚](https://github.com/insightsengineering//actions/workflows/docs.yaml/badge.svg)](https://insightsengineering.github.io//)
-[![Code Coverage 📔](https://raw.githubusercontent.com/insightsengineering//_xml_coverage_reports/data/main/badge.svg)](https://raw.githubusercontent.com/insightsengineering//_xml_coverage_reports/data/main/coverage.xml)
+[![Check 🛠](https://github.com/insightsengineering/teal.widgets/actions/workflows/check.yaml/badge.svg)](https://github.com/insightsengineering/teal.widgets/actions/workflows/check.yaml)
+[![Docs 📚](https://github.com/insightsengineering/teal.widgets/actions/workflows/docs.yaml/badge.svg)](https://insightsengineering.github.io/teal.widgets/)
+[![Code Coverage 📔](https://raw.githubusercontent.com/insightsengineering/teal.widgets/_xml_coverage_reports/data/main/badge.svg)](https://raw.githubusercontent.com/insightsengineering/teal.widgets/_xml_coverage_reports/data/main/coverage.xml)
 
-![GitHub forks](https://img.shields.io/github/forks/insightsengineering/?style=social)
-![GitHub Repo stars](https://img.shields.io/github/stars/insightsengineering/?style=social)
+![GitHub forks](https://img.shields.io/github/forks/insightsengineering/teal.widgets?style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/insightsengineering/teal.widgets?style=social)
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/insightsengineering/)
-![GitHub contributors](https://img.shields.io/github/contributors/insightsengineering/)
-![GitHub last commit](https://img.shields.io/github/last-commit/insightsengineering/)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/insightsengineering/)
-![GitHub repo size](https://img.shields.io/github/repo-size/insightsengineering/)
-![GitHub language count](https://img.shields.io/github/languages/count/insightsengineering/)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/insightsengineering/teal.widgets)
+![GitHub contributors](https://img.shields.io/github/contributors/insightsengineering/teal.widgets)
+![GitHub last commit](https://img.shields.io/github/last-commit/insightsengineering/teal.widgets)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/insightsengineering/teal.widgets)
+![GitHub repo size](https://img.shields.io/github/repo-size/insightsengineering/teal.widgets)
+![GitHub language count](https://img.shields.io/github/languages/count/insightsengineering/teal.widgets)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Current Version](https://img.shields.io/github/r-package/v/insightsengineering//main?color=purple\&label=package%20version)](https://github.com/insightsengineering//tree/main)
-[![Open Issues](https://img.shields.io/github/issues-raw/insightsengineering/?color=red\&label=open%20issues)](https://github.com/insightsengineering//issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
+[![Current Version](https://img.shields.io/github/r-package/v/insightsengineering/teal.widgets/main?color=purple\&label=package%20version)](https://github.com/insightsengineering/teal.widgets/tree/main)
+[![Open Issues](https://img.shields.io/github/issues-raw/insightsengineering/teal.widgets?color=red\&label=open%20issues)](https://github.com/insightsengineering/teal.widgets/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
 <!-- end badges -->
 
-# teal.widgets
-
-<!-- start badges -->
-[![Code Coverage](https://raw.githubusercontent.com/insightsengineering/teal.widgets/_xml_coverage_reports/data/main/badge.svg)](https://raw.githubusercontent.com/insightsengineering/teal.widgets/_xml_coverage_reports/data/main/coverage.xml)
-<!-- end badges -->
 
 This package provides various 'widgets' for `teal` applications. Examples include:
 
