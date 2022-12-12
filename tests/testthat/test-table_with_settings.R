@@ -26,7 +26,7 @@ testthat::test_that("table_with_settings_srv: hide works", {
       teal.widgets:::table_with_settings_srv,
       args = list(table_r = table_r, show_hide_signal = reactive(FALSE)),
       expr = {
-        expect_silent(output$table_out_modal$html)
+        testthat::expect_silent(output$table_out_modal$html)
         }
     )
 })
