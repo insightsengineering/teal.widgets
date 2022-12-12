@@ -36,7 +36,7 @@ testthat::test_that("table_with_settings_srv: produce plot html", {
     teal.widgets:::table_with_settings_srv,
     args = list(id = "tws", table_r = table_r),
     expr = {
-      expect_type(output$table_out_modal$html, "character")
+      testthat::expect_s3_class(output$table_out_modal$html, "html")
       expect_equal(output$table_out_main$html, output$table_out_modal$html)
     }
   )
