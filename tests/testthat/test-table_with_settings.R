@@ -37,7 +37,7 @@ testthat::test_that("table_with_settings_srv: return html table", {
     args = list(id = "tws", table_r = table_r),
     expr = {
       testthat::expect_s3_class(output$table_out_modal$html, "html")
-      expect_equal(output$table_out_main$html, output$table_out_modal$html)
+      testthat::expect_equal(output$table_out_main$html, output$table_out_modal$html)
     }
   )
 })
