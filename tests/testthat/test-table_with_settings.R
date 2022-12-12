@@ -22,13 +22,13 @@ testthat::test_that("table_with_settings_srv: assertions", {
 })
 
 testthat::test_that("table_with_settings_srv: hide works", {
-  testthat::expect_silent(
     shiny::testServer(
       teal.widgets:::table_with_settings_srv,
       args = list(table_r = table_r, show_hide_signal = reactive(FALSE)),
-      expr = {}
+      expr = {
+        expect_silent(output$table_out_modal$html)
+        }
     )
-  )
 })
 
 testthat::test_that("table_with_settings_srv: produce plot html", {
