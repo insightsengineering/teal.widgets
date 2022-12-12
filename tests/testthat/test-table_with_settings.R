@@ -48,7 +48,7 @@ testthat::test_that("table_with_settings_srv: expand works", {
     args = list(id = "tws", table_r = table_r),
     expr = {
       session$setInputs(`expand` = TRUE)
-      expect_silent(output$table_out_modal$html)
+      expect_silent(output$table_out_modal)
     }
   )
 })
