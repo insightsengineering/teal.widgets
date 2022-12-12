@@ -31,7 +31,7 @@ testthat::test_that("table_with_settings_srv: hide works", {
     )
 })
 
-testthat::test_that("table_with_settings_srv: produce plot html", {
+testthat::test_that("table_with_settings_srv: return html table", {
   shiny::testServer(
     teal.widgets:::table_with_settings_srv,
     args = list(id = "tws", table_r = table_r),
