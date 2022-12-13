@@ -1,0 +1,7 @@
+         B: Placebo   C: Combination
+————————————————————————————————————
+SEX                                 
+  F          0              1       
+  M          1              0       
+AGE                                 
+  Mean     35.00          41.00     
