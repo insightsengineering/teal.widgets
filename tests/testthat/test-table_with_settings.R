@@ -21,7 +21,7 @@ testthat::test_that("table_with_settings_srv: assertions", {
   }
 })
 
-testthat::test_that("table_with_settings_srv: hide works", {
+testthat::test_that("table_with_settings_srv: hiding works", {
   shiny::testServer(
     teal.widgets:::table_with_settings_srv,
     args = list(table_r = table_r, show_hide_signal = reactive(FALSE)),
