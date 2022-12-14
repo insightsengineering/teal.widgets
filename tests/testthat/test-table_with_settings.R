@@ -22,13 +22,13 @@ testthat::test_that("table_with_settings_srv: assertions", {
 })
 
 testthat::test_that("table_with_settings_srv: hide works", {
-    shiny::testServer(
-      teal.widgets:::table_with_settings_srv,
-      args = list(table_r = table_r, show_hide_signal = reactive(FALSE)),
-      expr = {
-        testthat::expect_silent(output$table_out_modal$html)
-        }
-    )
+  shiny::testServer(
+    teal.widgets:::table_with_settings_srv,
+    args = list(table_r = table_r, show_hide_signal = reactive(FALSE)),
+    expr = {
+      testthat::expect_silent(output$table_out_modal$html)
+    }
+  )
 })
 
 testthat::test_that("table_with_settings_srv: return html table", {
@@ -58,7 +58,7 @@ testthat::test_that("type_download_srv_table: downloading different output types
     teal.widgets:::type_download_srv_table,
     args = list(id = "tws", table_reactive = table_r),
     expr = {
-      for (down_type in c(".txt", ".csv", ".pdf")){
+      for (down_type in c(".txt", ".csv", ".pdf")) {
         session$setInputs(`pagination_switch` = FALSE)
         session$setInputs(`file_name` = "testtable")
         session$setInputs(`file_format` = down_type)
@@ -66,7 +66,7 @@ testthat::test_that("type_download_srv_table: downloading different output types
         testthat::expect_equal(
           basename(output$data_download),
           paste0("testtable", down_type)
-          )
+        )
       }
     }
   )
@@ -77,7 +77,7 @@ testthat::test_that("type_download_srv_table: downloading different output types
     teal.widgets:::type_download_srv_table,
     args = list(id = "tws", table_reactive = table_r),
     expr = {
-      for (down_type in c(".txt", ".csv", ".pdf")){
+      for (down_type in c(".txt", ".csv", ".pdf")) {
         session$setInputs(`pagination_switch` = FALSE)
         session$setInputs(`file_format` = down_type)
         testthat::expect_true(file.exists(output$data_download))
@@ -94,7 +94,7 @@ testthat::test_that("type_download_srv_table: downloading different output types
     teal.widgets:::type_download_srv_table,
     args = list(id = "tws", table_reactive = table_r),
     expr = {
-      for (down_type in c(".txt", ".csv", ".pdf")){
+      for (down_type in c(".txt", ".csv", ".pdf")) {
         session$setInputs(`pagination_switch` = TRUE)
         session$setInputs(`lpp` = 10)
         session$setInputs(`file_name` = "testtable")
@@ -115,7 +115,7 @@ testthat::test_that("type_download_srv_table: pagination, lpp to small", {
       teal.widgets:::type_download_srv_table,
       args = list(id = "tws", table_reactive = table_r),
       expr = {
-        for (down_type in c(".txt", ".pdf")){
+        for (down_type in c(".txt", ".pdf")) {
           session$setInputs(`pagination_switch` = TRUE)
           session$setInputs(`lpp` = 1)
           session$setInputs(`file_format` = down_type)
