@@ -9,6 +9,8 @@ testthat::test_that("Table with settings: UI screenshots", {
     variant = "app_tws_ui",
   )
 
+  app$set_inputs(`table_with_settings-downbutton-file_name` = "table")
+
   # snapshot of initialized app
   app$expect_screenshot(threshold = 100, kernel_size = 10, delay = 0.5, name = "initial_view")
 
