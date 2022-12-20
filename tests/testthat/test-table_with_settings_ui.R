@@ -6,7 +6,7 @@ testthat::test_that("Table with settings: UI screenshots", {
   app <- AppDriver$new(
     app_tws(),
     name = "tws",
-    variant = "app_tws",
+    variant = "app_tws_ui",
   )
 
   app$set_inputs(`table_with_settings-downbutton-file_name` = "table")
