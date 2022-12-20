@@ -12,7 +12,7 @@ testthat::test_that("Table with settings: UI screenshots", {
   app$set_inputs(`table_with_settings-downbutton-file_name` = "table")
 
   # snapshot of initialized app
-  app$expect_screenshot(threshold = 100, kernel_size = 10, delay = 0.5, name = "initial_view")
+  app$expect_screenshot(threshold = 15, kernel_size = 10, delay = 0.5, name = "initial_view")
 
   # click on download button
   app$click("table_with_settings-downbutton-dwnl")
@@ -23,7 +23,7 @@ testthat::test_that("Table with settings: UI screenshots", {
   app$set_inputs(`table_with_settings-modal_downbutton-file_name` = "table")
 
   # snapshots of modal opened
-  app$expect_screenshot(threshold = 100, kernel_size = 10, delay = 0.5, name = "modal_view")
+  app$expect_screenshot(threshold = 15, kernel_size = 10, delay = 0.5, name = "modal_view")
 
   # now test values in json
   app$expect_values(screenshot_args = FALSE, name = "final_values")
