@@ -1,0 +1,36 @@
+{
+  "input": {
+    "table_with_settings-downbutton-dwnl": 1,
+    "table_with_settings-downbutton-dwnl_state": false,
+    "table_with_settings-downbutton-file_format": ".txt",
+    "table_with_settings-downbutton-file_name": "table",
+    "table_with_settings-downbutton-lpp": 70,
+    "table_with_settings-downbutton-pagination_switch": false,
+    "table_with_settings-expand": 1,
+    "table_with_settings-modal_downbutton-dwnl": 1,
+    "table_with_settings-modal_downbutton-dwnl_state": true,
+    "table_with_settings-modal_downbutton-file_format": ".txt",
+    "table_with_settings-modal_downbutton-file_name": "table",
+    "table_with_settings-modal_downbutton-lpp": 70,
+    "table_with_settings-modal_downbutton-pagination_switch": false
+  },
+  "output": {
+    "table_with_settings-downbutton-lpp_warning": null,
+    "table_with_settings-modal_downbutton-lpp_warning": null,
+    "table_with_settings-table_out_main": {
+      "html": "<div class=\"rtables-all-parts-block rtables-container\">\n  <table class=\"table table-condensed table-hover\">\n    <tr>\n      <th style=\"white-space:pre;\"><\/th>\n      <th class=\"text-center\">B: Placebo<\/th>\n      <th class=\"text-center\">C: Combination<\/th>\n    <\/tr>\n    <tr>\n      <td class=\"text-left\">SEX<\/td>\n      <td class=\"text-center\"><\/td>\n      <td class=\"text-center\"><\/td>\n    <\/tr>\n    <tr>\n      <td class=\"text-left\" style=\"padding-left: 3ch\">F<\/td>\n      <td class=\"text-center\">0<\/td>\n      <td class=\"text-center\">1<\/td>\n    <\/tr>\n    <tr>\n      <td class=\"text-left\" style=\"padding-left: 3ch\">M<\/td>\n      <td class=\"text-center\">1<\/td>\n      <td class=\"text-center\">0<\/td>\n    <\/tr>\n    <tr>\n      <td class=\"text-left\">AGE<\/td>\n      <td class=\"text-center\"><\/td>\n      <td class=\"text-center\"><\/td>\n    <\/tr>\n    <tr>\n      <td class=\"text-left\" style=\"padding-left: 3ch\">Mean<\/td>\n      <td class=\"text-center\">35.00<\/td>\n      <td class=\"text-center\">41.00<\/td>\n    <\/tr>\n    <caption style=\"caption-side:top;\"><div class=\"rtables-titles-block rtables-container\">\n        <div class=\"rtables-main-titles-block rtables-container\">\n          <p class=\"rtables-main-title\"><\/p>\n        <\/div>\n        <div class=\"rtables-subtitles-block rtables-container\"><\/div>\n      <\/div>\n    <\/caption>\n  <\/table>\n  <div class=\"rtables-footers-block rtables-container\"><\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "table_with_settings-table_out_modal": {
+      "html": "<div class=\"rtables-all-parts-block rtables-container\">\n  <table class=\"table table-condensed table-hover\">\n    <tr>\n      <th style=\"white-space:pre;\"><\/th>\n      <th class=\"text-center\">B: Placebo<\/th>\n      <th class=\"text-center\">C: Combination<\/th>\n    <\/tr>\n    <tr>\n      <td class=\"text-left\">SEX<\/td>\n      <td class=\"text-center\"><\/td>\n      <td class=\"text-center\"><\/td>\n    <\/tr>\n    <tr>\n      <td class=\"text-left\" style=\"padding-left: 3ch\">F<\/td>\n      <td class=\"text-center\">0<\/td>\n      <td class=\"text-center\">1<\/td>\n    <\/tr>\n    <tr>\n      <td class=\"text-left\" style=\"padding-left: 3ch\">M<\/td>\n      <td class=\"text-center\">1<\/td>\n      <td class=\"text-center\">0<\/td>\n    <\/tr>\n    <tr>\n      <td class=\"text-left\">AGE<\/td>\n      <td class=\"text-center\"><\/td>\n      <td class=\"text-center\"><\/td>\n    <\/tr>\n    <tr>\n      <td class=\"text-left\" style=\"padding-left: 3ch\">Mean<\/td>\n      <td class=\"text-center\">35.00<\/td>\n      <td class=\"text-center\">41.00<\/td>\n    <\/tr>\n    <caption style=\"caption-side:top;\"><div class=\"rtables-titles-block rtables-container\">\n        <div class=\"rtables-main-titles-block rtables-container\">\n          <p class=\"rtables-main-title\"><\/p>\n        <\/div>\n        <div class=\"rtables-subtitles-block rtables-container\"><\/div>\n      <\/div>\n    <\/caption>\n  <\/table>\n  <div class=\"rtables-footers-block rtables-container\"><\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    }
+  },
+  "export": {
+
+  }
+}
