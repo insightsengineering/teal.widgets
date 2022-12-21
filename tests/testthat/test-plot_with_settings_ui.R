@@ -43,8 +43,5 @@ testthat::test_that("Table with settings: UI screenshots", {
     threshold = threshold, kernel_size = kernel_size, delay = delay, name = "resize_menu"
   )
 
-  app$set_inputs(`plot_with_settings-downbutton-file_name` = "plot1")
-  app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot2")
-
   app$stop()
 })
