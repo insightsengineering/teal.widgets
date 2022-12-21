@@ -17,13 +17,39 @@ testthat::test_that("Table with settings: UI screenshots", {
     name = "pws",
     variant = "app_pws_ui"
   )
+  threshold <- 50
+  kernel_size <- 20
+  delay <- 0.3
 
+  # click on hide/show button
   app$click("button")
-  app$expect_screenshot(threshold = 15, kernel_size = 10, delay = 0.5, name = "hidden")
+  app$expect_screenshot(
+    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "hidden"
+  )
   app$click("button")
-  app$expect_screenshot(threshold = 15, kernel_size = 10, delay = 0.5, name = "visible")
+  app$expect_screenshot(
+    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "visible"
+  )
 
   app$set_inputs(`plot_with_settings-downbutton-file_name` = "plot1")
+  app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot2")
+
+  app$click("plot_with_settings-downbutton-downl")
+  app$expect_screenshot(
+    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "download_menu"
+  )
+  app$click("plot_with_settings-expand")
+  app$expect_screenshot(
+    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "expand"
+  )
+  app$click("plot_with_settings-expbut")
+  app$expect_screenshot(
+    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "resize_menu"
+  )
+
+  app$set_inputs(`plot_with_settings-downbutton-file_name` = "plot1")
+  app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot2")
+
   # now test values in json
   app$expect_values(screenshot_args = FALSE, name = "final_values")
   app$stop()
