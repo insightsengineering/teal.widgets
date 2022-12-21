@@ -1,0 +1,177 @@
+{
+  "input": {
+    "button": 2,
+    "plot_with_settings-downbutton-downl": 0,
+    "plot_with_settings-downbutton-file_format": "png",
+    "plot_with_settings-downbutton-file_name": "plot1",
+    "plot_with_settings-expand": 0,
+    "plot_with_settings-expbut": 0,
+    "plot_with_settings-flex_width": 962,
+    "plot_with_settings-plot_modal_width": 863.04
+  },
+  "output": {
+    "plot_with_settings-plot_main": {
+      "src": "[image data hash: 192cab8460bc2d1eec1b5d3203b5e234]",
+      "width": 500,
+      "height": 400,
+      "alt": "Plot object",
+      "coordmap": {
+        "panels": [
+          {
+            "panel": 1,
+            "row": 1,
+            "col": 1,
+            "panel_vars": {
+
+            },
+            "log": {
+              "x": null,
+              "y": null
+            },
+            "domain": {
+              "left": 1,
+              "right": 5,
+              "bottom": 1,
+              "top": 5
+            },
+            "mapping": {
+              "x": "1:5",
+              "y": "1:5"
+            },
+            "range": {
+              "left": 28.0413099315069,
+              "right": 494.520547945205,
+              "bottom": 368.846473150198,
+              "top": 5.47945205479452
+            }
+          }
+        ],
+        "dims": {
+          "width": 500,
+          "height": 400
+        }
+      }
+    },
+    "plot_with_settings-plot_out_main": {
+      "html": "<div align=\"left\">\n  <div id=\"plot_with_settings-plot_main\" class=\"shiny-plot-output\" style=\"width:500px;height:400px;\" data-click-id=\"plot_with_settings-plot_click\" data-click-clip=\"TRUE\" data-dblclick-id=\"plot_with_settings-plot_dblclick\" data-dblclick-clip=\"TRUE\" data-dblclick-delay=\"400\" data-hover-id=\"plot_with_settings-plot_hover\" data-hover-delay=\"300\" data-hover-delay-type=\"debounce\" data-hover-clip=\"TRUE\" data-hover-null-outside=\"TRUE\" data-brush-id=\"plot_with_settings-plot_brush\" data-brush-fill=\"#9cf\" data-brush-stroke=\"#036\" data-brush-opacity=\"0.25\" data-brush-delay=\"300\" data-brush-delay-type=\"debounce\" data-brush-clip=\"TRUE\" data-brush-direction=\"xy\" data-brush-reset-on-new=\"TRUE\"><\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    }
+  },
+  "export": {
+    "plot_data": {
+      "brush": [
+        "structure(function () ",
+        "{",
+        "    .dependents$register()",
+        "    if (.invalidated || .running) {",
+        "        ..stacktraceoff..(self$.updateValue())",
+        "    }",
+        "    if (.error) {",
+        "        stop(.value)",
+        "    }",
+        "    if (.visible) ",
+        "        .value",
+        "    else invisible(.value)",
+        "}, observable = <environment>, cacheHint = list(userExpr = {",
+        "    input$height",
+        "    input$width",
+        "    input$plot_brush",
+        "}), class = \"function\")"
+      ],
+      "click": [
+        "structure(function () ",
+        "{",
+        "    .dependents$register()",
+        "    if (.invalidated || .running) {",
+        "        ..stacktraceoff..(self$.updateValue())",
+        "    }",
+        "    if (.error) {",
+        "        stop(.value)",
+        "    }",
+        "    if (.visible) ",
+        "        .value",
+        "    else invisible(.value)",
+        "}, observable = <environment>, cacheHint = list(userExpr = {",
+        "    input$height",
+        "    input$width",
+        "    input$plot_click",
+        "}), class = \"function\")"
+      ],
+      "dblclick": [
+        "structure(function () ",
+        "{",
+        "    .dependents$register()",
+        "    if (.invalidated || .running) {",
+        "        ..stacktraceoff..(self$.updateValue())",
+        "    }",
+        "    if (.error) {",
+        "        stop(.value)",
+        "    }",
+        "    if (.visible) ",
+        "        .value",
+        "    else invisible(.value)",
+        "}, observable = <environment>, cacheHint = list(userExpr = {",
+        "    input$height",
+        "    input$width",
+        "    input$plot_dblclick",
+        "}), class = \"function\")"
+      ],
+      "hover": [
+        "structure(function () ",
+        "{",
+        "    .dependents$register()",
+        "    if (.invalidated || .running) {",
+        "        ..stacktraceoff..(self$.updateValue())",
+        "    }",
+        "    if (.error) {",
+        "        stop(.value)",
+        "    }",
+        "    if (.visible) ",
+        "        .value",
+        "    else invisible(.value)",
+        "}, observable = <environment>, cacheHint = list(userExpr = {",
+        "    input$height",
+        "    input$width",
+        "    input$plot_hover",
+        "}), class = \"function\")"
+      ],
+      "dim": [
+        "structure(function () ",
+        "{",
+        "    .dependents$register()",
+        "    if (.invalidated || .running) {",
+        "        ..stacktraceoff..(self$.updateValue())",
+        "    }",
+        "    if (.error) {",
+        "        stop(.value)",
+        "    }",
+        "    if (.visible) ",
+        "        .value",
+        "    else invisible(.value)",
+        "}, observable = <environment>, cacheHint = list(userExpr = {",
+        "    c(input$width, input$height)",
+        "}), class = \"function\")"
+      ]
+    },
+    "plot_r": [
+      "structure(function () ",
+      "{",
+      "    .dependents$register()",
+      "    if (.invalidated || .running) {",
+      "        ..stacktraceoff..(self$.updateValue())",
+      "    }",
+      "    if (.error) {",
+      "        stop(.value)",
+      "    }",
+      "    if (.visible) ",
+      "        .value",
+      "    else invisible(.value)",
+      "}, observable = <environment>, cacheHint = list(userExpr = {",
+      "    ggplot2::ggplot(data.frame(x = 1:5, y = 1:5)) + ggplot2::geom_point(ggplot2::aes(x = 1:5, ",
+      "        y = 1:5))",
+      "}), class = \"function\")"
+    ]
+  }
+}
