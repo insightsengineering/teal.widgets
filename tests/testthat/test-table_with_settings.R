@@ -144,7 +144,7 @@ testthat::test_that("type_download_srv_table: content of the table, csv", {
           "setosa" = 5.01,
           "versicolor" = 5.94,
           "virginica" = 6.59
-          )
+        )
       )
     }
   )
@@ -168,7 +168,6 @@ testthat::test_that("type_download_srv_table: content of the table, txt", {
           row.names = c("——————————————————————————————————————", "Mean")
         )
       )
-
     }
   )
 })
