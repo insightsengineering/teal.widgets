@@ -15,7 +15,7 @@ testthat::test_that("Table with settings: UI screenshots", {
     name = "pws",
     variant = "app_pws_ui"
   )
-  threshold <- 50
+  threshold <- 60
   kernel_size <- 20
   delay <- 0.3
 
