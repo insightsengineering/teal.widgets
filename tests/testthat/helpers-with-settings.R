@@ -56,9 +56,7 @@ app_pws <- function() {
 
       shiny::observeEvent(input$button, {
         show_hide_signal(
-          shiny::isolate(
-            !show_hide_signal()
-          )
+          !show_hide_signal()
         )
       })
 
