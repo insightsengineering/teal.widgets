@@ -9,6 +9,8 @@ testthat::test_that("Table with settings: UI screenshots", {
     variant = "app_tws_ui",
   )
 
+  app$set_window_size(width = 1400, height = 800)
+
   app$set_inputs(`table_with_settings-downbutton-file_name` = "table")
 
   # snapshot of initialized app
