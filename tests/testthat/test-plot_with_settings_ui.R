@@ -6,5 +6,39 @@ testthat::test_that("plot_with_settings_ui returns shiny.tag.list", {
   testthat::expect_s3_class(plot_with_settings_ui("STH"), "shiny.tag.list")
 })
 
-library(shinytest2)
-#
+testthat::test_that("Plot with settings: UI screenshots", {
+  skip_on_cran()
+  skip_on_ci()
+  app <- AppDriver$new(
+    app_pws(),
+    name = "pws",
+    variant = "app_pws_ui"
+  )
+  threshold <- 60
+  kernel_size <- 20
+  delay <- 0.3
+
+  # click on hide/show button
+  app$click("button")
+  app$expect_screenshot(
+    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "hidden"
+  )
+  app$click("button")
+  app$expect_screenshot(
+    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "visible"
+  )
+
+  app$set_inputs(`plot_with_settings-downbutton-file_name` = "plot1")
+  app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot2")
+
+  app$click("plot_with_settings-downbutton-downl")
+  app$expect_screenshot(
+    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "download_menu"
+  )
+  app$click("plot_with_settings-expbut")
+  app$expect_screenshot(
+    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "resize_menu"
+  )
+
+  app$stop()
+})
