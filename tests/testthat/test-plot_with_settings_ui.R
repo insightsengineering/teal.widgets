@@ -9,7 +9,7 @@ testthat::test_that("plot_with_settings_ui returns shiny.tag.list", {
 testthat::test_that("Plot with settings: UI screenshots", {
   skip_on_cran()
   skip_on_ci()
-  app <- AppDriver$new(
+  app <- shinytest2::AppDriver$new(
     app_pws(),
     name = "pws",
     variant = "app_pws_ui"

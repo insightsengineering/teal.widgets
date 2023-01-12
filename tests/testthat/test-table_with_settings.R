@@ -1,4 +1,4 @@
-table_r <- reactive({
+table_r <- shiny::reactive({
   l <- rtables::basic_table() %>%
     rtables::split_cols_by("Species") %>%
     rtables::analyze(c("Sepal.Length"))
@@ -124,5 +124,50 @@ testthat::test_that("type_download_srv_table: pagination, lpp to small", {
       }
     ),
     "Lines of repeated context"
+  )
+})
+
+testthat::test_that("type_download_srv_table: content of the table, csv", {
+  shiny::testServer(
+    teal.widgets:::type_download_srv_table,
+    args = list(id = "tws", table_reactive = table_r),
+    expr = {
+      session$setInputs(`pagination_switch` = TRUE)
+      session$setInputs(`lpp` = 10)
+      session$setInputs(`file_format` = ".csv")
+      csv <- read.csv(output$data_download)
+      testthat::expect_equal(
+        csv,
+        data.frame(
+          "X1" = 2,
+          "X" = "Mean",
+          "setosa" = 5.01,
+          "versicolor" = 5.94,
+          "virginica" = 6.59
+        )
+      )
+    }
+  )
+})
+
+testthat::test_that("type_download_srv_table: content of the table, txt", {
+  shiny::testServer(
+    teal.widgets:::type_download_srv_table,
+    args = list(id = "tws", table_reactive = table_r),
+    expr = {
+      session$setInputs(`pagination_switch` = TRUE)
+      session$setInputs(`lpp` = 10)
+      session$setInputs(`file_format` = ".txt")
+      txt <- read.delim(output$data_download, sep = "")
+      testthat::expect_equal(
+        txt,
+        data.frame(
+          "setosa" = c(NA, 5.01),
+          "versicolor" = c(NA, 5.94),
+          "virginica" = c(NA, 6.59),
+          row.names = c("——————————————————————————————————————", "Mean")
+        )
+      )
+    }
   )
 })
