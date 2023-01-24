@@ -1,10 +1,13 @@
-#' UI part of table-with-settings module
+#' @name table_with_settings
+#'
+#' @title table_with_settings module
 #'
 #' @description `r lifecycle::badge("stable")`
 #' @inheritParams shiny::moduleServer
 #' @param ... (`character`)\cr
 #'  Useful for providing additional HTML classes for the output tag.
 #'
+#' @rdname table_with_settings
 #' @export
 #'
 table_with_settings_ui <- function(id, ...) {
@@ -32,16 +35,13 @@ table_with_settings_ui <- function(id, ...) {
   )
 }
 
-#' Server part of table-with-settings module
-#'
-#' @description `r lifecycle::badge("stable")`
-#'
 #' @inheritParams shiny::moduleServer
 #' @param table_r (`reactive`)\cr
-#'  reactive expression to draw a table
+#'  reactive expression that yields an `rtable` object (`ElementaryTable` or `TableTree`)
 #' @param show_hide_signal (`reactive logical`, optional)\cr
 #'  a mechanism to allow modules which call this module to show/hide the table_with_settings UI.
 #'
+#' @rdname table_with_settings
 #' @export
 #'
 #' @examples
