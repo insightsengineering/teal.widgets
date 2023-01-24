@@ -75,6 +75,10 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
   checkmate::assert_class(table_r, c("reactive", "function"))
   checkmate::assert_class(show_hide_signal, c("reactive", "function"))
 
+  if (!requireNamespace("rtables", quietly = TRUE)) {
+    stop("package rtables is required, please install")
+  }
+
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     # Turn on and off the UI
