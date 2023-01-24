@@ -19,6 +19,7 @@
 
 * Added `shinytest2` tests for `plot_with_settings` and `table_with_settings`.
 * Removed the `DRAFT` label on downloaded plots.
+* Changed dependency type of `rtables` from `Imports` to `Suggests`.
 
 # teal.widgets 0.2.0
 
