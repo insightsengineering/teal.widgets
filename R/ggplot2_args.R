@@ -23,7 +23,7 @@
 #'   lab = list(title = "TITLE"),
 #'   theme = list(title = ggplot2::element_text(size = 20))
 #' )
-ggplot2_args <- function(labs=list(), theme=list()) {
+ggplot2_args <- function(labs = list(), theme = list()) {
   checkmate::assert_list(labs)
   checkmate::assert_list(theme)
   checkmate::assert_character(names(labs), unique = TRUE, null.ok = TRUE)
