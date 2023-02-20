@@ -4,7 +4,6 @@ testthat::test_that("Table with settings: UI screenshots", {
     name = "tws",
     variant = "app_tws_ui",
   )
-
   app$set_inputs(`table_with_settings-downbutton-file_name` = "table")
 
   # click on download button
