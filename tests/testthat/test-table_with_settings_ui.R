@@ -1,6 +1,4 @@
 testthat::test_that("Table with settings: UI screenshots", {
-  skip_on_cran()
-  skip_on_ci()
   app <- shinytest2::AppDriver$new(
     app_tws(),
     name = "tws",
@@ -14,6 +12,7 @@ testthat::test_that("Table with settings: UI screenshots", {
 
   # test clicking on modal
   app$click("table_with_settings-expand")
+  app$set_inputs(`table_with_settings-modal_downbutton-lpp` = 70)
   app$click("table_with_settings-modal_downbutton-dwnl")
   app$set_inputs(`table_with_settings-modal_downbutton-file_name` = "table")
 
