@@ -1,6 +1,5 @@
 testthat::test_that("Table with settings: UI screenshots", {
-  skip_on_cran()
-  skip_on_ci()
+  
   app <- shinytest2::AppDriver$new(
     app_tws(),
     name = "tws",
