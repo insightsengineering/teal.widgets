@@ -1,5 +1,4 @@
 testthat::test_that("Table with settings: UI screenshots", {
-  
   app <- shinytest2::AppDriver$new(
     app_tws(),
     name = "tws",
