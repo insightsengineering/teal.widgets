@@ -13,7 +13,7 @@ testthat::test_that("Table with settings: UI screenshots", {
   # test clicking on modal
   app$click("table_with_settings-expand")
   app$set_inputs(`table_with_settings-modal_downbutton-lpp` = 70)
-  Sys.sleep(2)
+  Sys.sleep(3)
   app$click("table_with_settings-modal_downbutton-dwnl")
   app$set_inputs(`table_with_settings-modal_downbutton-file_name` = "table")
 
