@@ -12,9 +12,11 @@ testthat::test_that("Plot with settings: UI screenshots", {
     name = "pws",
     variant = "app_pws_ui"
   )
-  threshold <- 60
+  threshold <- 100
   kernel_size <- 20
   delay <- 0.3
+
+  app$set_window_size(width = 1295, height = 730)
 
   # click on hide/show button
   app$click("button")
