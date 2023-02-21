@@ -14,7 +14,7 @@ testthat::test_that("Plot with settings: UI screenshots", {
   )
   threshold <- 75
   kernel_size <- 5
-  delay <- 0.5
+  delay <- 0.1
 
   app$set_window_size(width = 1000, height = 700)
 
