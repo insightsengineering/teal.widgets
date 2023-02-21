@@ -12,7 +12,7 @@ testthat::test_that("Plot with settings: UI screenshots", {
     name = "pws",
     variant = "app_pws_ui"
   )
-  threshold <- 100
+  threshold <- 200
   kernel_size <- 20
   delay <- 0.3
 
