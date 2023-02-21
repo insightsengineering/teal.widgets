@@ -21,5 +21,3 @@ testthat::test_that("Table with settings: UI screenshots", {
   app$expect_values(screenshot_args = FALSE, name = "final_values")
   app$stop()
 })
-
-
