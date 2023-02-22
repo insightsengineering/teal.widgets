@@ -1,4 +1,4 @@
-# teal.widgets 0.2.0.9023
+# teal.widgets 0.2.0.9024
 
 ### New features
 
