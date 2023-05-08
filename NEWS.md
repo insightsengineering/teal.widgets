@@ -1,22 +1,16 @@
-# teal.widgets 0.2.0.9024
-
-### New features
-
-* Added support for downloading base plots.
-* Add support for `draggable_buckets` to use `shinyvalidate` for input validation.
+# teal.widgets 0.2.0.9025
 
 ### Enhancements
-
-* `disabled` in `verbatim_popup_srv` is longer triggered when button is hidden.
+* Added support for downloading base plots.
+* Add support for `draggable_buckets` to use `shinyvalidate` for input validation.
+* The `disabled` in `verbatim_popup_srv` is no longer triggered when button is hidden.
 * Added `type` argument to `verbatim_popup_ui` which allows the pop-up to be controlled by a `button` or a `link`.
 
 ### Bug fixes
-
 * Added labels to pagination button in `table_with_settings` and fixed alt text.
 * Fixed the html structure of `panel_item` function.
 
 ### Miscellaneous
-
 * Added `shinytest2` tests for `plot_with_settings` and `table_with_settings`.
 * Removed the `DRAFT` label on downloaded plots.
 * Changed dependency type of `rtables` from `Imports` to `Suggests`.
