@@ -214,7 +214,7 @@ type_download_srv_table <- function(id, table_reactive) {
         },
         content = function(file) {
           if (input$file_format == ".txt") {
-            formatters::export_as_txt(
+            rtables::export_as_txt(
               x = table_reactive(),
               file = file,
               paginate = input$pagination_switch,
