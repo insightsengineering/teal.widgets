@@ -34,7 +34,7 @@ Suggests:
     magrittr,
     png,
     rmarkdown,
-    rtables (>= 0.5.1),
+    rtables (>= 0.6.0.9004),
     shinytest2 (>= 0.2.0),
     shinyvalidate,
     testthat (>= 2.0),
