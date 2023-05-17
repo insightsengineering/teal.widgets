@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage line-rate="0.621735467565291" branch-rate="0" lines-covered="738" lines-valid="1187" branches-covered="0" branches-valid="0" complexity="0" version="3.6.1" timestamp="2023-04-06 20:21:37">
-  <sources/>
+<!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
+<coverage line-rate="0.621735467565291" branch-rate="0" lines-covered="738" lines-valid="1187" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-05-17 19:43:36">
+  <sources>
+    <source>/__w/teal.widgets/teal.widgets/teal.widgets</source>
+  </sources>
   <packages>
     <package name="teal.widgets" line-rate="0.621735467565291" branch-rate="0" complexity="0">
       <classes>
         <class name="basic_table_args.R" filename="R/basic_table_args.R" line-rate="1" branch-rate="0" complexity="0">
           <methods>
-            <method name="basic_table_args" signature="" line-rate="1" branch-rate="0">
+            <method name="basic_table_args" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="21" hits="118" branch="false"/>
                 <line number="23" hits="118" branch="false"/>
@@ -15,7 +18,7 @@
                 <line number="29" hits="114" branch="false"/>
               </lines>
             </method>
-            <method name="resolve_basic_table_args" signature="" line-rate="1" branch-rate="0">
+            <method name="resolve_basic_table_args" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="70" hits="24" branch="false"/>
                 <line number="71" hits="23" branch="false"/>
@@ -33,7 +36,7 @@
                 <line number="87" hits="14" branch="false"/>
               </lines>
             </method>
-            <method name="parse_basic_table_args" signature="" line-rate="1" branch-rate="0">
+            <method name="parse_basic_table_args" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="108" hits="8" branch="false"/>
                 <line number="110" hits="7" branch="false"/>
@@ -70,7 +73,7 @@
         </class>
         <class name="draggable_buckets.R" filename="R/draggable_buckets.R" line-rate="0" branch-rate="0" complexity="0">
           <methods>
-            <method name="draggable_buckets" signature="" line-rate="0" branch-rate="0">
+            <method name="draggable_buckets" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="57" hits="0" branch="false"/>
                 <line number="58" hits="0" branch="false"/>
@@ -96,7 +99,7 @@
                 <line number="80" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="render_unbucketed_elements" signature="" line-rate="0" branch-rate="0">
+            <method name="render_unbucketed_elements" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="84" hits="0" branch="false"/>
                 <line number="85" hits="0" branch="false"/>
@@ -115,7 +118,7 @@
                 <line number="98" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="render_buckets" signature="" line-rate="0" branch-rate="0">
+            <method name="render_buckets" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="102" hits="0" branch="false"/>
                 <line number="103" hits="0" branch="false"/>
@@ -132,7 +135,7 @@
                 <line number="114" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="render_draggable_element" signature="" line-rate="0" branch-rate="0">
+            <method name="render_draggable_element" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="118" hits="0" branch="false"/>
                 <line number="119" hits="0" branch="false"/>
@@ -146,7 +149,7 @@
                 <line number="127" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="render_bucket" signature="" line-rate="0" branch-rate="0">
+            <method name="render_bucket" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="131" hits="0" branch="false"/>
                 <line number="132" hits="0" branch="false"/>
@@ -260,7 +263,7 @@
         </class>
         <class name="get_dt_rows.R" filename="R/get_dt_rows.R" line-rate="0" branch-rate="0" complexity="0">
           <methods>
-            <method name="get_dt_rows" signature="" line-rate="0" branch-rate="0">
+            <method name="get_dt_rows" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="27" hits="0" branch="false"/>
                 <line number="28" hits="0" branch="false"/>
@@ -296,7 +299,7 @@
         </class>
         <class name="ggplot2_args.R" filename="R/ggplot2_args.R" line-rate="1" branch-rate="0" complexity="0">
           <methods>
-            <method name="ggplot2_args" signature="" line-rate="1" branch-rate="0">
+            <method name="ggplot2_args" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="27" hits="92" branch="false"/>
                 <line number="28" hits="92" branch="false"/>
@@ -312,7 +315,7 @@
                 <line number="42" hits="90" branch="false"/>
               </lines>
             </method>
-            <method name="resolve_ggplot2_args" signature="" line-rate="1" branch-rate="0">
+            <method name="resolve_ggplot2_args" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="89" hits="18" branch="false"/>
                 <line number="90" hits="17" branch="false"/>
@@ -331,7 +334,7 @@
                 <line number="107" hits="17" branch="false"/>
               </lines>
             </method>
-            <method name="parse_ggplot2_args" signature="" line-rate="1" branch-rate="0">
+            <method name="parse_ggplot2_args" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="151" hits="10" branch="false"/>
                 <line number="152" hits="9" branch="false"/>
@@ -412,7 +415,7 @@
         </class>
         <class name="include_css_js.R" filename="R/include_css_js.R" line-rate="0.857142857142857" branch-rate="0" complexity="0">
           <methods>
-            <method name="include_css_files" signature="" line-rate="0.857142857142857" branch-rate="0">
+            <method name="include_css_files" signature="" line-rate="0.857142857142857" branch-rate="0" complexity="0">
               <lines>
                 <line number="12" hits="3" branch="false"/>
                 <line number="13" hits="3" branch="false"/>
@@ -436,7 +439,7 @@
         </class>
         <class name="optionalInput.R" filename="R/optionalInput.R" line-rate="0.151376146788991" branch-rate="0" complexity="0">
           <methods>
-            <method name="optionalSelectInput" signature="" line-rate="0" branch-rate="0">
+            <method name="optionalSelectInput" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="78" hits="0" branch="false"/>
                 <line number="80" hits="0" branch="false"/>
@@ -519,7 +522,7 @@
                 <line number="170" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="updateOptionalSelectInput" signature="" line-rate="0" branch-rate="0">
+            <method name="updateOptionalSelectInput" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="188" hits="0" branch="false"/>
                 <line number="189" hits="0" branch="false"/>
@@ -536,7 +539,7 @@
                 <line number="203" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="variable_type_icons" signature="" line-rate="0" branch-rate="0">
+            <method name="variable_type_icons" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="221" hits="0" branch="false"/>
                 <line number="223" hits="0" branch="false"/>
@@ -568,7 +571,7 @@
                 <line number="251" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="picker_options_content" signature="" line-rate="0" branch-rate="0">
+            <method name="picker_options_content" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="275" hits="0" branch="false"/>
                 <line number="276" hits="0" branch="false"/>
@@ -594,7 +597,7 @@
                 <line number="301" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="picker_options" signature="" line-rate="0" branch-rate="0">
+            <method name="picker_options" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="313" hits="0" branch="false"/>
                 <line number="314" hits="0" branch="false"/>
@@ -619,7 +622,7 @@
                 <line number="334" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="extract_raw_choices" signature="" line-rate="0" branch-rate="0">
+            <method name="extract_raw_choices" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="348" hits="0" branch="false"/>
                 <line number="349" hits="0" branch="false"/>
@@ -628,7 +631,7 @@
                 <line number="353" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="optionalSliderInput" signature="" line-rate="0.956521739130435" branch-rate="0">
+            <method name="optionalSliderInput" signature="" line-rate="0.956521739130435" branch-rate="0" complexity="0">
               <lines>
                 <line number="374" hits="25" branch="false"/>
                 <line number="375" hits="25" branch="false"/>
@@ -655,7 +658,7 @@
                 <line number="411" hits="21" branch="false"/>
               </lines>
             </method>
-            <method name="optionalSliderInputValMinMax" signature="" line-rate="0.6875" branch-rate="0">
+            <method name="optionalSliderInputValMinMax" signature="" line-rate="0.6875" branch-rate="0" complexity="0">
               <lines>
                 <line number="438" hits="18" branch="false"/>
                 <line number="440" hits="0" branch="false"/>
@@ -675,7 +678,7 @@
                 <line number="458" hits="18" branch="false"/>
               </lines>
             </method>
-            <method name="extract_choices_labels" signature="" line-rate="0" branch-rate="0">
+            <method name="extract_choices_labels" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="471" hits="0" branch="false"/>
                 <line number="472" hits="0" branch="false"/>
@@ -914,7 +917,7 @@
         </class>
         <class name="panel_group.R" filename="R/panel_group.R" line-rate="0" branch-rate="0" complexity="0">
           <methods>
-            <method name="panel_group" signature="" line-rate="0" branch-rate="0">
+            <method name="panel_group" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="12" hits="0" branch="false"/>
                 <line number="17" hits="0" branch="false"/>
@@ -937,7 +940,7 @@
                 <line number="34" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="panel_item" signature="" line-rate="0" branch-rate="0">
+            <method name="panel_item" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="53" hits="0" branch="false"/>
                 <line number="54" hits="0" branch="false"/>
@@ -1106,7 +1109,7 @@
         </class>
         <class name="plot_with_settings.R" filename="R/plot_with_settings.R" line-rate="0.945026178010471" branch-rate="0" complexity="0">
           <methods>
-            <method name="plot_with_settings_ui" signature="" line-rate="1" branch-rate="0">
+            <method name="plot_with_settings_ui" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="8" hits="2" branch="false"/>
                 <line number="10" hits="2" branch="false"/>
@@ -1161,7 +1164,7 @@
                 <line number="62" hits="2" branch="false"/>
               </lines>
             </method>
-            <method name="plot_with_settings_srv" signature="" line-rate="0.932270916334661" branch-rate="0">
+            <method name="plot_with_settings_srv" signature="" line-rate="0.932270916334661" branch-rate="0" complexity="0">
               <lines>
                 <line number="243" hits="24" branch="false"/>
                 <line number="244" hits="24" branch="false"/>
@@ -1416,7 +1419,7 @@
                 <line number="522" hits="15" branch="false"/>
               </lines>
             </method>
-            <method name="type_download_ui" signature="" line-rate="1" branch-rate="0">
+            <method name="type_download_ui" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="527" hits="4" branch="false"/>
                 <line number="528" hits="4" branch="false"/>
@@ -1443,7 +1446,7 @@
                 <line number="549" hits="4" branch="false"/>
               </lines>
             </method>
-            <method name="type_download_srv" signature="" line-rate="1" branch-rate="0">
+            <method name="type_download_srv" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="554" hits="34" branch="false"/>
                 <line number="555" hits="34" branch="false"/>
@@ -1468,7 +1471,7 @@
                 <line number="578" hits="34" branch="false"/>
               </lines>
             </method>
-            <method name="clean_brushedPoints" signature="" line-rate="0.8" branch-rate="0">
+            <method name="clean_brushedPoints" signature="" line-rate="0.8" branch-rate="0" complexity="0">
               <lines>
                 <line number="593" hits="6" branch="false"/>
                 <line number="594" hits="4" branch="false"/>
@@ -1492,7 +1495,7 @@
                 <line number="622" hits="3" branch="false"/>
               </lines>
             </method>
-            <method name="get_plot_dpi" signature="" line-rate="1" branch-rate="0">
+            <method name="get_plot_dpi" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="628" hits="55" branch="false"/>
                 <line number="629" hits="55" branch="false"/>
@@ -1502,7 +1505,7 @@
                 <line number="634" hits="55" branch="false"/>
               </lines>
             </method>
-            <method name="print_plot" signature="" line-rate="1" branch-rate="0">
+            <method name="print_plot" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="648" hits="26" branch="false"/>
                 <line number="649" hits="2" branch="false"/>
@@ -1904,7 +1907,7 @@
         </class>
         <class name="standard_layout.R" filename="R/standard_layout.R" line-rate="1" branch-rate="0" complexity="0">
           <methods>
-            <method name="standard_layout" signature="" line-rate="1" branch-rate="0">
+            <method name="standard_layout" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="29" hits="11" branch="false"/>
                 <line number="30" hits="2" branch="false"/>
@@ -1994,7 +1997,7 @@
         </class>
         <class name="table_with_settings.R" filename="R/table_with_settings.R" line-rate="0.994219653179191" branch-rate="0" complexity="0">
           <methods>
-            <method name="table_with_settings_ui" signature="" line-rate="1" branch-rate="0">
+            <method name="table_with_settings_ui" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="14" hits="1" branch="false"/>
                 <line number="16" hits="1" branch="false"/>
@@ -2018,7 +2021,7 @@
                 <line number="35" hits="1" branch="false"/>
               </lines>
             </method>
-            <method name="table_with_settings_srv" signature="" line-rate="0.975" branch-rate="0">
+            <method name="table_with_settings_srv" signature="" line-rate="0.975" branch-rate="0" complexity="0">
               <lines>
                 <line number="75" hits="6" branch="false"/>
                 <line number="76" hits="5" branch="false"/>
@@ -2062,7 +2065,7 @@
                 <line number="122" hits="4" branch="false"/>
               </lines>
             </method>
-            <method name="type_download_ui_table" signature="" line-rate="1" branch-rate="0">
+            <method name="type_download_ui_table" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="126" hits="3" branch="false"/>
                 <line number="127" hits="3" branch="false"/>
@@ -2120,7 +2123,7 @@
                 <line number="179" hits="3" branch="false"/>
               </lines>
             </method>
-            <method name="type_download_srv_table" signature="" line-rate="1" branch-rate="0">
+            <method name="type_download_srv_table" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="183" hits="14" branch="false"/>
                 <line number="184" hits="14" branch="false"/>
@@ -2362,7 +2365,7 @@
         </class>
         <class name="utils.R" filename="R/utils.R" line-rate="0.75" branch-rate="0" complexity="0">
           <methods>
-            <method name="get_bs_version" signature="" line-rate="0.75" branch-rate="0">
+            <method name="get_bs_version" signature="" line-rate="0.75" branch-rate="0" complexity="0">
               <lines>
                 <line number="5" hits="1" branch="false"/>
                 <line number="6" hits="1" branch="false"/>
@@ -2380,7 +2383,7 @@
         </class>
         <class name="verbatim_popup.R" filename="R/verbatim_popup.R" line-rate="0.51" branch-rate="0" complexity="0">
           <methods>
-            <method name="verbatim_popup_ui" signature="" line-rate="1" branch-rate="0">
+            <method name="verbatim_popup_ui" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="28" hits="4" branch="false"/>
                 <line number="29" hits="4" branch="false"/>
@@ -2403,7 +2406,7 @@
                 <line number="49" hits="3" branch="false"/>
               </lines>
             </method>
-            <method name="verbatim_popup_srv" signature="" line-rate="0" branch-rate="0">
+            <method name="verbatim_popup_srv" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="64" hits="0" branch="false"/>
                 <line number="65" hits="0" branch="false"/>
@@ -2423,7 +2426,7 @@
                 <line number="79" hits="0" branch="false"/>
               </lines>
             </method>
-            <method name="button_click_observer" signature="" line-rate="0.272727272727273" branch-rate="0">
+            <method name="button_click_observer" signature="" line-rate="0.272727272727273" branch-rate="0" complexity="0">
               <lines>
                 <line number="102" hits="1" branch="false"/>
                 <line number="103" hits="1" branch="false"/>
@@ -2471,7 +2474,7 @@
                 <line number="146" hits="1" branch="false"/>
               </lines>
             </method>
-            <method name="format_content" signature="" line-rate="0.952380952380952" branch-rate="0">
+            <method name="format_content" signature="" line-rate="0.952380952380952" branch-rate="0" complexity="0">
               <lines>
                 <line number="160" hits="11" branch="false"/>
                 <line number="161" hits="4" branch="false"/>
@@ -2602,7 +2605,7 @@
         </class>
         <class name="white_small_well.R" filename="R/white_small_well.R" line-rate="0" branch-rate="0" complexity="0">
           <methods>
-            <method name="white_small_well" signature="" line-rate="0" branch-rate="0">
+            <method name="white_small_well" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
                 <line number="18" hits="0" branch="false"/>
                 <line number="19" hits="0" branch="false"/>
