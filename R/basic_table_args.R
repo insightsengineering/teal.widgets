@@ -18,6 +18,11 @@
 #' @examples
 #' basic_table_args(subtitles = "SUBTITLE")
 basic_table_args <- function(...) {
+
+  if (!requireNamespace("rtables", quietly = TRUE)) {
+    stop("package rtables is required, please install")
+  }
+
   table_args_l <- list(...)
 
   checkmate::assert_character(names(table_args_l), unique = TRUE, null.ok = TRUE)
