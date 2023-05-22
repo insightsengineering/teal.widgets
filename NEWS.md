@@ -1,4 +1,4 @@
-# teal.widgets 0.2.0.9025
+# teal.widgets 0.3.0
 
 ### Enhancements
 * Added support for downloading base plots.
@@ -27,7 +27,7 @@
 * `condition` objects can now be displayed in `verbatim_popup`.
 
 ### Bug fixes
-* Fixed bug in `verbatim_popup_srv` where `disabled` argument didn't influence the popup button. 
+* Fixed bug in `verbatim_popup_srv` where `disabled` argument didn't influence the popup button.
 * Fixed `optionalSliderInput` validation to remove a warning message in certain cases.
 
 ### New features
