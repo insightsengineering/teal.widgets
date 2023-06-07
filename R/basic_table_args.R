@@ -112,6 +112,10 @@ resolve_basic_table_args <- function(user_table = basic_table_args(),
 parse_basic_table_args <- function(basic_table_args = teal.widgets::basic_table_args()) {
   checkmate::assert_class(basic_table_args, "basic_table_args", null.ok = TRUE)
 
+  if (!requireNamespace("rtables", quietly = TRUE)) {
+    stop("package rtables is required, please install")
+  }
+  
   if (length(basic_table_args) == 0) {
     quote(rtables::basic_table())
   } else {
