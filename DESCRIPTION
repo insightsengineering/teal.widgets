@@ -18,7 +18,7 @@ Depends:
     R (>= 3.6)
 Imports:
     bslib,
-    checkmate,
+    checkmate (>= 2.0.0),
     ggplot2,
     graphics,
     htmltools,
@@ -41,6 +41,27 @@ Suggests:
     withr
 VignetteBuilder:
     knitr
+Config/Needs/verdepcheck:
+    rstudio/bslib,
+    mllg/checkmate,
+    tidyverse/ggplot2,
+    rstudio/htmltools,
+    r-lib/lifecycle,
+    rstudio/shiny,
+    daattali/shinyjs,
+    dreamRs/shinyWidgets,
+    r-lib/styler,
+    yihui/knitr,
+    lattice,
+    tidyverse/magrittr,
+    png,
+    rstudio/rmarkdown,
+    insightsengineering/rtables,
+    rstudio/shinytest2,
+    rstudio/shinyvalidate,
+    r-lib/testthat,
+    r-lib/withr
+Config/Needs/website: insightsengineering/nesttemplate
 Encoding: UTF-8
 Language: en-US
 LazyData: true
