@@ -1,4 +1,4 @@
-# teal.widgets 0.3.0.9000
+# teal.widgets 0.3.0.9001
 
 ### Enhancements
 * Added support for downloading base plots.
