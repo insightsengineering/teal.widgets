@@ -6,7 +6,7 @@
 [![Code Coverage 📔](https://raw.githubusercontent.com/insightsengineering/teal.widgets/_xml_coverage_reports/data/main/badge.svg)](https://insightsengineering.github.io/teal.widgets/main/coverage-report/)
 
 ![GitHub forks](https://img.shields.io/github/forks/insightsengineering/teal.widgets?style=social)
-![GitHub Repo stars](https://img.shields.io/github/stars/insightsengineering/teal.widgets?style=social)
+![GitHub repo stars](https://img.shields.io/github/stars/insightsengineering/teal.widgets?style=social)
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/insightsengineering/teal.widgets)
 ![GitHub contributors](https://img.shields.io/github/contributors/insightsengineering/teal.widgets)
