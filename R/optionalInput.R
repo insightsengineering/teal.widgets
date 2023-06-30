@@ -45,20 +45,29 @@
 #'   selected = "A"
 #' )
 #'
-#' ADRS <- scda::synthetic_cdisc_data("latest")$adrs # nolint
+#'
+#' # Create a minimal example data frame
+#' data <- data.frame(
+#'   AGE = c(25, 30, 40, 35, 28),
+#'   SEX = c("Male", "Female", "Male", "Female", "Male"),
+#'   PARAMCD = c("Val1", "Val2", "Val3", "Val4", "Val5"),
+#'   PARAM = c("Param1", "Param2", "Param3", "Param4", "Param5"),
+#'   AVISIT = c("Visit1", "Visit2", "Visit3", "Visit4", "Visit5"),
+#'   stringsAsFactors = TRUE
+#' )
 #' optionalSelectInput(
 #'   inputId = "xvar",
 #'   label = "x variable",
-#'   choices = teal.transform::variable_choices(data = ADRS, subset = c("AGE", "SEX", "PARAMCD")),
+#'   choices = teal.transform::variable_choices(data = data, subset = c("AGE", "SEX", "PARAMCD")),
 #'   selected = "PARAMCD"
 #' )
 #'
-#' selected_value <- paste0(lapply(ADRS[1, c("PARAMCD", "AVISIT")], as.character), collapse = " - ")
+#' selected_value <- paste0(lapply(data[1, c("PARAMCD", "AVISIT")], as.character), collapse = " - ")
 #' optionalSelectInput(
 #'   inputId = "xvar",
 #'   label = "x variable",
 #'   choices = teal.transform::value_choices(
-#'     data = ADRS,
+#'     data = data,
 #'     var_choices = c("PARAMCD", "AVISIT"),
 #'     var_label = c("PARAM", "AVISIT")
 #'   ),
