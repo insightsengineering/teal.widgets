@@ -16,7 +16,7 @@ input widgets that provide only a single choice."><!-- mathjax --><script src="h
     
     <a class="navbar-brand me-2" href="../index.html">teal.widgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9002</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,15 +37,6 @@ input widgets that provide only a single choice."><!-- mathjax --><script src="h
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/v0.3.0">v0.3.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/v0.2.0">v0.2.0</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -171,20 +162,29 @@ The width of the input passed to <code>pickerInput</code>  e.g. <code>'auto'</co
 <span class="r-in"><span>  selected <span class="op">=</span> <span class="st">"A"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ADRS</span> <span class="op">&lt;-</span> <span class="fu">scda</span><span class="fu">::</span><span class="fu">synthetic_cdisc_data</span><span class="op">(</span><span class="st">"latest"</span><span class="op">)</span><span class="op">$</span><span class="va">adrs</span> <span class="co"># nolint</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Create a minimal example data frame</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  AGE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">35</span>, <span class="fl">28</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Male"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  PARAMCD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Val1"</span>, <span class="st">"Val2"</span>, <span class="st">"Val3"</span>, <span class="st">"Val4"</span>, <span class="st">"Val5"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  PARAM <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Param1"</span>, <span class="st">"Param2"</span>, <span class="st">"Param3"</span>, <span class="st">"Param4"</span>, <span class="st">"Param5"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  AVISIT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Visit1"</span>, <span class="st">"Visit2"</span>, <span class="st">"Visit3"</span>, <span class="st">"Visit4"</span>, <span class="st">"Visit5"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  stringsAsFactors <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">optionalSelectInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  inputId <span class="op">=</span> <span class="st">"xvar"</span>,</span></span>
 <span class="r-in"><span>  label <span class="op">=</span> <span class="st">"x variable"</span>,</span></span>
-<span class="r-in"><span>  choices <span class="op">=</span> <span class="fu">teal.transform</span><span class="fu">::</span><span class="fu">variable_choices</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ADRS</span>, subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGE"</span>, <span class="st">"SEX"</span>, <span class="st">"PARAMCD"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  choices <span class="op">=</span> <span class="fu">teal.transform</span><span class="fu">::</span><span class="fu">variable_choices</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGE"</span>, <span class="st">"SEX"</span>, <span class="st">"PARAMCD"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  selected <span class="op">=</span> <span class="st">"PARAMCD"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">selected_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">ADRS</span><span class="op">[</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PARAMCD"</span>, <span class="st">"AVISIT"</span><span class="op">)</span><span class="op">]</span>, <span class="va">as.character</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">selected_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PARAMCD"</span>, <span class="st">"AVISIT"</span><span class="op">)</span><span class="op">]</span>, <span class="va">as.character</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">optionalSelectInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  inputId <span class="op">=</span> <span class="st">"xvar"</span>,</span></span>
 <span class="r-in"><span>  label <span class="op">=</span> <span class="st">"x variable"</span>,</span></span>
 <span class="r-in"><span>  choices <span class="op">=</span> <span class="fu">teal.transform</span><span class="fu">::</span><span class="fu">value_choices</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    data <span class="op">=</span> <span class="va">ADRS</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">data</span>,</span></span>
 <span class="r-in"><span>    var_choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PARAMCD"</span>, <span class="st">"AVISIT"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    var_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PARAM"</span>, <span class="st">"AVISIT"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
