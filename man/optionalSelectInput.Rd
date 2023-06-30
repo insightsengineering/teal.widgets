@@ -74,25 +74,31 @@ optionalSelectInput(
   selected = "A"
 )
 
+
+# Create a minimal example data frame
+data <- data.frame(
+  AGE = c(25, 30, 40, 35, 28),
+  SEX = c("Male", "Female", "Male", "Female", "Male"),
+  PARAMCD = c("Val1", "Val2", "Val3", "Val4", "Val5"),
+  PARAM = c("Param1", "Param2", "Param3", "Param4", "Param5"),
+  AVISIT = c("Visit1", "Visit2", "Visit3", "Visit4", "Visit5"),
+  stringsAsFactors = TRUE
+)
 optionalSelectInput(
   inputId = "xvar",
   label = "x variable",
-  choices = teal.transform::variable_choices(data = iris,
-   subset = c("Sepal.Length","Sepal.Width")),
-  selected = "Sepal.Length"
+  choices = teal.transform::variable_choices(data = data, subset = c("AGE", "SEX", "PARAMCD")),
+  selected = "PARAMCD"
 )
 
-Iris <- iris
-Iris$Species.Label <- toupper(Iris$Species)
-selected_value <- paste0(lapply(Iris[1, c("Species", "Petal.Length")], as.character),
- collapse = " - ")
+selected_value <- paste0(lapply(data[1, c("PARAMCD", "AVISIT")], as.character), collapse = " - ")
 optionalSelectInput(
   inputId = "xvar",
   label = "x variable",
   choices = teal.transform::value_choices(
-    data = Iris,
-    var_choices = c("Species", "Petal.Length"),
-    var_label = c("Species.Label", "Petal.Length")
+    data = data,
+    var_choices = c("PARAMCD", "AVISIT"),
+    var_label = c("PARAM", "AVISIT")
   ),
   selected = selected_value
 )
