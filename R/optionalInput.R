@@ -45,22 +45,25 @@
 #'   selected = "A"
 #' )
 #'
-#' ADRS <- scda::synthetic_cdisc_data("latest")$adrs # nolint
 #' optionalSelectInput(
 #'   inputId = "xvar",
 #'   label = "x variable",
-#'   choices = teal.transform::variable_choices(data = ADRS, subset = c("AGE", "SEX", "PARAMCD")),
-#'   selected = "PARAMCD"
+#'   choices = teal.transform::variable_choices(data = iris,
+#'    subset = c("Sepal.Length","Sepal.Width")),
+#'   selected = "Sepal.Length"
 #' )
 #'
-#' selected_value <- paste0(lapply(ADRS[1, c("PARAMCD", "AVISIT")], as.character), collapse = " - ")
+#' Iris <- iris
+#' Iris$Species.Label <- toupper(Iris$Species)
+#' selected_value <- paste0(lapply(Iris[1, c("Species", "Petal.Length")], as.character),
+#'  collapse = " - ")
 #' optionalSelectInput(
 #'   inputId = "xvar",
 #'   label = "x variable",
 #'   choices = teal.transform::value_choices(
-#'     data = ADRS,
-#'     var_choices = c("PARAMCD", "AVISIT"),
-#'     var_label = c("PARAM", "AVISIT")
+#'     data = Iris,
+#'     var_choices = c("Species", "Petal.Length"),
+#'     var_label = c("Species.Label", "Petal.Length")
 #'   ),
 #'   selected = selected_value
 #' )
