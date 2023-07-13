@@ -31,3 +31,31 @@ then that name rather than the value is displayed to the user.}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
+\examples{
+library(shiny)
+
+app <- shinyApp(
+  ui = fluidPage(
+    optionalSelectInput(inputId = "choices", label = "choices", choices = letters, multiple = TRUE),
+    optionalSelectInput(
+      inputId = "selected",
+      label = "select from choices",
+      choices = NULL
+    ),
+    verbatimTextOutput(outputId = "out")
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$choices, {
+      updateOptionalSelectInput(
+        session = session,
+        inputId = "selected",
+        choices = input$choices,
+        selected = input$choices
+      )
+    })
+  }
+)
+if (interactive()) {
+  runApp(app)
+}
+}
