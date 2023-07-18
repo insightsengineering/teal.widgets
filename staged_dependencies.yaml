@@ -7,9 +7,6 @@ upstream_repos:
     repo: insightsengineering/rtables
     host: https://github.com
 downstream_repos:
-  insightsengineering/teal.code:
-    repo: insightsengineering/teal.code
-    host: https://github.com
   insightsengineering/teal.slice:
     repo: insightsengineering/teal.slice
     host: https://github.com
