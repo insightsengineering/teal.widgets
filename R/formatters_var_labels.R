@@ -47,3 +47,47 @@ formatters_var_labels <- function(x, fill = FALSE) {
 
   labels
 }
+
+#' Copy and Change Variable Labels of a \code{data.frame}
+#'
+#' Relabel a subset of the variables
+#'
+#' @inheritParams var_labels<-
+#' @param ... name-value pairs, where name corresponds to a variable name in
+#'   \code{x} and the value to the new variable label
+#'
+#' @return a copy of \code{x} with changed labels according to \code{...}
+#'
+#' @export
+#'
+#' @examples
+#' x <- formatters_var_relabel(iris, Sepal.Length = "Sepal Length of iris flower")
+#' formatters_var_labels(x)
+#'
+formatters_var_relabel <- function(x, ...) {
+  # todo: make this function more readable / code easier
+  stopifnot(is.data.frame(x))
+  if (missing(...)) {
+    return(x)
+  }
+  dots <- list(...)
+  varnames <- names(dots)
+  stopifnot(!is.null(varnames))
+
+  map_varnames <- match(varnames, colnames(x))
+
+  if (any(is.na(map_varnames))) {
+    stop("variables: ", paste(varnames[is.na(map_varnames)], collapse = ", "), " not found")
+  }
+
+  if (any(vapply(dots, Negate(is.character), logical(1)))) {
+    stop("all variable labels must be of type character")
+  }
+
+  for (i in seq_along(map_varnames)) {
+    attr(x[[map_varnames[[i]]]], "label") <- dots[[i]]
+  }
+
+  x
+}
+
