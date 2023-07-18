@@ -1,3 +1,19 @@
+#' Return an object with a label attribute
+#'
+#' @param x an object
+#' @param label label attribute to to attached to  \code{x}
+#'
+#' @export
+#' @return \code{x} labeled by \code{label}. Note: the exact mechanism of labeling should be
+#' considered an internal implementation detail, but the label will always be retrieved via \code{obj_label}.
+#' @examples
+#' x <- formatters_with_label(c(1, 2, 3), label = "Test")
+#' obj_label(x)
+formatters_with_label <- function(x, label) {
+  obj_label(x) <- label
+  x
+}
+
 #' Get Label Attributes of Variables in a \code{data.frame}
 #'
 #' Variable labels can be stored as a \code{label} attribute for each variable.
