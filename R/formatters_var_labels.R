@@ -147,4 +147,3 @@ formatters_var_relabel <- function(x, ...) {
 
   x
 }
-
