@@ -64,11 +64,52 @@ formatters_var_labels <- function(x, fill = FALSE) {
   labels
 }
 
+#' Set Label Attributes of All Variables in a \code{data.frame}
+#'
+#' Variable labels can be stored as a \code{label} attribute for each variable.
+#' This functions sets all non-missing (non-NA) variable labels in a \code{data.frame}
+#'
+#' @inheritParams formatters_var_labels
+#' @param value new variable labels, \code{NA} removes the variable label
+#'
+#' @return modifies the variable labels of \code{x}
+#'
+#' @export
+#'
+#' @examples
+#' x <- iris
+#' formatters_var_labels(x)
+#' formatters_var_labels(x) <- paste("label for", names(iris))
+#' formatters_var_labels(x)
+#'
+#' if (interactive()) {
+#'   View(x) # in RStudio data viewer labels are displayed
+#' }
+`formatters_var_labels<-` <- function(x, value) {
+  stopifnot(
+    is.data.frame(x),
+    is.character(value),
+    ncol(x) == length(value)
+  )
+
+  theseq <- if (!is.null(names(value))) names(value) else seq_along(x)
+  # across columns of x
+  for (j in theseq) {
+    attr(x[[j]], "label") <- if (!is.na(value[j])) {
+      value[j]
+    } else {
+      NULL
+    }
+  }
+
+  x
+}
+
 #' Copy and Change Variable Labels of a \code{data.frame}
 #'
 #' Relabel a subset of the variables
 #'
-#' @inheritParams var_labels<-
+#' @inheritParams formatters_var_labels<-
 #' @param ... name-value pairs, where name corresponds to a variable name in
 #'   \code{x} and the value to the new variable label
 #'
