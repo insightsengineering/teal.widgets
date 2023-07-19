@@ -3,6 +3,11 @@
 \name{formatters_var_labels}
 \alias{formatters_var_labels}
 \title{Get Label Attributes of Variables in a \code{data.frame}}
+\source{
+This function was taken 1-1 from
+\href{https://cran.r-project.org/web/packages/formatters/index.html}{formatters} package, to reduce the complexity of
+the dependency tree.
+}
 \usage{
 formatters_var_labels(x, fill = FALSE)
 }
@@ -24,4 +29,9 @@ This functions returns a named character vector with the variable labels
 \examples{
 x <- iris
 formatters_var_labels(x)
+formatters_var_labels(x) <- paste("label for", names(iris))
+formatters_var_labels(x)
+}
+\seealso{
+\code{\link[=formatters_with_label]{formatters_with_label()}} \code{\link[=formatters_var_relabel]{formatters_var_relabel()}} \code{\link{formatters_var_labels<-}}
 }

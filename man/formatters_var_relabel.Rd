@@ -3,6 +3,11 @@
 \name{formatters_var_relabel}
 \alias{formatters_var_relabel}
 \title{Copy and Change Variable Labels of a \code{data.frame}}
+\source{
+This function was taken 1-1 from
+\href{https://cran.r-project.org/web/packages/formatters/index.html}{formatters} package, to reduce the complexity of
+the dependency tree.
+}
 \usage{
 formatters_var_relabel(x, ...)
 }
@@ -22,4 +27,7 @@ Relabel a subset of the variables
 x <- formatters_var_relabel(iris, Sepal.Length = "Sepal Length of iris flower")
 formatters_var_labels(x)
 
+}
+\seealso{
+\code{\link[=formatters_var_labels]{formatters_var_labels()}} \code{\link[=formatters_with_label]{formatters_with_label()}} \code{\link{formatters_var_labels<-}}
 }

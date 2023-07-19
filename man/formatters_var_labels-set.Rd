@@ -3,6 +3,11 @@
 \name{formatters_var_labels<-}
 \alias{formatters_var_labels<-}
 \title{Set Label Attributes of All Variables in a \code{data.frame}}
+\source{
+This function was taken 1-1 from
+\href{https://cran.r-project.org/web/packages/formatters/index.html}{formatters} package, to reduce the complexity of
+the dependency tree.
+}
 \usage{
 formatters_var_labels(x) <- value
 }
@@ -27,4 +32,7 @@ formatters_var_labels(x)
 if (interactive()) {
   View(x) # in RStudio data viewer labels are displayed
 }
+}
+\seealso{
+\code{\link[=formatters_var_labels]{formatters_var_labels()}} \code{\link[=formatters_var_relabel]{formatters_var_relabel()}} \code{\link[=formatters_with_label]{formatters_with_label()}}
 }

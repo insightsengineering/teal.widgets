@@ -3,6 +3,11 @@
 \name{formatters_with_label}
 \alias{formatters_with_label}
 \title{Return an object with a label attribute}
+\source{
+This function was taken 1-1 from
+\href{https://cran.r-project.org/web/packages/formatters/index.html}{formatters} package, to reduce the complexity of
+the dependency tree.
+}
 \usage{
 formatters_with_label(x, label)
 }
@@ -21,4 +26,7 @@ Return an object with a label attribute
 \examples{
 x <- formatters_with_label(c(1, 2, 3), label = "Test")
 obj_label(x)
+}
+\seealso{
+\code{\link[=formatters_var_labels]{formatters_var_labels()}} \code{\link[=formatters_var_relabel]{formatters_var_relabel()}} \code{\link{formatters_var_labels<-}}
 }

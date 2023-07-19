@@ -3,6 +3,12 @@
 #' @param x an object
 #' @param label label attribute to to attached to  \code{x}
 #'
+#' @source This function was taken 1-1 from
+#' \href{https://cran.r-project.org/web/packages/formatters/index.html}{formatters} package, to reduce the complexity of
+#' the dependency tree.
+#'
+#' @seealso [formatters_var_labels()] [formatters_var_relabel()] [`formatters_var_labels<-`]
+#'
 #' @export
 #' @return \code{x} labeled by \code{label}. Note: the exact mechanism of labeling should be
 #' considered an internal implementation detail, but the label will always be retrieved via \code{obj_label}.
@@ -24,6 +30,12 @@ formatters_with_label <- function(x, label) {
 #' @param fill boolean in case the \code{label} attribute does not exist if
 #'   \code{TRUE} the variable names is returned, otherwise \code{NA}
 #'
+#' @source This function was taken 1-1 from
+#' \href{https://cran.r-project.org/web/packages/formatters/index.html}{formatters} package, to reduce the complexity of
+#' the dependency tree.
+#'
+#' @seealso [formatters_with_label()] [formatters_var_relabel()] [`formatters_var_labels<-`]
+#'
 #' @return a named character vector with the variable labels, the names
 #'   correspond to the variable names
 #'
@@ -31,6 +43,8 @@ formatters_with_label <- function(x, label) {
 #'
 #' @examples
 #' x <- iris
+#' formatters_var_labels(x)
+#' formatters_var_labels(x) <- paste("label for", names(iris))
 #' formatters_var_labels(x)
 formatters_var_labels <- function(x, fill = FALSE) {
   stopifnot(is.data.frame(x))
@@ -71,6 +85,12 @@ formatters_var_labels <- function(x, fill = FALSE) {
 #'
 #' @inheritParams formatters_var_labels
 #' @param value new variable labels, \code{NA} removes the variable label
+#'
+#' @source This function was taken 1-1 from
+#' \href{https://cran.r-project.org/web/packages/formatters/index.html}{formatters} package, to reduce the complexity of
+#' the dependency tree.
+#'
+#' @seealso [formatters_var_labels()] [formatters_var_relabel()] [formatters_with_label()]
 #'
 #' @return modifies the variable labels of \code{x}
 #'
@@ -114,6 +134,12 @@ formatters_var_labels <- function(x, fill = FALSE) {
 #'   \code{x} and the value to the new variable label
 #'
 #' @return a copy of \code{x} with changed labels according to \code{...}
+#'
+#' @source This function was taken 1-1 from
+#' \href{https://cran.r-project.org/web/packages/formatters/index.html}{formatters} package, to reduce the complexity of
+#' the dependency tree.
+#'
+#' @seealso [formatters_var_labels()] [formatters_with_label()] [`formatters_var_labels<-`]
 #'
 #' @export
 #'
