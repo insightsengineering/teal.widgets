@@ -18,28 +18,49 @@ Depends:
     R (>= 3.6)
 Imports:
     bslib,
-    checkmate,
+    checkmate (>= 2.1.0),
     ggplot2,
     graphics,
     grDevices,
-    htmltools,
-    lifecycle,
+    htmltools (>= 0.5.4),
+    lifecycle (>= 0.2.0),
     methods,
+    shiny (>= 1.6.0),
     rtables (>= 0.6.0.9004),
-    shiny,
     shinyjs,
     shinyWidgets,
-    styler
+    styler (>= 1.0.0)
 Suggests:
-    knitr,
-    lattice,
-    magrittr,
+    knitr (>= 1.34),
+    lattice (>= 0.18-4),
+    magrittr (>= 1.5),
     png,
-    rmarkdown,
+    rmarkdown (>= 2.19),
     shinytest2 (>= 0.2.0),
     shinyvalidate,
-    testthat (>= 2.0),
-    withr
+    testthat (>= 3.0.4),
+    withr (>= 2.1.0)
+Config/Needs/verdepcheck:
+    rstudio/bslib,
+    mllg/checkmate,
+    tidyverse/ggplot2,
+    rstudio/htmltools,
+    r-lib/lifecycle,
+    rstudio/shiny,
+    daattali/shinyjs,
+    dreamRs/shinyWidgets,
+    r-lib/styler,
+    yihui/knitr,
+    deepayan/lattice,
+    tidyverse/magrittr,
+    cran/png,
+    rstudio/rmarkdown,
+    insightsengineering/rtables,
+    rstudio/shinytest2,
+    rstudio/shinyvalidate,
+    r-lib/testthat,
+    r-lib/withr
+Config/Needs/website: insightsengineering/nesttemplate
 VignetteBuilder:
     knitr
 Encoding: UTF-8
