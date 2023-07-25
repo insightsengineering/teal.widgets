@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.621735467565291" branch-rate="0" lines-covered="738" lines-valid="1187" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-07-25 10:22:29.034834">
+<coverage line-rate="0.621735467565291" branch-rate="0" lines-covered="738" lines-valid="1187" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-07-25 10:59:17.139693">
   <sources>
     <source>/__w/teal.widgets/teal.widgets/teal.widgets</source>
   </sources>
@@ -12,63 +12,63 @@
             <method name="basic_table_args" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="21" hits="118" branch="false"/>
-                <line number="23" hits="118" branch="false"/>
+                <line number="22" hits="118" branch="false"/>
+                <line number="24" hits="118" branch="false"/>
                 <line number="25" hits="118" branch="false"/>
-                <line number="27" hits="118" branch="false"/>
-                <line number="29" hits="114" branch="false"/>
+                <line number="27" hits="114" branch="false"/>
               </lines>
             </method>
             <method name="resolve_basic_table_args" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
-                <line number="70" hits="24" branch="false"/>
+                <line number="68" hits="24" branch="false"/>
+                <line number="69" hits="23" branch="false"/>
+                <line number="70" hits="23" branch="false"/>
                 <line number="71" hits="23" branch="false"/>
-                <line number="72" hits="23" branch="false"/>
                 <line number="73" hits="23" branch="false"/>
+                <line number="74" hits="23" branch="false"/>
                 <line number="75" hits="23" branch="false"/>
                 <line number="76" hits="23" branch="false"/>
                 <line number="77" hits="23" branch="false"/>
                 <line number="78" hits="23" branch="false"/>
-                <line number="79" hits="23" branch="false"/>
                 <line number="80" hits="23" branch="false"/>
                 <line number="82" hits="23" branch="false"/>
-                <line number="84" hits="23" branch="false"/>
-                <line number="85" hits="9" branch="false"/>
-                <line number="87" hits="14" branch="false"/>
+                <line number="83" hits="9" branch="false"/>
+                <line number="85" hits="14" branch="false"/>
               </lines>
             </method>
             <method name="parse_basic_table_args" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
-                <line number="108" hits="8" branch="false"/>
-                <line number="110" hits="7" branch="false"/>
-                <line number="111" hits="3" branch="false"/>
-                <line number="113" hits="4" branch="false"/>
+                <line number="106" hits="8" branch="false"/>
+                <line number="108" hits="7" branch="false"/>
+                <line number="109" hits="3" branch="false"/>
+                <line number="111" hits="4" branch="false"/>
               </lines>
             </method>
           </methods>
           <lines>
             <line number="21" hits="118" branch="false"/>
-            <line number="23" hits="118" branch="false"/>
+            <line number="22" hits="118" branch="false"/>
+            <line number="24" hits="118" branch="false"/>
             <line number="25" hits="118" branch="false"/>
-            <line number="27" hits="118" branch="false"/>
-            <line number="29" hits="114" branch="false"/>
-            <line number="70" hits="24" branch="false"/>
+            <line number="27" hits="114" branch="false"/>
+            <line number="68" hits="24" branch="false"/>
+            <line number="69" hits="23" branch="false"/>
+            <line number="70" hits="23" branch="false"/>
             <line number="71" hits="23" branch="false"/>
-            <line number="72" hits="23" branch="false"/>
             <line number="73" hits="23" branch="false"/>
+            <line number="74" hits="23" branch="false"/>
             <line number="75" hits="23" branch="false"/>
             <line number="76" hits="23" branch="false"/>
             <line number="77" hits="23" branch="false"/>
             <line number="78" hits="23" branch="false"/>
-            <line number="79" hits="23" branch="false"/>
             <line number="80" hits="23" branch="false"/>
             <line number="82" hits="23" branch="false"/>
-            <line number="84" hits="23" branch="false"/>
-            <line number="85" hits="9" branch="false"/>
-            <line number="87" hits="14" branch="false"/>
-            <line number="108" hits="8" branch="false"/>
-            <line number="110" hits="7" branch="false"/>
-            <line number="111" hits="3" branch="false"/>
-            <line number="113" hits="4" branch="false"/>
+            <line number="83" hits="9" branch="false"/>
+            <line number="85" hits="14" branch="false"/>
+            <line number="106" hits="8" branch="false"/>
+            <line number="108" hits="7" branch="false"/>
+            <line number="109" hits="3" branch="false"/>
+            <line number="111" hits="4" branch="false"/>
           </lines>
         </class>
         <class name="draggable_buckets.R" filename="R/draggable_buckets.R" line-rate="0" branch-rate="0" complexity="0">
