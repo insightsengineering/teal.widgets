@@ -19,11 +19,10 @@ app_tws <- function() {
       )
 
       table_r <- shiny::reactive({
-        l <- rtables::basic_table() %>%
-          rtables::split_cols_by("ARM") %>%
-          rtables::analyze(c("SEX", "AGE"))
-
-        tbl <- rtables::build_table(l, df1)
+        l1 <- rtables::basic_table()
+        l2 <- rtables::split_cols_by(l1, "ARM")
+        l3 <- rtables::analyze(l2, c("SEX", "AGE"))
+        tbl <- rtables::build_table(l3, df1)
         tbl
       })
       table_with_settings_srv(id = "table_with_settings", table_r = table_r)
