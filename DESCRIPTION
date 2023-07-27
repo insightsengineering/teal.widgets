@@ -28,7 +28,7 @@ Imports:
     shiny (>= 1.6.0),
     rtables (>= 0.6.0.9004),
     shinyjs,
-    shinyWidgets,
+    shinyWidgets (>= 0.5.1),
     styler (>= 1.2.0)
 Suggests:
     knitr (>= 1.34),
