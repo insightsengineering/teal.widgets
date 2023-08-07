@@ -15,7 +15,8 @@ get_bs_version <- function() {
 #'
 #' @param plot_obj The original plot object.
 #' @param plot_type The type of the plot, either "gg" (ggplot2) or "grob" (grid graphics).
-#' @param dblclicking A logical value indicating whether double-clicking on data points on the main plot is enabled or disabled.
+#' @param dblclicking A logical value indicating whether double-clicking on data points on
+#' the main plot is enabled or disabled.
 #' @param ranges A list containing x and y values of ranges.
 #'
 #' @keywords internal
