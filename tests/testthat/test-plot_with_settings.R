@@ -432,7 +432,7 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 })
 
 testthat::test_that("plot_with_settings_srv expand no error", {
-  plot_with_settings_args[["plot_r"]] <- function() plot(1)
+  plot_with_settings_args[["plot_r"]] <- function() 1
   shiny::testServer(
     teal.widgets:::plot_with_settings_srv,
     args = plot_with_settings_args,
@@ -444,7 +444,7 @@ testthat::test_that("plot_with_settings_srv expand no error", {
 })
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file from modal", {
-  plot_with_settings_args[["plot_r"]] <- function() plot(1)
+  plot_with_settings_args[["plot_r"]] <- function() 1
   shiny::testServer(
     teal.widgets:::plot_with_settings_srv,
     args = plot_with_settings_args,
@@ -466,7 +466,7 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 })
 
 testthat::test_that("plot_with_settings_srv returns the click ggplot2 functionalities metadata", {
-  plot_with_settings_args$plot_r <- function() plot(1)
+  plot_with_settings_args$plot_r <- function() 1
   shiny::testServer(
     teal.widgets:::plot_with_settings_srv,
     args = plot_with_settings_args,
