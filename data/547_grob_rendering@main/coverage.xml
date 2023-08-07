@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.620777027027027" branch-rate="0" lines-covered="735" lines-valid="1184" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-08-07 12:11:34.684403">
+<coverage line-rate="0.620777027027027" branch-rate="0" lines-covered="735" lines-valid="1184" branches-covered="0" branches-valid="0" complexity="0" version="3.6.2" timestamp="2023-08-07 12:20:37.356358">
   <sources>
     <source>/__w/teal.widgets/teal.widgets/teal.widgets</source>
   </sources>
@@ -2355,13 +2355,13 @@
             </method>
             <method name="apply_plot_modifications" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
-                <line number="23" hits="10" branch="false"/>
-                <line number="24" hits="1" branch="false"/>
+                <line number="24" hits="10" branch="false"/>
                 <line number="25" hits="1" branch="false"/>
-                <line number="26" hits="9" branch="false"/>
-                <line number="27" hits="1" branch="false"/>
+                <line number="26" hits="1" branch="false"/>
+                <line number="27" hits="9" branch="false"/>
                 <line number="28" hits="1" branch="false"/>
-                <line number="30" hits="8" branch="false"/>
+                <line number="29" hits="1" branch="false"/>
+                <line number="31" hits="8" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -2370,13 +2370,13 @@
             <line number="6" hits="1" branch="false"/>
             <line number="7" hits="0" branch="false"/>
             <line number="9" hits="1" branch="false"/>
-            <line number="23" hits="10" branch="false"/>
-            <line number="24" hits="1" branch="false"/>
+            <line number="24" hits="10" branch="false"/>
             <line number="25" hits="1" branch="false"/>
-            <line number="26" hits="9" branch="false"/>
-            <line number="27" hits="1" branch="false"/>
+            <line number="26" hits="1" branch="false"/>
+            <line number="27" hits="9" branch="false"/>
             <line number="28" hits="1" branch="false"/>
-            <line number="30" hits="8" branch="false"/>
+            <line number="29" hits="1" branch="false"/>
+            <line number="31" hits="8" branch="false"/>
           </lines>
         </class>
         <class name="verbatim_popup.R" filename="R/verbatim_popup.R" line-rate="0.51" branch-rate="0" complexity="0">
