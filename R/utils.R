@@ -19,7 +19,7 @@ get_bs_version <- function() {
 #' @param ranges A list containing x and y values of ranges.
 #'
 #' @keywords internal
-get_plot_reactive <- function(plot_obj, plot_type, dblclicking, ranges) {
+apply_plot_modifications <- function(plot_obj, plot_type, dblclicking, ranges) {
   if (plot_type == "gg" && dblclicking) {
     plot_obj +
       ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
