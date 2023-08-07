@@ -361,31 +361,17 @@ plot_with_settings_srv <- function(id,
       }
     })
 
-    plot_reactive <- reactive({
-      if (plot_type() == "gg" && dblclicking) {
-        plot_r() +
-          ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
-      } else if (plot_type() == "grob") {
-        # calling grid.draw on plot_r() is needed;
-        # otherwise the plot will not re-render if the user triggers the zoom in or out feature of the browser.
-        grid::grid.newpage()
-        grid::grid.draw(plot_r())
-      } else {
-        plot_r()
-      }
-    })
-
     p_height <- reactive(`if`(!is.null(input$height), input$height, height[1]))
     p_width <- reactive(`if`(!is.null(input$width), input$width, default_slider_width()[1]))
     output$plot_main <- renderPlot(
-      plot_reactive(),
+      get_plot_reactive(plot_r(), plot_type(), dblclicking, ranges),
       res = get_plot_dpi(),
       height = p_height,
       width = p_width
     )
 
     output$plot_modal <- renderPlot(
-      plot_reactive(),
+      get_plot_reactive(plot_r(), plot_type(), dblclicking, ranges),
       res = get_plot_dpi(),
       height = reactive(input$height_in_modal),
       width = reactive(input$width_in_modal)
