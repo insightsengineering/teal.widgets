@@ -5,7 +5,7 @@ testthat::test_that("get_bs_version", {
 test_that("apply_plot_modifications correctly modifies plot objects", {
   # Create a sample ggplot2 plot object
   ggplot_obj <- ggplot2::ggplot(data = iris, ggplot2::aes(x = Sepal.Length, y = Sepal.Width)) +
-    geom_point()
+    ggplot2::geom_point()
 
   # Test case 1: Modify ggplot object with dblclicking enabled
   modified_ggplot <- apply_plot_modifications(ggplot_obj, "gg", TRUE, list(x = c(4, 7), y = c(2, 4)))
