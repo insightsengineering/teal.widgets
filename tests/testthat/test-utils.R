@@ -7,34 +7,42 @@ ggplot_obj <- ggplot2::ggplot(data = iris, ggplot2::aes(x = Sepal.Length, y = Se
   ggplot2::geom_point()
 
 test_that("apply_plot_modifications, Modify ggplot object with dblclicking enabled", {
-  modified_ggplot <- apply_plot_modifications(plot_obj = ggplot_obj,
-                                              plot_type =  "gg",
-                                              dblclicking =  TRUE,
-                                              ranges =  list(x = c(4, 7), y = c(2, 4)))
+  modified_ggplot <- apply_plot_modifications(
+    plot_obj = ggplot_obj,
+    plot_type = "gg",
+    dblclicking = TRUE,
+    ranges = list(x = c(4, 7), y = c(2, 4))
+  )
   expect_true(identical(class(modified_ggplot), class(ggplot_obj)))
 })
 
 test_that("apply_plot_modifications, Modify ggplot object with dblclicking disabled", {
-  modified_ggplot <- apply_plot_modifications(plot_obj = ggplot_obj,
-                                              plot_type =  "gg",
-                                              dblclicking =  FALSE,
-                                              ranges =  list(x = c(4, 7), y = c(2, 4)))
+  modified_ggplot <- apply_plot_modifications(
+    plot_obj = ggplot_obj,
+    plot_type = "gg",
+    dblclicking = FALSE,
+    ranges = list(x = c(4, 7), y = c(2, 4))
+  )
   expect_true(identical(class(modified_ggplot), class(ggplot_obj)))
 })
 
 test_that("apply_plot_modifications, Modify grob object", {
   grob_obj <- grid::rectGrob()
-  modified_grob <- apply_plot_modifications(plot_obj = grob_obj,
-                                            plot_type =  "grob",
-                                            dblclicking =  TRUE,
-                                            ranges =  list(x = c(0, 1), y = c(0, 1)))
+  modified_grob <- apply_plot_modifications(
+    plot_obj = grob_obj,
+    plot_type = "grob",
+    dblclicking = TRUE,
+    ranges = list(x = c(0, 1), y = c(0, 1))
+  )
   expect_null(modified_grob)
 })
 
 test_that("apply_plot_modifications, Do not modify plot object", {
-  unchanged_plot <- apply_plot_modifications(plot_obj = ggplot_obj,
-                                             plot_type =  "other_type",
-                                             dblclicking =  TRUE,
-                                             ranges =  list(x = c(4, 7), y = c(2, 4)))
+  unchanged_plot <- apply_plot_modifications(
+    plot_obj = ggplot_obj,
+    plot_type = "other_type",
+    dblclicking = TRUE,
+    ranges = list(x = c(4, 7), y = c(2, 4))
+  )
   expect_true(identical(unchanged_plot, ggplot_obj))
 })
