@@ -364,14 +364,20 @@ plot_with_settings_srv <- function(id,
     p_height <- reactive(`if`(!is.null(input$height), input$height, height[1]))
     p_width <- reactive(`if`(!is.null(input$width), input$width, default_slider_width()[1]))
     output$plot_main <- renderPlot(
-      apply_plot_modifications(plot_obj = plot_r(), plot_type = plot_type(), dbclicking = dblclicking, ranges = ranges),
+      apply_plot_modifications(plot_obj = plot_r(),
+        plot_type = plot_type(),
+        dbclicking = dblclicking,
+        ranges = ranges),
       res = get_plot_dpi(),
       height = p_height,
       width = p_width
     )
 
     output$plot_modal <- renderPlot(
-            apply_plot_modifications(plot_obj = plot_r(), plot_type = plot_type(), dbclicking = dblclicking, ranges = ranges),,
+      apply_plot_modifications(plot_obj = plot_r(),
+        plot_type = plot_type(),
+        dbclicking = dblclicking,
+        ranges = ranges),
       res = get_plot_dpi(),
       height = reactive(input$height_in_modal),
       width = reactive(input$width_in_modal)
