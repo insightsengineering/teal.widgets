@@ -371,7 +371,7 @@ plot_with_settings_srv <- function(id,
     )
 
     output$plot_modal <- renderPlot(
-      apply_plot_modifications(plot_r(), plot_type(), dblclicking, ranges),
+            apply_plot_modifications(plot_obj = plot_r(), plot_type = plot_type(), dbclicking = dblclicking, ranges = ranges),,
       res = get_plot_dpi(),
       height = reactive(input$height_in_modal),
       width = reactive(input$width_in_modal)
