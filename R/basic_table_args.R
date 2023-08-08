@@ -19,11 +19,9 @@
 #' basic_table_args(subtitles = "SUBTITLE")
 basic_table_args <- function(...) {
   table_args_l <- list(...)
-
   checkmate::assert_character(names(table_args_l), unique = TRUE, null.ok = TRUE)
 
   basic_table_formals <- methods::formalArgs(rtables::basic_table)
-
   checkmate::assert_subset(names(table_args_l), choices = basic_table_formals, empty.ok = TRUE)
 
   structure(table_args_l, class = "basic_table_args")
