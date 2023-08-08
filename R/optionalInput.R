@@ -132,7 +132,6 @@
 #'     )
 #'   ),
 #'   server = function(input, output, session) {
-#'
 #'     observeEvent(input$c8_choices, {
 #'       updateOptionalSelectInput(
 #'         session = session,
@@ -142,14 +141,30 @@
 #'       )
 #'     })
 #'
-#'     output$c1_out <- renderPrint({ input$c1 })
-#'     output$c2_out <- renderPrint({ input$c2 })
-#'     output$c3_out <- renderPrint({ input$c3 })
-#'     output$c4_out <- renderPrint({ input$c4 })
-#'     output$c5_out <- renderPrint({ input$c5 })
-#'     output$c6_out <- renderPrint({ input$c6 })
-#'     output$c7_out <- renderPrint({ input$c7 })
-#'     output$c8_out <- renderPrint({ input$c8 })
+#'     output$c1_out <- renderPrint({
+#'       input$c1
+#'     })
+#'     output$c2_out <- renderPrint({
+#'       input$c2
+#'     })
+#'     output$c3_out <- renderPrint({
+#'       input$c3
+#'     })
+#'     output$c4_out <- renderPrint({
+#'       input$c4
+#'     })
+#'     output$c5_out <- renderPrint({
+#'       input$c5
+#'     })
+#'     output$c6_out <- renderPrint({
+#'       input$c6
+#'     })
+#'     output$c7_out <- renderPrint({
+#'       input$c7
+#'     })
+#'     output$c8_out <- renderPrint({
+#'       input$c8
+#'     })
 #'   }
 #' )
 #'
@@ -260,7 +275,8 @@ optionalSelectInput <- function(inputId, # nolint
     # when selected values in ui_picker change
     # then update ui_fixed - update '{input id}_selected_text' element specifically
     tags$script(
-      sprintf("
+      sprintf(
+        "
         $(function() {
           $('#%1$s').on('change', function(e) {
             var select_concat = $(this).val().length ? $(this).val().join(', ') : 'NULL';
@@ -291,7 +307,6 @@ optionalSelectInput <- function(inputId, # nolint
         )
       )
     },
-
     if (length(choices) <= 1 || fixed) {
       div(shinyjs::hidden(ui_picker), ui_fixed)
     } else {
