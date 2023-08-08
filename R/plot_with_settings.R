@@ -367,7 +367,7 @@ plot_with_settings_srv <- function(id,
       apply_plot_modifications(
         plot_obj = plot_r(),
         plot_type = plot_type(),
-        dbclicking = dblclicking,
+        dblclicking = dblclicking,
         ranges = ranges
       ),
       res = get_plot_dpi(),
@@ -379,7 +379,7 @@ plot_with_settings_srv <- function(id,
       apply_plot_modifications(
         plot_obj = plot_r(),
         plot_type = plot_type(),
-        dbclicking = dblclicking,
+        dblclicking = dblclicking,
         ranges = ranges
       ),
       res = get_plot_dpi(),
