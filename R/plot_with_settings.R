@@ -265,6 +265,7 @@ plot_with_settings_srv <- function(id,
     default_h <- function() session$clientData[[paste0("output_", ns("plot_main_height"))]]
 
     default_slider_width <- reactiveVal(width)
+    delayed_flex_width <- debounce(reactive(input$flex_width), millis = 100)
 
     if (is.null(width)) {
       # if width = NULL then set default_slider_width to be the value of the plot width on load
@@ -276,10 +277,10 @@ plot_with_settings_srv <- function(id,
         ignoreNULL = TRUE
       )
 
-      observeEvent(input$flex_width, {
-        if (input$flex_width > 0 && !isFALSE(input$width_resize_switch)) {
-          default_slider_width(input$flex_width * c(1, 0.5, 2.8))
-          updateSliderInput(session, inputId = "width", value = input$flex_width)
+      observeEvent(delayed_flex_width(), {
+        if (delayed_flex_width() > 0 && !isFALSE(input$width_resize_switch)) {
+          default_slider_width(delayed_flex_width() * c(1, 0.5, 2.8))
+          updateSliderInput(session, inputId = "width", value = delayed_flex_width())
         }
       })
     }
@@ -338,10 +339,10 @@ plot_with_settings_srv <- function(id,
       )
     })
 
-    observeEvent(input$width_resize_switch | input$flex_width, {
+    observeEvent(input$width_resize_switch | delayed_flex_width(), {
       if (length(input$width_resize_switch) && input$width_resize_switch) {
         shinyjs::disable("width")
-        updateSliderInput(session, inputId = "width", value = input$flex_width)
+        updateSliderInput(session, inputId = "width", value = delayed_flex_width())
       } else {
         shinyjs::enable("width")
       }
@@ -360,31 +361,27 @@ plot_with_settings_srv <- function(id,
       }
     })
 
-    plot_reactive <- reactive({
-      if (plot_type() == "gg" && dblclicking) {
-        plot_r() +
-          ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
-      } else if (plot_type() == "grob") {
-        # calling grid.draw on plot_r() is needed;
-        # otherwise the plot will not re-render if the user triggers the zoom in or out feature of the browser.
-        grid::grid.newpage()
-        grid::grid.draw(plot_r())
-      } else {
-        plot_r()
-      }
-    })
-
     p_height <- reactive(`if`(!is.null(input$height), input$height, height[1]))
     p_width <- reactive(`if`(!is.null(input$width), input$width, default_slider_width()[1]))
     output$plot_main <- renderPlot(
-      plot_reactive(),
+      apply_plot_modifications(
+        plot_obj = plot_r(),
+        plot_type = plot_type(),
+        dblclicking = dblclicking,
+        ranges = ranges
+      ),
       res = get_plot_dpi(),
       height = p_height,
       width = p_width
     )
 
     output$plot_modal <- renderPlot(
-      plot_reactive(),
+      apply_plot_modifications(
+        plot_obj = plot_r(),
+        plot_type = plot_type(),
+        dblclicking = dblclicking,
+        ranges = ranges
+      ),
       res = get_plot_dpi(),
       height = reactive(input$height_in_modal),
       width = reactive(input$width_in_modal)
