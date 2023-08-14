@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="ggplot2_args" timestamp="2023-08-14T13:42:41Z" hostname="fc7ca5675dc4" tests="33" skipped="0" failures="0" errors="0" time="0.478">
+    <testcase time="0.272" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
+    <testcase time="0.02" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
+    <testcase time="0.01" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
+    <testcase time="0.00100000000000011" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
+    <testcase time="0.002" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
+    <testcase time="0.00099999999999989" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
+    <testcase time="0.0149999999999999" classname="ggplot2_args" name="ggplot2_args_function_returns_object_of_ggplot2_args_and_list_classes"/>
+    <testcase time="0.00600000000000001" classname="ggplot2_args" name="ggplot2_args_accepts_named_lists_for_arguments_labs_and_theme"/>
+    <testcase time="0.0130000000000001" classname="ggplot2_args" name="ggplot2_args_throws_error_when_argument_name_is_not_valid."/>
+    <testcase time="0.00600000000000001" classname="ggplot2_args" name="ggplot2_args_throws_error_when_argument_name_is_not_valid."/>
+    <testcase time="0.012" classname="ggplot2_args" name="resolve_ggplot2_args_accepts_empty_inputs"/>
+    <testcase time="0.0069999999999999" classname="ggplot2_args" name="resolve_ggplot2_args_support_NULL_inputs"/>
+    <testcase time="0.01" classname="ggplot2_args" name="resolve_ggplot2_args_throws_error_with_empty_list"/>
+    <testcase time="0.00800000000000001" classname="ggplot2_args" name="resolve_ggplot2_args_function_returns_object_of_ggplot2_args_and_list_classes"/>
+    <testcase time="0.00600000000000001" classname="ggplot2_args" name="parse_ggplot2_args_accepts_empty_inputs"/>
+    <testcase time="0.002" classname="ggplot2_args" name="parse_ggplot2_args_accepts_empty_inputs"/>
+    <testcase time="0.01" classname="ggplot2_args" name="parse_ggplot2_args_throws_error_with_empty_list"/>
+    <testcase time="0.00500000000000012" classname="ggplot2_args" name="parse_ggplot2_args_accepts_an_empty_ggplot2_args_as_minimum_requirement."/>
+    <testcase time="0.00600000000000001" classname="ggplot2_args" name="resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
+    <testcase time="0.002" classname="ggplot2_args" name="resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
+    <testcase time="0.002" classname="ggplot2_args" name="resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
+    <testcase time="0.00600000000000001" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
+    <testcase time="0.002" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
+    <testcase time="0.00499999999999989" classname="ggplot2_args" name="resolve_ggplot2_args_prioritizes_user_plot_input_over_user_default_input."/>
+    <testcase time="0.00600000000000001" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_prioritizes_user_plot_input_over_user_default_input."/>
+    <testcase time="0.00600000000000001" classname="ggplot2_args" name="resolve_ggplot2_args_refers_to_global_teal.ggplot2_args_options_with_empty_input"/>
+    <testcase time="0.00499999999999989" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_refers_to_global_teal.ggplot2_args_options_with_empty_input"/>
+    <testcase time="0.0130000000000001" classname="ggplot2_args" name="parse_ggplot2_args_deparse_needed_to_expand_ggplot2_objects_like_element_blank"/>
+    <testcase time="0.00499999999999989" classname="ggplot2_args" name="parse_ggplot2_args_deparse_needed_to_expand_ggplot2_objects_like_element_blank"/>
+    <testcase time="0.00600000000000001" classname="ggplot2_args" name="resolve_ggplot2_args_priorotizes_input_in_the_order_user_plot_user_default_teal.ggplot2_args_and_module_plot"/>
+    <testcase time="0.00600000000000001" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_priorotizes_input_in_the_order_user_plot_user_default_teal.ggplot2_args_and_module_plot"/>
+    <testcase time="0.00100000000000011" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_priorotizes_input_in_the_order_user_plot_user_default_teal.ggplot2_args_and_module_plot"/>
+    <testcase time="0.00099999999999989" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_priorotizes_input_in_the_order_user_plot_user_default_teal.ggplot2_args_and_module_plot"/>
+  </testsuite>
+  <testsuite name="optionalInput" timestamp="2023-08-14T13:42:42Z" hostname="fc7ca5675dc4" tests="7" skipped="0" failures="0" errors="0" time="0.117">
+    <testcase time="0.071" classname="optionalInput" name="optionalSliderInput_single_value"/>
+    <testcase time="0.01" classname="optionalInput" name="optionalSliderInput_single_value_out_of_range"/>
+    <testcase time="0.0129999999999999" classname="optionalInput" name="optionalSliderInput_double_value"/>
+    <testcase time="0.01" classname="optionalInput" name="optionalSliderInput_double_value_out_of_range"/>
+    <testcase time="0.00900000000000012" classname="optionalInput" name="optionalSliderInput_min_max_NA"/>
+    <testcase time="0.002" classname="optionalInput" name="optionalSliderInput_min_max_NA"/>
+    <testcase time="0.002" classname="optionalInput" name="optionalSliderInput_min_max_NA"/>
+  </testsuite>
+  <testsuite name="plot_with_settings" timestamp="2023-08-14T13:42:42Z" hostname="fc7ca5675dc4" tests="72" skipped="0" failures="0" errors="0" time="4.133">
+    <testcase time="0.024" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_set_then_get_plot_dpi_returns_72_"/>
+    <testcase time="0.00499999999999989" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_at_least_24_then_get_plot_dpi_returns_its_value"/>
+    <testcase time="0.002" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_at_least_24_then_get_plot_dpi_returns_its_value"/>
+    <testcase time="0.00100000000000011" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_at_least_24_then_get_plot_dpi_returns_its_value"/>
+    <testcase time="0.00099999999999989" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_at_least_24_then_get_plot_dpi_returns_its_value"/>
+    <testcase time="0.00600000000000001" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_less_24_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.002" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_less_24_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.002" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_less_24_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.00100000000000011" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_less_24_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.00600000000000001" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_an_integer_value_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.00099999999999989" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_an_integer_value_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.002" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_an_integer_value_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.00100000000000011" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_an_integer_value_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.29" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
+    <testcase time="0.0659999999999998" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
+    <testcase time="0.101" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
+    <testcase time="0.00600000000000001" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
+    <testcase time="0.00800000000000001" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
+    <testcase time="0.00500000000000012" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
+    <testcase time="0.01" classname="plot_with_settings" name="clean_brushedPoints_returns_error_with_wrong_input"/>
+    <testcase time="0.00600000000000001" classname="plot_with_settings" name="clean_brushedPoints_returns_error_with_wrong_input"/>
+    <testcase time="0.00600000000000001" classname="plot_with_settings" name="clean_brushedPoints_returns_error_with_wrong_input"/>
+    <testcase time="0.0069999999999999" classname="plot_with_settings" name="clean_brushedPoints_returns_a_data_frame_with_minimal_correct_input"/>
+    <testcase time="0.01" classname="plot_with_settings" name="clean_brushedPoints_removal_of_NA_points"/>
+    <testcase time="0.00300000000000011" classname="plot_with_settings" name="clean_brushedPoints_removal_of_NA_points"/>
+    <testcase time="0.002" classname="plot_with_settings" name="clean_brushedPoints_removal_of_NA_points"/>
+    <testcase time="0.376" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
+    <testcase time="0.00599999999999978" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
+    <testcase time="0.0110000000000001" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
+    <testcase time="0.00499999999999989" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
+    <testcase time="0.0150000000000001" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
+    <testcase time="0.00599999999999978" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
+    <testcase time="0.036" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
+    <testcase time="0.00600000000000023" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
+    <testcase time="0.0139999999999998" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
+    <testcase time="0.00600000000000023" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
+    <testcase time="0.0139999999999998" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
+    <testcase time="0.00600000000000023" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
+    <testcase time="0.036" classname="plot_with_settings" name="type_download_srv_downloads_a_png_file_with_different_dimensions"/>
+    <testcase time="0.0349999999999997" classname="plot_with_settings" name="type_download_srv_downloads_a_png_file_using_default_dimensions_input_dimensions_are_NULL"/>
+    <testcase time="0.0270000000000001" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.0209999999999999" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.0249999999999999" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.0190000000000001" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.016" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.016" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.0169999999999999" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.016" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.0169999999999999" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.273" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_base"/>
+    <testcase time="0.0169999999999999" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_base"/>
+    <testcase time="0.341" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_ggplot2"/>
+    <testcase time="0.148" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_ggplot2"/>
+    <testcase time="0.442" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_grob"/>
+    <testcase time="0.105" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_grob"/>
+    <testcase time="0.206" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_trellis"/>
+    <testcase time="0.0410000000000004" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_trellis"/>
+    <testcase time="0.149999999999999" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_WRONG_type"/>
+    <testcase time="0.016" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_WRONG_type"/>
+    <testcase time="0.194000000000001" classname="plot_with_settings" name="plot_with_settings_srv_expand_no_error"/>
+    <testcase time="0.186" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_from_modal"/>
+    <testcase time="0.0199999999999996" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_from_modal"/>
+    <testcase time="0.174" classname="plot_with_settings" name="plot_with_settings_srv_returns_the_click_ggplot2_functionalities_metadata"/>
+    <testcase time="0.00300000000000011" classname="plot_with_settings" name="plot_with_settings_srv_returns_the_click_ggplot2_functionalities_metadata"/>
+    <testcase time="0.00299999999999923" classname="plot_with_settings" name="plot_with_settings_srv_returns_the_click_ggplot2_functionalities_metadata"/>
+    <testcase time="0.00200000000000067" classname="plot_with_settings" name="plot_with_settings_srv_returns_the_click_ggplot2_functionalities_metadata"/>
+    <testcase time="0.14" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
+    <testcase time="0.0410000000000004" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
+    <testcase time="0.18" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
+    <testcase time="0.0490000000000004" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
+    <testcase time="0.0429999999999993" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
+    <testcase time="0.0390000000000006" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
+  </testsuite>
+  <testsuite name="plot_with_settings_ui" timestamp="2023-08-14T13:42:46Z" hostname="fc7ca5675dc4" tests="3" skipped="1" failures="0" errors="0" time="4.889">
+    <testcase time="0.016" classname="plot_with_settings_ui" name="type_download_ui_returns_shiny.tag"/>
+    <testcase time="0.0139999999999993" classname="plot_with_settings_ui" name="plot_with_settings_ui_returns_shiny.tag.list"/>
+    <testcase time="4.859" classname="plot_with_settings_ui" name="Plot_with_settings_UI_screenshots">
+      <skipped message="Reason: On CRAN ('test-plot_with_settings_ui.R:23:3')"/>
+    </testcase>
+  </testsuite>
+  <testsuite name="standard_layout" timestamp="2023-08-14T13:42:51Z" hostname="fc7ca5675dc4" tests="11" skipped="0" failures="0" errors="0" time="0.094">
+    <testcase time="0.0389999999999997" classname="standard_layout" name="Input_validation"/>
+    <testcase time="0.00600000000000023" classname="standard_layout" name="Input_validation"/>
+    <testcase time="0.00600000000000023" classname="standard_layout" name="Input_validation"/>
+    <testcase time="0.00600000000000023" classname="standard_layout" name="Input_validation"/>
+    <testcase time="0.00500000000000078" classname="standard_layout" name="Input_validation"/>
+    <testcase time="0.00499999999999901" classname="standard_layout" name="Input_validation"/>
+    <testcase time="0.0080000000000009" classname="standard_layout" name="Basic_output"/>
+    <testcase time="0.00399999999999956" classname="standard_layout" name="Basic_output"/>
+    <testcase time="0.00500000000000078" classname="standard_layout" name="Basic_output"/>
+    <testcase time="0.00499999999999901" classname="standard_layout" name="Basic_output"/>
+    <testcase time="0.00500000000000078" classname="standard_layout" name="Basic_output"/>
+  </testsuite>
+  <testsuite name="table_args" timestamp="2023-08-14T13:42:51Z" hostname="fc7ca5675dc4" tests="30" skipped="0" failures="0" errors="0" time="0.509">
+    <testcase time="0.331999999999999" classname="table_args" name="basic_table_args_returns_empty_basic_table_args_with_empty_inputs"/>
+    <testcase time="0.00100000000000122" classname="table_args" name="basic_table_args_returns_empty_basic_table_args_with_empty_inputs"/>
+    <testcase time="0.00900000000000034" classname="table_args" name="basic_table_args_function_returns_list_of_the_basic_table_args_class"/>
+    <testcase time="0.0219999999999985" classname="table_args" name="basic_table_args_rtables_arguments_validation_correct_input"/>
+    <testcase time="0.0100000000000016" classname="table_args" name="basic_table_args_rtables_arguments_validation_incorrect_input"/>
+    <testcase time="0.00599999999999845" classname="table_args" name="resolve_basic_table_args_returns_empty_basic_table_args_with_empty_input"/>
+    <testcase time="0.00900000000000034" classname="table_args" name="resolve_basic_table_args_error_with_empty_list_as_need_a_basic_table_args_class"/>
+    <testcase time="0.00500000000000078" classname="table_args" name="resolve_basic_table_args_need_a_basic_table_args_class_or_NULL_for_each_of_its_arguments"/>
+    <testcase time="0.00199999999999889" classname="table_args" name="resolve_basic_table_args_need_a_basic_table_args_class_or_NULL_for_each_of_its_arguments"/>
+    <testcase time="0.00500000000000078" classname="table_args" name="resolve_basic_table_args_returns_empty_basic_table_args_with_any_list_input_in_basic_table_args"/>
+    <testcase time="0.00200000000000067" classname="table_args" name="resolve_basic_table_args_returns_empty_basic_table_args_with_any_list_input_in_basic_table_args"/>
+    <testcase time="0.0139999999999993" classname="table_args" name="resolve_basic_table_args_error_with_any_list_or_NULL_input_in_its_arguments_when_it_is_not_only_one"/>
+    <testcase time="0.00900000000000034" classname="table_args" name="resolve_basic_table_args_error_with_any_list_or_NULL_input_in_its_arguments_when_it_is_not_only_one"/>
+    <testcase time="0.00699999999999967" classname="table_args" name="resolve_basic_table_args_error_with_any_list_or_NULL_input_in_its_arguments_when_it_is_not_only_one"/>
+    <testcase time="0.00600000000000023" classname="table_args" name="resolve_basic_table_args_support_NULL_inputs"/>
+    <testcase time="0.00799999999999912" classname="table_args" name="resolve_basic_table_args_returns_object_of_basic_table_args_and_list_classes"/>
+    <testcase time="0.00500000000000078" classname="table_args" name="resolve_basic_table_args_returns_object_of_basic_table_args_and_list_classes"/>
+    <testcase time="0.00999999999999979" classname="table_args" name="parse_basic_table_args_throws_error_with_empty_list"/>
+    <testcase time="0.00500000000000078" classname="table_args" name="parse_basic_table_args_returns_language_object_of_empty_rtables_basic_table_call"/>
+    <testcase time="0.00199999999999889" classname="table_args" name="parse_basic_table_args_returns_language_object_of_empty_rtables_basic_table_call"/>
+    <testcase time="0.00200000000000067" classname="table_args" name="parse_basic_table_args_returns_language_object_of_empty_rtables_basic_table_call"/>
+    <testcase time="0.00499999999999901" classname="table_args" name="resolve_basic_table_args_uses_input_from_only_end_user_provided_basic_table_args_source"/>
+    <testcase time="0.00200000000000067" classname="table_args" name="resolve_basic_table_args_uses_input_from_only_end_user_provided_basic_table_args_source"/>
+    <testcase time="0.00200000000000067" classname="table_args" name="resolve_basic_table_args_uses_input_from_only_end_user_provided_basic_table_args_source"/>
+    <testcase time="0.00499999999999901" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_uses_inputfrom_only_end_user_provided_basic_table_args_source"/>
+    <testcase time="0.00200000000000067" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_uses_inputfrom_only_end_user_provided_basic_table_args_source"/>
+    <testcase time="0.00499999999999901" classname="table_args" name="resolve_basic_table_args_refers_to_global_teal.basic_table_args_options_with_empty_input"/>
+    <testcase time="0.00600000000000023" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_refers_to_global_teal.basic_table_argsoptions_with_empty_input"/>
+    <testcase time="0.00500000000000078" classname="table_args" name="resolve_basic_table_args_prioritizes_input_in_the_order_user_table_user_default_teal.basic_table_args_and_module_plot"/>
+    <testcase time="0.00600000000000023" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_prioritizes_input_in_the_order_user_table_user_default_teal.basic_table_args_and_module_plot"/>
+  </testsuite>
+  <testsuite name="table_with_settings" timestamp="2023-08-14T13:42:51Z" hostname="fc7ca5675dc4" tests="27" skipped="0" failures="0" errors="0" time="2.321">
+    <testcase time="0.0250000000000004" classname="table_with_settings" name="table_with_settings_srv_assertions"/>
+    <testcase time="0.0149999999999988" classname="table_with_settings" name="table_with_settings_srv_assertions"/>
+    <testcase time="0.264999999999999" classname="table_with_settings" name="table_with_settings_srv_hiding_works"/>
+    <testcase time="0.122" classname="table_with_settings" name="table_with_settings_srv_return_html_table"/>
+    <testcase time="0.00500000000000078" classname="table_with_settings" name="table_with_settings_srv_return_html_table"/>
+    <testcase time="0.186999999999999" classname="table_with_settings" name="table_with_settings_srv_expand_works"/>
+    <testcase time="0.0690000000000008" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
+    <testcase time="0.0860000000000003" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
+    <testcase time="0.0439999999999987" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
+    <testcase time="0.0300000000000011" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
+    <testcase time="0.0699999999999985" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
+    <testcase time="0.0449999999999999" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
+    <testcase time="0.0660000000000007" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.0229999999999997" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.0500000000000007" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.020999999999999" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.0609999999999999" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.0449999999999999" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.191000000000001" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.0790000000000006" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.157" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.020999999999999" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.147" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.0739999999999998" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.181000000000001" classname="table_with_settings" name="type_download_srv_table_pagination_lpp_to_small"/>
+    <testcase time="0.0599999999999987" classname="table_with_settings" name="type_download_srv_table_content_of_the_table_csv"/>
+    <testcase time="0.182" classname="table_with_settings" name="type_download_srv_table_content_of_the_table_txt"/>
+  </testsuite>
+  <testsuite name="table_with_settings_ui" timestamp="2023-08-14T13:42:54Z" hostname="fc7ca5675dc4" tests="1" skipped="1" failures="0" errors="0" time="3.421">
+    <testcase time="3.421" classname="table_with_settings_ui" name="Table_with_settings_UI_screenshots">
+      <skipped message="Reason: On CRAN ('test-table_with_settings_ui.R:21:3')"/>
+    </testcase>
+  </testsuite>
+  <testsuite name="utils" timestamp="2023-08-14T13:42:57Z" hostname="fc7ca5675dc4" tests="5" skipped="0" failures="0" errors="0" time="0.067">
+    <testcase time="0.0299999999999976" classname="utils" name="get_bs_version"/>
+    <testcase time="0.0110000000000028" classname="utils" name="apply_plot_modifications_Modify_ggplot_object_with_dblclicking_enabled"/>
+    <testcase time="0.00799999999999912" classname="utils" name="apply_plot_modifications_Modify_ggplot_object_with_dblclicking_disabled"/>
+    <testcase time="0.00900000000000034" classname="utils" name="apply_plot_modifications_Modify_grob_object"/>
+    <testcase time="0.00900000000000034" classname="utils" name="apply_plot_modifications_Do_not_modify_plot_object"/>
+  </testsuite>
+  <testsuite name="verbatim_popup" timestamp="2023-08-14T13:42:57Z" hostname="fc7ca5675dc4" tests="16" skipped="0" failures="0" errors="0" time="0.42">
+    <testcase time="0.0129999999999981" classname="verbatim_popup" name="format_content_returns_a_shiny_reactive_when_passed_a_string"/>
+    <testcase time="0.00800000000000267" classname="verbatim_popup" name="format_content_returns_a_shiny_reactive_when_passed_an_expression"/>
+    <testcase time="0.00999999999999801" classname="verbatim_popup" name="format_content_returns_a_shiny_reactive_when_passed_a_reactive"/>
+    <testcase time="0.00900000000000034" classname="verbatim_popup" name="format_content_returns_a_reactive_when_passed_a_condition"/>
+    <testcase time="0.0100000000000016" classname="verbatim_popup" name="format_content_returns_a_reactive_when_passed_a_reactive_holding_a_condition"/>
+    <testcase time="0.00599999999999667" classname="verbatim_popup" name="format_content_concatenates_the_passed_array_of_strings"/>
+    <testcase time="0.00600000000000023" classname="verbatim_popup" name="format_content_concatenates_the_passed_array_of_expressions"/>
+    <testcase time="0.00799999999999912" classname="verbatim_popup" name="format_content_concatenates_the_passed_array_of_string_inside_a_reactive"/>
+    <testcase time="0.233000000000001" classname="verbatim_popup" name="format_content_returns_a_reactive_storing_a_styled_string_when_passed_an_expression_character_or_reactive_when_style_TRUE"/>
+    <testcase time="0.0470000000000006" classname="verbatim_popup" name="format_content_returns_a_reactive_storing_a_styled_string_when_passed_an_expression_character_or_reactive_when_style_TRUE"/>
+    <testcase time="0.0109999999999992" classname="verbatim_popup" name="format_content_returns_a_reactive_storing_a_styled_string_when_passed_an_expression_character_or_reactive_when_style_TRUE"/>
+    <testcase time="0.0120000000000005" classname="verbatim_popup" name="button_click_observer_returns_an_observer"/>
+    <testcase time="0.0120000000000005" classname="verbatim_popup" name="verbatim_popup_ui_returns_a_tag_list"/>
+    <testcase time="0.0100000000000016" classname="verbatim_popup" name="verbatim_popup_ui_with_type_not_equal_to_button_or_link_throws_error"/>
+    <testcase time="0.0129999999999981" classname="verbatim_popup" name="verbatim_popup_ui_with_type_button_produces_a_button"/>
+    <testcase time="0.0120000000000005" classname="verbatim_popup" name="verbatim_popup_ui_with_type_link_produces_a_link"/>
+  </testsuite>
+</testsuites>
