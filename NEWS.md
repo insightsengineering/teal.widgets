@@ -1,10 +1,13 @@
 # teal.widgets 0.4.0
+
 ### Bug fixes
+
 * Fix the rendering on modal pop-up in plots.
 
 ### Miscellaneous
+
 * Removed `scda` package dependency from examples.
-* Update installation instructions in README.
+* Update installation instructions in `README`.
 
 # teal.widgets 0.3.0
 
