@@ -443,20 +443,27 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
 #' optionalSliderInputValMinMax("a", "b", 1)
 #' optionalSliderInputValMinMax("a", "b", c(3, 1, 5))
 optionalSliderInputValMinMax <- function(inputId, label, value_min_max, label_help = NULL, ...) { # nolint
+  checkmate::assert(
+    checkmate::check_numeric(
+      value_min_max,
+      min.len = 3,
+      max.len = 3,
+      lower = value_min_max[2],
+      upper = value_min_max[3]
+    ),
+    checkmate::check_numeric(
+      value_min_max,
+      min.len = 1,
+      max.len = 1
+    )
+  )
 
   x <- value_min_max
 
-  checkmate::assert_numeric(x, .var.name = "value_min_max")
-
   vals <- if (length(x) == 3) {
-    if (any(diff(x[c(2, 1, 3)]) < 0)) {
-      stop(paste("value_min_max is expected to be (value, min, max) where min <= value <= max"))
-    }
     list(value = x[1], min = x[2], max = x[3])
   } else if (length(x) == 1) {
     list(value = x, min = NA_real_, max = NA_real_)
-  } else {
-    stop(paste("value_min_max is expected to be of length 1 (value) or of length 3 (value, min, max)"))
   }
 
   slider <- optionalSliderInput(inputId, label, vals$min, vals$max, vals$value, ...)
