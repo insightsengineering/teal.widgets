@@ -26,18 +26,10 @@ standard_layout <- function(output,
                             pre_output = NULL,
                             post_output = NULL) {
   # checking arguments
-  if (!inherits(output, c("shiny.tag", "shiny.tag.list", "html"))) {
-    stop("output is supposed to be of class `shiny.tag` or `shiny.tag.list`")
-  }
-  for (name in names(l <- list(
-    "encoding" = encoding,
-    "pre_output" = pre_output,
-    "post_output" = post_output
-  ))) {
-    if (!is.null(l[[name]]) && !inherits(l[[name]], c("shiny.tag", "shiny.tag.list", "html"))) {
-      stop(paste(name, "is supposed to be `NULL`, `shiny.tag` or `shiny.tag.list`."))
-    }
-  }
+  checkmate::assert_multi_class(output, c("shiny.tag", "shiny.tag.list", "html"))
+  checkmate::assert_multi_class(encoding, c("shiny.tag", "shiny.tag.list", "html"), null.ok = TRUE)
+  checkmate::assert_multi_class(pre_output, c("shiny.tag", "shiny.tag.list", "html"), null.ok = TRUE)
+  checkmate::assert_multi_class(post_output, c("shiny.tag", "shiny.tag.list", "html"), null.ok = TRUE)
 
   # if encoding=NULL then forms is placed below output
 

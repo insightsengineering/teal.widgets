@@ -30,8 +30,7 @@ verbatim_popup_ui <- function(id, button_label, type = c("button", "link"), ...)
 
   ui_function <- switch(match.arg(type),
     "button" = shiny::actionButton,
-    "link" = shiny::actionLink,
-    stop("Argument 'type' should be 'button' or 'link'")
+    "link" = shiny::actionLink
   )
 
   ns <- shiny::NS(id)

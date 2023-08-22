@@ -7,7 +7,7 @@
 \title{\code{teal.widgets}: Custom widgets for \code{teal} applications}
 \description{
 The \code{teal.widgets} package contains functionalities that can be used
-for \code{teal} module development. The package is dedicated to allow developers to extend modules
+for \code{teal} module development. The package is dedicated to allow developers to extend module
 functionality by additional inputs and output controls.
 }
 \author{

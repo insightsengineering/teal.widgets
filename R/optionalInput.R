@@ -425,7 +425,7 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
 #' \code{value_min_max}
 #'
 #' @description `r lifecycle::badge("stable")`
-#' The [optionalSliderInput()] function needs three arguments to decided
+#' The [optionalSliderInput()] function needs three arguments to determine
 #' whether to hide the `sliderInput` widget or not. For `teal` modules we specify an
 #' optional slider input with one argument here called `value_min_max`.
 #'
@@ -446,7 +446,7 @@ optionalSliderInputValMinMax <- function(inputId, label, value_min_max, label_he
 
   x <- value_min_max
 
-  if (!is.numeric(x)) stop("value_min_max is expected to be numeric")
+  checkmate::assert_numeric(x, .var.name = "value_min_max")
 
   vals <- if (length(x) == 3) {
     if (any(diff(x[c(2, 1, 3)]) < 0)) {
