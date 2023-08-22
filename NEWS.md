@@ -1,5 +1,10 @@
 # teal.widgets 0.4.0.9001
 
+### Miscellaneous
+
+* Documentation enhancements - code formatting package names and R objects.
+* Add `grDevices` to Imports.
+
 # teal.widgets 0.4.0
 
 ### Bug fixes
