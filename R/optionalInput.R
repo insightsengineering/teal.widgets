@@ -446,21 +446,20 @@ optionalSliderInputValMinMax <- function(inputId, label, value_min_max, label_he
   checkmate::assert(
     checkmate::check_numeric(
       value_min_max,
-      min.len = 3,
-      max.len = 3,
-      lower = value_min_max[2],
-      upper = value_min_max[3]
+      finite = TRUE,
+      len = 3
     ),
     checkmate::check_numeric(
       value_min_max,
-      min.len = 1,
-      max.len = 1
+      finite = TRUE,
+      len = 1
     )
   )
 
   x <- value_min_max
 
   vals <- if (length(x) == 3) {
+    checkmate::assert_number(x[1], lower = x[2], upper = x[3], .var.name = "value_min_max")
     list(value = x[1], min = x[2], max = x[3])
   } else if (length(x) == 1) {
     list(value = x, min = NA_real_, max = NA_real_)
