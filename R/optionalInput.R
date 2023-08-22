@@ -421,12 +421,12 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
   }
 }
 
-#' For teal modules we parameterize an \code{optionalSliderInput} with one argument
+#' For `teal` modules we parameterize an \code{optionalSliderInput} with one argument
 #' \code{value_min_max}
 #'
 #' @description `r lifecycle::badge("stable")`
 #' The [optionalSliderInput()] function needs three arguments to decided
-#' whether to hide the `sliderInput` widget or not. For teal modules we specify an
+#' whether to hide the `sliderInput` widget or not. For `teal` modules we specify an
 #' optional slider input with one argument here called `value_min_max`.
 #'
 #' @inheritParams optionalSliderInput

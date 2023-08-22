@@ -61,7 +61,7 @@ ggplot2_args <- function(labs = list(), theme = list()) {
 #'  module creator setup for theme and labs in the specific plot.
 #'  Created with the [ggplot2_args()] function. The `NULL` value is supported.
 #' @param app_default (`ggplot2_args`)\cr
-#'  teal option variable. The `NULL` value is supported.
+#'  an option variable. The `NULL` value is supported.
 #'
 #' @return `ggplot2_args` object.
 #'

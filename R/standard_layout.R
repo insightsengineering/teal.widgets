@@ -2,7 +2,7 @@
 #' the left
 #'
 #' @description `r lifecycle::badge("stable")`
-#' This is the layout used for the teal modules in the `beam` package
+#' This is the layout used for the `teal` modules.
 #'
 #' @param output (`shiny.tag`)\cr
 #'   object with the output element (table, plot, listing) such as for example returned
@@ -35,7 +35,7 @@ standard_layout <- function(output,
     "post_output" = post_output
   ))) {
     if (!is.null(l[[name]]) && !inherits(l[[name]], c("shiny.tag", "shiny.tag.list", "html"))) {
-      stop(paste(name, "is supposed to be NULL, shiny.tag or shiny.tag.list."))
+      stop(paste(name, "is supposed to be `NULL`, `shiny.tag` or `shiny.tag.list`."))
     }
   }
 

@@ -36,5 +36,5 @@ an object of class \code{shiny.tag} with the UI code.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
-This is the layout used for the teal modules in the \code{beam} package
+This is the layout used for the \code{teal} modules.
 }

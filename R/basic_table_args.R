@@ -46,7 +46,7 @@ basic_table_args <- function(...) {
 #'  module creator setup for [rtables::basic_table()] of a specific table.
 #'  Created with the [basic_table_args()] function. The `NULL` value is supported.
 #' @param app_default (`basic_table_args`)\cr
-#'  teal option variable. The `NULL` value is supported.
+#'  an option variable. The `NULL` value is supported.
 #'
 #' @return `basic_table_args` object.
 #' @details
@@ -102,7 +102,7 @@ resolve_basic_table_args <- function(user_table = basic_table_args(),
 #'     user_default = basic_table_args(title = "DEFAULT_TITLE", subtitles = "SUBTITLE")
 #'   )
 #' )
-parse_basic_table_args <- function(basic_table_args = teal.widgets::basic_table_args()) {
+parse_basic_table_args <- function(basic_table_args = basic_table_args()) {
   checkmate::assert_class(basic_table_args, "basic_table_args", null.ok = TRUE)
 
   if (length(basic_table_args) == 0) {
