@@ -21,6 +21,7 @@ Imports:
     checkmate,
     ggplot2,
     graphics,
+    grDevices,
     htmltools,
     lifecycle,
     methods,
@@ -29,7 +30,6 @@ Imports:
     shinyWidgets,
     styler
 Suggests:
-    grDevices,
     knitr,
     lattice,
     magrittr,
