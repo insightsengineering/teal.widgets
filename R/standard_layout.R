@@ -27,7 +27,7 @@ standard_layout <- function(output,
                             post_output = NULL) {
   # checking arguments
   if (!inherits(output, c("shiny.tag", "shiny.tag.list", "html"))) {
-    stop("output is supposed to be of class shiny.tag or shiny.tag.list")
+    stop("output is supposed to be of class `shiny.tag` or `shiny.tag.list`")
   }
   for (name in names(l <- list(
     "encoding" = encoding,
