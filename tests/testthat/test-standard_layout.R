@@ -4,25 +4,25 @@ testthat::test_that("Input validation", {
 
   testthat::expect_error(
     standard_layout(NULL),
-    regexp = "output is supposed to be of class shiny.tag or shiny.tag.list"
+    regexp = "output is supposed to be of class `shiny.tag` or `shiny.tag.list`"
   )
 
-  testthat::expect_error(standard_layout(1), regexp = "output is supposed to be of class shiny.tag or shiny.tag.list")
+  testthat::expect_error(standard_layout(1), regexp = "output is supposed to be of class `shiny.tag` or `shiny.tag.list`")
 
   testthat::expect_error(standard_layout(
     output = tags$div(),
     encoding = 1
-  ), regexp = "encoding is supposed to be NULL, shiny.tag or shiny.tag.list.")
+  ), regexp = "encoding is supposed to be `NULL`, `shiny.tag` or `shiny.tag.list`.")
 
   testthat::expect_error(standard_layout(
     output = tags$div(),
     pre_output = 1
-  ), regexp = "pre_output is supposed to be NULL, shiny.tag or shiny.tag.list.")
+  ), regexp = "pre_output is supposed to be `NULL`, `shiny.tag` or `shiny.tag.list`.")
 
   testthat::expect_error(standard_layout(
     output = tags$div(),
     post_output = 1
-  ), regexp = "post_output is supposed to be NULL, shiny.tag or shiny.tag.list.")
+  ), regexp = "post_output is supposed to be `NULL`, `shiny.tag` or `shiny.tag.list`.")
 })
 
 # Result ----

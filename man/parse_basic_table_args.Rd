@@ -4,7 +4,7 @@
 \alias{parse_basic_table_args}
 \title{Parses \code{basic_table_args} object into the \code{basic_table} expression}
 \usage{
-parse_basic_table_args(basic_table_args = basic_table_args())
+parse_basic_table_args(basic_table_args = teal.widgets::basic_table_args())
 }
 \arguments{
 \item{basic_table_args}{(\code{basic_table_args})\cr

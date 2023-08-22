@@ -2,7 +2,7 @@
 #' the left
 #'
 #' @description `r lifecycle::badge("stable")`
-#' This is the layout used for the `teal` modules.
+#' This is the layout used by the `teal` modules.
 #'
 #' @param output (`shiny.tag`)\cr
 #'   object with the output element (table, plot, listing) such as for example returned

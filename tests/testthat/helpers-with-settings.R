@@ -86,11 +86,11 @@ app_pws <- function() {
 #' @keywords internal
 is_draw <- function(plot_fun) {
   checkmate::assert_function(plot_fun)
-  graphics.off() # close any current graphics devices
-  cdev <- dev.cur()
+  grDevices::graphics.off() # close any current graphics devices
+  cdev <- grDevices::dev.cur()
   plot_fun()
-  if (cdev != dev.cur()) {
-    on.exit(dev.off())
+  if (cdev != grDevices::dev.cur()) {
+    on.exit(grDevices::dev.off())
     return(TRUE)
   }
   return(FALSE)
