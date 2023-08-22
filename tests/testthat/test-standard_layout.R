@@ -7,7 +7,10 @@ testthat::test_that("Input validation", {
     regexp = "output is supposed to be of class `shiny.tag` or `shiny.tag.list`"
   )
 
-  testthat::expect_error(standard_layout(1), regexp = "output is supposed to be of class `shiny.tag` or `shiny.tag.list`")
+  testthat::expect_error(
+    standard_layout(1),
+    regexp = "output is supposed to be of class `shiny.tag` or `shiny.tag.list`"
+  )
 
   testthat::expect_error(standard_layout(
     output = tags$div(),
