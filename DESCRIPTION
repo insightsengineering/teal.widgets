@@ -21,6 +21,7 @@ Imports:
     checkmate,
     ggplot2,
     graphics,
+    grDevices,
     htmltools,
     lifecycle,
     methods,
