@@ -46,7 +46,7 @@ basic_table_args <- function(...) {
 #'  module creator setup for [rtables::basic_table()] of a specific table.
 #'  Created with the [basic_table_args()] function. The `NULL` value is supported.
 #' @param app_default (`basic_table_args`)\cr
-#'  teal option variable. The `NULL` value is supported.
+#'  Application level setting. Can be `NULL`.
 #'
 #' @return `basic_table_args` object.
 #' @details

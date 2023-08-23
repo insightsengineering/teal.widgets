@@ -4,25 +4,28 @@ testthat::test_that("Input validation", {
 
   testthat::expect_error(
     standard_layout(NULL),
-    regexp = "output is supposed to be of class shiny.tag or shiny.tag.list"
+    regexp = "Assertion on 'output' failed"
   )
 
-  testthat::expect_error(standard_layout(1), regexp = "output is supposed to be of class shiny.tag or shiny.tag.list")
+  testthat::expect_error(
+    standard_layout(1),
+    regexp = "Assertion on 'output' failed"
+  )
 
   testthat::expect_error(standard_layout(
     output = tags$div(),
     encoding = 1
-  ), regexp = "encoding is supposed to be NULL, shiny.tag or shiny.tag.list.")
+  ), regexp = "Assertion on 'encoding' failed")
 
   testthat::expect_error(standard_layout(
     output = tags$div(),
     pre_output = 1
-  ), regexp = "pre_output is supposed to be NULL, shiny.tag or shiny.tag.list.")
+  ), regexp = "Assertion on 'pre_output' failed")
 
   testthat::expect_error(standard_layout(
     output = tags$div(),
     post_output = 1
-  ), regexp = "post_output is supposed to be NULL, shiny.tag or shiny.tag.list.")
+  ), regexp = "Assertion on 'post_output' failed")
 })
 
 # Result ----

@@ -25,7 +25,7 @@ module creator setup for theme and labs in the specific plot.
 Created with the \code{\link[=ggplot2_args]{ggplot2_args()}} function. The \code{NULL} value is supported.}
 
 \item{app_default}{(\code{ggplot2_args})\cr
-teal option variable. The \code{NULL} value is supported.}
+Application level setting. Can be \code{NULL}.}
 }
 \value{
 \code{ggplot2_args} object.
