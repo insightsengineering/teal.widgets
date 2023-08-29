@@ -10,3 +10,17 @@
   width: 100%;
   overflow: auto;
 }
+
+/* Place check-mark on left side of text */
+.bootstrap-select.show-tick .dropdown-menu li.selected a span.check-mark {
+  position: relative;
+  visibility: visible;
+  top: 0;
+  right: 5px;
+  opacity: 1;
+}
+
+.bootstrap-select.show-tick .dropdown-menu li a span.check-mark {
+  visibility: hidden;
+  display: inline-block;
+}
