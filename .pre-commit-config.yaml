@@ -22,6 +22,7 @@ repos:
           - htmltools
           - lifecycle
           - methods
+          - rtables
           - shiny
           - shinyjs
           - shinyWidgets
