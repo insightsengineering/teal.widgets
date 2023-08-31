@@ -23,4 +23,5 @@
 .bootstrap-select.show-tick .dropdown-menu li a span.check-mark {
   visibility: hidden;
   display: inline-block;
+  min-width: 0.8em;
 }
