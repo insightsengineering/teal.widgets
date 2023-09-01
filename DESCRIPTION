@@ -25,8 +25,8 @@ Imports:
     htmltools (>= 0.5.4),
     lifecycle (>= 0.2.0),
     methods,
-    shiny (>= 1.6.0),
     rtables (>= 0.6.0.9004),
+    shiny (>= 1.6.0),
     shinyjs,
     shinyWidgets (>= 0.5.1),
     styler (>= 1.2.0)
