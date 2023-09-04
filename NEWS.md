@@ -2,12 +2,9 @@
 
 ### Miscellaneous
 
-* Specify minimal version of dependent packages.
-
-### Miscellaneous
-
 * Documentation enhancements - code formatting package names and R objects.
 * Add `grDevices` to Imports.
+* Specify minimal version of dependent packages.
 
 # teal.widgets 0.4.0
 
