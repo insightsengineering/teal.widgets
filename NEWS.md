@@ -4,7 +4,7 @@
 
 * Documentation enhancements - code formatting package names and R objects.
 * Add `grDevices` to Imports.
-* Specify minimal version of dependent packages.
+* Specified minimal version of package dependencies.
 
 # teal.widgets 0.4.0
 
