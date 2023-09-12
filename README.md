@@ -1,6 +1,11 @@
 # teal.widgets
 
 <!-- start badges -->
+[![CRAN Version](https://www.r-pkg.org/badges/version/teal.widgets?color=green)](https://cran.r-project.org/package=teal.widgets)
+[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/teal.widgets?color=green)](https://cran.r-project.org/package=teal.widgets)
+[![Last Month Downloads](http://cranlogs.r-pkg.org/badges/last-month/teal.widgets?color=green)](https://cran.r-project.org/package=teal.widgets)
+[![Last Week Downloads](http://cranlogs.r-pkg.org/badges/last-week/teal.widgets?color=green)](https://cran.r-project.org/package=teal.widgets)
+
 [![Check 🛠](https://github.com/insightsengineering/teal.widgets/actions/workflows/check.yaml/badge.svg)](https://insightsengineering.github.io/teal.widgets/main/unit-test-report/)
 [![Docs 📚](https://github.com/insightsengineering/teal.widgets/actions/workflows/docs.yaml/badge.svg)](https://insightsengineering.github.io/teal.widgets/)
 [![Code Coverage 📔](https://raw.githubusercontent.com/insightsengineering/teal.widgets/_xml_coverage_reports/data/main/badge.svg)](https://insightsengineering.github.io/teal.widgets/main/coverage-report/)
@@ -29,17 +34,31 @@ This package provides various 'widgets' for `teal` applications. Examples includ
 
 ## Installation
 
-From July 2023 `insightsengineering` packages are available on [r-universe](https://r-universe.dev/).
-
 ```r
 # stable versions
-install.packages('teal.widgets', repos = c('https://insightsengineering.r-universe.dev', 'https://cloud.r-project.org'))
+install.packages('teal.widgets', repos = c('https://insightsengineering.r-universe.dev', getOption('repos')))
 
-# beta versions
-install.packages('teal.widgets', repos = c('https://pharmaverse.r-universe.dev', 'https://cloud.r-project.org'))
+# install.packages("pak")
+pak::pak("insightsengineering/teal.widgets@*release")
 ```
 
-See package vignettes `browseVignettes(package = "teal.widgets")` for usage of this package.
+Alternatively, you might want to use the development version available on [r-universe](https://r-universe.dev/).
+
+```r
+# beta versions
+install.packages('teal.widgets', repos = c('https://pharmaverse.r-universe.dev', getOption('repos')))
+
+# install.packages("pak")
+pak::pak("insightsengineering/teal.widgets")
+```
+
+## Usage
+
+To understand how to use this package, please refer to the [package website](https://insightsengineering.github.io/teal.widgets/), which provides multiple examples of code usage.
+
+## Getting help
+
+If you encounter a bug or you have a feature request - please file an issue. For questions, discussions and staying up to date, please use the "teal" channel in the [`pharmaverse` slack workspace](https://pharmaverse.slack.com).
 
 ## Stargazers and Forkers
 

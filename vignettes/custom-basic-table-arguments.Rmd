@@ -1,7 +1,6 @@
 ---
 title: "Custom basic_table arguments module"
 author: "Maciej Nasiński"
-date: "2021-12-01"
 output: rmarkdown::html_vignette
 runtime: shiny
 vignette: >
