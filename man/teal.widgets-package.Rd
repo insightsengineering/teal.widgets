@@ -10,6 +10,15 @@ The \code{teal.widgets} package contains functionalities that can be used
 for \code{teal} module development. The package is dedicated to allow developers to extend module
 functionality by additional inputs and output controls.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://insightsengineering.github.io/teal.widgets/}
+  \item \url{https://github.com/insightsengineering/teal.widgets}
+  \item Report bugs at \url{https://github.com/insightsengineering/teal.widgets/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Dawid Kaledkowski \email{dawid.kaledkowski@roche.com}
 
