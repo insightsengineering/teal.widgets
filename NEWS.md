@@ -1,4 +1,23 @@
-# teal.widgets 0.3.0.9009
+# teal.widgets 0.4.0.9009
+
+### Miscellaneous
+
+* Documentation enhancements - code formatting package names and R objects.
+* Add `grDevices` to Imports.
+* Specified minimal version of package dependencies.
+
+# teal.widgets 0.4.0
+
+### Bug fixes
+
+* Fix the rendering on modal pop-up in plots.
+
+### Miscellaneous
+
+* Removed `scda` package dependency from examples.
+* Update installation instructions in `README`.
+
+# teal.widgets 0.3.0
 
 ### Enhancements
 * Added support for downloading base plots.

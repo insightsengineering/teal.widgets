@@ -25,7 +25,7 @@ module creator setup for \code{\link[rtables:basic_table]{rtables::basic_table()
 Created with the \code{\link[=basic_table_args]{basic_table_args()}} function. The \code{NULL} value is supported.}
 
 \item{app_default}{(\code{basic_table_args})\cr
-teal option variable. The \code{NULL} value is supported.}
+Application level setting. Can be \code{NULL}.}
 }
 \value{
 \code{basic_table_args} object.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/optionalInput.R
 \name{optionalSliderInputValMinMax}
 \alias{optionalSliderInputValMinMax}
-\title{For teal modules we parameterize an \code{optionalSliderInput} with one argument
+\title{For \code{teal} modules we parameterize an \code{optionalSliderInput} with one argument
 \code{value_min_max}}
 \usage{
 optionalSliderInputValMinMax(
@@ -30,8 +30,8 @@ an object of class \code{shiny.tag}. E.g. an object returned by \code{\link[shin
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
-The \code{\link[=optionalSliderInput]{optionalSliderInput()}} function needs three arguments to decided
-whether to hide the \code{sliderInput} widget or not. For teal modules we specify an
+The \code{\link[=optionalSliderInput]{optionalSliderInput()}} function needs three arguments to determine
+whether to hide the \code{sliderInput} widget or not. For \code{teal} modules we specify an
 optional slider input with one argument here called \code{value_min_max}.
 }
 \examples{

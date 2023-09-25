@@ -4,11 +4,20 @@
 \name{teal.widgets-package}
 \alias{teal.widgets}
 \alias{teal.widgets-package}
-\title{teal.widgets: Custom widgets for teal applications}
+\title{\code{teal.widgets}: Custom widgets for \code{teal} applications}
 \description{
 The \code{teal.widgets} package contains functionalities that can be used
-for teal module development. The Package is dedicated to allow developers to extend modules
+for \code{teal} module development. The package is dedicated to allow developers to extend module
 functionality by additional inputs and output controls.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://insightsengineering.github.io/teal.widgets/}
+  \item \url{https://github.com/insightsengineering/teal.widgets}
+  \item Report bugs at \url{https://github.com/insightsengineering/teal.widgets/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Dawid Kaledkowski \email{dawid.kaledkowski@roche.com}

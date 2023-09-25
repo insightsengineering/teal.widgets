@@ -581,12 +581,12 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
   }
 }
 
-#' For teal modules we parameterize an \code{optionalSliderInput} with one argument
+#' For `teal` modules we parameterize an \code{optionalSliderInput} with one argument
 #' \code{value_min_max}
 #'
 #' @description `r lifecycle::badge("stable")`
-#' The [optionalSliderInput()] function needs three arguments to decided
-#' whether to hide the `sliderInput` widget or not. For teal modules we specify an
+#' The [optionalSliderInput()] function needs three arguments to determine
+#' whether to hide the `sliderInput` widget or not. For `teal` modules we specify an
 #' optional slider input with one argument here called `value_min_max`.
 #'
 #' @inheritParams optionalSliderInput
@@ -603,20 +603,26 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
 #' optionalSliderInputValMinMax("a", "b", 1)
 #' optionalSliderInputValMinMax("a", "b", c(3, 1, 5))
 optionalSliderInputValMinMax <- function(inputId, label, value_min_max, label_help = NULL, ...) { # nolint
+  checkmate::assert(
+    checkmate::check_numeric(
+      value_min_max,
+      finite = TRUE,
+      len = 3
+    ),
+    checkmate::check_numeric(
+      value_min_max,
+      finite = TRUE,
+      len = 1
+    )
+  )
 
   x <- value_min_max
 
-  if (!is.numeric(x)) stop("value_min_max is expected to be numeric")
-
   vals <- if (length(x) == 3) {
-    if (any(diff(x[c(2, 1, 3)]) < 0)) {
-      stop(paste("value_min_max is expected to be (value, min, max) where min <= value <= max"))
-    }
+    checkmate::assert_number(x[1], lower = x[2], upper = x[3], .var.name = "value_min_max")
     list(value = x[1], min = x[2], max = x[3])
   } else if (length(x) == 1) {
     list(value = x, min = NA_real_, max = NA_real_)
-  } else {
-    stop(paste("value_min_max is expected to be of length 1 (value) or of length 3 (value, min, max)"))
   }
 
   slider <- optionalSliderInput(inputId, label, vals$min, vals$max, vals$value, ...)

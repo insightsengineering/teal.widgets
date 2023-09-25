@@ -72,7 +72,7 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
             `data-toggle` = "collapse",
             href = paste0("#", panel_id),
             `aria-expanded` = ifelse(collapsed, "false", "true"),
-            icon("angle-down", class = "dropdown-icon"),
+            icon(ifelse(collapsed, "angle-right", "angle-down"), class = "dropdown-icon"),
             tags$label(
               class = "panel-title inline",
               title,
@@ -95,14 +95,14 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
           tags$div(
             class = "card-header",
             tags$div(
-              class = ifelse(collapsed, "collapsed", ""),
+              class = paste("card-heading", ifelse(collapsed, "collapsed", "")),
               # bs4
               `data-toggle` = "collapse",
               # bs5
               `data-bs-toggle` = "collapse",
               href = paste0("#", panel_id),
               `aria-expanded` = ifelse(collapsed, "false", "true"),
-              icon("angle-down", class = "dropdown-icon"),
+              icon(ifelse(collapsed, "angle-right", "angle-down"), class = "dropdown-icon"),
               tags$label(
                 class = "card-title inline",
                 title,
@@ -123,8 +123,10 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
       stop("Bootstrap 3, 4, and 5 are supported.")
     }
 
+
     tagList(
       include_css_files(pattern = "panel.css"),
+      shiny::tags$head(shiny::includeScript(system.file("js/panel_group.js", package = "teal.widgets"))),
       res_tag
     )
   })
