@@ -388,13 +388,13 @@ plot_with_settings_srv <- function(id,
     )
 
     output$plot_out_main <- renderUI({
+      req(plot_r())
       div(
         align = graph_align,
         plotOutput(
           ns("plot_main"),
-          height = p_height(),
-          width = p_width(),
-          brush = `if`(brushing, brushOpts(ns("plot_brush"), resetOnNew = TRUE), NULL),
+          height = "100%",
+          brush = `if`(brushing, brushOpts(ns("plot_brush"), resetOnNew = FALSE), NULL),
           click = `if`(clicking, clickOpts(ns("plot_click")), NULL),
           dblclick = `if`(dblclicking, dblclickOpts(ns("plot_dblclick")), NULL),
           hover = `if`(hovering, hoverOpts(ns("plot_hover")), NULL)
