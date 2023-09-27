@@ -173,13 +173,13 @@ library("shinyjs")
 shinyApp(
   ui = fluidPage(
     useShinyjs(),
+    actionButton("button", "Show/Hide"),
     plot_with_settings_ui(
       id = "plot_with_settings"
-    ),
-    actionButton("button", "Show/Hide")
+    )
   ),
   server = function(input, output, session) {
-    plot_r <- reactive(ggplot2::qplot(x = 1, y = 1))
+    plot_r <- reactive(ggplot2::qplot(data = faithful, x = waiting, y = eruptions))
 
     show_hide_signal_rv <- reactiveVal(TRUE)
 
