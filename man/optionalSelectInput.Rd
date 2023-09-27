@@ -15,7 +15,7 @@ optionalSelectInput(
   options = list(),
   label_help = NULL,
   fixed = FALSE,
-  fixed_on_single = TRUE,
+  fixed_on_single = FALSE,
   width = NULL
 )
 

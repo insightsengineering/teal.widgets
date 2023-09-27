@@ -155,7 +155,7 @@ optionalSelectInput <- function(inputId, # nolint
                                 options = list(),
                                 label_help = NULL,
                                 fixed = FALSE,
-                                fixed_on_single = TRUE,
+                                fixed_on_single = FALSE,
                                 width = NULL) {
   checkmate::assert_string(inputId)
   checkmate::assert(
