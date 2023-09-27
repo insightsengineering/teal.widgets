@@ -141,48 +141,26 @@ app <- shinyApp(
       verbatimTextOutput(outputId = "c5_out")
     ),
     div(
+      selectInput(
+        inputId = "c6_choices", label = "Update choices", choices = letters, multiple = TRUE
+      ),
       optionalSelectInput(
         inputId = "c6",
-        label = "Variable choices",
-        choices = teal.transform::variable_choices(data = data, subset = c("AGE", "SEX")),
-        selected = "AGE"
-      ),
-      verbatimTextOutput(outputId = "c6_out")
-    ),
-    div(
-      optionalSelectInput(
-        inputId = "c7",
-        label = "Value choices",
-        choices = teal.transform::value_choices(
-          data = data,
-          var_choices = c("PARAMCD", "AVISIT"),
-          var_label = c("PARAM", "AVISIT")
-        ),
-        selected = "Val1 - Visit1"
-      ),
-      verbatimTextOutput(outputId = "c7_out")
-    ),
-    div(
-      selectInput(
-        inputId = "c8_choices", label = "Update choices", choices = letters, multiple = TRUE
-      ),
-      optionalSelectInput(
-        inputId = "c8",
         label = "Updated choices",
         choices = NULL,
         multiple = TRUE,
         fixed_on_single = TRUE
       ),
-      verbatimTextOutput(outputId = "c8_out")
+      verbatimTextOutput(outputId = "c6_out")
     )
   ),
   server = function(input, output, session) {
-    observeEvent(input$c8_choices, ignoreNULL = FALSE, {
+    observeEvent(input$c6_choices, ignoreNULL = FALSE, {
       updateOptionalSelectInput(
         session = session,
-        inputId = "c8",
-        choices = input$c8_choices,
-        selected = input$c8_choices
+        inputId = "c6",
+        choices = input$c6_choices,
+        selected = input$c6_choices
       )
     })
 
@@ -203,12 +181,6 @@ app <- shinyApp(
     })
     output$c6_out <- renderPrint({
       input$c6
-    })
-    output$c7_out <- renderPrint({
-      input$c7
-    })
-    output$c8_out <- renderPrint({
-      input$c8
     })
   }
 )
