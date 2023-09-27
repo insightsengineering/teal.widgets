@@ -5,7 +5,7 @@
 <style>body{background-color:white;}</style>
 <script src="lib/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <link href="lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="lib/datatables-binding-0.28/datatables.js"></script>
+<script src="lib/datatables-binding-0.29/datatables.js"></script>
 <script src="lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="lib/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="lib/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
@@ -106,8 +106,8 @@ table.table-condensed {
       </ul>
       <div class="tab-content" data-tabsetid="covr">
         <div class="tab-pane active" title="Files" data-value="Files" id="tab-covr-1">
-          <div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-826b26c928b230bdd7e3" style="width:100%;height:500px;"></div>
-          <script type="application/json" data-for="htmlwidget-826b26c928b230bdd7e3">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["<a href=\"#\">R/draggable_buckets.R<\/a>","<a href=\"#\">R/panel_group.R<\/a>","<a href=\"#\">R/get_dt_rows.R<\/a>","<a href=\"#\">R/white_small_well.R<\/a>","<a href=\"#\">R/optionalInput.R<\/a>","<a href=\"#\">R/verbatim_popup.R<\/a>","<a href=\"#\">R/include_css_js.R<\/a>","<a href=\"#\">R/utils.R<\/a>","<a href=\"#\">R/plot_with_settings.R<\/a>","<a href=\"#\">R/table_with_settings.R<\/a>","<a href=\"#\">R/ggplot2_args.R<\/a>","<a href=\"#\">R/standard_layout.R<\/a>","<a href=\"#\">R/basic_table_args.R<\/a>"],[153,133,40,25,500,182,20,33,658,245,181,69,113],[67,66,8,4,189,73,6,11,303,128,41,25,22],[0,0,0,0,39,33,5,10,286,127,41,25,22],[67,66,8,4,150,40,1,1,17,1,0,0,0],["0","0","0","0","4","1","2","4","9","5","33","4","40"],["0.00%","0.00%","0.00%","0.00%","20.63%","45.21%","83.33%","90.91%","94.39%","99.22%","100.00%","100.00%","100.00%"]],"container":"<table class=\"row-border\">\n  <thead>\n    <tr>\n      <th>File<\/th>\n      <th>Lines<\/th>\n      <th>Relevant<\/th>\n      <th>Covered<\/th>\n      <th>Missed<\/th>\n      <th>Hits / Line<\/th>\n      <th>Coverage<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"dom":"t","paging":false,"columnDefs":[{"targets":6,"createdCell":"function(td, cellData, rowData, row, col) {\n  var percent = cellData.replace(\"%\", \"\");\n  if (percent > 90) {\n    var grad = \"linear-gradient(90deg, #edfde7 \" + cellData + \", white \" + cellData + \")\";\n  } else if (percent > 75) {\n    var grad = \"linear-gradient(90deg, #f9ffe5 \" + cellData + \", white \" + cellData + \")\";\n  } else {\n    var grad = \"linear-gradient(90deg, #fcece9 \" + cellData + \", white \" + cellData + \")\";\n  }\n  $(td).css(\"background\", grad);\n}\n"},{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\ntable.on('click.dt', 'a', function() {\n  files = $('div#files div');\n  files.not('div.hidden').addClass('hidden');\n  id = $(this).text();\n  files.filter('div[id=\\'' + id + '\\']').removeClass('hidden');\n  $('ul.nav a[data-value=Source]').text(id).tab('show');\n});\n}","selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.createdCell","callback"],"jsHooks":[]}</script>
+          <div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-d15cb120504917135f40" style="width:100%;height:500px;"></div>
+          <script type="application/json" data-for="htmlwidget-d15cb120504917135f40">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["<a href=\"#\">R/draggable_buckets.R<\/a>","<a href=\"#\">R/panel_group.R<\/a>","<a href=\"#\">R/get_dt_rows.R<\/a>","<a href=\"#\">R/white_small_well.R<\/a>","<a href=\"#\">R/optionalInput.R<\/a>","<a href=\"#\">R/verbatim_popup.R<\/a>","<a href=\"#\">R/include_css_js.R<\/a>","<a href=\"#\">R/utils.R<\/a>","<a href=\"#\">R/plot_with_settings.R<\/a>","<a href=\"#\">R/table_with_settings.R<\/a>","<a href=\"#\">R/ggplot2_args.R<\/a>","<a href=\"#\">R/standard_layout.R<\/a>","<a href=\"#\">R/basic_table_args.R<\/a>"],[153,133,40,25,500,182,20,33,658,245,181,69,113],[67,66,8,4,189,73,6,11,303,128,41,25,22],[0,0,0,0,39,33,5,10,286,127,41,25,22],[67,66,8,4,150,40,1,1,17,1,0,0,0],["0","0","0","0","4","1","2","4","8","5","33","4","40"],["0.00%","0.00%","0.00%","0.00%","20.63%","45.21%","83.33%","90.91%","94.39%","99.22%","100.00%","100.00%","100.00%"]],"container":"<table class=\"row-border\">\n  <thead>\n    <tr>\n      <th>File<\/th>\n      <th>Lines<\/th>\n      <th>Relevant<\/th>\n      <th>Covered<\/th>\n      <th>Missed<\/th>\n      <th>Hits / Line<\/th>\n      <th>Coverage<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"dom":"t","paging":false,"columnDefs":[{"targets":6,"createdCell":"function(td, cellData, rowData, row, col) {\n  var percent = cellData.replace(\"%\", \"\");\n  if (percent > 90) {\n    var grad = \"linear-gradient(90deg, #edfde7 \" + cellData + \", white \" + cellData + \")\";\n  } else if (percent > 75) {\n    var grad = \"linear-gradient(90deg, #f9ffe5 \" + cellData + \", white \" + cellData + \")\";\n  } else {\n    var grad = \"linear-gradient(90deg, #fcece9 \" + cellData + \", white \" + cellData + \")\";\n  }\n  $(td).css(\"background\", grad);\n}\n"},{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\ntable.on('click.dt', 'a', function() {\n  files = $('div#files div');\n  files.not('div.hidden').addClass('hidden');\n  id = $(this).text();\n  files.filter('div[id=\\'' + id + '\\']').removeClass('hidden');\n  $('ul.nav a[data-value=Source]').text(id).tab('show');\n});\n}","selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.createdCell","callback"],"jsHooks":[]}</script>
         </div>
         <div class="tab-pane" title="Source" data-value="Source" id="tab-covr-2">
           <div id="files">
@@ -6171,28 +6171,28 @@ table.table-condensed {
                     <td class="num">211</td>
                     <td class="coverage"></td>
                     <td class="col-sm-12">
-                      <pre class="language-r">#'     plot_with_settings_ui(</pre>
+                      <pre class="language-r">#'     actionButton("button", "Show/Hide"),</pre>
                     </td>
                   </tr>
                   <tr class="never">
                     <td class="num">212</td>
                     <td class="coverage"></td>
                     <td class="col-sm-12">
-                      <pre class="language-r">#'       id = "plot_with_settings"</pre>
+                      <pre class="language-r">#'     plot_with_settings_ui(</pre>
                     </td>
                   </tr>
                   <tr class="never">
                     <td class="num">213</td>
                     <td class="coverage"></td>
                     <td class="col-sm-12">
-                      <pre class="language-r">#'     ),</pre>
+                      <pre class="language-r">#'       id = "plot_with_settings"</pre>
                     </td>
                   </tr>
                   <tr class="never">
                     <td class="num">214</td>
                     <td class="coverage"></td>
                     <td class="col-sm-12">
-                      <pre class="language-r">#'     actionButton("button", "Show/Hide")</pre>
+                      <pre class="language-r">#'     )</pre>
                     </td>
                   </tr>
                   <tr class="never">
@@ -6213,7 +6213,7 @@ table.table-condensed {
                     <td class="num">217</td>
                     <td class="coverage"></td>
                     <td class="col-sm-12">
-                      <pre class="language-r">#'     plot_r &lt;- reactive(ggplot2::qplot(x = 1, y = 1))</pre>
+                      <pre class="language-r">#'     plot_r &lt;- reactive(ggplot2::qplot(data = faithful, x = waiting, y = eruptions))</pre>
                     </td>
                   </tr>
                   <tr class="never">
@@ -7429,70 +7429,70 @@ table.table-condensed {
                   </tr>
                   <tr class="covered">
                     <td class="num">391</td>
-                    <td class="coverage">14<em>x</em></td>
+                    <td class="coverage">9<em>x</em></td>
+                    <td class="col-sm-12">
+                      <pre class="language-r">      req(plot_r())</pre>
+                    </td>
+                  </tr>
+                  <tr class="covered">
+                    <td class="num">392</td>
+                    <td class="coverage">5<em>x</em></td>
                     <td class="col-sm-12">
                       <pre class="language-r">      div(</pre>
                     </td>
                   </tr>
                   <tr class="covered">
-                    <td class="num">392</td>
-                    <td class="coverage">14<em>x</em></td>
+                    <td class="num">393</td>
+                    <td class="coverage">5<em>x</em></td>
                     <td class="col-sm-12">
                       <pre class="language-r">        align = graph_align,</pre>
                     </td>
                   </tr>
                   <tr class="covered">
-                    <td class="num">393</td>
-                    <td class="coverage">14<em>x</em></td>
+                    <td class="num">394</td>
+                    <td class="coverage">5<em>x</em></td>
                     <td class="col-sm-12">
                       <pre class="language-r">        plotOutput(</pre>
                     </td>
                   </tr>
                   <tr class="covered">
-                    <td class="num">394</td>
-                    <td class="coverage">14<em>x</em></td>
+                    <td class="num">395</td>
+                    <td class="coverage">5<em>x</em></td>
                     <td class="col-sm-12">
                       <pre class="language-r">          ns("plot_main"),</pre>
                     </td>
                   </tr>
                   <tr class="covered">
-                    <td class="num">395</td>
-                    <td class="coverage">14<em>x</em></td>
-                    <td class="col-sm-12">
-                      <pre class="language-r">          height = p_height(),</pre>
-                    </td>
-                  </tr>
-                  <tr class="covered">
                     <td class="num">396</td>
-                    <td class="coverage">14<em>x</em></td>
+                    <td class="coverage">5<em>x</em></td>
                     <td class="col-sm-12">
-                      <pre class="language-r">          width = p_width(),</pre>
+                      <pre class="language-r">          height = "100%",</pre>
                     </td>
                   </tr>
                   <tr class="covered">
                     <td class="num">397</td>
-                    <td class="coverage">14<em>x</em></td>
+                    <td class="coverage">5<em>x</em></td>
                     <td class="col-sm-12">
-                      <pre class="language-r">          brush = `if`(brushing, brushOpts(ns("plot_brush"), resetOnNew = TRUE), NULL),</pre>
+                      <pre class="language-r">          brush = `if`(brushing, brushOpts(ns("plot_brush"), resetOnNew = FALSE), NULL),</pre>
                     </td>
                   </tr>
                   <tr class="covered">
                     <td class="num">398</td>
-                    <td class="coverage">14<em>x</em></td>
+                    <td class="coverage">5<em>x</em></td>
                     <td class="col-sm-12">
                       <pre class="language-r">          click = `if`(clicking, clickOpts(ns("plot_click")), NULL),</pre>
                     </td>
                   </tr>
                   <tr class="covered">
                     <td class="num">399</td>
-                    <td class="coverage">14<em>x</em></td>
+                    <td class="coverage">5<em>x</em></td>
                     <td class="col-sm-12">
                       <pre class="language-r">          dblclick = `if`(dblclicking, dblclickOpts(ns("plot_dblclick")), NULL),</pre>
                     </td>
                   </tr>
                   <tr class="covered">
                     <td class="num">400</td>
-                    <td class="coverage">14<em>x</em></td>
+                    <td class="coverage">5<em>x</em></td>
                     <td class="col-sm-12">
                       <pre class="language-r">          hover = `if`(hovering, hoverOpts(ns("plot_hover")), NULL)</pre>
                     </td>
