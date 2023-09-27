@@ -4,8 +4,7 @@
 #' Wrapper for [shinyWidgets::pickerInput()] with additional features.
 #' When `fixed = TRUE` or when the number of `choices` is less or equal to 1 (see `fixed_on_single`),
 #' the `pickerInput` widget is hidden and non-interactive widget will be displayed
-#' instead. With change of the user interface `selected` remains unchanged.
-#' Toggle of `HTML` elements is just the visual effect to avoid displaying
+#' instead. Toggle of `HTML` elements is just the visual effect to avoid displaying
 #' `pickerInput` widget when there is only one choice.
 #'
 #' @inheritParams shinyWidgets::pickerInput
@@ -21,7 +20,8 @@
 #'  whether to block user to select choices.
 #'
 #' @param fixed_on_single (`logical(1)` optional)\cr
-#'  whether to block user to select choices when there is only one or less choice.
+#'  whether to block user to select a choice when there is only one or less choice.
+#'  When `FALSE`, user is still able to select or deselect the choice.
 #'
 #' @param width (`character(1)`)\cr
 #'  The width of the input passed to `pickerInput`  e.g. `'auto'`, `'fit'`, `'100px'` or `'75%'`
@@ -55,36 +55,36 @@
 #'     div(
 #'       optionalSelectInput(
 #'         inputId = "c1",
-#'         label = "Default",
+#'         label = "Fixed choices",
 #'         choices = LETTERS[1:5],
-#'         selected = "A"
+#'         selected = c("A", "B"),
+#'         fixed = TRUE
 #'       ),
 #'       verbatimTextOutput(outputId = "c1_out")
 #'     ),
 #'     div(
 #'       optionalSelectInput(
 #'         inputId = "c2",
-#'         label = "Fixed choices",
-#'         choices = LETTERS[1:5],
-#'         selected = c("A", "B"),
-#'         fixed = TRUE
+#'         label = "Single choice",
+#'         choices = "A",
+#'         selected = "A"
 #'       ),
 #'       verbatimTextOutput(outputId = "c2_out")
 #'     ),
 #'     div(
 #'       optionalSelectInput(
 #'         inputId = "c3",
-#'         label = "Single choice",
-#'         choices = LETTERS[1:5],
-#'         selected = "A"
+#'         label = "NULL choices",
+#'         choices = NULL
 #'       ),
 #'       verbatimTextOutput(outputId = "c3_out")
 #'     ),
 #'     div(
 #'       optionalSelectInput(
 #'         inputId = "c4",
-#'         label = "NULL choices",
-#'         choices = NULL
+#'         label = "Default",
+#'         choices = LETTERS[1:5],
+#'         selected = "A"
 #'       ),
 #'       verbatimTextOutput(outputId = "c4_out")
 #'     ),
@@ -132,7 +132,7 @@
 #'     )
 #'   ),
 #'   server = function(input, output, session) {
-#'     observeEvent(input$c8_choices, {
+#'     observeEvent(input$c8_choices, ignoreNULL = FALSE, {
 #'       updateOptionalSelectInput(
 #'         session = session,
 #'         inputId = "c8",
@@ -171,6 +171,7 @@
 #' if (interactive()) {
 #'   runApp(app)
 #' }
+#'
 optionalSelectInput <- function(inputId, # nolint
                                 label = NULL,
                                 choices = NULL,
@@ -198,7 +199,7 @@ optionalSelectInput <- function(inputId, # nolint
   )
   checkmate::assert_flag(multiple)
   checkmate::assert_string(sep, null.ok = TRUE)
-  stopifnot(is.list(options))
+  checkmate::assert_list(options)
   checkmate::assert(
     checkmate::check_string(label_help, null.ok = TRUE),
     checkmate::check_class(label_help, "shiny.tag"),
@@ -206,7 +207,7 @@ optionalSelectInput <- function(inputId, # nolint
     checkmate::check_class(label_help, "html")
   )
   checkmate::assert_flag(fixed)
-  singleton(shinyjs::useShinyjs())
+  checkmate::assert_flag(fixed_on_single)
 
   if (!is.null(width)) {
     validateCssUnit(width)
@@ -235,18 +236,26 @@ optionalSelectInput <- function(inputId, # nolint
     selected <- NULL
   }
 
+  if (length(choices) <= 1 && fixed_on_single) fixed <- TRUE
+
   raw_choices <- extract_raw_choices(choices, attr(choices, "sep"))
   raw_selected <- extract_raw_choices(selected, attr(choices, "sep"))
 
-  ui_picker <- shinyWidgets::pickerInput(
-    inputId = inputId,
-    label = label,
-    choices = raw_choices,
-    selected = raw_selected,
-    multiple = TRUE,
-    width = width,
-    options = options,
-    choicesOpt = picker_options(choices)
+  ui_picker <- tags$div(
+    id = paste0(inputId, "_input"),
+    # visibility feature marked with display: none/block instead of shinyjs::hide/show
+    #  as mechanism to hide/show is handled by javascript code
+    style = if (fixed) "display: none;" else "display: block;",
+    shinyWidgets::pickerInput(
+      inputId = inputId,
+      label = label,
+      choices = raw_choices,
+      selected = raw_selected,
+      multiple = TRUE,
+      width = width,
+      options = options,
+      choicesOpt = picker_options(choices)
+    )
   )
 
   if (!is.null(label_help)) {
@@ -255,6 +264,9 @@ optionalSelectInput <- function(inputId, # nolint
 
   ui_fixed <- tags$div(
     id = paste0(inputId, "_fixed"),
+    # visibility feature marked with display: none/block instead of shinyjs::hide/show
+    #  as mechanism to hide/show is handled by javascript code
+    style = if (fixed) "display: block;" else "display: none;",
     tags$label(class = "control-label", sub(":[[:space:]]+$", "", label)),
     # selected values as verbatim text
     tags$code(
@@ -269,11 +281,10 @@ optionalSelectInput <- function(inputId, # nolint
   )
 
   shiny::tagList(
-    shiny::singleton(shinyjs::useShinyjs()),
     include_css_files(pattern = "picker_input"),
 
     # when selected values in ui_picker change
-    # then update ui_fixed - update '{input id}_selected_text' element specifically
+    # then update ui_fixed - specifically, update '{id}_selected_text' element
     tags$script(
       sprintf(
         "
@@ -287,62 +298,32 @@ optionalSelectInput <- function(inputId, # nolint
       )
     ),
 
-    # if ui_picker has only one or less option or is fixed then hide ui_picker and show ui_fixed
+    # if ui_picker has only one or less option or is fixed then hide {id}_input and show {id}_fixed
     if (fixed_on_single) {
-      tags$script(
-        sprintf(
-          "$(function() {
-            $('#%1$s').on('change', function(e) {
-              var options = $('#%1$s option');
-              if (options.length <= 1) {
-                $('#%1$s').hide();
-                $('#%1$s_fixed').show();
-              } else {
-                $('#%1$s').show();
-                $('#%1$s_fixed').hide();
-              }
-            })
-          })",
-          inputId
-        )
+      js <- sprintf(
+        "$(function() {
+          $('#%1$s').on('change', function(e) {
+            var options = $('#%1$s').find('option');
+            if (options.length == 1) {
+              $('#%1$s_input').hide();
+              $('#%1$s_fixed').show();
+            } else {
+              $('#%1$s_input').show();
+              $('#%1$s_fixed').hide();
+            }
+          })
+        })",
+        inputId
       )
+      tags$script(js)
     },
-    if (length(choices) <= 1 || fixed) {
-      div(shinyjs::hidden(ui_picker), ui_fixed)
-    } else {
-      div(ui_picker, shinyjs::hidden(ui_fixed))
-    }
+    div(ui_picker, ui_fixed)
   )
 }
 
 #' @rdname optionalSelectInput
-#' @examples
-#' library(shiny)
-#'
-#' app <- shinyApp(
-#'   ui = fluidPage(
-#'     optionalSelectInput(inputId = "choices", label = "choices", choices = letters, multiple = TRUE),
-#'     optionalSelectInput(
-#'       inputId = "selected",
-#'       label = "select from choices",
-#'       choices = NULL
-#'     ),
-#'     verbatimTextOutput(outputId = "out")
-#'   ),
-#'   server = function(input, output, session) {
-#'     observeEvent(input$choices, {
-#'       updateOptionalSelectInput(
-#'         session = session,
-#'         inputId = "selected",
-#'         choices = input$choices,
-#'         selected = input$choices
-#'       )
-#'     })
-#'   }
-#' )
-#' if (interactive()) {
-#'   runApp(app)
-#' }
+#' @param session (`shiny.session`)\cr
+#' @export
 updateOptionalSelectInput <- function(session, # nolint
                                       inputId, # nolint
                                       label = NULL,
@@ -360,14 +341,6 @@ updateOptionalSelectInput <- function(session, # nolint
     choices = raw_choices,
     choicesOpt = picker_options(choices)
   )
-
-  if (length(choices) == 1) {
-    shinyjs::hide(inputId)
-    shinyjs::show(paste0(inputId, "_fixed"))
-  } else {
-    shinyjs::show(inputId)
-    shinyjs::hide(paste0(inputId, "_fixed"))
-  }
 
   invisible(NULL)
 }

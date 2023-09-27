@@ -2,7 +2,8 @@
 % Please edit documentation in R/optionalInput.R
 \name{optionalSelectInput}
 \alias{optionalSelectInput}
-\title{Wrapper on \code{pickerInput}}
+\alias{updateOptionalSelectInput}
+\title{Wrapper for \code{pickerInput}}
 \usage{
 optionalSelectInput(
   inputId,
@@ -14,7 +15,16 @@ optionalSelectInput(
   options = list(),
   label_help = NULL,
   fixed = FALSE,
+  fixed_on_single = TRUE,
   width = NULL
+)
+
+updateOptionalSelectInput(
+  session,
+  inputId,
+  label = NULL,
+  selected = NULL,
+  choices = NULL
 )
 }
 \arguments{
@@ -22,9 +32,8 @@ optionalSelectInput(
 
 \item{label}{Display label for the control, or \code{NULL} for no label.}
 
-\item{choices}{(\code{character}, \code{NULL})\cr
-If \code{choices} length is less or equal to 1, the \code{pickerInput} widget is hidden and
-non-interactive widget will be displayed instead.}
+\item{choices}{List of values to select from. If elements of the
+list are named then that name rather than the value is displayed to the user.}
 
 \item{selected}{The initially selected value (or multiple values if \code{multiple = TRUE}).
 If not specified then defaults to the first value for single-select lists
@@ -45,16 +54,19 @@ e.g. an object returned by \code{\link[shiny:helpText]{shiny::helpText()}}.}
 \item{fixed}{(\code{logical(1)} optional)\cr
 whether to block user to select choices.}
 
+\item{fixed_on_single}{(\code{logical(1)} optional)\cr
+whether to block user to select a choice when there is only one or less choice.
+When \code{FALSE}, user is still able to select or deselect the choice.}
+
 \item{width}{(\code{character(1)})\cr
 The width of the input passed to \code{pickerInput}  e.g. \code{'auto'}, \code{'fit'}, \code{'100px'} or \code{'75\%'}}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
-Wrapper on \code{\link[shinyWidgets:pickerInput]{shinyWidgets::pickerInput()}} with additional features.
-When \code{fixed = TRUE} or when the number of \code{choices} is less or equal to 1,
+Wrapper for \code{\link[shinyWidgets:pickerInput]{shinyWidgets::pickerInput()}} with additional features.
+When \code{fixed = TRUE} or when the number of \code{choices} is less or equal to 1 (see \code{fixed_on_single}),
 the \code{pickerInput} widget is hidden and non-interactive widget will be displayed
-instead. With change of the user interface \code{selected} remains unchanged.
-Toggle of \code{HTML} elements is just the visual effect to avoid displaying
+instead. Toggle of \code{HTML} elements is just the visual effect to avoid displaying
 \code{pickerInput} widget when there is only one choice.
 }
 \examples{
@@ -70,58 +82,129 @@ data <- data.frame(
   stringsAsFactors = TRUE
 )
 
+ui_grid <- function(...) {
+  fluidPage(
+    fluidRow(
+      lapply(list(...), function(x) column(4, wellPanel(x)))
+    )
+  )
+}
+
+
 app <- shinyApp(
-  ui = fluidPage(
-    optionalSelectInput(
-      inputId = "c1",
-      label = "Default",
-      choices = LETTERS[1:5],
-      selected = "A"
-    ),
-    optionalSelectInput(
-      inputId = "c2",
-      label = "Fixed choices",
-      choices = LETTERS[1:5],
-      selected = "A",
-      fixed = TRUE
-    ),
-    optionalSelectInput(inputId = "c3", label = "Single choice", choices = "A", selected = "A"),
-    optionalSelectInput(inputId = "c4", label = "NULL choices", choices = NULL),
-    optionalSelectInput(
-      inputId = "c5",
-      label = "Named vector",
-      choices = c(`A - value A` = "A", `B - value B` = "B", `C - value C` = "C"),
-      selected = "A"
-    ),
-    optionalSelectInput(
-      inputId = "c6",
-      label = "Variable choices",
-      choices = teal.transform::variable_choices(data = data, subset = c("AGE", "SEX", "PARAMCD")),
-      selected = "PARAMCD"
-    ),
-    optionalSelectInput(
-      inputId = "c7",
-      label = "Value choices",
-      choices = teal.transform::value_choices(
-        data = data,
-        var_choices = c("PARAMCD", "AVISIT"),
-        var_label = c("PARAM", "AVISIT")
+  ui = ui_grid(
+    div(
+      optionalSelectInput(
+        inputId = "c1",
+        label = "Fixed choices",
+        choices = LETTERS[1:5],
+        selected = c("A", "B"),
+        fixed = TRUE
       ),
-      selected = "Val1 - Visit1"
+      verbatimTextOutput(outputId = "c1_out")
     ),
-    verbatimTextOutput(outputId = "out")
+    div(
+      optionalSelectInput(
+        inputId = "c2",
+        label = "Single choice",
+        choices = "A",
+        selected = "A"
+      ),
+      verbatimTextOutput(outputId = "c2_out")
+    ),
+    div(
+      optionalSelectInput(
+        inputId = "c3",
+        label = "NULL choices",
+        choices = NULL
+      ),
+      verbatimTextOutput(outputId = "c3_out")
+    ),
+    div(
+      optionalSelectInput(
+        inputId = "c4",
+        label = "Default",
+        choices = LETTERS[1:5],
+        selected = "A"
+      ),
+      verbatimTextOutput(outputId = "c4_out")
+    ),
+    div(
+      optionalSelectInput(
+        inputId = "c5",
+        label = "Named vector",
+        choices = c(`A - value A` = "A", `B - value B` = "B", `C - value C` = "C"),
+        selected = "A"
+      ),
+      verbatimTextOutput(outputId = "c5_out")
+    ),
+    div(
+      optionalSelectInput(
+        inputId = "c6",
+        label = "Variable choices",
+        choices = teal.transform::variable_choices(data = data, subset = c("AGE", "SEX", "PARAMCD")),
+        selected = "PARAMCD"
+      ),
+      verbatimTextOutput(outputId = "c6_out")
+    ),
+    div(
+      optionalSelectInput(
+        inputId = "c7",
+        label = "Value choices",
+        choices = teal.transform::value_choices(
+          data = data,
+          var_choices = c("PARAMCD", "AVISIT"),
+          var_label = c("PARAM", "AVISIT")
+        ),
+        selected = "Val1 - Visit1"
+      ),
+      verbatimTextOutput(outputId = "c7_out")
+    ),
+    div(
+      selectInput(inputId = "c8_choices", label = "Update choices", choices = letters, multiple = TRUE),
+      optionalSelectInput(
+        inputId = "c8",
+        label = "Updated choices",
+        choices = NULL,
+        multiple = TRUE,
+        fixed_on_single = TRUE
+      ),
+      verbatimTextOutput(outputId = "c8_out")
+    )
   ),
   server = function(input, output, session) {
-    output$out <- renderText({
-      paste0(
-        "Default: ", input$c1, "\n",
-        "Fixed choices: ", input$c2, "\n",
-        "Single choice: ", input$c3, "\n",
-        "NULL choices: ", input$c4, "\n",
-        "Named vector: ", input$c5, "\n",
-        "Variable choices: ", input$c6, "\n",
-        "Value choices: ", input$c7, "\n"
+    observeEvent(input$c8_choices, ignoreNULL = FALSE, {
+      updateOptionalSelectInput(
+        session = session,
+        inputId = "c8",
+        choices = input$c8_choices,
+        selected = input$c8_choices
       )
+    })
+
+    output$c1_out <- renderPrint({
+      input$c1
+    })
+    output$c2_out <- renderPrint({
+      input$c2
+    })
+    output$c3_out <- renderPrint({
+      input$c3
+    })
+    output$c4_out <- renderPrint({
+      input$c4
+    })
+    output$c5_out <- renderPrint({
+      input$c5
+    })
+    output$c6_out <- renderPrint({
+      input$c6
+    })
+    output$c7_out <- renderPrint({
+      input$c7
+    })
+    output$c8_out <- renderPrint({
+      input$c8
     })
   }
 )
@@ -129,4 +212,5 @@ app <- shinyApp(
 if (interactive()) {
   runApp(app)
 }
+
 }
