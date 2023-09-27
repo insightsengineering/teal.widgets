@@ -60,6 +60,8 @@ When \code{FALSE}, user is still able to select or deselect the choice.}
 
 \item{width}{(\code{character(1)})\cr
 The width of the input passed to \code{pickerInput}  e.g. \code{'auto'}, \code{'fit'}, \code{'100px'} or \code{'75\%'}}
+
+\item{session}{(\code{shiny.session})\cr}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
@@ -142,8 +144,8 @@ app <- shinyApp(
       optionalSelectInput(
         inputId = "c6",
         label = "Variable choices",
-        choices = teal.transform::variable_choices(data = data, subset = c("AGE", "SEX", "PARAMCD")),
-        selected = "PARAMCD"
+        choices = teal.transform::variable_choices(data = data, subset = c("AGE", "SEX")),
+        selected = "AGE"
       ),
       verbatimTextOutput(outputId = "c6_out")
     ),
@@ -161,7 +163,9 @@ app <- shinyApp(
       verbatimTextOutput(outputId = "c7_out")
     ),
     div(
-      selectInput(inputId = "c8_choices", label = "Update choices", choices = letters, multiple = TRUE),
+      selectInput(
+        inputId = "c8_choices", label = "Update choices", choices = letters, multiple = TRUE
+      ),
       optionalSelectInput(
         inputId = "c8",
         label = "Updated choices",

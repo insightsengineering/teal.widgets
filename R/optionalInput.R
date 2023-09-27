@@ -101,8 +101,8 @@
 #'       optionalSelectInput(
 #'         inputId = "c6",
 #'         label = "Variable choices",
-#'         choices = teal.transform::variable_choices(data = data, subset = c("AGE", "SEX", "PARAMCD")),
-#'         selected = "PARAMCD"
+#'         choices = teal.transform::variable_choices(data = data, subset = c("AGE", "SEX")),
+#'         selected = "AGE"
 #'       ),
 #'       verbatimTextOutput(outputId = "c6_out")
 #'     ),
@@ -120,7 +120,9 @@
 #'       verbatimTextOutput(outputId = "c7_out")
 #'     ),
 #'     div(
-#'       selectInput(inputId = "c8_choices", label = "Update choices", choices = letters, multiple = TRUE),
+#'       selectInput(
+#'         inputId = "c8_choices", label = "Update choices", choices = letters, multiple = TRUE
+#'       ),
 #'       optionalSelectInput(
 #'         inputId = "c8",
 #'         label = "Updated choices",
