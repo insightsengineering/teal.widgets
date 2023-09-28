@@ -17,10 +17,4 @@ vector of HTML icons corresponding to  data type in each column.
 \description{
 Get icons to represent variable types in dataset
 }
-\examples{
-teal.widgets:::variable_type_icons(c(
-  "integer", "numeric", "logical", "Date", "POSIXct", "POSIXlt",
-  "factor", "character", "unknown", ""
-))
-}
 \keyword{internal}
