@@ -246,7 +246,7 @@ optionalSelectInput <- function(inputId, # nolint
     tags$code(
       id = paste0(inputId, "_selected_text"),
       if (length(selected) > 0) {
-        paste(selected, collapse = ", ")
+        toString(selected)
       } else {
         "NULL"
       }
