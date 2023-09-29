@@ -22,11 +22,4 @@ class of the variable.}
 \description{
 Prepares content to be displayed in \code{optionalSelectInput} with icons and labels
 }
-\examples{
-teal.widgets:::picker_options_content(
-  var_name = c("SEX", "BRMRKR1"),
-  var_label = c("Sex", "Biomarker 1"),
-  var_type = c("factor", "numeric")
-)
-}
 \keyword{internal}
