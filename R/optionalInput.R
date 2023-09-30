@@ -328,11 +328,6 @@ updateOptionalSelectInput <- function(session, # nolint
 #'  vector of HTML icons corresponding to  data type in each column.
 #' @keywords internal
 #'
-#' @examples
-#' teal.widgets:::variable_type_icons(c(
-#'   "integer", "numeric", "logical", "Date", "POSIXct", "POSIXlt",
-#'   "factor", "character", "unknown", ""
-#' ))
 variable_type_icons <- function(var_type) {
   checkmate::assert_character(var_type, any.missing = FALSE)
 
@@ -381,12 +376,6 @@ variable_type_icons <- function(var_type) {
 #' @return (`character`) HTML contents with all elements combined
 #' @keywords internal
 #'
-#' @examples
-#' teal.widgets:::picker_options_content(
-#'   var_name = c("SEX", "BRMRKR1"),
-#'   var_label = c("Sex", "Biomarker 1"),
-#'   var_type = c("factor", "numeric")
-#' )
 picker_options_content <- function(var_name, var_label, var_type) {
   if (length(var_name) == 0) {
     return(character(0))
