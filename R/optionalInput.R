@@ -254,7 +254,7 @@ optionalSelectInput <- function(inputId, # nolint
     label_help
   )
 
-  shiny::tagList(
+  div(
     include_css_files(pattern = "picker_input"),
 
     # when selected values in ui_picker change
