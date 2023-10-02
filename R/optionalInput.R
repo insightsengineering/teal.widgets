@@ -241,7 +241,7 @@ optionalSelectInput <- function(inputId, # nolint
     # visibility feature marked with display: none/block instead of shinyjs::hide/show
     #  as mechanism to hide/show is handled by javascript code
     style = if (fixed) "display: block;" else "display: none;",
-    tags$label(class = "control-label", sub(":[[:space:]]+$", "", label)),
+    tags$label(class = "control-label", label),
     # selected values as verbatim text
     tags$code(
       id = paste0(inputId, "_selected_text"),
