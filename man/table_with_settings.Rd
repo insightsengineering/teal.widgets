@@ -27,11 +27,10 @@ a mechanism to allow modules which call this module to show/hide the table_with_
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
-\dontrun{
 library(shiny)
 library(rtables)
 library(magrittr)
-shinyApp(
+app <- shinyApp(
   ui = fluidPage(
     table_with_settings_ui(
       id = "table_with_settings"
@@ -51,6 +50,8 @@ shinyApp(
     table_with_settings_srv(id = "table_with_settings", table_r = table_r)
   }
 )
+if (interactive()) {
+  runApp(app)
 }
 
 }

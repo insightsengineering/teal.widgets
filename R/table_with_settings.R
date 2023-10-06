@@ -45,11 +45,10 @@ table_with_settings_ui <- function(id, ...) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' library(shiny)
 #' library(rtables)
 #' library(magrittr)
-#' shinyApp(
+#' app <- shinyApp(
 #'   ui = fluidPage(
 #'     table_with_settings_ui(
 #'       id = "table_with_settings"
@@ -69,6 +68,8 @@ table_with_settings_ui <- function(id, ...) {
 #'     table_with_settings_srv(id = "table_with_settings", table_r = table_r)
 #'   }
 #' )
+#' if (interactive()) {
+#'   runApp(app)
 #' }
 #'
 table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRUE)) {

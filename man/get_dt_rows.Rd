@@ -15,19 +15,31 @@ get_dt_rows(dt_name, dt_rows)
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
-\dontrun{
 library(shiny)
-# in Shiny UI function
-tagList(
-  get_dt_rows(ns("data_table"), ns("dt_rows")),
-  ...
-)
-
-# use the input$dt_rows in the Shiny Server function
-if (!is.null(input$dt_rows)) {
-  dt_args$options$pageLength <- input$dt_rows
-} # nolint
-do.call(DT::datatable, dt_args)
+ui <- function(id) {
+  ns <- NS(id)
+  tagList(
+    DT::DTOutput(ns("data_table")),
+    get_dt_rows(ns("data_table"), ns("dt_rows"))
+  )
 }
 
+# use the input$dt_rows in the Shiny Server function
+server <- function(id) {
+  moduleServer(id, function(input, output, session) {
+    output$data_table <- DT::renderDataTable(
+      {
+        iris
+      },
+      options = list(pageLength = input$dt_rows)
+    )
+  })
+}
+
+if (interactive()) {
+  shinyApp(
+    ui = ui("my_table_module"),
+    server = function(input, output, session) server("my_table_module")
+  )
+}
 }

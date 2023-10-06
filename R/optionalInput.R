@@ -26,6 +26,9 @@
 #' @param width (`character(1)`)\cr
 #'  The width of the input passed to `pickerInput`  e.g. `'auto'`, `'fit'`, `'100px'` or `'75%'`
 #'
+#' @return (`shiny.tag`) HTML tag with `pickerInput` widget and
+#'  non-interactive element listing selected values.
+#'
 #' @export
 #'
 #' @examples
@@ -471,6 +474,8 @@ extract_raw_choices <- function(choices, sep) {
 #'  an object of class `shiny.tag`. E.g. an object returned by [shiny::helpText()]
 #' @param ... optional arguments to `sliderInput`
 #'
+#' @return (`shiny.tag`) HTML tag with `sliderInput` widget.
+#'
 #' @export
 #'
 #' @examples
@@ -531,6 +536,8 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
 #'  If of length 1 then the value gets set to that number and the `sliderInput` will be hidden.
 #'  Otherwise, if it is of length three the three elements will map to `value`, `min` and `max` of
 #'  the [optionalSliderInput()] function.
+#'
+#' @return (`shiny.tag`) HTML tag with range `sliderInput` widget.
 #'
 #' @export
 #'
