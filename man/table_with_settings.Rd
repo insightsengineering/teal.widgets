@@ -23,6 +23,9 @@ reactive expression that yields an \code{rtable} object (\code{ElementaryTable} 
 \item{show_hide_signal}{(\verb{reactive logical}, optional)\cr
 a mechanism to allow modules which call this module to show/hide the table_with_settings UI.}
 }
+\value{
+A \code{shiny} module.
+}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }

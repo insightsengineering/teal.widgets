@@ -21,9 +21,6 @@ plot_with_settings_srv(
 )
 }
 \arguments{
-\item{id}{An ID string that corresponds with the ID used to call the module's
-UI function.}
-
 \item{plot_r}{(\code{reactive} or \code{function})\cr
 \code{reactive} expression or a simple \code{function} to draw a plot.
 A simple \code{function} is needed e.g. for base plots like \code{plot(1)} as the output can not be caught when downloading.
@@ -65,6 +62,11 @@ the one displayed in modal). All the hovering data is stored as a reactive objec
 \item{graph_align}{(\code{character(1)}, optional)\cr
 one of \code{"left"} (default), \code{"center"}, \code{"right"} or \code{"justify"}. The alignment of the graph on
 the main page.}
+
+\item{ui}{(\code{character(1)}) \code{shiny} module id.}
+}
+\value{
+A \code{shiny} module.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}

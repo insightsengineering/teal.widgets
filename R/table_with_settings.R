@@ -42,6 +42,9 @@ table_with_settings_ui <- function(id, ...) {
 #'  a mechanism to allow modules which call this module to show/hide the table_with_settings UI.
 #'
 #' @rdname table_with_settings
+#'
+#' @return A `shiny` module.
+#'
 #' @export
 #'
 #' @examples

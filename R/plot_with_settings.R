@@ -66,7 +66,7 @@ plot_with_settings_ui <- function(id) {
 #'
 #' @export
 #'
-#' @inheritParams shiny::moduleServer
+#' @param ui (`character(1)`) `shiny` module id.
 #'
 #' @param plot_r (`reactive` or `function`)\cr
 #'  `reactive` expression or a simple `function` to draw a plot.
@@ -105,6 +105,8 @@ plot_with_settings_ui <- function(id) {
 #' @details By default the plot is rendered with `72 dpi`. In order to change this, to for example 96 set
 #' `options(teal.plot_dpi = 96)`. The minimum allowed `dpi` value is `24` and it must be a whole number.
 #' If an invalid value is set then the default value is used and a warning is outputted to the console.
+#'
+#' @return A `shiny` module.
 #'
 #' @examples
 #' # Example using a reactive as input to plot_r
