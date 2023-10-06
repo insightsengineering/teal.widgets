@@ -6,6 +6,8 @@
 #'
 #' @name get_dt_rows
 #'
+#' @return (`shiny::tagList`) A `shiny` tagList.
+#'
 #' @examples
 #' library(shiny)
 #' ui <- function(id) {
