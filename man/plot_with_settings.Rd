@@ -21,6 +21,8 @@ plot_with_settings_srv(
 )
 }
 \arguments{
+\item{id}{(\code{character(1)}) \code{shiny} module id.}
+
 \item{plot_r}{(\code{reactive} or \code{function})\cr
 \code{reactive} expression or a simple \code{function} to draw a plot.
 A simple \code{function} is needed e.g. for base plots like \code{plot(1)} as the output can not be caught when downloading.
@@ -62,8 +64,6 @@ the one displayed in modal). All the hovering data is stored as a reactive objec
 \item{graph_align}{(\code{character(1)}, optional)\cr
 one of \code{"left"} (default), \code{"center"}, \code{"right"} or \code{"justify"}. The alignment of the graph on
 the main page.}
-
-\item{ui}{(\code{character(1)}) \code{shiny} module id.}
 }
 \value{
 A \code{shiny} module.

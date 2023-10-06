@@ -66,7 +66,7 @@ plot_with_settings_ui <- function(id) {
 #'
 #' @export
 #'
-#' @param ui (`character(1)`) `shiny` module id.
+#' @param id (`character(1)`) `shiny` module id.
 #'
 #' @param plot_r (`reactive` or `function`)\cr
 #'  `reactive` expression or a simple `function` to draw a plot.
