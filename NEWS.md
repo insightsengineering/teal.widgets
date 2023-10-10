@@ -1,10 +1,11 @@
-# teal.widgets 0.4.0.9013
+# teal.widgets 0.4.1
 
 ### Miscellaneous
 
 * Documentation enhancements - code formatting package names and R objects.
 * Add `grDevices` to Imports.
 * Specified minimal version of package dependencies.
+* Improved logic and documentation for `optionalSelectInput`.
 
 # teal.widgets 0.4.0
 

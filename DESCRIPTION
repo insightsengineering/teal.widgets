@@ -1,6 +1,6 @@
 Package: teal.widgets
 Title: 'shiny' Widgets for 'teal' Applications
-Version: 0.4.0.9013
+Version: 0.4.1
 Date: 2023-10-02
 Authors@R: c(
     person("Dawid", "Kaledkowski", , "dawid.kaledkowski@roche.com", role = c("aut", "cre")),
@@ -36,6 +36,7 @@ Imports:
     shinyWidgets (>= 0.5.1),
     styler (>= 1.2.0)
 Suggests:
+    DT,
     knitr (>= 1.42),
     lattice (>= 0.18-4),
     magrittr (>= 1.5),

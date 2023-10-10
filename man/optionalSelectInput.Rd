@@ -63,6 +63,10 @@ The width of the input passed to \code{pickerInput}  e.g. \code{'auto'}, \code{'
 
 \item{session}{(\code{shiny.session})\cr}
 }
+\value{
+(\code{shiny.tag}) HTML tag with \code{pickerInput} widget and
+non-interactive element listing selected values.
+}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 Wrapper for \code{\link[shinyWidgets:pickerInput]{shinyWidgets::pickerInput()}} with additional features.
