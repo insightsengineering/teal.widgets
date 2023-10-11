@@ -36,7 +36,7 @@ This package provides various widgets for `teal` applications. Examples include:
 
 ```r
 # stable versions
-install.packages('teal.code')
+install.packages('teal.widgets')
 
 # install.packages("pak")
 pak::pak("insightsengineering/teal.widgets@*release")
