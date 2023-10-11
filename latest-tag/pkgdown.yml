@@ -4,8 +4,8 @@ pkgdown_sha: ~
 articles:
   custom-basic-table-arguments: custom-basic-table-arguments.html
   custom-ggplot2-arguments: custom-ggplot2-arguments.html
-last_built: 2023-08-14T13:38Z
+last_built: 2023-10-11T00:01Z
 urls:
-  reference: https://github.com/insightsengineering/teal.widgets/reference
-  article: https://github.com/insightsengineering/teal.widgets/articles
+  reference: https://insightsengineering.github.io/teal.widgets/reference
+  article: https://insightsengineering.github.io/teal.widgets/articles
 
