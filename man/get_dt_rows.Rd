@@ -12,7 +12,7 @@ get_dt_rows(dt_name, dt_rows)
 \item{dt_rows}{\code{ns()} of \code{inputId} of the variable that holds the current selected value of \code{lengthMenu}}
 }
 \value{
-(\code{shiny::tagList}) A \code{shiny} tagList.
+(\code{shiny::tagList}) A \verb{shiny tagList}.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
