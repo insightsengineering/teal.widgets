@@ -1,12 +1,12 @@
-#' Nested Closeable modal popup
+#' Nested Closeable Modal Popup
 #'
 #' @description `r lifecycle::badge("experimental")`
-#' Alternative to `shiny::modalDialog`. To create a nested modal popup that can be shown/hidden
-#' using JS using the modal `id` without disturbing the parent modal
+#' Alternative to `shiny::modalDialog`. Create a nested modal popup that can be shown/hidden
+#' using `jQuery` and modal `id`, without disturbing the parent modal.
 #'
 #' @param id (`character(1)`) `shiny` module id for the component.\cr
 #'           Note that this id can be used to show/hide this modal
-#'           with the appended jQuery methods show/hide.
+#'           with the appended `jQuery` methods show/hide.
 #' @param modal_args (`list`) optional list of arguments for the `shiny::modalDialog` function
 #'                   to customize the modal. Has `easyClose` set to `TRUE` as default
 #' @param ... (`shiny.tag`) `shiny` UI elements that will be displayed in the modal UI

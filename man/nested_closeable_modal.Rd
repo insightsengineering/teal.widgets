@@ -2,14 +2,14 @@
 % Please edit documentation in R/nested_closeable_modal.R
 \name{nested_closeable_modal}
 \alias{nested_closeable_modal}
-\title{Nested Closeable modal popup}
+\title{Nested Closeable Modal Popup}
 \usage{
 nested_closeable_modal(id, modal_args = list(easyClose = TRUE), ...)
 }
 \arguments{
 \item{id}{(\code{character(1)}) \code{shiny} module id for the component.\cr
 Note that this id can be used to show/hide this modal
-with the appended jQuery methods show/hide.}
+with the appended \code{jQuery} methods show/hide.}
 
 \item{modal_args}{(\code{list}) optional list of arguments for the \code{shiny::modalDialog} function
 to customize the modal. Has \code{easyClose} set to \code{TRUE} as default}
@@ -21,8 +21,8 @@ to customize the modal. Has \code{easyClose} set to \code{TRUE} as default}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-Alternative to \code{shiny::modalDialog}. To create a nested modal popup that can be shown/hidden
-using JS using the modal \code{id} without disturbing the parent modal
+Alternative to \code{shiny::modalDialog}. Create a nested modal popup that can be shown/hidden
+using \code{jQuery} and modal \code{id}, without disturbing the parent modal.
 }
 \examples{
 # nolint start
