@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.602090032154341" branch-rate="0" lines-covered="749" lines-valid="1244" branches-covered="0" branches-valid="0" complexity="0" version="3.6.3" timestamp="2023-10-13 11:58:42.919903">
+<coverage line-rate="0.602090032154341" branch-rate="0" lines-covered="749" lines-valid="1244" branches-covered="0" branches-valid="0" complexity="0" version="3.6.3" timestamp="2023-10-13 12:11:19.182436">
   <sources>
     <source>/__w/teal.widgets/teal.widgets/teal.widgets</source>
   </sources>
@@ -441,11 +441,6 @@
           <methods>
             <method name="nested_closeable_modal" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
-                <line number="76" hits="0" branch="false"/>
-                <line number="77" hits="0" branch="false"/>
-                <line number="78" hits="0" branch="false"/>
-                <line number="79" hits="0" branch="false"/>
-                <line number="80" hits="0" branch="false"/>
                 <line number="81" hits="0" branch="false"/>
                 <line number="82" hits="0" branch="false"/>
                 <line number="83" hits="0" branch="false"/>
@@ -459,15 +454,15 @@
                 <line number="91" hits="0" branch="false"/>
                 <line number="92" hits="0" branch="false"/>
                 <line number="93" hits="0" branch="false"/>
+                <line number="94" hits="0" branch="false"/>
+                <line number="95" hits="0" branch="false"/>
+                <line number="96" hits="0" branch="false"/>
+                <line number="97" hits="0" branch="false"/>
+                <line number="98" hits="0" branch="false"/>
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="76" hits="0" branch="false"/>
-            <line number="77" hits="0" branch="false"/>
-            <line number="78" hits="0" branch="false"/>
-            <line number="79" hits="0" branch="false"/>
-            <line number="80" hits="0" branch="false"/>
             <line number="81" hits="0" branch="false"/>
             <line number="82" hits="0" branch="false"/>
             <line number="83" hits="0" branch="false"/>
@@ -481,6 +476,11 @@
             <line number="91" hits="0" branch="false"/>
             <line number="92" hits="0" branch="false"/>
             <line number="93" hits="0" branch="false"/>
+            <line number="94" hits="0" branch="false"/>
+            <line number="95" hits="0" branch="false"/>
+            <line number="96" hits="0" branch="false"/>
+            <line number="97" hits="0" branch="false"/>
+            <line number="98" hits="0" branch="false"/>
           </lines>
         </class>
         <class name="optionalInput.R" filename="R/optionalInput.R" line-rate="0.168627450980392" branch-rate="0" complexity="0">
