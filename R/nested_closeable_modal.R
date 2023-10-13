@@ -7,9 +7,9 @@
 #' @param id (`character(1)`) `shiny` module id for the component.\cr
 #'           Note that this id can be used to show/hide this modal
 #'           with the appended `jQuery` methods show/hide.
+#' @param ... (`shiny.tag`) `shiny` UI elements that will be displayed in the modal UI
 #' @param modal_args (`list`) optional list of arguments for the `shiny::modalDialog` function
 #'                   to customize the modal. Has `easyClose` set to `TRUE` as default
-#' @param ... (`shiny.tag`) `shiny` UI elements that will be displayed in the modal UI
 #'
 #' @return (`shiny.tag`) returns `HTML` for `shiny` module UI which can be nested into a modal popup
 #' @export
@@ -77,14 +77,12 @@
 #'   shiny::shinyApp(ui, server)
 #' }
 #' # nolint end
-nested_closeable_modal <- function(id, modal_args = list(easyClose = TRUE), ...) {
-  stopifnot(
-    rlang::is_scalar_character(id),
-    is.list(modal_args)
-  )
-  modal_args <- append(rlang::dots_list(...), modal_args)
+nested_closeable_modal <- function(id, ..., modal_args = list(easyClose = TRUE)) {
+  checkmate::assert_string(id)
+  checkmate::assert_list(modal_args)
+  modal_args <- append(list(...), modal_args)
   tagList(
-    htmltools::tagQuery(rlang::exec(modalDialog, !!!modal_args))$
+    htmltools::tagQuery(do.call(modalDialog, modal_args))$
       removeAttrs("id")$
       addAttrs(id = id, `aria-hidden` = "true", class = "custom-modal", `data-backdrop` = "false")$
       children("div")$

@@ -4,17 +4,17 @@
 \alias{nested_closeable_modal}
 \title{Nested Closeable Modal Popup}
 \usage{
-nested_closeable_modal(id, modal_args = list(easyClose = TRUE), ...)
+nested_closeable_modal(id, ..., modal_args = list(easyClose = TRUE))
 }
 \arguments{
 \item{id}{(\code{character(1)}) \code{shiny} module id for the component.\cr
 Note that this id can be used to show/hide this modal
 with the appended \code{jQuery} methods show/hide.}
 
+\item{...}{(\code{shiny.tag}) \code{shiny} UI elements that will be displayed in the modal UI}
+
 \item{modal_args}{(\code{list}) optional list of arguments for the \code{shiny::modalDialog} function
 to customize the modal. Has \code{easyClose} set to \code{TRUE} as default}
-
-\item{...}{(\code{shiny.tag}) \code{shiny} UI elements that will be displayed in the modal UI}
 }
 \value{
 (\code{shiny.tag}) returns \code{HTML} for \code{shiny} module UI which can be nested into a modal popup
