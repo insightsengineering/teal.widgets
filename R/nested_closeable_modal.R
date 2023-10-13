@@ -5,12 +5,13 @@
 #' using JS using the modal `id` without disturbing the parent modal
 #'
 #' @param id (`character(1)`) `shiny` module id for the component.\cr
-#'           Note that this id can be used to show/hide this modal with the appended jQuery methods show/hide.
-#' @param modal_args (`list`) optional list of arguments for the `shiny::modalDialog` function to customize the modal
-#'                   default has `easyClose` set to TRUE
+#'           Note that this id can be used to show/hide this modal
+#'           with the appended jQuery methods show/hide.
+#' @param modal_args (`list`) optional list of arguments for the `shiny::modalDialog` function
+#'                   to customize the modal. Has `easyClose` set to TRUE as default
 #' @param ... (`shiny.tag`) shiny UI elements that will be displayed in the modal UI
 #'
-#' @return (`shiny.tag`) returns `HTML` for Shiny module UI with modifications that allow for custom show/hide
+#' @return (`shiny.tag`) returns `HTML` for Shiny module UI with can be nested into a modal popup
 #' @export
 #'
 #' @examples
@@ -28,11 +29,13 @@
 #'       footer = NULL
 #'     ),
 #'     tags$div(
-#'       "This modal can be closed by running", tags$code("$('#modal_1').modal('hide')"), "in the JS console!",
+#'       "This modal can be closed by running", tags$code("$('#modal_1').modal('hide')"),
+#'       "in the JS console!",
 #'       tags$br(),
 #'       "Note that the second modal is placed right within this modal",
 #'       tags$br(),
-#'       "Alternatively, calling the", tags$code("removeModal()"), "will remove all the active modal popups",
+#'       "Alternatively, calling the", tags$code("removeModal()"),
+#'       "will remove all the active modal popups",
 #'       tags$br(), tags$br(),
 #'       actionButton("show_2", "$('#modal_2').modal('show')"),
 #'       actionButton("hide_1", "$('#modal_1').modal('hide')"),
@@ -45,8 +48,10 @@
 #'           easyClose = TRUE
 #'         ),
 #'         div(
-#'           "This modal can be closed by running", tags$code("$('#modal_1').modal('hide')"), "in the JS console!",
-#'           "Note that removing the parent will remove the child. But, reopening will remember the open state of child",
+#'           "This modal can be closed by running", tags$code("$('#modal_1').modal('hide')"),
+#'           "in the JS console!",
+#'           "Note that removing the parent will remove the child.
+#'            But, reopening will remember the open state of child",
 #'           actionButton("hide_2", "$('#modal_2').modal('hide')"),
 #'           actionButton("hide_all", "$('#modal_1').modal('hide')")
 #'         )

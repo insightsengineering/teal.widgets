@@ -8,15 +8,16 @@ nested_closeable_modal(id, modal_args = list(easyClose = TRUE), ...)
 }
 \arguments{
 \item{id}{(\code{character(1)}) \code{shiny} module id for the component.\cr
-Note that this id can be used to show/hide this modal with the appended jQuery methods show/hide.}
+Note that this id can be used to show/hide this modal
+with the appended jQuery methods show/hide.}
 
-\item{modal_args}{(\code{list}) optional list of arguments for the \code{shiny::modalDialog} function to customize the modal
-default has \code{easyClose} set to TRUE}
+\item{modal_args}{(\code{list}) optional list of arguments for the \code{shiny::modalDialog} function
+to customize the modal. Has \code{easyClose} set to TRUE as default}
 
 \item{...}{(\code{shiny.tag}) shiny UI elements that will be displayed in the modal UI}
 }
 \value{
-(\code{shiny.tag}) returns \code{HTML} for Shiny module UI with modifications that allow for custom show/hide
+(\code{shiny.tag}) returns \code{HTML} for Shiny module UI with can be nested into a modal popup
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
@@ -37,11 +38,13 @@ ui <- fluidPage(
       footer = NULL
     ),
     tags$div(
-      "This modal can be closed by running", tags$code("$('#modal_1').modal('hide')"), "in the JS console!",
+      "This modal can be closed by running", tags$code("$('#modal_1').modal('hide')"),
+      "in the JS console!",
       tags$br(),
       "Note that the second modal is placed right within this modal",
       tags$br(),
-      "Alternatively, calling the", tags$code("removeModal()"), "will remove all the active modal popups",
+      "Alternatively, calling the", tags$code("removeModal()"),
+      "will remove all the active modal popups",
       tags$br(), tags$br(),
       actionButton("show_2", "$('#modal_2').modal('show')"),
       actionButton("hide_1", "$('#modal_1').modal('hide')"),
@@ -54,8 +57,10 @@ ui <- fluidPage(
           easyClose = TRUE
         ),
         div(
-          "This modal can be closed by running", tags$code("$('#modal_1').modal('hide')"), "in the JS console!",
-          "Note that removing the parent will remove the child. But, reopening will remember the open state of child",
+          "This modal can be closed by running", tags$code("$('#modal_1').modal('hide')"),
+          "in the JS console!",
+          "Note that removing the parent will remove the child.
+           But, reopening will remember the open state of child",
           actionButton("hide_2", "$('#modal_2').modal('hide')"),
           actionButton("hide_all", "$('#modal_1').modal('hide')")
         )
