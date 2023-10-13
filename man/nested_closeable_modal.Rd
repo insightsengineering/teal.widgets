@@ -12,12 +12,12 @@ Note that this id can be used to show/hide this modal
 with the appended jQuery methods show/hide.}
 
 \item{modal_args}{(\code{list}) optional list of arguments for the \code{shiny::modalDialog} function
-to customize the modal. Has \code{easyClose} set to TRUE as default}
+to customize the modal. Has \code{easyClose} set to \code{TRUE} as default}
 
-\item{...}{(\code{shiny.tag}) shiny UI elements that will be displayed in the modal UI}
+\item{...}{(\code{shiny.tag}) \code{shiny} UI elements that will be displayed in the modal UI}
 }
 \value{
-(\code{shiny.tag}) returns \code{HTML} for Shiny module UI with can be nested into a modal popup
+(\code{shiny.tag}) returns \code{HTML} for \code{shiny} module UI which can be nested into a modal popup
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
