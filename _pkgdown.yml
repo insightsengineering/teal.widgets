@@ -12,10 +12,10 @@ navbar:
     reports:
       text: Reports
       menu:
-      - text: Coverage report
-        href: coverage-report/
-      - text: Unit test report
-        href: unit-test-report/
+        - text: Coverage report
+          href: coverage-report/
+        - text: Unit test report
+          href: unit-test-report/
     github:
       icon: fa-github
       href: https://github.com/insightsengineering/teal.widgets
@@ -40,6 +40,7 @@ reference:
       - updateOptionalSelectInput
       - white_small_well
       - verbatim_popup
+      - nested_closeable_modal
   - title: "ggplot2 and basic_table arguments"
     desc: "Aggregation and validation of arguments"
     contents:
