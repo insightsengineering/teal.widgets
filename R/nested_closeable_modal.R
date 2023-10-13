@@ -11,7 +11,7 @@
 #'                   to customize the modal. Has `easyClose` set to `TRUE` as default
 #' @param ... (`shiny.tag`) shiny UI elements that will be displayed in the modal UI
 #'
-#' @return (`shiny.tag`) returns `HTML` for Shiny module UI with can be nested into a modal popup
+#' @return (`shiny.tag`) returns `HTML` for `shiny` module UI which can be nested into a modal popup
 #' @export
 #'
 #' @examples
