@@ -21,7 +21,8 @@ to customize the modal. Has \code{easyClose} set to TRUE as default}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-Alternative to \verb{shiny::modalDialog``. To create a nested modal popup that can be shown/hidden using JS using the modal }id` without disturbing the parent modal
+Alternative to \code{shiny::modalDialog}. To create a nested modal popup that can be shown/hidden
+using JS using the modal \code{id} without disturbing the parent modal
 }
 \examples{
 # nolint start
