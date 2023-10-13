@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.602090032154341" branch-rate="0" lines-covered="749" lines-valid="1244" branches-covered="0" branches-valid="0" complexity="0" version="3.6.3" timestamp="2023-10-13 12:31:04.774085">
+<coverage line-rate="0.603059581320451" branch-rate="0" lines-covered="749" lines-valid="1242" branches-covered="0" branches-valid="0" complexity="0" version="3.6.3" timestamp="2023-10-13 12:49:30.205557">
   <sources>
     <source>/__w/teal.widgets/teal.widgets/teal.widgets</source>
   </sources>
   <packages>
-    <package name="teal.widgets" line-rate="0.602090032154341" branch-rate="0" complexity="0">
+    <package name="teal.widgets" line-rate="0.603059581320451" branch-rate="0" complexity="0">
       <classes>
         <class name="basic_table_args.R" filename="R/basic_table_args.R" line-rate="1" branch-rate="0" complexity="0">
           <methods>
@@ -457,8 +457,6 @@
                 <line number="94" hits="0" branch="false"/>
                 <line number="95" hits="0" branch="false"/>
                 <line number="96" hits="0" branch="false"/>
-                <line number="97" hits="0" branch="false"/>
-                <line number="98" hits="0" branch="false"/>
               </lines>
             </method>
           </methods>
@@ -479,8 +477,6 @@
             <line number="94" hits="0" branch="false"/>
             <line number="95" hits="0" branch="false"/>
             <line number="96" hits="0" branch="false"/>
-            <line number="97" hits="0" branch="false"/>
-            <line number="98" hits="0" branch="false"/>
           </lines>
         </class>
         <class name="optionalInput.R" filename="R/optionalInput.R" line-rate="0.168627450980392" branch-rate="0" complexity="0">
