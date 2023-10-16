@@ -1,3 +1,4 @@
+Closeable
 Draggable
 Forkers
 Hoffmann
@@ -7,4 +8,3 @@ draggable
 funder
 pre
 repo
-shinyServer

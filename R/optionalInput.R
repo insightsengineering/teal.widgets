@@ -1,18 +1,13 @@
-#' Hide, Show Label only or display a `pickerInput`
+#' Wrapper for `pickerInput`
 #'
 #' @description `r lifecycle::badge("stable")`
-#' Hidden input widgets are useful to have the `input[[inputId]]` variable
-#' on available in the server function but no corresponding visual clutter from
-#' input widgets that provide only a single choice.
+#' Wrapper for [shinyWidgets::pickerInput()] with additional features.
+#' When `fixed = TRUE` or when the number of `choices` is less or equal to 1 (see `fixed_on_single`),
+#' the `pickerInput` widget is hidden and non-interactive widget will be displayed
+#' instead. Toggle of `HTML` elements is just the visual effect to avoid displaying
+#' `pickerInput` widget when there is only one choice.
 #'
 #' @inheritParams shinyWidgets::pickerInput
-#' @param choices (`character`, `NULL`)\cr
-#'   If `choices` is `NULL` no `pickerInput` widget is displayed and `input[[inputId]]`
-#'   will be `""`. If `choices` is of length 1 then a label and character string will be
-#'   displayed and the `pickerInput` widget will be hidden. If the length of `choices`
-#'   is more than one the `pickerInput` element will be displayed.
-#'   If elements of the list are named then that name rather than the value
-#'   is displayed to the user.
 #'
 #' @param sep (`character(1)`)\cr
 #'  A separator string to split the `choices` or `selected` inputs into the values of the different
@@ -24,27 +19,20 @@
 #' @param fixed (`logical(1)` optional)\cr
 #'  whether to block user to select choices.
 #'
+#' @param fixed_on_single (`logical(1)` optional)\cr
+#'  whether to block user to select a choice when there is only one or less choice.
+#'  When `FALSE`, user is still able to select or deselect the choice.
+#'
 #' @param width (`character(1)`)\cr
 #'  The width of the input passed to `pickerInput`  e.g. `'auto'`, `'fit'`, `'100px'` or `'75%'`
+#'
+#' @return (`shiny.tag`) HTML tag with `pickerInput` widget and
+#'  non-interactive element listing selected values.
 #'
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' optionalSelectInput(inputId = "xvar", label = "x variable", choices = "A", selected = "A")
-#' optionalSelectInput(
-#'   inputId = "xvar",
-#'   label = "x variable",
-#'   choices = LETTERS[1:5],
-#'   selected = "A"
-#' )
-#' optionalSelectInput(
-#'   inputId = "xvar",
-#'   label = "x variable",
-#'   choices = c("A - value A" = "A"),
-#'   selected = "A"
-#' )
-#'
+#' library(shiny)
 #'
 #' # Create a minimal example data frame
 #' data <- data.frame(
@@ -55,25 +43,112 @@
 #'   AVISIT = c("Visit1", "Visit2", "Visit3", "Visit4", "Visit5"),
 #'   stringsAsFactors = TRUE
 #' )
-#' optionalSelectInput(
-#'   inputId = "xvar",
-#'   label = "x variable",
-#'   choices = teal.transform::variable_choices(data = data, subset = c("AGE", "SEX", "PARAMCD")),
-#'   selected = "PARAMCD"
+#'
+#' ui_grid <- function(...) {
+#'   fluidPage(
+#'     fluidRow(
+#'       lapply(list(...), function(x) column(4, wellPanel(x)))
+#'     )
+#'   )
+#' }
+#'
+#'
+#' app <- shinyApp(
+#'   ui = ui_grid(
+#'     div(
+#'       optionalSelectInput(
+#'         inputId = "c1",
+#'         label = "Fixed choices",
+#'         choices = LETTERS[1:5],
+#'         selected = c("A", "B"),
+#'         fixed = TRUE
+#'       ),
+#'       verbatimTextOutput(outputId = "c1_out")
+#'     ),
+#'     div(
+#'       optionalSelectInput(
+#'         inputId = "c2",
+#'         label = "Single choice",
+#'         choices = "A",
+#'         selected = "A"
+#'       ),
+#'       verbatimTextOutput(outputId = "c2_out")
+#'     ),
+#'     div(
+#'       optionalSelectInput(
+#'         inputId = "c3",
+#'         label = "NULL choices",
+#'         choices = NULL
+#'       ),
+#'       verbatimTextOutput(outputId = "c3_out")
+#'     ),
+#'     div(
+#'       optionalSelectInput(
+#'         inputId = "c4",
+#'         label = "Default",
+#'         choices = LETTERS[1:5],
+#'         selected = "A"
+#'       ),
+#'       verbatimTextOutput(outputId = "c4_out")
+#'     ),
+#'     div(
+#'       optionalSelectInput(
+#'         inputId = "c5",
+#'         label = "Named vector",
+#'         choices = c(`A - value A` = "A", `B - value B` = "B", `C - value C` = "C"),
+#'         selected = "A"
+#'       ),
+#'       verbatimTextOutput(outputId = "c5_out")
+#'     ),
+#'     div(
+#'       selectInput(
+#'         inputId = "c6_choices", label = "Update choices", choices = letters, multiple = TRUE
+#'       ),
+#'       optionalSelectInput(
+#'         inputId = "c6",
+#'         label = "Updated choices",
+#'         choices = NULL,
+#'         multiple = TRUE,
+#'         fixed_on_single = TRUE
+#'       ),
+#'       verbatimTextOutput(outputId = "c6_out")
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     observeEvent(input$c6_choices, ignoreNULL = FALSE, {
+#'       updateOptionalSelectInput(
+#'         session = session,
+#'         inputId = "c6",
+#'         choices = input$c6_choices,
+#'         selected = input$c6_choices
+#'       )
+#'     })
+#'
+#'     output$c1_out <- renderPrint({
+#'       input$c1
+#'     })
+#'     output$c2_out <- renderPrint({
+#'       input$c2
+#'     })
+#'     output$c3_out <- renderPrint({
+#'       input$c3
+#'     })
+#'     output$c4_out <- renderPrint({
+#'       input$c4
+#'     })
+#'     output$c5_out <- renderPrint({
+#'       input$c5
+#'     })
+#'     output$c6_out <- renderPrint({
+#'       input$c6
+#'     })
+#'   }
 #' )
 #'
-#' selected_value <- paste0(lapply(data[1, c("PARAMCD", "AVISIT")], as.character), collapse = " - ")
-#' optionalSelectInput(
-#'   inputId = "xvar",
-#'   label = "x variable",
-#'   choices = teal.transform::value_choices(
-#'     data = data,
-#'     var_choices = c("PARAMCD", "AVISIT"),
-#'     var_label = c("PARAM", "AVISIT")
-#'   ),
-#'   selected = selected_value
-#' )
+#' if (interactive()) {
+#'   runApp(app)
 #' }
+#'
 optionalSelectInput <- function(inputId, # nolint
                                 label = NULL,
                                 choices = NULL,
@@ -83,9 +158,9 @@ optionalSelectInput <- function(inputId, # nolint
                                 options = list(),
                                 label_help = NULL,
                                 fixed = FALSE,
+                                fixed_on_single = FALSE,
                                 width = NULL) {
   checkmate::assert_string(inputId)
-
   checkmate::assert(
     checkmate::check_string(label, null.ok = TRUE),
     checkmate::check_class(label, "shiny.tag"),
@@ -101,7 +176,7 @@ optionalSelectInput <- function(inputId, # nolint
   )
   checkmate::assert_flag(multiple)
   checkmate::assert_string(sep, null.ok = TRUE)
-  stopifnot(is.list(options))
+  checkmate::assert_list(options)
   checkmate::assert(
     checkmate::check_string(label_help, null.ok = TRUE),
     checkmate::check_class(label_help, "shiny.tag"),
@@ -109,6 +184,7 @@ optionalSelectInput <- function(inputId, # nolint
     checkmate::check_class(label_help, "html")
   )
   checkmate::assert_flag(fixed)
+  checkmate::assert_flag(fixed_on_single)
 
   if (!is.null(width)) {
     validateCssUnit(width)
@@ -137,58 +213,94 @@ optionalSelectInput <- function(inputId, # nolint
     selected <- NULL
   }
 
+  if (length(choices) <= 1 && fixed_on_single) fixed <- TRUE
+
   raw_choices <- extract_raw_choices(choices, attr(choices, "sep"))
   raw_selected <- extract_raw_choices(selected, attr(choices, "sep"))
 
-  ui <- shinyWidgets::pickerInput(
-    inputId = inputId,
-    label = label,
-    choices = raw_choices,
-    selected = raw_selected,
-    multiple = TRUE,
-    width = width,
-    options = options,
-    choicesOpt = picker_options(choices)
+  ui_picker <- tags$div(
+    id = paste0(inputId, "_input"),
+    # visibility feature marked with display: none/block instead of shinyjs::hide/show
+    #  as mechanism to hide/show is handled by javascript code
+    style = if (fixed) "display: none;" else "display: block;",
+    shinyWidgets::pickerInput(
+      inputId = inputId,
+      label = label,
+      choices = raw_choices,
+      selected = raw_selected,
+      multiple = TRUE,
+      width = width,
+      options = options,
+      choicesOpt = picker_options(choices)
+    )
   )
 
   if (!is.null(label_help)) {
-    ui[[3]] <- append(ui[[3]], list(div(class = "label-help", label_help)), after = 1)
+    ui_picker[[3]] <- append(ui_picker[[3]], list(div(class = "label-help", label_help)), after = 1)
   }
 
-  shiny::tagList(
-    include_css_files(pattern = "picker_input"),
-    if (is.null(choices)) {
-      shinyjs::hidden(ui)
-    } else {
-      if (fixed) {
-        div(
-          shinyjs::hidden(ui),
-          tags$label(id = paste0(inputId, "_textonly"), class = "control-label", sub(":[[:space:]]+$", "", label)),
-          if (length(selected) > 0) {
-            tags$code(
-              id = paste0(inputId, "_valueonly"),
-              paste(selected, collapse = ", ")
-            )
-          },
-          label_help
-        )
+  ui_fixed <- tags$div(
+    id = paste0(inputId, "_fixed"),
+    # visibility feature marked with display: none/block instead of shinyjs::hide/show
+    #  as mechanism to hide/show is handled by javascript code
+    style = if (fixed) "display: block;" else "display: none;",
+    tags$label(class = "control-label", label),
+    # selected values as verbatim text
+    tags$code(
+      id = paste0(inputId, "_selected_text"),
+      if (length(selected) > 0) {
+        toString(selected)
       } else {
-        ui
+        "NULL"
       }
-    }
+    ),
+    label_help
+  )
+
+  div(
+    include_css_files(pattern = "picker_input"),
+
+    # when selected values in ui_picker change
+    # then update ui_fixed - specifically, update '{id}_selected_text' element
+    tags$script(
+      sprintf(
+        "
+        $(function() {
+          $('#%1$s').on('change', function(e) {
+            var select_concat = $(this).val().length ? $(this).val().join(', ') : 'NULL';
+            $('#%1$s_selected_text').html(select_concat);
+          })
+        })",
+        inputId
+      )
+    ),
+
+    # if ui_picker has only one or less option or is fixed then hide {id}_input and show {id}_fixed
+    if (fixed_on_single) {
+      js <- sprintf(
+        "$(function() {
+          $('#%1$s').on('change', function(e) {
+            var options = $('#%1$s').find('option');
+            if (options.length == 1) {
+              $('#%1$s_input').hide();
+              $('#%1$s_fixed').show();
+            } else {
+              $('#%1$s_input').show();
+              $('#%1$s_fixed').hide();
+            }
+          })
+        })",
+        inputId
+      )
+      tags$script(js)
+    },
+    div(ui_picker, ui_fixed)
   )
 }
 
-#' Update `optionalSelectInput`
-#'
-#' @description `r lifecycle::badge("stable")`
-#'
-#' @inheritParams shinyWidgets::updatePickerInput
-#'
-#' @return `NULL`
-#'
+#' @rdname optionalSelectInput
+#' @param session (`shiny.session`)\cr
 #' @export
-#'
 updateOptionalSelectInput <- function(session, # nolint
                                       inputId, # nolint
                                       label = NULL,
@@ -197,6 +309,7 @@ updateOptionalSelectInput <- function(session, # nolint
   raw_choices <- extract_raw_choices(choices, attr(choices, "sep"))
   raw_selected <- extract_raw_choices(selected, attr(choices, "sep"))
 
+  # update picker input
   shinyWidgets::updatePickerInput(
     session = session,
     inputId = inputId,
@@ -205,9 +318,6 @@ updateOptionalSelectInput <- function(session, # nolint
     choices = raw_choices,
     choicesOpt = picker_options(choices)
   )
-
-  shinyjs::show(inputId)
-  shinyjs::hide(paste0(inputId, "_textonly"))
 
   invisible(NULL)
 }
@@ -364,6 +474,8 @@ extract_raw_choices <- function(choices, sep) {
 #'  an object of class `shiny.tag`. E.g. an object returned by [shiny::helpText()]
 #' @param ... optional arguments to `sliderInput`
 #'
+#' @return (`shiny.tag`) HTML tag with `sliderInput` widget.
+#'
 #' @export
 #'
 #' @examples
@@ -424,6 +536,8 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
 #'  If of length 1 then the value gets set to that number and the `sliderInput` will be hidden.
 #'  Otherwise, if it is of length three the three elements will map to `value`, `min` and `max` of
 #'  the [optionalSliderInput()] function.
+#'
+#' @return (`shiny.tag`) HTML tag with range `sliderInput` widget.
 #'
 #' @export
 #'

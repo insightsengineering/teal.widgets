@@ -1,7 +1,7 @@
 Package: teal.widgets
-Title: Shiny Widgets for 'teal' Applications
-Version: 0.4.0.9011
-Date: 2023-09-28
+Title: 'shiny' Widgets for 'teal' Applications
+Version: 0.4.1.9003
+Date: 2023-10-13
 Authors@R: c(
     person("Dawid", "Kaledkowski", , "dawid.kaledkowski@roche.com", role = c("aut", "cre")),
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = "aut"),
@@ -13,6 +13,8 @@ Authors@R: c(
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
 Description: Collection of 'shiny' widgets to support 'teal' applications.
+    Enables the manipulation of application layout and plot or table
+    settings.
 License: Apache License 2.0
 URL: https://insightsengineering.github.io/teal.widgets/,
     https://github.com/insightsengineering/teal.widgets
@@ -34,6 +36,7 @@ Imports:
     shinyWidgets (>= 0.5.1),
     styler (>= 1.2.0)
 Suggests:
+    DT,
     knitr (>= 1.42),
     lattice (>= 0.18-4),
     magrittr (>= 1.5),

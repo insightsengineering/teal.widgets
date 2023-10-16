@@ -1,9 +1,5 @@
-#' UI part of plot-with-settings module
-#'
-#' @description `r lifecycle::badge("stable")`
+#' @rdname plot_with_settings
 #' @export
-#'
-#' @param id (\code{character}) module ID
 plot_with_settings_ui <- function(id) {
   checkmate::assert_string(id)
 
@@ -62,12 +58,16 @@ plot_with_settings_ui <- function(id) {
   )
 }
 
-#' Server part of plot-with-settings module
+#' Plot-with-settings module
 #'
+#' @rdname plot_with_settings
 #' @description `r lifecycle::badge("stable")`
+#' Universal module for plots with settings for height, width, and download.
+#'
 #' @export
 #'
-#' @inheritParams shiny::moduleServer
+#' @param id (`character(1)`) `shiny` module id.
+#'
 #' @param plot_r (`reactive` or `function`)\cr
 #'  `reactive` expression or a simple `function` to draw a plot.
 #'  A simple `function` is needed e.g. for base plots like `plot(1)` as the output can not be caught when downloading.
@@ -106,11 +106,12 @@ plot_with_settings_ui <- function(id) {
 #' `options(teal.plot_dpi = 96)`. The minimum allowed `dpi` value is `24` and it must be a whole number.
 #' If an invalid value is set then the default value is used and a warning is outputted to the console.
 #'
+#' @return A `shiny` module.
+#'
 #' @examples
-#' \dontrun{
 #' # Example using a reactive as input to plot_r
 #' library(shiny)
-#' shinyApp(
+#' app1 <- shinyApp(
 #'   ui = fluidPage(
 #'     plot_with_settings_ui(
 #'       id = "plot_with_settings"
@@ -130,8 +131,12 @@ plot_with_settings_ui <- function(id) {
 #'   }
 #' )
 #'
+#' if (interactive()) {
+#'   runApp(app1)
+#' }
+#'
 #' # Example using a function as input to plot_r
-#' shinyApp(
+#' app2 <- shinyApp(
 #'   ui = fluidPage(
 #'     radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
 #'     plot_with_settings_ui(
@@ -167,8 +172,12 @@ plot_with_settings_ui <- function(id) {
 #'   }
 #' )
 #'
+#' if (interactive()) {
+#'   runApp(app2)
+#' }
+#'
 #' # Example with brushing/hovering/clicking/double-clicking
-#' shinyApp(
+#' app3 <- shinyApp(
 #'   ui = fluidPage(
 #'     plot_with_settings_ui(
 #'       id = "plot_with_settings"
@@ -202,10 +211,14 @@ plot_with_settings_ui <- function(id) {
 #'   }
 #' )
 #'
+#' if (interactive()) {
+#'   runApp(app3)
+#' }
+#'
 #' # Example which allows module to be hidden/shown
 #' library("shinyjs")
 #'
-#' shinyApp(
+#' app4 <- shinyApp(
 #'   ui = fluidPage(
 #'     useShinyjs(),
 #'     actionButton("button", "Show/Hide"),
@@ -229,7 +242,11 @@ plot_with_settings_ui <- function(id) {
 #'     )
 #'   }
 #' )
+#'
+#' if (interactive()) {
+#'   runApp(app4)
 #' }
+#'
 plot_with_settings_srv <- function(id,
                                    plot_r,
                                    height = c(600, 200, 2000),

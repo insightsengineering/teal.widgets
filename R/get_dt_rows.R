@@ -6,22 +6,36 @@
 #'
 #' @name get_dt_rows
 #'
-#' @examples
-#' \dontrun{
-#' library(shiny)
-#' # in Shiny UI function
-#' tagList(
-#'   get_dt_rows(ns("data_table"), ns("dt_rows")),
-#'   ...
-#' )
+#' @return (`shiny::tagList`) A `shiny tagList`.
 #'
-#' # use the input$dt_rows in the Shiny Server function
-#' if (!is.null(input$dt_rows)) {
-#'   dt_args$options$pageLength <- input$dt_rows
-#' } # nolint
-#' do.call(DT::datatable, dt_args)
+#' @examples
+#' library(shiny)
+#' ui <- function(id) {
+#'   ns <- NS(id)
+#'   tagList(
+#'     DT::DTOutput(ns("data_table")),
+#'     get_dt_rows(ns("data_table"), ns("dt_rows"))
+#'   )
 #' }
 #'
+#' # use the input$dt_rows in the Shiny Server function
+#' server <- function(id) {
+#'   moduleServer(id, function(input, output, session) {
+#'     output$data_table <- DT::renderDataTable(
+#'       {
+#'         iris
+#'       },
+#'       options = list(pageLength = input$dt_rows)
+#'     )
+#'   })
+#' }
+#'
+#' if (interactive()) {
+#'   shinyApp(
+#'     ui = ui("my_table_module"),
+#'     server = function(input, output, session) server("my_table_module")
+#'   )
+#' }
 #' @export
 get_dt_rows <- function(dt_name, dt_rows) {
   tags$head(

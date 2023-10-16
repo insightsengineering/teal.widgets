@@ -42,14 +42,16 @@ table_with_settings_ui <- function(id, ...) {
 #'  a mechanism to allow modules which call this module to show/hide the table_with_settings UI.
 #'
 #' @rdname table_with_settings
+#'
+#' @return A `shiny` module.
+#'
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' library(shiny)
 #' library(rtables)
 #' library(magrittr)
-#' shinyApp(
+#' app <- shinyApp(
 #'   ui = fluidPage(
 #'     table_with_settings_ui(
 #'       id = "table_with_settings"
@@ -69,6 +71,8 @@ table_with_settings_ui <- function(id, ...) {
 #'     table_with_settings_srv(id = "table_with_settings", table_r = table_r)
 #'   }
 #' )
+#' if (interactive()) {
+#'   runApp(app)
 #' }
 #'
 table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRUE)) {

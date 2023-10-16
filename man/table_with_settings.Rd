@@ -23,15 +23,17 @@ reactive expression that yields an \code{rtable} object (\code{ElementaryTable} 
 \item{show_hide_signal}{(\verb{reactive logical}, optional)\cr
 a mechanism to allow modules which call this module to show/hide the table_with_settings UI.}
 }
+\value{
+A \code{shiny} module.
+}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
-\dontrun{
 library(shiny)
 library(rtables)
 library(magrittr)
-shinyApp(
+app <- shinyApp(
   ui = fluidPage(
     table_with_settings_ui(
       id = "table_with_settings"
@@ -51,6 +53,8 @@ shinyApp(
     table_with_settings_srv(id = "table_with_settings", table_r = table_r)
   }
 )
+if (interactive()) {
+  runApp(app)
 }
 
 }
