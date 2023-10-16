@@ -228,10 +228,7 @@ plot_with_settings_ui <- function(id) {
 #'   ),
 #'   server = function(input, output, session) {
 #'     plot_r <- plot_r <- reactive(
-#'       ggplot2::ggplot(
-#'         data = faithful,
-#'         ggplot2::aes(x = waiting, y = eruptions)
-#'       ) +
+#'       ggplot2::ggplot(faithful, ggplot2::aes(x = waiting, y = eruptions)) +
 #'         ggplot2::geom_point()
 #'     )
 #'
