@@ -423,7 +423,7 @@ plot_with_settings_srv <- function(id,
       grDevices::pdf(NULL) # reset Rplots.pdf for shiny server
       w <- grDevices::dev.size("px")[1]
       grDevices::dev.off()
-      if (`if`(!is.null(input$width), input$width, default_slider_width()[1]) < w) {
+      if (p_width() < w) {
         helpText(
           icon("triangle-exclamation"),
           "Plot might be cut off for small widths."
@@ -435,9 +435,9 @@ plot_with_settings_srv <- function(id,
       id = "downbutton",
       plot_reactive = plot_r,
       plot_type = plot_type,
-      plot_w = reactive(`if`(!is.null(input$width), input$width, default_slider_width()[1])),
+      plot_w = p_width,
       default_w = default_w,
-      plot_h = reactive(`if`(!is.null(input$height), input$height, height[1])),
+      plot_h = p_height,
       default_h = default_h
     )
 
@@ -456,7 +456,7 @@ plot_with_settings_srv <- function(id,
               optionalSliderInputValMinMax(
                 inputId = ns("height_in_modal"),
                 label = "Plot height",
-                value_min_max = round(c(`if`(!is.null(input$height), input$height, height[1]), height[2:3])),
+                value_min_max = round(c(p_height(), height[2:3])),
                 ticks = FALSE,
                 step = 1L,
                 round = TRUE
