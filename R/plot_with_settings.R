@@ -530,12 +530,7 @@ plot_with_settings_srv <- function(id,
           input$width
           input$plot_hover
         }),
-        dim = reactive(
-          c(
-            `if`(!is.null(input$width), input$width, default_slider_width()[1]),
-            `if`(!is.null(input$height), input$height, height[1])
-          )
-        )
+        dim = reactive(c(p_width(), p_height()))
       )
     )
   })
