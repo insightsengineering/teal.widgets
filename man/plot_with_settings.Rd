@@ -88,7 +88,8 @@ app1 <- shinyApp(
   ),
   server = function(input, output, session) {
     plot_r <- reactive({
-      ggplot2::qplot(x = 1, y = 1)
+      ggplot2::ggplot(NULL) +
+        ggplot2::geom_point(ggplot2::aes(x = 1, y = 1))
     })
 
     plot_with_settings_srv(
@@ -160,7 +161,8 @@ app3 <- shinyApp(
   ),
   server = function(input, output, session) {
     plot_r <- reactive({
-      ggplot2::qplot(x = 1:5, y = 1:5)
+      ggplot2::ggplot(NULL) +
+        ggplot2::geom_point(ggplot2::aes(x = 1:5, y = 1:5))
     })
 
     plot_data <- plot_with_settings_srv(
@@ -196,7 +198,13 @@ app4 <- shinyApp(
     )
   ),
   server = function(input, output, session) {
-    plot_r <- reactive(ggplot2::qplot(data = faithful, x = waiting, y = eruptions))
+    plot_r <- plot_r <- reactive(
+      ggplot2::ggplot(
+        data = faithful,
+        ggplot2::aes(x = waiting, y = eruptions)
+      ) +
+        ggplot2::geom_point()
+    )
 
     show_hide_signal_rv <- reactiveVal(TRUE)
 
