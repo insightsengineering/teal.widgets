@@ -387,8 +387,8 @@ plot_with_settings_srv <- function(id,
     p_width <- reactive(`if`(!is.null(input$width), input$width, default_slider_width()[1]))
     output$plot_main <- renderPlot(
       apply_plot_modifications(
-        plot_obj = plot_r(),
-        plot_type = plot_type(),
+        plot_obj = teal.code::dev_suppress(plot_r()),
+        plot_type = teal.code::dev_suppress(plot_type()),
         dblclicking = dblclicking,
         ranges = ranges
       ),
@@ -399,8 +399,8 @@ plot_with_settings_srv <- function(id,
 
     output$plot_modal <- renderPlot(
       apply_plot_modifications(
-        plot_obj = plot_r(),
-        plot_type = plot_type(),
+        plot_obj = teal.code::dev_suppress(plot_r()),
+        plot_type = teal.code::dev_suppress(plot_type()),
         dblclicking = dblclicking,
         ranges = ranges
       ),
@@ -410,7 +410,7 @@ plot_with_settings_srv <- function(id,
     )
 
     output$plot_out_main <- renderUI({
-      req(plot_r())
+      req(teal.code::dev_suppress(plot_r()))
       div(
         align = graph_align,
         plotOutput(
