@@ -133,7 +133,7 @@ plot_with_settings_ui <- function(id) {
 #' )
 #'
 #' if (interactive()) {
-#'   runApp(app1)
+#'   shinyApp(app1$ui, app1$server)
 #' }
 #'
 #' # Example using a function as input to plot_r
@@ -174,7 +174,7 @@ plot_with_settings_ui <- function(id) {
 #' )
 #'
 #' if (interactive()) {
-#'   runApp(app2)
+#'   shinyApp(app2$ui, app2$server)
 #' }
 #'
 #' # Example with brushing/hovering/clicking/double-clicking
@@ -214,7 +214,7 @@ plot_with_settings_ui <- function(id) {
 #' )
 #'
 #' if (interactive()) {
-#'   runApp(app3)
+#'   shinyApp(app3$ui, app3$server)
 #' }
 #'
 #' # Example which allows module to be hidden/shown
@@ -249,7 +249,7 @@ plot_with_settings_ui <- function(id) {
 #' )
 #'
 #' if (interactive()) {
-#'   runApp(app4)
+#'   shinyApp(app4$ui, app4$server)
 #' }
 #'
 plot_with_settings_srv <- function(id,

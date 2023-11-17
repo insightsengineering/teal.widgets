@@ -146,7 +146,7 @@
 #' )
 #'
 #' if (interactive()) {
-#'   runApp(app)
+#'   shinyApp(app$ui, app$server)
 #' }
 #'
 optionalSelectInput <- function(inputId, # nolint

@@ -72,7 +72,7 @@ table_with_settings_ui <- function(id, ...) {
 #'   }
 #' )
 #' if (interactive()) {
-#'   runApp(app)
+#'   shinyApp(app$ui, app$server)
 #' }
 #'
 table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRUE)) {
