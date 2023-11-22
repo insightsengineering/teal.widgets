@@ -68,8 +68,8 @@ If you encounter a bug or you have a feature request - please file an issue. For
 
 ### Stargazers
 
-[![Stargazers repo roster for @insightsengineering/teal.widgets](https://reporoster.com/stars/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/stargazers)
+[![Stargazers repo roster for @insightsengineering/teal.widgets](http://reporoster.com/stars/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/stargazers)
 
 ### Forkers
 
-[![Forkers repo roster for @insightsengineering/teal.widgets](https://reporoster.com/forks/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/network/members)
+[![Forkers repo roster for @insightsengineering/teal.widgets](http://reporoster.com/forks/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/network/members)
