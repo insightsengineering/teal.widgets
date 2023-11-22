@@ -50,7 +50,7 @@ VignetteBuilder:
 Config/Needs/verdepcheck: rstudio/bslib, mllg/checkmate,
     tidyverse/ggplot2, rstudio/htmltools, r-lib/lifecycle,
     insightsengineering/rtables, rstudio/shiny, daattali/shinyjs,
-    dreamRs/shinyWidgets, r-lib/styler, yihui/knitr, deepayan/lattice,
+    dreamRs/shinyWidgets, r-lib/styler, rstudio/DT, yihui/knitr, deepayan/lattice,
     tidyverse/magrittr, cran/png, rstudio/shinytest2,
     rstudio/shinyvalidate, r-lib/testthat, r-lib/withr
 Config/Needs/website: insightsengineering/nesttemplate
