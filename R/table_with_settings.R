@@ -72,7 +72,7 @@ table_with_settings_ui <- function(id, ...) {
 #'   }
 #' )
 #' if (interactive()) {
-#'   shinyApp(app$ui, app$server)
+#'   app
 #' }
 #'
 table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRUE)) {
@@ -236,7 +236,7 @@ type_download_srv_table <- function(id, table_reactive) {
             )
           } else {
             rtables::export_as_pdf(
-              tt = table_reactive(),
+              x = table_reactive(),
               file = file,
               paginate = input$pagination_switch,
               lpp = if (input$pagination_switch) as.numeric(input$lpp)
