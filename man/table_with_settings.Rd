@@ -54,7 +54,7 @@ app <- shinyApp(
   }
 )
 if (interactive()) {
-  shinyApp(app$ui, app$server)
+  app
 }
 
 }
