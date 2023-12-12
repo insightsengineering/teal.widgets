@@ -1,4 +1,9 @@
-# teal.widgets 0.4.1.9010
+# teal.widgets 0.4.2
+
+### Enhancements
+* Introduce `nested_closeable_modal()` that can create nested popups inside an already existing popup.
+* Replaces examples from `runApp` with `shinyApp`.
+* Ensure that `table_with_settings()` is synchronized with the latest update of `rtables`, and updated the version dependency accordingly.
 
 # teal.widgets 0.4.1
 
