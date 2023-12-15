@@ -1,6 +1,6 @@
 Package: teal.widgets
 Title: 'shiny' Widgets for 'teal' Applications
-Version: 0.4.1.9011
+Version: 0.4.2
 Date: 2023-12-13
 Authors@R: c(
     person("Dawid", "Kaledkowski", , "dawid.kaledkowski@roche.com", role = c("aut", "cre")),
@@ -30,7 +30,7 @@ Imports:
     htmltools (>= 0.5.4),
     lifecycle (>= 0.2.0),
     methods,
-    rtables (>= 0.6.5.9022),
+    rtables (>= 0.6.6),
     shiny (>= 1.6.0),
     shinyjs,
     shinyWidgets (>= 0.5.1),
