@@ -76,6 +76,9 @@
     <loc>https://insightsengineering.github.io/teal.widgets/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://insightsengineering.github.io/teal.widgets/reference/nested_closeable_modal.html</loc>
+  </url>
+  <url>
     <loc>https://insightsengineering.github.io/teal.widgets/reference/optionalSelectInput.html</loc>
   </url>
   <url>
@@ -101,6 +104,9 @@
   </url>
   <url>
     <loc>https://insightsengineering.github.io/teal.widgets/reference/picker_options_content.html</loc>
+  </url>
+  <url>
+    <loc>https://insightsengineering.github.io/teal.widgets/reference/plot_suppress.html</loc>
   </url>
   <url>
     <loc>https://insightsengineering.github.io/teal.widgets/reference/plot_with_settings.html</loc>
