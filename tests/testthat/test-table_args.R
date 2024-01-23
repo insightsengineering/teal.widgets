@@ -14,7 +14,7 @@ testthat::test_that("basic_table_args function returns list of the basic_table_a
 })
 
 testthat::test_that("basic_table_args rtables arguments validation, correct input", {
-  testthat::expect_error(basic_table_args(title = "SOME TITLE"), NA)
+  testthat::expect_no_error(basic_table_args(title = "SOME TITLE"))
 })
 
 testthat::test_that("basic_table_args rtables arguments validation, incorrect input", {
@@ -22,7 +22,7 @@ testthat::test_that("basic_table_args rtables arguments validation, incorrect in
 })
 
 testthat::test_that("resolve_basic_table_args returns empty basic_table_args with empty input", {
-  testthat::expect_error(resolve_basic_table_args(), NA)
+  testthat::expect_no_error(resolve_basic_table_args())
 })
 
 testthat::test_that("resolve_basic_table_args error with empty list, as need a basic_table_args class", {
