@@ -53,8 +53,8 @@ testthat::test_that("resolve_ggplot2_args function returns object of ggplot2_arg
 })
 
 testthat::test_that("parse_ggplot2_args accepts empty inputs", {
-  testthat::expect_error(parse_ggplot2_args(resolve_ggplot2_args()), NA)
-  testthat::expect_error(parse_ggplot2_args(), NA)
+  testthat::expect_no_error(parse_ggplot2_args(resolve_ggplot2_args()))
+  testthat::expect_no_error(parse_ggplot2_args())
 })
 
 testthat::test_that("parse_ggplot2_args throws error with empty list", {

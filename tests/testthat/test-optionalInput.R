@@ -21,7 +21,7 @@ testthat::test_that("optionalSliderInput double value - out of range", {
 })
 
 testthat::test_that("optionalSliderInput min/max NA", {
-  testthat::expect_error(optionalSliderInput("a", "b", NA, 1, 0.2), NA)
-  testthat::expect_error(optionalSliderInput("a", "b", NA, NA, 0.2), NA)
-  testthat::expect_error(optionalSliderInput("a", "b", 0, 1, 0.2), NA)
+  testthat::expect_no_error(optionalSliderInput("a", "b", NA, 1, 0.2))
+  testthat::expect_no_error(optionalSliderInput("a", "b", NA, NA, 0.2))
+  testthat::expect_no_error(optionalSliderInput("a", "b", 0, 1, 0.2))
 })
