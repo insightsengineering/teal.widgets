@@ -13,7 +13,7 @@ test_that("apply_plot_modifications, Modify ggplot object with dblclicking enabl
     dblclicking = TRUE,
     ranges = list(x = c(4, 7), y = c(2, 4))
   )
-  expect_true(identical(class(modified_ggplot), class(ggplot_obj)))
+  testthat::expect_true(identical(class(modified_ggplot), class(ggplot_obj)))
 })
 
 test_that("apply_plot_modifications, Modify ggplot object with dblclicking disabled", {
@@ -23,7 +23,7 @@ test_that("apply_plot_modifications, Modify ggplot object with dblclicking disab
     dblclicking = FALSE,
     ranges = list(x = c(4, 7), y = c(2, 4))
   )
-  expect_true(identical(class(modified_ggplot), class(ggplot_obj)))
+  testthat::expect_true(identical(class(modified_ggplot), class(ggplot_obj)))
 })
 
 test_that("apply_plot_modifications, Modify grob object", {
@@ -34,7 +34,7 @@ test_that("apply_plot_modifications, Modify grob object", {
     dblclicking = TRUE,
     ranges = list(x = c(0, 1), y = c(0, 1))
   )
-  expect_null(modified_grob)
+  testthat::expect_null(modified_grob)
 })
 
 test_that("apply_plot_modifications, Do not modify plot object", {
@@ -44,5 +44,5 @@ test_that("apply_plot_modifications, Do not modify plot object", {
     dblclicking = TRUE,
     ranges = list(x = c(4, 7), y = c(2, 4))
   )
-  expect_true(identical(unchanged_plot, ggplot_obj))
+  testthat::expect_true(identical(unchanged_plot, ggplot_obj))
 })
