@@ -80,7 +80,8 @@ If an invalid value is set then the default value is used and a warning is outpu
 \examples{
 # Example using a reactive as input to plot_r
 library(shiny)
-app1 <- shinyApp(
+
+app1 <- list(
   ui = fluidPage(
     plot_with_settings_ui(
       id = "plot_with_settings"
@@ -88,7 +89,7 @@ app1 <- shinyApp(
   ),
   server = function(input, output, session) {
     plot_r <- reactive({
-      ggplot2::ggplot(faithful, ggplot2::aes(x = waiting, y = eruptions)) +
+      ggplot2::ggplot(faithful, ggplot2::aes(x = .data$waiting, y = .data$eruptions)) +
         ggplot2::geom_point()
     })
 
@@ -106,7 +107,7 @@ if (interactive()) {
 }
 
 # Example using a function as input to plot_r
-app2 <- shinyApp(
+app2 <- list(
   ui = fluidPage(
     radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
     plot_with_settings_ui(
@@ -147,7 +148,7 @@ if (interactive()) {
 }
 
 # Example with brushing/hovering/clicking/double-clicking
-app3 <- shinyApp(
+app3 <- list(
   ui = fluidPage(
     plot_with_settings_ui(
       id = "plot_with_settings"
@@ -161,7 +162,7 @@ app3 <- shinyApp(
   ),
   server = function(input, output, session) {
     plot_r <- reactive({
-      ggplot2::ggplot(faithful, ggplot2::aes(x = waiting, y = eruptions)) +
+      ggplot2::ggplot(faithful, ggplot2::aes(x = .data$waiting, y = .data$eruptions)) +
         ggplot2::geom_point()
     })
 
@@ -189,7 +190,7 @@ if (interactive()) {
 # Example which allows module to be hidden/shown
 library("shinyjs")
 
-app4 <- shinyApp(
+app4 <- list(
   ui = fluidPage(
     useShinyjs(),
     actionButton("button", "Show/Hide"),
@@ -199,7 +200,7 @@ app4 <- shinyApp(
   ),
   server = function(input, output, session) {
     plot_r <- plot_r <- reactive(
-      ggplot2::ggplot(faithful, ggplot2::aes(x = waiting, y = eruptions)) +
+      ggplot2::ggplot(faithful, ggplot2::aes(x = .data$waiting, y = .data$eruptions)) +
         ggplot2::geom_point()
     )
 

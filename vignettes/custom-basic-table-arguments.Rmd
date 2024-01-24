@@ -9,10 +9,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-This vignette will guide you through implementation of custom `rtables::basic_table` arguments for `rtables` tables 
+This vignette will guide you through implementation of custom `rtables::basic_table` arguments for `rtables` tables
 based modules. We will enable 2 ways of updating `rtables::basic_table` by the end users.
-The `rtables::basic_table` specification could be updated with the `teal.basic_table_args` `options` variable or a 
-`ggplot2_args` argument in a `tm_g_*` module. We still take into account default specification set up by the module 
+The `rtables::basic_table` specification could be updated with the `teal.basic_table_args` `options` variable or a
+`ggplot2_args` argument in a `tm_g_*` module. We still take into account default specification set up by the module
 creator in the server function, which has the lowest priority.
 
 The implementation should consist of 5 steps:
@@ -23,8 +23,8 @@ the `basic_table_args()` function for a single plot.
 and  `list(default = basic_table_args())` multi-table modules.
 2. Adding a validation (e.g. `stopifnot` or `checkmate`) of the `basic_table_args` argument to the `tm_*` function.
 The validation is more complex for multi-table modules, where the `ggplot2_args` could be a `list`.
-The module creator has to provide a list of plots names, which should be validated at this step and added to the `param` 
-field in `roxygen2`. For multi-table modules the step 
+The module creator has to provide a list of plots names, which should be validated at this step and added to the `param`
+field in `roxygen2`. For multi-table modules the step
 `if (is_basic_table_args) basic_table_args <- list(default = basic_table_args)` is recommended.
 3. Aggregating and reducing all `basic_table_args` sources with `resolve_basic_table_args()`.
 4. Usage of the `parse_basic_table_args()` function which will aggregate and reduce all inputs
@@ -58,7 +58,7 @@ app <- shinyApp(
     div(verbatimTextOutput("table1"))
   ),
   server = function(input, output, session) {
-    dev_table_args <- teal.widgets::basic_table_args(show_colcounts = TRUE)
+    dev_table_args <- basic_table_args(show_colcounts = TRUE)
 
     table_expr <- substitute(
       expr = {
@@ -74,7 +74,7 @@ app <- shinyApp(
         table2
       },
       env = list(f_table_expr = parse_basic_table_args(
-        teal.widgets::resolve_basic_table_args(
+        resolve_basic_table_args(
           user_table = basic_table_args$table2,
           user_default = basic_table_args$default,
           module_table = dev_table_args

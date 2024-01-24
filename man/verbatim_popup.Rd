@@ -45,7 +45,7 @@ This module consists of a button that once clicked pops up a
 modal window with verbatim-styled text.
 }
 \examples{
-ui <- shiny::fluidPage(verbatim_popup_ui("my_id", button_label = "Open popup"))
+ui <- fluidPage(verbatim_popup_ui("my_id", button_label = "Open popup"))
 srv <- function(input, output) {
   verbatim_popup_srv(
     "my_id",
@@ -54,6 +54,6 @@ srv <- function(input, output) {
     style = TRUE
   )
 }
-if (interactive()) shiny::shinyApp(ui, srv)
+if (interactive()) shinyApp(ui, srv)
 
 }

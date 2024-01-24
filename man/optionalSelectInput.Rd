@@ -96,101 +96,97 @@ ui_grid <- function(...) {
   )
 }
 
-
-app <- shinyApp(
-  ui = ui_grid(
-    div(
-      optionalSelectInput(
-        inputId = "c1",
-        label = "Fixed choices",
-        choices = LETTERS[1:5],
-        selected = c("A", "B"),
-        fixed = TRUE
-      ),
-      verbatimTextOutput(outputId = "c1_out")
+ui <- ui_grid(
+  div(
+    optionalSelectInput(
+      inputId = "c1",
+      label = "Fixed choices",
+      choices = LETTERS[1:5],
+      selected = c("A", "B"),
+      fixed = TRUE
     ),
-    div(
-      optionalSelectInput(
-        inputId = "c2",
-        label = "Single choice",
-        choices = "A",
-        selected = "A"
-      ),
-      verbatimTextOutput(outputId = "c2_out")
-    ),
-    div(
-      optionalSelectInput(
-        inputId = "c3",
-        label = "NULL choices",
-        choices = NULL
-      ),
-      verbatimTextOutput(outputId = "c3_out")
-    ),
-    div(
-      optionalSelectInput(
-        inputId = "c4",
-        label = "Default",
-        choices = LETTERS[1:5],
-        selected = "A"
-      ),
-      verbatimTextOutput(outputId = "c4_out")
-    ),
-    div(
-      optionalSelectInput(
-        inputId = "c5",
-        label = "Named vector",
-        choices = c(`A - value A` = "A", `B - value B` = "B", `C - value C` = "C"),
-        selected = "A"
-      ),
-      verbatimTextOutput(outputId = "c5_out")
-    ),
-    div(
-      selectInput(
-        inputId = "c6_choices", label = "Update choices", choices = letters, multiple = TRUE
-      ),
-      optionalSelectInput(
-        inputId = "c6",
-        label = "Updated choices",
-        choices = NULL,
-        multiple = TRUE,
-        fixed_on_single = TRUE
-      ),
-      verbatimTextOutput(outputId = "c6_out")
-    )
+    verbatimTextOutput(outputId = "c1_out")
   ),
-  server = function(input, output, session) {
-    observeEvent(input$c6_choices, ignoreNULL = FALSE, {
-      updateOptionalSelectInput(
-        session = session,
-        inputId = "c6",
-        choices = input$c6_choices,
-        selected = input$c6_choices
-      )
-    })
-
-    output$c1_out <- renderPrint({
-      input$c1
-    })
-    output$c2_out <- renderPrint({
-      input$c2
-    })
-    output$c3_out <- renderPrint({
-      input$c3
-    })
-    output$c4_out <- renderPrint({
-      input$c4
-    })
-    output$c5_out <- renderPrint({
-      input$c5
-    })
-    output$c6_out <- renderPrint({
-      input$c6
-    })
-  }
+  div(
+    optionalSelectInput(
+      inputId = "c2",
+      label = "Single choice",
+      choices = "A",
+      selected = "A"
+    ),
+    verbatimTextOutput(outputId = "c2_out")
+  ),
+  div(
+    optionalSelectInput(
+      inputId = "c3",
+      label = "NULL choices",
+      choices = NULL
+    ),
+    verbatimTextOutput(outputId = "c3_out")
+  ),
+  div(
+    optionalSelectInput(
+      inputId = "c4",
+      label = "Default",
+      choices = LETTERS[1:5],
+      selected = "A"
+    ),
+    verbatimTextOutput(outputId = "c4_out")
+  ),
+  div(
+    optionalSelectInput(
+      inputId = "c5",
+      label = "Named vector",
+      choices = c(`A - value A` = "A", `B - value B` = "B", `C - value C` = "C"),
+      selected = "A"
+    ),
+    verbatimTextOutput(outputId = "c5_out")
+  ),
+  div(
+    selectInput(
+      inputId = "c6_choices", label = "Update choices", choices = letters, multiple = TRUE
+    ),
+    optionalSelectInput(
+      inputId = "c6",
+      label = "Updated choices",
+      choices = NULL,
+      multiple = TRUE,
+      fixed_on_single = TRUE
+    ),
+    verbatimTextOutput(outputId = "c6_out")
+  )
 )
+server <- function(input, output, session) {
+  observeEvent(input$c6_choices, ignoreNULL = FALSE, {
+    updateOptionalSelectInput(
+      session = session,
+      inputId = "c6",
+      choices = input$c6_choices,
+      selected = input$c6_choices
+    )
+  })
+  output$c1_out <- renderPrint({
+    input$c1
+  })
+  output$c2_out <- renderPrint({
+    input$c2
+  })
+  output$c3_out <- renderPrint({
+    input$c3
+  })
+  output$c4_out <- renderPrint({
+    input$c4
+  })
+  output$c5_out <- renderPrint({
+    input$c5
+  })
+  output$c6_out <- renderPrint({
+    input$c6
+  })
+}
 
 if (interactive()) {
-  shinyApp(app$ui, app$server)
+  shinyApp(ui, server)
 }
 
 }

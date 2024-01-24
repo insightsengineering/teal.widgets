@@ -20,7 +20,7 @@
 #' @export
 #' @examples
 #' ggplot2_args(
-#'   lab = list(title = "TITLE"),
+#'   labs = list(title = "TITLE"),
 #'   theme = list(title = ggplot2::element_text(size = 20))
 #' )
 ggplot2_args <- function(labs = list(), theme = list()) {
@@ -75,11 +75,11 @@ ggplot2_args <- function(labs = list(), theme = list()) {
 #' @examples
 #' resolve_ggplot2_args(
 #'   user_plot = ggplot2_args(
-#'     lab = list(title = "TITLE"),
+#'     labs = list(title = "TITLE"),
 #'     theme = list(title = ggplot2::element_text(size = 20))
 #'   ),
 #'   user_default = ggplot2_args(
-#'     lab = list(x = "XLAB")
+#'     labs = list(x = "XLAB")
 #'   )
 #' )
 resolve_ggplot2_args <- function(user_plot = ggplot2_args(),
@@ -121,7 +121,7 @@ resolve_ggplot2_args <- function(user_plot = ggplot2_args(),
 #' @examples
 #' parse_ggplot2_args(
 #'   resolve_ggplot2_args(ggplot2_args(
-#'     lab = list(title = "TITLE"),
+#'     labs = list(title = "TITLE"),
 #'     theme = list(title = ggplot2::element_text(size = 20))
 #'   ))
 #' )
@@ -129,7 +129,7 @@ resolve_ggplot2_args <- function(user_plot = ggplot2_args(),
 #' parse_ggplot2_args(
 #'   resolve_ggplot2_args(
 #'     ggplot2_args(
-#'       lab = list(title = "TITLE"),
+#'       labs = list(title = "TITLE"),
 #'       theme = list(title = ggplot2::element_text(size = 20))
 #'     )
 #'   ),

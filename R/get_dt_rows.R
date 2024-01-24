@@ -8,8 +8,11 @@
 #'
 #' @return (`shiny::tagList`) A `shiny tagList`.
 #'
+#' @export
+#'
 #' @examples
 #' library(shiny)
+#'
 #' ui <- function(id) {
 #'   ns <- NS(id)
 #'   tagList(
@@ -36,7 +39,6 @@
 #'     server = function(input, output, session) server("my_table_module")
 #'   )
 #' }
-#' @export
 get_dt_rows <- function(dt_name, dt_rows) {
   tags$head(
     tags$script(

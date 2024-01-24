@@ -111,7 +111,8 @@ plot_with_settings_ui <- function(id) {
 #' @examples
 #' # Example using a reactive as input to plot_r
 #' library(shiny)
-#' app1 <- shinyApp(
+#'
+#' app1 <- list(
 #'   ui = fluidPage(
 #'     plot_with_settings_ui(
 #'       id = "plot_with_settings"
@@ -119,7 +120,7 @@ plot_with_settings_ui <- function(id) {
 #'   ),
 #'   server = function(input, output, session) {
 #'     plot_r <- reactive({
-#'       ggplot2::ggplot(faithful, ggplot2::aes(x = waiting, y = eruptions)) +
+#'       ggplot2::ggplot(faithful, ggplot2::aes(x = .data$waiting, y = .data$eruptions)) +
 #'         ggplot2::geom_point()
 #'     })
 #'
@@ -137,7 +138,7 @@ plot_with_settings_ui <- function(id) {
 #' }
 #'
 #' # Example using a function as input to plot_r
-#' app2 <- shinyApp(
+#' app2 <- list(
 #'   ui = fluidPage(
 #'     radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
 #'     plot_with_settings_ui(
@@ -178,7 +179,7 @@ plot_with_settings_ui <- function(id) {
 #' }
 #'
 #' # Example with brushing/hovering/clicking/double-clicking
-#' app3 <- shinyApp(
+#' app3 <- list(
 #'   ui = fluidPage(
 #'     plot_with_settings_ui(
 #'       id = "plot_with_settings"
@@ -192,7 +193,7 @@ plot_with_settings_ui <- function(id) {
 #'   ),
 #'   server = function(input, output, session) {
 #'     plot_r <- reactive({
-#'       ggplot2::ggplot(faithful, ggplot2::aes(x = waiting, y = eruptions)) +
+#'       ggplot2::ggplot(faithful, ggplot2::aes(x = .data$waiting, y = .data$eruptions)) +
 #'         ggplot2::geom_point()
 #'     })
 #'
@@ -220,7 +221,7 @@ plot_with_settings_ui <- function(id) {
 #' # Example which allows module to be hidden/shown
 #' library("shinyjs")
 #'
-#' app4 <- shinyApp(
+#' app4 <- list(
 #'   ui = fluidPage(
 #'     useShinyjs(),
 #'     actionButton("button", "Show/Hide"),
@@ -230,7 +231,7 @@ plot_with_settings_ui <- function(id) {
 #'   ),
 #'   server = function(input, output, session) {
 #'     plot_r <- plot_r <- reactive(
-#'       ggplot2::ggplot(faithful, ggplot2::aes(x = waiting, y = eruptions)) +
+#'       ggplot2::ggplot(faithful, ggplot2::aes(x = .data$waiting, y = .data$eruptions)) +
 #'         ggplot2::geom_point()
 #'     )
 #'

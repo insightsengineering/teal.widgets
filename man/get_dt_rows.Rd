@@ -19,6 +19,7 @@ get_dt_rows(dt_name, dt_rows)
 }
 \examples{
 library(shiny)
+
 ui <- function(id) {
   ns <- NS(id)
   tagList(

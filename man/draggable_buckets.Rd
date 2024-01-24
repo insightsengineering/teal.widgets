@@ -27,12 +27,13 @@ A custom widget with draggable elements that can be put into buckets.
 \code{shinyvalidate} validation can be used with this widget. See example below.
 }
 \examples{
+library(shiny)
 
-ui <- shiny::fluidPage(
+ui <- fluidPage(
   draggable_buckets("id", "Choices #1", c("a", "b"), c("bucket1", "bucket2")),
   draggable_buckets("id2", "Choices #2", letters, c("vowels", "consonants")),
-  shiny::verbatimTextOutput("out"),
-  shiny::verbatimTextOutput("out2")
+  verbatimTextOutput("out"),
+  verbatimTextOutput("out2")
 )
 server <- function(input, output) {
   iv <- shinyvalidate::InputValidator$new()
@@ -42,28 +43,28 @@ server <- function(input, output) {
   )
   iv$enable()
 
-  shiny::observeEvent(list(input$id, input$id2), {
+  observeEvent(list(input$id, input$id2), {
     print(isolate(input$id))
     print(isolate(input$id2))
   })
-  output$out <- shiny::renderPrint({
+  output$out <- renderPrint({
     iv$is_valid()
     input$id
   })
-  output$out2 <- shiny::renderPrint(input$id2)
+  output$out2 <- renderPrint(input$id2)
 }
-if (interactive()) shiny::shinyApp(ui, server)
+if (interactive()) shinyApp(ui, server)
 
 # With default elements in the bucket
-ui <- shiny::fluidPage(
+ui <- fluidPage(
   draggable_buckets("id", "Choices #1", c("a", "b"), list(bucket1 = character(), bucket2 = c("c"))),
-  shiny::verbatimTextOutput("out")
+  verbatimTextOutput("out")
 )
 server <- function(input, output) {
-  shiny::observeEvent(input$id, {
-    print(shiny::isolate(input$id))
+  observeEvent(input$id, {
+    print(isolate(input$id))
   })
-  output$out <- shiny::renderPrint(input$id)
+  output$out <- renderPrint(input$id)
 }
-if (interactive()) shiny::shinyApp(ui, server)
+if (interactive()) shinyApp(ui, server)
 }

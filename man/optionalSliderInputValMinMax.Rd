@@ -38,7 +38,6 @@ whether to hide the \code{sliderInput} widget or not. For \code{teal} modules we
 optional slider input with one argument here called \code{value_min_max}.
 }
 \examples{
-
 optionalSliderInputValMinMax("a", "b", 1)
 optionalSliderInputValMinMax("a", "b", c(3, 1, 5))
 }

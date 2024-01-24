@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#' ui <- shiny::fluidPage(verbatim_popup_ui("my_id", button_label = "Open popup"))
+#' ui <- fluidPage(verbatim_popup_ui("my_id", button_label = "Open popup"))
 #' srv <- function(input, output) {
 #'   verbatim_popup_srv(
 #'     "my_id",
@@ -22,7 +22,7 @@
 #'     style = TRUE
 #'   )
 #' }
-#' if (interactive()) shiny::shinyApp(ui, srv)
+#' if (interactive()) shinyApp(ui, srv)
 #'
 verbatim_popup_ui <- function(id, button_label, type = c("button", "link"), ...) {
   checkmate::assert_string(id)

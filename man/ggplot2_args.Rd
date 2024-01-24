@@ -26,7 +26,7 @@ For more details see the vignette: \code{vignette("custom-ggplot2-arguments", pa
 }
 \examples{
 ggplot2_args(
-  lab = list(title = "TITLE"),
+  labs = list(title = "TITLE"),
   theme = list(title = ggplot2::element_text(size = 20))
 )
 }
