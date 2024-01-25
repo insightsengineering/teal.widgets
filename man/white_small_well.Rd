@@ -22,5 +22,5 @@ when the content overflows at the left and right edges of the output window.
 For example, this is useful for displaying wide tables.
 }
 \examples{
-white_small_well(htmlOutput("summary"))
+white_small_well(shiny::htmlOutput("summary"))
 }

@@ -13,6 +13,8 @@
 #' @export
 #'
 #' @examples
+#' library(shiny)
+#'
 #' ui <- fluidPage(verbatim_popup_ui("my_id", button_label = "Open popup"))
 #' srv <- function(input, output) {
 #'   verbatim_popup_srv(

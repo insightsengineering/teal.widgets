@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' white_small_well(htmlOutput("summary"))
+#' white_small_well(shiny::htmlOutput("summary"))
 white_small_well <- function(...) {
   shiny::tagList(
     include_css_files(pattern = "custom"),
