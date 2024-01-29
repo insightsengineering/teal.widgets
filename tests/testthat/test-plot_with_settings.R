@@ -171,12 +171,11 @@ testthat::test_that("clean_brushedPoints returns error with wrong input", {
 })
 
 testthat::test_that("clean_brushedPoints returns a data frame with minimal correct input", {
-  testthat::expect_error(
+  testthat::expect_no_error(
     clean_brushedPoints(
       data.frame(AGE = 1, BMRKR1 = 4),
       brush[c("direction", "range", "xmin", "xmax", "ymin", "ymax", "mapping")]
-    ),
-    NA
+    )
   )
 })
 

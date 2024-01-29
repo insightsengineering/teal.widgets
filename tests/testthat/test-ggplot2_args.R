@@ -1,10 +1,10 @@
 testthat::test_that("ggplot2_args, no error with empty inputs", {
-  testthat::expect_error(ggplot2_args(), NA)
-  testthat::expect_error(ggplot2_args(labs = list(), theme = list()), NA)
-  testthat::expect_error(ggplot2_args(labs = list()), NA)
-  testthat::expect_error(ggplot2_args(theme = list()), NA)
-  testthat::expect_error(ggplot2_args(list()), NA)
-  testthat::expect_error(ggplot2_args(list(), list()), NA)
+  testthat::expect_no_error(ggplot2_args())
+  testthat::expect_no_error(ggplot2_args(labs = list(), theme = list()))
+  testthat::expect_no_error(ggplot2_args(labs = list()))
+  testthat::expect_no_error(ggplot2_args(theme = list()))
+  testthat::expect_no_error(ggplot2_args(list()))
+  testthat::expect_no_error(ggplot2_args(list(), list()))
 })
 
 testthat::test_that("ggplot2_args function returns object of ggplot2_args and list classes", {
@@ -12,12 +12,11 @@ testthat::test_that("ggplot2_args function returns object of ggplot2_args and li
 })
 
 testthat::test_that("ggplot2_args accepts named lists for arguments labs and theme", {
-  testthat::expect_error(
+  testthat::expect_no_error(
     ggplot2_args(
       labs = list(title = "SOME TITLE"),
       theme = list(axis.title = ggplot2::element_blank())
-    ),
-    NA
+    )
   )
 })
 
@@ -27,7 +26,7 @@ testthat::test_that("ggplot2_args throws error when argument name is not valid."
 })
 
 testthat::test_that("resolve_ggplot2_args accepts empty inputs", {
-  testthat::expect_error(resolve_ggplot2_args(), NA)
+  testthat::expect_no_error(resolve_ggplot2_args())
 })
 
 testthat::test_that("resolve_ggplot2_args support NULL inputs", {
@@ -54,8 +53,8 @@ testthat::test_that("resolve_ggplot2_args function returns object of ggplot2_arg
 })
 
 testthat::test_that("parse_ggplot2_args accepts empty inputs", {
-  testthat::expect_error(parse_ggplot2_args(resolve_ggplot2_args()), NA)
-  testthat::expect_error(parse_ggplot2_args(), NA)
+  testthat::expect_no_error(parse_ggplot2_args(resolve_ggplot2_args()))
+  testthat::expect_no_error(parse_ggplot2_args())
 })
 
 testthat::test_that("parse_ggplot2_args throws error with empty list", {
