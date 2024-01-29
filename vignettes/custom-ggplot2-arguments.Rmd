@@ -82,7 +82,7 @@ server <- function(input, output, session) {
     labs = list(subtitle = "Dev substitle"),
     theme = list(legend.position = "none")
   )
-  
+
   f_ggplot2_expr <- parse_ggplot2_args(
     resolve_ggplot2_args(
       user_plot = user_ggplot2_args$plot1,
@@ -90,7 +90,7 @@ server <- function(input, output, session) {
       module_plot = dev_ggplot2_args
     )
   )
-  
+
   plot_expr <- substitute(
     expr = {
       gg <- ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, color = Species)) +

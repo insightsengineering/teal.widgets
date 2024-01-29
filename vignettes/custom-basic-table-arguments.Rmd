@@ -61,7 +61,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   dev_table_args <- basic_table_args(show_colcounts = TRUE)
-  
+
   table_expr <- substitute(
     expr = {
       tt <- f_table_expr %>%
