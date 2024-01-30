@@ -123,24 +123,12 @@
 #'     )
 #'   })
 #'
-#'   output$c1_out <- renderPrint({
-#'     input$c1
-#'   })
-#'   output$c2_out <- renderPrint({
-#'     input$c2
-#'   })
-#'   output$c3_out <- renderPrint({
-#'     input$c3
-#'   })
-#'   output$c4_out <- renderPrint({
-#'     input$c4
-#'   })
-#'   output$c5_out <- renderPrint({
-#'     input$c5
-#'   })
-#'   output$c6_out <- renderPrint({
-#'     input$c6
-#'   })
+#'   output$c1_out <- renderPrint(input$c1)
+#'   output$c2_out <- renderPrint(input$c2)
+#'   output$c3_out <- renderPrint(input$c3)
+#'   output$c4_out <- renderPrint(input$c4)
+#'   output$c5_out <- renderPrint(input$c5)
+#'   output$c6_out <- renderPrint(input$c6)
 #' }
 #'
 #' if (interactive()) {
