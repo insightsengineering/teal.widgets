@@ -78,6 +78,7 @@ By default the plot is rendered with \verb{72 dpi}. In order to change this, to 
 If an invalid value is set then the default value is used and a warning is outputted to the console.
 }
 \examples{
+# Example using a reactive as input to plot_r
 library(shiny)
 library(ggplot2)
 
