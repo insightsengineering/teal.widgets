@@ -80,145 +80,144 @@ If an invalid value is set then the default value is used and a warning is outpu
 \examples{
 # Example using a reactive as input to plot_r
 library(shiny)
-app1 <- shinyApp(
-  ui = fluidPage(
-    plot_with_settings_ui(
-      id = "plot_with_settings"
-    )
-  ),
-  server = function(input, output, session) {
-    plot_r <- reactive({
-      ggplot2::ggplot(faithful, ggplot2::aes(x = waiting, y = eruptions)) +
-        ggplot2::geom_point()
-    })
+library(ggplot2)
 
-    plot_with_settings_srv(
-      id = "plot_with_settings",
-      plot_r = plot_r,
-      height = c(400, 100, 1200),
-      width = c(500, 250, 750)
-    )
-  }
+ui <- fluidPage(
+  plot_with_settings_ui(
+    id = "plot_with_settings"
+  )
 )
 
+server <- function(input, output, session) {
+  plot_r <- reactive({
+    ggplot(faithful, aes(x = waiting, y = eruptions)) +
+      geom_point()
+  })
+
+  plot_with_settings_srv(
+    id = "plot_with_settings",
+    plot_r = plot_r,
+    height = c(400, 100, 1200),
+    width = c(500, 250, 750)
+  )
+}
+
 if (interactive()) {
-  shinyApp(app1$ui, app1$server)
+  shinyApp(ui, server)
 }
 
 # Example using a function as input to plot_r
-app2 <- shinyApp(
-  ui = fluidPage(
-    radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
-    plot_with_settings_ui(
-      id = "plot_with_settings"
-    ),
-    sliderInput("nums", "Value", 1, 10, 1)
+library(lattice)
+ui <- fluidPage(
+  radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
+  plot_with_settings_ui(
+    id = "plot_with_settings"
   ),
-  server = function(input, output, session) {
-    plot_r <- function() {
-      numbers <- seq_len(input$nums)
-      if (input$download_option == "ggplot") {
-        ggplot2::ggplot(data.frame(n = numbers), ggplot2::aes(n)) +
-          ggplot2::geom_bar()
-      } else if (input$download_option == "trellis") {
-        lattice::densityplot(numbers)
-      } else if (input$download_option == "grob") {
-        tr_plot <- lattice::densityplot(numbers)
-        ggplot2::ggplotGrob(
-          ggplot2::ggplot(data.frame(n = numbers), ggplot2::aes(n)) +
-            ggplot2::geom_bar()
-        )
-      } else if (input$download_option == "base") {
-        plot(numbers)
-      }
-    }
-
-    plot_with_settings_srv(
-      id = "plot_with_settings",
-      plot_r = plot_r,
-      height = c(400, 100, 1200),
-      width = c(500, 250, 750)
-    )
-  }
+  sliderInput("nums", "Value", 1, 10, 1)
 )
 
+server <- function(input, output, session) {
+  plot_r <- function() {
+    numbers <- seq_len(input$nums)
+    if (input$download_option == "ggplot") {
+      ggplot(data.frame(n = numbers), aes(n)) +
+        geom_bar()
+    } else if (input$download_option == "trellis") {
+      densityplot(numbers)
+    } else if (input$download_option == "grob") {
+      tr_plot <- densityplot(numbers)
+      ggplotGrob(
+        ggplot(data.frame(n = numbers), aes(n)) +
+          geom_bar()
+      )
+    } else if (input$download_option == "base") {
+      plot(numbers)
+    }
+  }
+
+  plot_with_settings_srv(
+    id = "plot_with_settings",
+    plot_r = plot_r,
+    height = c(400, 100, 1200),
+    width = c(500, 250, 750)
+  )
+}
+
 if (interactive()) {
-  shinyApp(app2$ui, app2$server)
+  shinyApp(ui, server)
 }
 
 # Example with brushing/hovering/clicking/double-clicking
-app3 <- shinyApp(
-  ui = fluidPage(
-    plot_with_settings_ui(
-      id = "plot_with_settings"
-    ),
-    fluidRow(
-      column(4, h3("Brush"), verbatimTextOutput("brushing_data")),
-      column(4, h3("Click"), verbatimTextOutput("clicking_data")),
-      column(4, h3("DblClick"), verbatimTextOutput("dblclicking_data")),
-      column(4, h3("Hover"), verbatimTextOutput("hovering_data"))
-    )
+ui <- fluidPage(
+  plot_with_settings_ui(
+    id = "plot_with_settings"
   ),
-  server = function(input, output, session) {
-    plot_r <- reactive({
-      ggplot2::ggplot(faithful, ggplot2::aes(x = waiting, y = eruptions)) +
-        ggplot2::geom_point()
-    })
-
-    plot_data <- plot_with_settings_srv(
-      id = "plot_with_settings",
-      plot_r = plot_r,
-      height = c(400, 100, 1200),
-      brushing = TRUE,
-      clicking = TRUE,
-      dblclicking = TRUE,
-      hovering = TRUE
-    )
-
-    output$brushing_data <- renderPrint(plot_data$brush())
-    output$clicking_data <- renderPrint(plot_data$click())
-    output$dblclicking_data <- renderPrint(plot_data$dblclick())
-    output$hovering_data <- renderPrint(plot_data$hover())
-  }
+  fluidRow(
+    column(4, h3("Brush"), verbatimTextOutput("brushing_data")),
+    column(4, h3("Click"), verbatimTextOutput("clicking_data")),
+    column(4, h3("DblClick"), verbatimTextOutput("dblclicking_data")),
+    column(4, h3("Hover"), verbatimTextOutput("hovering_data"))
+  )
 )
 
+server <- function(input, output, session) {
+  plot_r <- reactive({
+    ggplot(faithful, aes(x = waiting, y = eruptions)) +
+      geom_point()
+  })
+
+  plot_data <- plot_with_settings_srv(
+    id = "plot_with_settings",
+    plot_r = plot_r,
+    height = c(400, 100, 1200),
+    brushing = TRUE,
+    clicking = TRUE,
+    dblclicking = TRUE,
+    hovering = TRUE
+  )
+
+  output$brushing_data <- renderPrint(plot_data$brush())
+  output$clicking_data <- renderPrint(plot_data$click())
+  output$dblclicking_data <- renderPrint(plot_data$dblclick())
+  output$hovering_data <- renderPrint(plot_data$hover())
+}
+
 if (interactive()) {
-  shinyApp(app3$ui, app3$server)
+  shinyApp(ui, server)
 }
 
 # Example which allows module to be hidden/shown
 library("shinyjs")
 
-app4 <- shinyApp(
-  ui = fluidPage(
-    useShinyjs(),
-    actionButton("button", "Show/Hide"),
-    plot_with_settings_ui(
-      id = "plot_with_settings"
-    )
-  ),
-  server = function(input, output, session) {
-    plot_r <- plot_r <- reactive(
-      ggplot2::ggplot(faithful, ggplot2::aes(x = waiting, y = eruptions)) +
-        ggplot2::geom_point()
-    )
-
-    show_hide_signal_rv <- reactiveVal(TRUE)
-
-    observeEvent(input$button, show_hide_signal_rv(!show_hide_signal_rv()))
-
-    plot_with_settings_srv(
-      id = "plot_with_settings",
-      plot_r = plot_r,
-      height = c(400, 100, 1200),
-      width = c(500, 250, 750),
-      show_hide_signal = reactive(show_hide_signal_rv())
-    )
-  }
+ui <- fluidPage(
+  useShinyjs(),
+  actionButton("button", "Show/Hide"),
+  plot_with_settings_ui(
+    id = "plot_with_settings"
+  )
 )
 
+server <- function(input, output, session) {
+  plot_r <- plot_r <- reactive(
+    ggplot(faithful, aes(x = waiting, y = eruptions)) +
+      geom_point()
+  )
+
+  show_hide_signal_rv <- reactiveVal(TRUE)
+
+  observeEvent(input$button, show_hide_signal_rv(!show_hide_signal_rv()))
+
+  plot_with_settings_srv(
+    id = "plot_with_settings",
+    plot_r = plot_r,
+    height = c(400, 100, 1200),
+    width = c(500, 250, 750),
+    show_hide_signal = reactive(show_hide_signal_rv())
+  )
+}
+
 if (interactive()) {
-  shinyApp(app4$ui, app4$server)
+  shinyApp(ui, server)
 }
 
 }

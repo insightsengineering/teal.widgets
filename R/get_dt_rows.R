@@ -10,10 +10,12 @@
 #'
 #' @examples
 #' library(shiny)
+#' library(DT)
+#'
 #' ui <- function(id) {
 #'   ns <- NS(id)
 #'   tagList(
-#'     DT::DTOutput(ns("data_table")),
+#'     DTOutput(ns("data_table")),
 #'     get_dt_rows(ns("data_table"), ns("dt_rows"))
 #'   )
 #' }
@@ -21,7 +23,7 @@
 #' # use the input$dt_rows in the Shiny Server function
 #' server <- function(id) {
 #'   moduleServer(id, function(input, output, session) {
-#'     output$data_table <- DT::renderDataTable(
+#'     output$data_table <- renderDataTable(
 #'       {
 #'         iris
 #'       },

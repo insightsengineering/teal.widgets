@@ -17,8 +17,10 @@
 #' @examples
 #' # nolint start
 #' library(shiny)
+#' library(shinyjs)
+#'
 #' ui <- fluidPage(
-#'   shinyjs::useShinyjs(),
+#'   useShinyjs(),
 #'   actionButton("show_1", "$('#modal_1').modal('show')"),
 #'   nested_closeable_modal(
 #'     "modal_1",
@@ -61,20 +63,20 @@
 #' )
 #' server <- function(input, output) {
 #'   observeEvent(input$show_1, {
-#'     shinyjs::runjs("$('#modal_1').modal('show')")
+#'     runjs("$('#modal_1').modal('show')")
 #'   })
 #'   observeEvent(input$show_2, {
-#'     shinyjs::runjs("$('#modal_2').modal('show')")
+#'     runjs("$('#modal_2').modal('show')")
 #'   })
 #'   observeEvent(c(input$hide_1, input$hide_all), {
-#'     shinyjs::runjs("$('#modal_1').modal('hide')")
+#'     runjs("$('#modal_1').modal('hide')")
 #'   })
 #'   observeEvent(input$hide_2, {
-#'     shinyjs::runjs("$('#modal_2').modal('hide')")
+#'     runjs("$('#modal_2').modal('hide')")
 #'   })
 #' }
 #' if (interactive()) {
-#'   shiny::shinyApp(ui, server)
+#'   shinyApp(ui, server)
 #' }
 #' # nolint end
 nested_closeable_modal <- function(id, ..., modal_args = list(easyClose = TRUE)) {
