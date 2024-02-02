@@ -111,6 +111,7 @@ plot_with_settings_ui <- function(id) {
 #' @examples
 #' # Example using a reactive as input to plot_r
 #' library(shiny)
+#' library(ggplot2)
 #'
 #' app1 <- list(
 #'   ui = fluidPage(
@@ -120,8 +121,8 @@ plot_with_settings_ui <- function(id) {
 #'   ),
 #'   server = function(input, output, session) {
 #'     plot_r <- reactive({
-#'       ggplot2::ggplot(faithful, ggplot2::aes(x = .data$waiting, y = .data$eruptions)) +
-#'         ggplot2::geom_point()
+#'       ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
+#'         geom_point()
 #'     })
 #'
 #'     plot_with_settings_srv(
@@ -150,15 +151,15 @@ plot_with_settings_ui <- function(id) {
 #'     plot_r <- function() {
 #'       numbers <- seq_len(input$nums)
 #'       if (input$download_option == "ggplot") {
-#'         ggplot2::ggplot(data.frame(n = numbers), ggplot2::aes(n)) +
-#'           ggplot2::geom_bar()
+#'         ggplot(data.frame(n = numbers), aes(.data$n)) +
+#'           geom_bar()
 #'       } else if (input$download_option == "trellis") {
 #'         lattice::densityplot(numbers)
 #'       } else if (input$download_option == "grob") {
 #'         tr_plot <- lattice::densityplot(numbers)
-#'         ggplot2::ggplotGrob(
-#'           ggplot2::ggplot(data.frame(n = numbers), ggplot2::aes(n)) +
-#'             ggplot2::geom_bar()
+#'         ggplotGrob(
+#'           ggplot(data.frame(n = numbers), aes(.data$n)) +
+#'             geom_bar()
 #'         )
 #'       } else if (input$download_option == "base") {
 #'         plot(numbers)
@@ -193,8 +194,8 @@ plot_with_settings_ui <- function(id) {
 #'   ),
 #'   server = function(input, output, session) {
 #'     plot_r <- reactive({
-#'       ggplot2::ggplot(faithful, ggplot2::aes(x = .data$waiting, y = .data$eruptions)) +
-#'         ggplot2::geom_point()
+#'       ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
+#'         geom_point()
 #'     })
 #'
 #'     plot_data <- plot_with_settings_srv(
@@ -231,8 +232,8 @@ plot_with_settings_ui <- function(id) {
 #'   ),
 #'   server = function(input, output, session) {
 #'     plot_r <- plot_r <- reactive(
-#'       ggplot2::ggplot(faithful, ggplot2::aes(x = .data$waiting, y = .data$eruptions)) +
-#'         ggplot2::geom_point()
+#'       ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
+#'         geom_point()
 #'     )
 #'
 #'     show_hide_signal_rv <- reactiveVal(TRUE)
