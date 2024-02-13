@@ -607,7 +607,7 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
 #' @return A dataframe of selected rows.
 #' @export
 #'
-clean_brushedPoints <- function(data, brush) { # nolint object_name_linter
+clean_brushedPoints <- function(data, brush) { # nolint object_name_linter.
   checkmate::assert_data_frame(data)
   checkmate::assert_list(brush, null.ok = TRUE)
 
