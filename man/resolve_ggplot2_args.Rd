@@ -48,11 +48,11 @@ Per plot (\code{user_plot}) and then default (\code{user_default}) setup.
 \examples{
 resolve_ggplot2_args(
   user_plot = ggplot2_args(
-    lab = list(title = "TITLE"),
+    labs = list(title = "TITLE"),
     theme = list(title = ggplot2::element_text(size = 20))
   ),
   user_default = ggplot2_args(
-    lab = list(x = "XLAB")
+    labs = list(x = "XLAB")
   )
 )
 }

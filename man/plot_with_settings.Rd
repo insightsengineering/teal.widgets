@@ -90,7 +90,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   plot_r <- reactive({
-    ggplot(faithful, aes(x = waiting, y = eruptions)) +
+    ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
       geom_point()
   })
 
@@ -108,6 +108,7 @@ if (interactive()) {
 
 # Example using a function as input to plot_r
 library(lattice)
+
 ui <- fluidPage(
   radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
   plot_with_settings_ui(
@@ -120,14 +121,14 @@ server <- function(input, output, session) {
   plot_r <- function() {
     numbers <- seq_len(input$nums)
     if (input$download_option == "ggplot") {
-      ggplot(data.frame(n = numbers), aes(n)) +
+      ggplot(data.frame(n = numbers), aes(.data$n)) +
         geom_bar()
     } else if (input$download_option == "trellis") {
       densityplot(numbers)
     } else if (input$download_option == "grob") {
       tr_plot <- densityplot(numbers)
       ggplotGrob(
-        ggplot(data.frame(n = numbers), aes(n)) +
+        ggplot(data.frame(n = numbers), aes(.data$n)) +
           geom_bar()
       )
     } else if (input$download_option == "base") {
@@ -162,7 +163,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   plot_r <- reactive({
-    ggplot(faithful, aes(x = waiting, y = eruptions)) +
+    ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
       geom_point()
   })
 
@@ -199,7 +200,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   plot_r <- plot_r <- reactive(
-    ggplot(faithful, aes(x = waiting, y = eruptions)) +
+    ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
       geom_point()
   )
 

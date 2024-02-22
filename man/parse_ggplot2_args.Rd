@@ -27,7 +27,7 @@ A function to parse expression from the \code{ggplot2_args} object.
 \examples{
 parse_ggplot2_args(
   resolve_ggplot2_args(ggplot2_args(
-    lab = list(title = "TITLE"),
+    labs = list(title = "TITLE"),
     theme = list(title = ggplot2::element_text(size = 20))
   ))
 )
@@ -35,7 +35,7 @@ parse_ggplot2_args(
 parse_ggplot2_args(
   resolve_ggplot2_args(
     ggplot2_args(
-      lab = list(title = "TITLE"),
+      labs = list(title = "TITLE"),
       theme = list(title = ggplot2::element_text(size = 20))
     )
   ),
