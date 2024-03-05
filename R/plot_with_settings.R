@@ -61,7 +61,7 @@ plot_with_settings_ui <- function(id) {
 #' Plot-with-settings module
 #'
 #' @rdname plot_with_settings
-#' @description `r lifecycle::badge("stable")`
+#' @description `r lifecycle::badge("stable")`\cr
 #' Universal module for plots with settings for height, width, and download.
 #'
 #' @export
