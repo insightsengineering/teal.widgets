@@ -56,5 +56,4 @@ panel_group(
   )
 )
 
-
 }
