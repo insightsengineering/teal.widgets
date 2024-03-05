@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_dt_rows.R
 \name{get_dt_rows}
 \alias{get_dt_rows}
-\title{Maps the \code{lengthMenu}selected value property of \code{DT::datatable} to a Shiny variable.}
+\title{Map \code{lenghtMenu} property}
 \usage{
 get_dt_rows(dt_name, dt_rows)
 }
@@ -15,7 +15,8 @@ get_dt_rows(dt_name, dt_rows)
 (\code{shiny::tagList}) A \verb{shiny tagList}.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}\cr
+Maps the \code{lengthMenu} selected value property of \code{DT::datatable} to a \code{shiny} variable.
 }
 \examples{
 library(shiny)
