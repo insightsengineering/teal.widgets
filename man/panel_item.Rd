@@ -22,5 +22,28 @@ indicates whether the panel item is open or collapsed and is accessed with \code
 (\code{shiny.tag})
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}\cr
+Designed to be grouped using \code{\link{panel_group}} element. Used to handle \code{shiny} inputs in the encoding panel.
+}
+\examples{
+
+library(shiny)
+panel_item(
+  title = "Display",
+  collapsed = FALSE,
+  checkboxGroupInput(
+    "check",
+    "Tables display",
+    choices = LETTERS[1:3],
+    selected = LETTERS[1]
+  ),
+  radioButtons(
+    "radio",
+    label = "Plot type",
+    choices = letters[1:2],
+    selected = letters[1]
+  )
+)
+
+
 }
