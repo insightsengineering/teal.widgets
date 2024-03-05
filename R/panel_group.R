@@ -45,7 +45,6 @@
 #'   )
 #' )
 #'
-#'
 #' @export
 panel_group <- function(..., id = NULL) {
   checkmate::assert_string(id, null.ok = TRUE)
@@ -106,7 +105,6 @@ panel_group <- function(..., id = NULL) {
 #'     selected = letters[1]
 #'   )
 #' )
-#'
 #'
 #' @export
 panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {

@@ -45,7 +45,6 @@
 #'   )
 #' )
 #'
-#'
 #' @export
 standard_layout <- function(output,
                             encoding = NULL,
