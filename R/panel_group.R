@@ -72,7 +72,7 @@ panel_group <- function(..., id = NULL) {
   )
 }
 
-#' Panel widget
+#' Panel item widget
 #'
 #' @description `r lifecycle::badge("experimental")`\cr
 #' Designed to be grouped using [`panel_group`] element. Used to handle `shiny` inputs in the encoding panel.
