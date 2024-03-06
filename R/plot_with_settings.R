@@ -1,3 +1,4 @@
+#' @name plot_with_settings
 #' @rdname plot_with_settings
 #' @export
 plot_with_settings_ui <- function(id) {
