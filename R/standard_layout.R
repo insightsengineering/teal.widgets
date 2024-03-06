@@ -24,7 +24,6 @@
 #' standard_layout(
 #'   output = white_small_well(h3("Tests")),
 #'   encoding = div(
-#'     teal.reporter::simple_reporter_ui("simple_reporter"),
 #'     tags$label("Encodings", class = "text-primary"),
 #'     panel_item(
 #'       "Tests",
