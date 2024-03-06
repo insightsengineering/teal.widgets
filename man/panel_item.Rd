@@ -2,7 +2,7 @@
 % Please edit documentation in R/panel_group.R
 \name{panel_item}
 \alias{panel_item}
-\title{Panel widget}
+\title{Panel item widget}
 \usage{
 panel_item(title, ..., collapsed = TRUE, input_id = NULL)
 }
