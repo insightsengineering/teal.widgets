@@ -1,3 +1,4 @@
+#' @name plot_with_settings
 #' @rdname plot_with_settings
 #' @export
 plot_with_settings_ui <- function(id) {
@@ -61,7 +62,7 @@ plot_with_settings_ui <- function(id) {
 #' Plot-with-settings module
 #'
 #' @rdname plot_with_settings
-#' @description `r lifecycle::badge("stable")`
+#' @description `r lifecycle::badge("stable")`\cr
 #' Universal module for plots with settings for height, width, and download.
 #'
 #' @export
@@ -596,15 +597,39 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
   )
 }
 
-#' Cleans and organizes output to account for NAs and remove empty rows.
+#' Clean brushed points
 #'
-#' @description `r lifecycle::badge("stable")`
+#' @description `r lifecycle::badge("stable")`\cr
+#' Cleans and organizes output to account for NAs and remove empty rows. Wrapper around `shiny::brushedPoints`.
 #' @param data (`data.frame`)\cr
-#'  A dataframe from which to select rows.
+#'  A data.frame from which to select rows.
 #' @param brush (`list`)\cr
-#'  The data from a brush e.g. input$plot_brush.
+#'  The data from a brush e.g. `input$plot_brush`.
 #'
-#' @return A dataframe of selected rows.
+#' @return A `data.frame` of selected rows.
+#'
+#' @examples
+#'
+#' brush <- list(
+#'   mapping = list(
+#'     x = "AGE",
+#'     y = "BMRKR1"
+#'   ),
+#'   xmin = 30, xmax = 40,
+#'   ymin = 0.7, ymax = 10,
+#'   direction = "xy"
+#' )
+#'
+#' data <- data.frame(
+#'   STUDYID = letters[1:20],
+#'   USUBJID = LETTERS[1:20],
+#'   AGE = sample(25:40, size = 20, replace = TRUE),
+#'   BMRKR1 = runif(20, min = 0, max = 12)
+#' )
+#' nrow(clean_brushedPoints(data, brush))
+#' data$AGE[1:10] <- NA
+#' nrow(clean_brushedPoints(data, brush))
+#'
 #' @export
 #'
 clean_brushedPoints <- function(data, brush) { # nolint object_name_linter.

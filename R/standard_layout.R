@@ -1,8 +1,8 @@
-#' Create a standard UI layout with output on the right and an encoding panel on
-#' the left
+#' Standard UI layout
 #'
-#' @description `r lifecycle::badge("stable")`
-#' This is the layout used by the `teal` modules.
+#' @description `r lifecycle::badge("stable")`\cr
+#' Create a standard UI layout with output on the right and an encoding panel on
+#' the left. This is the layout used by the `teal` modules.
 #'
 #' @param output (`shiny.tag`)\cr
 #'   object with the output element (table, plot, listing) such as for example returned
@@ -18,6 +18,31 @@
 #' into context. For example the [shiny::helpText()] elements are useful.
 #'
 #' @return an object of class \code{shiny.tag} with the UI code.
+#'
+#' @examples
+#' library(shiny)
+#' standard_layout(
+#'   output = white_small_well(h3("Tests")),
+#'   encoding = div(
+#'     tags$label("Encodings", class = "text-primary"),
+#'     panel_item(
+#'       "Tests",
+#'       optionalSelectInput(
+#'         "tests",
+#'         "Tests:",
+#'         choices = c(
+#'           "Shapiro-Wilk",
+#'           "Kolmogorov-Smirnov (one-sample)"
+#'         ),
+#'         selected = "Shapiro-Wilk"
+#'       )
+#'     )
+#'   ),
+#'   forms = tagList(
+#'     verbatim_popup_ui("warning", "Show Warnings"),
+#'     verbatim_popup_ui("rcode", "Show R code")
+#'   )
+#' )
 #'
 #' @export
 standard_layout <- function(output,

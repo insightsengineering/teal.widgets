@@ -2,20 +2,44 @@
 % Please edit documentation in R/plot_with_settings.R
 \name{clean_brushedPoints}
 \alias{clean_brushedPoints}
-\title{Cleans and organizes output to account for NAs and remove empty rows.}
+\title{Clean brushed points}
 \usage{
 clean_brushedPoints(data, brush)
 }
 \arguments{
 \item{data}{(\code{data.frame})\cr
-A dataframe from which to select rows.}
+A data.frame from which to select rows.}
 
 \item{brush}{(\code{list})\cr
-The data from a brush e.g. input$plot_brush.}
+The data from a brush e.g. \code{input$plot_brush}.}
 }
 \value{
-A dataframe of selected rows.
+A \code{data.frame} of selected rows.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}\cr
+Cleans and organizes output to account for NAs and remove empty rows. Wrapper around \code{shiny::brushedPoints}.
+}
+\examples{
+
+brush <- list(
+  mapping = list(
+    x = "AGE",
+    y = "BMRKR1"
+  ),
+  xmin = 30, xmax = 40,
+  ymin = 0.7, ymax = 10,
+  direction = "xy"
+)
+
+data <- data.frame(
+  STUDYID = letters[1:20],
+  USUBJID = LETTERS[1:20],
+  AGE = sample(25:40, size = 20, replace = TRUE),
+  BMRKR1 = runif(20, min = 0, max = 12)
+)
+nrow(clean_brushedPoints(data, brush))
+data$AGE[1:10] <- NA
+nrow(clean_brushedPoints(data, brush))
+
 }

@@ -450,7 +450,7 @@ extract_raw_choices <- function(choices, sep) {
 
 #' if min or max are `NA` then the slider widget will be hidden
 #'
-#' @description `r lifecycle::badge("stable")`
+#' @description `r lifecycle::badge("stable")`\cr
 #' Hidden input widgets are useful to have the `input[[inputId]]` variable
 #' on available in the server function but no corresponding visual clutter from
 #' input widgets that provide only a single choice.

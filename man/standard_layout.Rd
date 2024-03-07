@@ -2,8 +2,7 @@
 % Please edit documentation in R/standard_layout.R
 \name{standard_layout}
 \alias{standard_layout}
-\title{Create a standard UI layout with output on the right and an encoding panel on
-the left}
+\title{Standard UI layout}
 \usage{
 standard_layout(
   output,
@@ -35,6 +34,33 @@ into context. For example the \code{\link[shiny:helpText]{shiny::helpText()}} el
 an object of class \code{shiny.tag} with the UI code.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
-This is the layout used by the \code{teal} modules.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}\cr
+Create a standard UI layout with output on the right and an encoding panel on
+the left. This is the layout used by the \code{teal} modules.
+}
+\examples{
+library(shiny)
+standard_layout(
+  output = white_small_well(h3("Tests")),
+  encoding = div(
+    tags$label("Encodings", class = "text-primary"),
+    panel_item(
+      "Tests",
+      optionalSelectInput(
+        "tests",
+        "Tests:",
+        choices = c(
+          "Shapiro-Wilk",
+          "Kolmogorov-Smirnov (one-sample)"
+        ),
+        selected = "Shapiro-Wilk"
+      )
+    )
+  ),
+  forms = tagList(
+    verbatim_popup_ui("warning", "Show Warnings"),
+    verbatim_popup_ui("rcode", "Show R code")
+  )
+)
+
 }

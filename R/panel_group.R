@@ -1,11 +1,49 @@
 #' Panel group widget
 #'
-#' @description `r lifecycle::badge("experimental")`
+#' @description `r lifecycle::badge("experimental")`\cr
+#' Designed to group [`panel_item`] elements. Used to handle `shiny` inputs in the encoding panel.
 #' @param id optional, (`character`)\cr
 #' @param ... (`shiny.tag`)\cr
 #'  panels created by [panel_group()]
 #'
 #' @return (`shiny.tag`)
+#'
+#' @examples
+#'
+#' library(shiny)
+#' panel_group(
+#'   panel_item(
+#'     title = "Display",
+#'     collapsed = FALSE,
+#'     checkboxGroupInput(
+#'       "check",
+#'       "Tables display",
+#'       choices = LETTERS[1:3],
+#'       selected = LETTERS[1]
+#'     ),
+#'     radioButtons(
+#'       "radio",
+#'       label = "Plot type",
+#'       choices = letters[1:2],
+#'       selected = letters[1]
+#'     )
+#'   ),
+#'   panel_item(
+#'     title = "Pre-processing",
+#'     radioButtons(
+#'       "filtering",
+#'       "What to filter",
+#'       choices = LETTERS[1:4],
+#'       selected = LETTERS[1]
+#'     ),
+#'     radioButtons(
+#'       "na_action",
+#'       "NA action",
+#'       choices = letters[1:3],
+#'       selected = letters[1]
+#'     )
+#'   )
+#' )
 #'
 #' @export
 panel_group <- function(..., id = NULL) {
@@ -34,10 +72,10 @@ panel_group <- function(..., id = NULL) {
   )
 }
 
-#' Panel widget
-#' @md
+#' Panel item widget
 #'
-#' @description `r lifecycle::badge("experimental")`
+#' @description `r lifecycle::badge("experimental")`\cr
+#' Designed to be grouped using [`panel_group`] element. Used to handle `shiny` inputs in the encoding panel.
 #' @param title (`character`)\cr title of panel
 #' @param ... content of panel
 #' @param collapsed (`logical`, optional)\cr
@@ -47,6 +85,26 @@ panel_group <- function(..., id = NULL) {
 #'  indicates whether the panel item is open or collapsed and is accessed with `input$input_id`.
 #'
 #' @return (`shiny.tag`)
+#'
+#' @examples
+#'
+#' library(shiny)
+#' panel_item(
+#'   title = "Display",
+#'   collapsed = FALSE,
+#'   checkboxGroupInput(
+#'     "check",
+#'     "Tables display",
+#'     choices = LETTERS[1:3],
+#'     selected = LETTERS[1]
+#'   ),
+#'   radioButtons(
+#'     "radio",
+#'     label = "Plot type",
+#'     choices = letters[1:2],
+#'     selected = letters[1]
+#'   )
+#' )
 #'
 #' @export
 panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {

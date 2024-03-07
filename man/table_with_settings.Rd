@@ -4,7 +4,7 @@
 \alias{table_with_settings}
 \alias{table_with_settings_ui}
 \alias{table_with_settings_srv}
-\title{table_with_settings module}
+\title{\code{table_with_settings} module}
 \usage{
 table_with_settings_ui(id, ...)
 
@@ -27,7 +27,8 @@ a mechanism to allow modules which call this module to show/hide the table_with_
 A \code{shiny} module.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}\cr
+Module designed to create a \code{shiny} table output based on \code{rtable} object (\code{ElementaryTable} or \code{TableTree}) input.
 }
 \examples{
 library(shiny)

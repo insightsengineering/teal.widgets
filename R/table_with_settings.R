@@ -1,8 +1,9 @@
 #' @name table_with_settings
 #'
-#' @title table_with_settings module
+#' @title `table_with_settings` module
 #'
-#' @description `r lifecycle::badge("stable")`
+#' @description `r lifecycle::badge("stable")`\cr
+#' Module designed to create a `shiny` table output based on `rtable` object (`ElementaryTable` or `TableTree`) input.
 #' @inheritParams shiny::moduleServer
 #' @param ... (`character`)\cr
 #'  Useful for providing additional HTML classes for the output tag.
