@@ -78,9 +78,9 @@ panel_group <- function(..., id = NULL) {
 #' Designed to be grouped using [`panel_group`] element. Used to handle `shiny` inputs in the encoding panel.
 #' @param title (`character`)\cr title of panel
 #' @param ... content of panel
-#' @param collapsed (`logical`, optional)\cr
+#' @param collapsed (`logical`) optional,\cr
 #'  whether to initially collapse panel
-#' @param input_id (`character`, optional)\cr
+#' @param input_id (`character`) optional,\cr
 #'  name of the panel item element. If supplied, this will register a shiny input variable that
 #'  indicates whether the panel item is open or collapsed and is accessed with `input$input_id`.
 #'

@@ -73,17 +73,17 @@ plot_with_settings_ui <- function(id) {
 #'  `reactive` expression or a simple `function` to draw a plot.
 #'  A simple `function` is needed e.g. for base plots like `plot(1)` as the output can not be caught when downloading.
 #'  Take into account that simple functions are less efficient than reactive, as not catching the result.
-#' @param height (`numeric`, optional)\cr
+#' @param height (`numeric`) optional,\cr
 #'  vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
 #'  the main and modal plot display. The value in the modal display is taken from the value of the
 #'  slider in the main plot display.
-#' @param width (`numeric`, optional)\cr
+#' @param width (`numeric`) optional,\cr
 #'  vector with three elements `c(VAL, MIN, MAX)`, where VAL is the starting value of the slider in
 #'  the main and modal plot display; `NULL` for default display. The value in the modal
 #'  display is taken from the value of the slider in the main plot display.
-#' @param show_hide_signal optional, (\code{reactive logical} a mechanism to allow modules which call this
+#' @param show_hide_signal optional, (`reactive logical` a mechanism to allow modules which call this
 #'     module to show/hide the plot_with_settings UI)
-#' @param brushing (`logical`, optional)\cr
+#' @param brushing (`logical`) optional,\cr
 #'  a mechanism to enable / disable brushing on the main plot (in particular: not the one displayed
 #'  in modal). All the brushing data is stored as a reactive object in the `"brush"` element of
 #'  returned list. See the example for details.
@@ -91,15 +91,15 @@ plot_with_settings_ui <- function(id) {
 #'  a mechanism to enable / disable clicking on data points on the main plot (in particular: not the
 #'  one displayed in modal). All the clicking data is stored as a reactive object in the `"click"`
 #'  element of returned list. See the example for details.
-#' @param dblclicking (`logical`, optional)\cr
+#' @param dblclicking (`logical`) optional,\cr
 #'  a mechanism to enable / disable double-clicking on data points on the main plot (in particular:
 #'  not the one displayed in modal). All the double clicking data is stored as a reactive object in
 #'  the `"dblclick"` element of returned list. See the example for details.
-#' @param hovering (`logical(1)`, optional)\cr
+#' @param hovering (`logical(1)`) optional,\cr
 #'  a mechanism to enable / disable hovering over data points on the main plot (in particular: not
 #'  the one displayed in modal). All the hovering data is stored as a reactive object in the
 #' `"hover"` element of returned list. See the example for details.
-#' @param graph_align (`character(1)`, optional)\cr
+#' @param graph_align (`character(1)`) optional,\cr
 #'  one of `"left"` (default), `"center"`, `"right"` or `"justify"`. The alignment of the graph on
 #'  the main page.
 #'
