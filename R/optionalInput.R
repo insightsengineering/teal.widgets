@@ -53,7 +53,7 @@
 #' }
 #'
 #' ui <- ui_grid(
-#'   div(
+#'   tags$div(
 #'     optionalSelectInput(
 #'       inputId = "c1",
 #'       label = "Fixed choices",
@@ -63,7 +63,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c1_out")
 #'   ),
-#'   div(
+#'   tags$div(
 #'     optionalSelectInput(
 #'       inputId = "c2",
 #'       label = "Single choice",
@@ -72,7 +72,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c2_out")
 #'   ),
-#'   div(
+#'   tags$div(
 #'     optionalSelectInput(
 #'       inputId = "c3",
 #'       label = "NULL choices",
@@ -80,7 +80,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c3_out")
 #'   ),
-#'   div(
+#'   tags$div(
 #'     optionalSelectInput(
 #'       inputId = "c4",
 #'       label = "Default",
@@ -89,7 +89,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c4_out")
 #'   ),
-#'   div(
+#'   tags$div(
 #'     optionalSelectInput(
 #'       inputId = "c5",
 #'       label = "Named vector",
@@ -98,7 +98,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c5_out")
 #'   ),
-#'   div(
+#'   tags$div(
 #'     selectInput(
 #'       inputId = "c6_choices", label = "Update choices", choices = letters, multiple = TRUE
 #'     ),
@@ -243,7 +243,7 @@ optionalSelectInput <- function(inputId, # nolint
     label_help
   )
 
-  div(
+  tags$div(
     include_css_files(pattern = "picker_input"),
 
     # when selected values in ui_picker change
@@ -280,7 +280,7 @@ optionalSelectInput <- function(inputId, # nolint
       )
       tags$script(js)
     },
-    div(ui_picker, ui_fixed)
+    tags$div(ui_picker, ui_fixed)
   )
 }
 

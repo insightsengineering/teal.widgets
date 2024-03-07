@@ -56,7 +56,7 @@ basic_table_args <- list(
 
 ui <- fluidPage(
   shinyjs::useShinyjs(),
-  div(verbatimTextOutput("table1"))
+  tags$div(verbatimTextOutput("table1"))
 )
 
 server <- function(input, output, session) {

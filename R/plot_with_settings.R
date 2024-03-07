@@ -7,8 +7,8 @@ plot_with_settings_ui <- function(id) {
   ns <- NS(id)
 
   tagList(
-    shiny::singleton(shiny::tags$head(
-      shiny::tags$script(
+    shiny::singleton(tags$head(
+      tags$script(
         # nolint start
         sprintf(
           '$(document).on("shiny:connected", function(e) {
@@ -185,10 +185,10 @@ plot_with_settings_ui <- function(id) {
 #'     id = "plot_with_settings"
 #'   ),
 #'   fluidRow(
-#'     column(4, h3("Brush"), verbatimTextOutput("brushing_data")),
-#'     column(4, h3("Click"), verbatimTextOutput("clicking_data")),
-#'     column(4, h3("DblClick"), verbatimTextOutput("dblclicking_data")),
-#'     column(4, h3("Hover"), verbatimTextOutput("hovering_data"))
+#'     column(4, tags$h3("Brush"), verbatimTextOutput("brushing_data")),
+#'     column(4, tags$h3("Click"), verbatimTextOutput("clicking_data")),
+#'     column(4, tags$h3("DblClick"), verbatimTextOutput("dblclicking_data")),
+#'     column(4, tags$h3("Hover"), verbatimTextOutput("hovering_data"))
 #'   )
 #' )
 #'
@@ -331,7 +331,7 @@ plot_with_settings_srv <- function(id,
     })
 
     output$slider_ui <- renderUI({
-      div(
+      tags$div(
         optionalSliderInputValMinMax(
           inputId = ns("height"),
           label = "Plot height",
@@ -411,7 +411,7 @@ plot_with_settings_srv <- function(id,
 
     output$plot_out_main <- renderUI({
       req(plot_suppress(plot_r()))
-      div(
+      tags$div(
         align = graph_align,
         plotOutput(
           ns("plot_main"),
@@ -452,11 +452,11 @@ plot_with_settings_srv <- function(id,
 
     observeEvent(input$expand, {
       showModal(
-        div(
+        tags$div(
           class = "plot-modal",
           modalDialog(
             easyClose = TRUE,
-            div(
+            tags$div(
               class = "plot-modal-sliders",
               optionalSliderInputValMinMax(
                 inputId = ns("height_in_modal"),
@@ -486,11 +486,11 @@ plot_with_settings_srv <- function(id,
                 round = TRUE
               )
             ),
-            div(
+            tags$div(
               class = "float-right",
               type_download_ui(ns("modal_downbutton"))
             ),
-            div(
+            tags$div(
               align = "center",
               uiOutput(ns("plot_out_modal"), class = "plot_out_container")
             )
@@ -551,7 +551,7 @@ type_download_ui <- function(id) {
     right = TRUE,
     label = "",
     inputId = ns("downl"),
-    div(
+    tags$div(
       radioButtons(ns("file_format"),
         label = "File type",
         choices = c("png" = "png", "pdf" = "pdf", "svg" = "svg"),

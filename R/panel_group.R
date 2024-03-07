@@ -184,7 +184,7 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
 
     tagList(
       include_css_files(pattern = "panel.css"),
-      shiny::tags$head(shiny::includeScript(system.file("js/panel_group.js", package = "teal.widgets"))),
+      tags$head(shiny::includeScript(system.file("js/panel_group.js", package = "teal.widgets"))),
       res_tag
     )
   })
