@@ -118,21 +118,12 @@ button_click_observer <- function(click_event,
         shiny::modalDialog(
           shiny::tagList(
             include_css_files(pattern = "verbatim_popup"),
-            shiny::tags$div(
-              class = "mb-4",
-              shiny::actionButton(
-                paste0(copy_button_id, 1),
-                "Copy to Clipboard",
-                onclick = paste0("copyToClipboard('", copied_area_id, "')")
-              ),
-              shiny::modalButton("Dismiss")
-            ),
             shiny::tags$pre(id = copied_area_id, modal_content()),
           ),
           title = modal_title,
           footer = shiny::tagList(
             shiny::actionButton(
-              paste0(copy_button_id, 2),
+              copy_button_id,
               "Copy to Clipboard",
               onclick = paste0("copyToClipboard('", copied_area_id, "')")
             ),
