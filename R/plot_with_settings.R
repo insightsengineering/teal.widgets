@@ -77,7 +77,7 @@ plot_with_settings_ui <- function(id) {
 #'  vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
 #'  the main and modal plot display. The value in the modal display is taken from the value of the
 #'  slider in the main plot display.
-#' @param width (`numeric`) optional,\cr
+#' @param width (`numeric`) optional\cr
 #'  vector with three elements `c(VAL, MIN, MAX)`, where VAL is the starting value of the slider in
 #'  the main and modal plot display; `NULL` for default display. The value in the modal
 #'  display is taken from the value of the slider in the main plot display.
