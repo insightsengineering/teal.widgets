@@ -566,7 +566,7 @@ optionalSliderInputValMinMax <- function(inputId, label, value_min_max, label_he
 #'
 #' @param choices (`list` or `vector`)\cr
 #'  select choices
-#' @param values optional,\cr
+#' @param values optional\cr
 #'  choices subset for which labels should be extracted, `NULL` for all choices.
 #'
 #' @return (`character`) vector with labels
