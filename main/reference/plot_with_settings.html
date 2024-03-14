@@ -12,7 +12,7 @@ Universal module for plots with settings for height, width, and download."><!-- 
     
     <a class="navbar-brand me-2" href="../index.html">teal.widgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2.9006</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,21 +33,6 @@ Universal module for plots with settings for height, width, and download."><!-- 
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/v0.4.2-rc1">v0.4.2-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/v0.4.1-rc1">v0.4.1-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/v0.4.2">v0.4.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/v0.4.1">v0.4.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/v0.4.0">v0.4.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/v0.3.0">v0.3.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/teal.widgets/v0.2.0">v0.2.0</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -112,14 +97,14 @@ Take into account that simple functions are less efficient than reactive, as not
 
 
 <dt>height</dt>
-<dd><p>(<code>numeric</code>, optional)<br>
+<dd><p>(<code>numeric</code>) optional<br>
 vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
 the main and modal plot display. The value in the modal display is taken from the value of the
 slider in the main plot display.</p></dd>
 
 
 <dt>width</dt>
-<dd><p>(<code>numeric</code>, optional)<br>
+<dd><p>(<code>numeric</code>) optional<br>
 vector with three elements <code>c(VAL, MIN, MAX)</code>, where VAL is the starting value of the slider in
 the main and modal plot display; <code>NULL</code> for default display. The value in the modal
 display is taken from the value of the slider in the main plot display.</p></dd>
@@ -131,8 +116,8 @@ module to show/hide the plot_with_settings UI)</p></dd>
 
 
 <dt>brushing</dt>
-<dd><p>(<code>logical</code>, optional)<br>
-a mechanism to enable / disable brushing on the main plot (in particular: not the one displayed
+<dd><p>(<code>logical</code>) optional<br>
+mechanism to enable / disable brushing on the main plot (in particular: not the one displayed
 in modal). All the brushing data is stored as a reactive object in the <code>"brush"</code> element of
 returned list. See the example for details.</p></dd>
 
@@ -145,21 +130,21 @@ element of returned list. See the example for details.</p></dd>
 
 
 <dt>dblclicking</dt>
-<dd><p>(<code>logical</code>, optional)<br>
-a mechanism to enable / disable double-clicking on data points on the main plot (in particular:
+<dd><p>(<code>logical</code>) optional<br>
+mechanism to enable / disable double-clicking on data points on the main plot (in particular:
 not the one displayed in modal). All the double clicking data is stored as a reactive object in
 the <code>"dblclick"</code> element of returned list. See the example for details.</p></dd>
 
 
 <dt>hovering</dt>
-<dd><p>(<code>logical(1)</code>, optional)<br>
-a mechanism to enable / disable hovering over data points on the main plot (in particular: not
+<dd><p>(<code>logical(1)</code>) optional<br>
+mechanism to enable / disable hovering over data points on the main plot (in particular: not
 the one displayed in modal). All the hovering data is stored as a reactive object in the
 <code>"hover"</code> element of returned list. See the example for details.</p></dd>
 
 
 <dt>graph_align</dt>
-<dd><p>(<code>character(1)</code>, optional)<br>
+<dd><p>(<code>character(1)</code>) optional,<br>
 one of <code>"left"</code> (default), <code>"center"</code>, <code>"right"</code> or <code>"justify"</code>. The alignment of the graph on
 the main page.</p></dd>
 
