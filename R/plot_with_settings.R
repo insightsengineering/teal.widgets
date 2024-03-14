@@ -73,7 +73,7 @@ plot_with_settings_ui <- function(id) {
 #'  `reactive` expression or a simple `function` to draw a plot.
 #'  A simple `function` is needed e.g. for base plots like `plot(1)` as the output can not be caught when downloading.
 #'  Take into account that simple functions are less efficient than reactive, as not catching the result.
-#' @param height (`numeric`) optional,\cr
+#' @param height (`numeric`) optional\cr
 #'  vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
 #'  the main and modal plot display. The value in the modal display is taken from the value of the
 #'  slider in the main plot display.
