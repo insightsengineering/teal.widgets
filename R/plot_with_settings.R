@@ -83,8 +83,8 @@ plot_with_settings_ui <- function(id) {
 #'  display is taken from the value of the slider in the main plot display.
 #' @param show_hide_signal optional, (`reactive logical` a mechanism to allow modules which call this
 #'     module to show/hide the plot_with_settings UI)
-#' @param brushing (`logical`) optional,\cr
-#'  a mechanism to enable / disable brushing on the main plot (in particular: not the one displayed
+#' @param brushing (`logical`) optional\cr
+#'  mechanism to enable / disable brushing on the main plot (in particular: not the one displayed
 #'  in modal). All the brushing data is stored as a reactive object in the `"brush"` element of
 #'  returned list. See the example for details.
 #' @param clicking (`logical`)\cr
