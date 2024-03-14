@@ -456,8 +456,8 @@ extract_raw_choices <- function(choices, sep) {
 #' input widgets that provide only a single choice.
 #'
 #' @inheritParams shiny::sliderInput
-#' @param label_help (`shiny.tag`) optional,\cr
-#'  an object of class `shiny.tag`. E.g. an object returned by [shiny::helpText()]
+#' @param label_help (`shiny.tag`) optional\cr
+#'  object of class `shiny.tag`, e.g. an object returned by [shiny::helpText()]
 #' @param ... optional, arguments to `sliderInput`
 #'
 #' @return (`shiny.tag`) HTML tag with `sliderInput` widget.
