@@ -95,8 +95,8 @@ plot_with_settings_ui <- function(id) {
 #'  mechanism to enable / disable double-clicking on data points on the main plot (in particular:
 #'  not the one displayed in modal). All the double clicking data is stored as a reactive object in
 #'  the `"dblclick"` element of returned list. See the example for details.
-#' @param hovering (`logical(1)`) optional,\cr
-#'  a mechanism to enable / disable hovering over data points on the main plot (in particular: not
+#' @param hovering (`logical(1)`) optional\cr
+#'  mechanism to enable / disable hovering over data points on the main plot (in particular: not
 #'  the one displayed in modal). All the hovering data is stored as a reactive object in the
 #' `"hover"` element of returned list. See the example for details.
 #' @param graph_align (`character(1)`) optional,\cr
