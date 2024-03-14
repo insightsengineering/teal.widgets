@@ -154,10 +154,10 @@ ui <- fluidPage(
     id = "plot_with_settings"
   ),
   fluidRow(
-    column(4, h3("Brush"), verbatimTextOutput("brushing_data")),
-    column(4, h3("Click"), verbatimTextOutput("clicking_data")),
-    column(4, h3("DblClick"), verbatimTextOutput("dblclicking_data")),
-    column(4, h3("Hover"), verbatimTextOutput("hovering_data"))
+    column(4, tags$h3("Brush"), verbatimTextOutput("brushing_data")),
+    column(4, tags$h3("Click"), verbatimTextOutput("clicking_data")),
+    column(4, tags$h3("DblClick"), verbatimTextOutput("dblclicking_data")),
+    column(4, tags$h3("Hover"), verbatimTextOutput("hovering_data"))
   )
 )
 

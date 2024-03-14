@@ -41,8 +41,8 @@ the left. This is the layout used by the \code{teal} modules.
 \examples{
 library(shiny)
 standard_layout(
-  output = white_small_well(h3("Tests")),
-  encoding = div(
+  output = white_small_well(tags$h3("Tests")),
+  encoding = tags$div(
     tags$label("Encodings", class = "text-primary"),
     panel_item(
       "Tests",

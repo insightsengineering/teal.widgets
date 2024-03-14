@@ -97,7 +97,7 @@ ui_grid <- function(...) {
 }
 
 ui <- ui_grid(
-  div(
+  tags$div(
     optionalSelectInput(
       inputId = "c1",
       label = "Fixed choices",
@@ -107,7 +107,7 @@ ui <- ui_grid(
     ),
     verbatimTextOutput(outputId = "c1_out")
   ),
-  div(
+  tags$div(
     optionalSelectInput(
       inputId = "c2",
       label = "Single choice",
@@ -116,7 +116,7 @@ ui <- ui_grid(
     ),
     verbatimTextOutput(outputId = "c2_out")
   ),
-  div(
+  tags$div(
     optionalSelectInput(
       inputId = "c3",
       label = "NULL choices",
@@ -124,7 +124,7 @@ ui <- ui_grid(
     ),
     verbatimTextOutput(outputId = "c3_out")
   ),
-  div(
+  tags$div(
     optionalSelectInput(
       inputId = "c4",
       label = "Default",
@@ -133,7 +133,7 @@ ui <- ui_grid(
     ),
     verbatimTextOutput(outputId = "c4_out")
   ),
-  div(
+  tags$div(
     optionalSelectInput(
       inputId = "c5",
       label = "Named vector",
@@ -142,7 +142,7 @@ ui <- ui_grid(
     ),
     verbatimTextOutput(outputId = "c5_out")
   ),
-  div(
+  tags$div(
     selectInput(
       inputId = "c6_choices", label = "Update choices", choices = letters, multiple = TRUE
     ),

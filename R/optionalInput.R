@@ -53,7 +53,7 @@
 #' }
 #'
 #' ui <- ui_grid(
-#'   div(
+#'   tags$div(
 #'     optionalSelectInput(
 #'       inputId = "c1",
 #'       label = "Fixed choices",
@@ -63,7 +63,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c1_out")
 #'   ),
-#'   div(
+#'   tags$div(
 #'     optionalSelectInput(
 #'       inputId = "c2",
 #'       label = "Single choice",
@@ -72,7 +72,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c2_out")
 #'   ),
-#'   div(
+#'   tags$div(
 #'     optionalSelectInput(
 #'       inputId = "c3",
 #'       label = "NULL choices",
@@ -80,7 +80,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c3_out")
 #'   ),
-#'   div(
+#'   tags$div(
 #'     optionalSelectInput(
 #'       inputId = "c4",
 #'       label = "Default",
@@ -89,7 +89,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c4_out")
 #'   ),
-#'   div(
+#'   tags$div(
 #'     optionalSelectInput(
 #'       inputId = "c5",
 #'       label = "Named vector",
@@ -98,7 +98,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c5_out")
 #'   ),
-#'   div(
+#'   tags$div(
 #'     selectInput(
 #'       inputId = "c6_choices", label = "Update choices", choices = letters, multiple = TRUE
 #'     ),
@@ -222,7 +222,7 @@ optionalSelectInput <- function(inputId, # nolint
   )
 
   if (!is.null(label_help)) {
-    ui_picker[[3]] <- append(ui_picker[[3]], list(div(class = "label-help", label_help)), after = 1)
+    ui_picker[[3]] <- append(ui_picker[[3]], list(tags$div(class = "label-help", label_help)), after = 1)
   }
 
   ui_fixed <- tags$div(
@@ -243,7 +243,7 @@ optionalSelectInput <- function(inputId, # nolint
     label_help
   )
 
-  div(
+  tags$div(
     include_css_files(pattern = "picker_input"),
 
     # when selected values in ui_picker change
@@ -280,7 +280,7 @@ optionalSelectInput <- function(inputId, # nolint
       )
       tags$script(js)
     },
-    div(ui_picker, ui_fixed)
+    tags$div(ui_picker, ui_fixed)
   )
 }
 
@@ -498,7 +498,7 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
   slider <- sliderInput(inputId, label, min, max, value, ...)
 
   if (!is.null(label_help)) {
-    slider[[3]] <- append(slider[[3]], list(div(class = "label-help", label_help)), after = 1)
+    slider[[3]] <- append(slider[[3]], list(tags$div(class = "label-help", label_help)), after = 1)
   }
 
   if (hide) {
@@ -557,7 +557,7 @@ optionalSliderInputValMinMax <- function(inputId, label, value_min_max, label_he
   slider <- optionalSliderInput(inputId, label, vals$min, vals$max, vals$value, ...)
 
   if (!is.null(label_help)) {
-    slider[[3]] <- append(slider[[3]], list(div(class = "label-help", label_help)), after = 1)
+    slider[[3]] <- append(slider[[3]], list(tags$div(class = "label-help", label_help)), after = 1)
   }
   return(slider)
 }
