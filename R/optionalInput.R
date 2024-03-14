@@ -458,7 +458,7 @@ extract_raw_choices <- function(choices, sep) {
 #' @inheritParams shiny::sliderInput
 #' @param label_help (`shiny.tag`) optional\cr
 #'  object of class `shiny.tag`, e.g. an object returned by [shiny::helpText()]
-#' @param ... optional, arguments to `sliderInput`
+#' @param ... optional arguments to `sliderInput`
 #'
 #' @return (`shiny.tag`) HTML tag with `sliderInput` widget.
 #'
