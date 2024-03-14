@@ -2,7 +2,7 @@
 % Please edit documentation in R/white_small_well.R
 \name{white_small_well}
 \alias{white_small_well}
-\title{Adds Class Small Well and overflow-x property to HTML output element}
+\title{Small well class for HTML}
 \usage{
 white_small_well(...)
 }
@@ -13,7 +13,8 @@ white_small_well(...)
 An HTML output element with class Small Well and overflow-x property
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}\cr
+Adds Small Well class and overflow-x property to HTML output element.
 }
 \details{
 \code{white_small_well} is intended to be used with \code{\link[shiny:htmlOutput]{shiny::uiOutput()}}.

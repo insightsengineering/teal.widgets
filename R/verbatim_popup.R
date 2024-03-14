@@ -43,7 +43,7 @@ verbatim_popup_ui <- function(id, button_label, type = c("button", "link"), ...)
 
   shiny::tagList(
     shiny::singleton(
-      shiny::tags$head(shiny::includeScript(system.file("js/verbatim_popup.js", package = "teal.widgets")))
+      tags$head(shiny::includeScript(system.file("js/verbatim_popup.js", package = "teal.widgets")))
     ),
     shinyjs::useShinyjs(),
     do.call(ui_function, c(ui_args, list(...)))
@@ -119,7 +119,7 @@ button_click_observer <- function(click_event,
         shiny::modalDialog(
           shiny::tagList(
             include_css_files(pattern = "verbatim_popup"),
-            shiny::tags$div(
+            tags$div(
               class = "mb-4",
               shiny::actionButton(
                 paste0(copy_button_id, 1),
@@ -128,7 +128,7 @@ button_click_observer <- function(click_event,
               ),
               shiny::modalButton("Dismiss")
             ),
-            shiny::tags$pre(id = copied_area_id, modal_content()),
+            tags$pre(id = copied_area_id, modal_content()),
           ),
           title = modal_title,
           footer = shiny::tagList(

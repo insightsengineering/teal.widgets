@@ -32,7 +32,7 @@ apply_plot_modifications <- function(plot_obj, plot_type, dblclicking, ranges) {
   }
 }
 
-#' This function opens a PDF graphics device using \code{\link[grDevices]{pdf}} to suppress
+#' This function opens a PDF graphics device using [grDevices::pdf()] to suppress
 #' the plot display in the IDE. The purpose of this function is to avoid opening graphic devices
 #' directly in the IDE.
 #'

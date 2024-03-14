@@ -16,5 +16,44 @@ panels created by \code{\link[=panel_group]{panel_group()}}}
 (\code{shiny.tag})
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}\cr
+Designed to group \code{\link{panel_item}} elements. Used to handle \code{shiny} inputs in the encoding panel.
+}
+\examples{
+
+library(shiny)
+panel_group(
+  panel_item(
+    title = "Display",
+    collapsed = FALSE,
+    checkboxGroupInput(
+      "check",
+      "Tables display",
+      choices = LETTERS[1:3],
+      selected = LETTERS[1]
+    ),
+    radioButtons(
+      "radio",
+      label = "Plot type",
+      choices = letters[1:2],
+      selected = letters[1]
+    )
+  ),
+  panel_item(
+    title = "Pre-processing",
+    radioButtons(
+      "filtering",
+      "What to filter",
+      choices = LETTERS[1:4],
+      selected = LETTERS[1]
+    ),
+    radioButtons(
+      "na_action",
+      "NA action",
+      choices = letters[1:3],
+      selected = letters[1]
+    )
+  )
+)
+
 }

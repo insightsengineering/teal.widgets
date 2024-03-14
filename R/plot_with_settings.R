@@ -1,3 +1,4 @@
+#' @name plot_with_settings
 #' @rdname plot_with_settings
 #' @export
 plot_with_settings_ui <- function(id) {
@@ -6,8 +7,8 @@ plot_with_settings_ui <- function(id) {
   ns <- NS(id)
 
   tagList(
-    shiny::singleton(shiny::tags$head(
-      shiny::tags$script(
+    shiny::singleton(tags$head(
+      tags$script(
         # nolint start
         sprintf(
           '$(document).on("shiny:connected", function(e) {
@@ -61,7 +62,7 @@ plot_with_settings_ui <- function(id) {
 #' Plot-with-settings module
 #'
 #' @rdname plot_with_settings
-#' @description `r lifecycle::badge("stable")`
+#' @description `r lifecycle::badge("stable")`\cr
 #' Universal module for plots with settings for height, width, and download.
 #'
 #' @export
@@ -72,33 +73,33 @@ plot_with_settings_ui <- function(id) {
 #'  `reactive` expression or a simple `function` to draw a plot.
 #'  A simple `function` is needed e.g. for base plots like `plot(1)` as the output can not be caught when downloading.
 #'  Take into account that simple functions are less efficient than reactive, as not catching the result.
-#' @param height (`numeric`, optional)\cr
+#' @param height (`numeric`) optional\cr
 #'  vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
 #'  the main and modal plot display. The value in the modal display is taken from the value of the
 #'  slider in the main plot display.
-#' @param width (`numeric`, optional)\cr
+#' @param width (`numeric`) optional\cr
 #'  vector with three elements `c(VAL, MIN, MAX)`, where VAL is the starting value of the slider in
 #'  the main and modal plot display; `NULL` for default display. The value in the modal
 #'  display is taken from the value of the slider in the main plot display.
-#' @param show_hide_signal optional, (\code{reactive logical} a mechanism to allow modules which call this
+#' @param show_hide_signal optional, (`reactive logical` a mechanism to allow modules which call this
 #'     module to show/hide the plot_with_settings UI)
-#' @param brushing (`logical`, optional)\cr
-#'  a mechanism to enable / disable brushing on the main plot (in particular: not the one displayed
+#' @param brushing (`logical`) optional\cr
+#'  mechanism to enable / disable brushing on the main plot (in particular: not the one displayed
 #'  in modal). All the brushing data is stored as a reactive object in the `"brush"` element of
 #'  returned list. See the example for details.
 #' @param clicking (`logical`)\cr
 #'  a mechanism to enable / disable clicking on data points on the main plot (in particular: not the
 #'  one displayed in modal). All the clicking data is stored as a reactive object in the `"click"`
 #'  element of returned list. See the example for details.
-#' @param dblclicking (`logical`, optional)\cr
-#'  a mechanism to enable / disable double-clicking on data points on the main plot (in particular:
+#' @param dblclicking (`logical`) optional\cr
+#'  mechanism to enable / disable double-clicking on data points on the main plot (in particular:
 #'  not the one displayed in modal). All the double clicking data is stored as a reactive object in
 #'  the `"dblclick"` element of returned list. See the example for details.
-#' @param hovering (`logical(1)`, optional)\cr
-#'  a mechanism to enable / disable hovering over data points on the main plot (in particular: not
+#' @param hovering (`logical(1)`) optional\cr
+#'  mechanism to enable / disable hovering over data points on the main plot (in particular: not
 #'  the one displayed in modal). All the hovering data is stored as a reactive object in the
 #' `"hover"` element of returned list. See the example for details.
-#' @param graph_align (`character(1)`, optional)\cr
+#' @param graph_align (`character(1)`) optional,\cr
 #'  one of `"left"` (default), `"center"`, `"right"` or `"justify"`. The alignment of the graph on
 #'  the main page.
 #'
@@ -185,10 +186,10 @@ plot_with_settings_ui <- function(id) {
 #'     id = "plot_with_settings"
 #'   ),
 #'   fluidRow(
-#'     column(4, h3("Brush"), verbatimTextOutput("brushing_data")),
-#'     column(4, h3("Click"), verbatimTextOutput("clicking_data")),
-#'     column(4, h3("DblClick"), verbatimTextOutput("dblclicking_data")),
-#'     column(4, h3("Hover"), verbatimTextOutput("hovering_data"))
+#'     column(4, tags$h3("Brush"), verbatimTextOutput("brushing_data")),
+#'     column(4, tags$h3("Click"), verbatimTextOutput("clicking_data")),
+#'     column(4, tags$h3("DblClick"), verbatimTextOutput("dblclicking_data")),
+#'     column(4, tags$h3("Hover"), verbatimTextOutput("hovering_data"))
 #'   )
 #' )
 #'
@@ -331,7 +332,7 @@ plot_with_settings_srv <- function(id,
     })
 
     output$slider_ui <- renderUI({
-      div(
+      tags$div(
         optionalSliderInputValMinMax(
           inputId = ns("height"),
           label = "Plot height",
@@ -411,7 +412,7 @@ plot_with_settings_srv <- function(id,
 
     output$plot_out_main <- renderUI({
       req(plot_suppress(plot_r()))
-      div(
+      tags$div(
         align = graph_align,
         plotOutput(
           ns("plot_main"),
@@ -452,11 +453,11 @@ plot_with_settings_srv <- function(id,
 
     observeEvent(input$expand, {
       showModal(
-        div(
+        tags$div(
           class = "plot-modal",
           modalDialog(
             easyClose = TRUE,
-            div(
+            tags$div(
               class = "plot-modal-sliders",
               optionalSliderInputValMinMax(
                 inputId = ns("height_in_modal"),
@@ -486,11 +487,11 @@ plot_with_settings_srv <- function(id,
                 round = TRUE
               )
             ),
-            div(
+            tags$div(
               class = "float-right",
               type_download_ui(ns("modal_downbutton"))
             ),
-            div(
+            tags$div(
               align = "center",
               uiOutput(ns("plot_out_modal"), class = "plot_out_container")
             )
@@ -551,7 +552,7 @@ type_download_ui <- function(id) {
     right = TRUE,
     label = "",
     inputId = ns("downl"),
-    div(
+    tags$div(
       radioButtons(ns("file_format"),
         label = "File type",
         choices = c("png" = "png", "pdf" = "pdf", "svg" = "svg"),
@@ -597,15 +598,39 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
   )
 }
 
-#' Cleans and organizes output to account for NAs and remove empty rows.
+#' Clean brushed points
 #'
-#' @description `r lifecycle::badge("stable")`
+#' @description `r lifecycle::badge("stable")`\cr
+#' Cleans and organizes output to account for NAs and remove empty rows. Wrapper around `shiny::brushedPoints`.
 #' @param data (`data.frame`)\cr
-#'  A dataframe from which to select rows.
+#'  A data.frame from which to select rows.
 #' @param brush (`list`)\cr
-#'  The data from a brush e.g. input$plot_brush.
+#'  The data from a brush e.g. `input$plot_brush`.
 #'
-#' @return A dataframe of selected rows.
+#' @return A `data.frame` of selected rows.
+#'
+#' @examples
+#'
+#' brush <- list(
+#'   mapping = list(
+#'     x = "AGE",
+#'     y = "BMRKR1"
+#'   ),
+#'   xmin = 30, xmax = 40,
+#'   ymin = 0.7, ymax = 10,
+#'   direction = "xy"
+#' )
+#'
+#' data <- data.frame(
+#'   STUDYID = letters[1:20],
+#'   USUBJID = LETTERS[1:20],
+#'   AGE = sample(25:40, size = 20, replace = TRUE),
+#'   BMRKR1 = runif(20, min = 0, max = 12)
+#' )
+#' nrow(clean_brushedPoints(data, brush))
+#' data$AGE[1:10] <- NA
+#' nrow(clean_brushedPoints(data, brush))
+#'
 #' @export
 #'
 clean_brushedPoints <- function(data, brush) { # nolint object_name_linter.

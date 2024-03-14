@@ -105,7 +105,7 @@ testthat::test_that("Basic output", {
   testthat::expect_equal(
     standard_layout(
       output = tags$div(), pre_output = tags$div(),
-      post_output = tags$div(), encoding = tags$div(), forms = div()
+      post_output = tags$div(), encoding = tags$div(), forms = tags$div()
     ),
     tags$div(
       class = "row",

@@ -48,7 +48,7 @@
 #'           footer = NULL,
 #'           easyClose = TRUE
 #'         ),
-#'         div(
+#'         tags$div(
 #'           "This modal can be closed by running", tags$code("$(\"#modal_1\").modal(\"hide\")"),
 #'           "in the JS console!",
 #'           "Note that removing the parent will remove the child.

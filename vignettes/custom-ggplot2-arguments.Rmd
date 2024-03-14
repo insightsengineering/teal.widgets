@@ -74,7 +74,7 @@ user_ggplot2_args <- list(
 
 ui <- fluidPage(
   shinyjs::useShinyjs(),
-  div(plotOutput("plot1"))
+  tags$div(plotOutput("plot1"))
 )
 
 server <- function(input, output, session) {
