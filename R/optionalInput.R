@@ -222,7 +222,7 @@ optionalSelectInput <- function(inputId, # nolint
   )
 
   if (!is.null(label_help)) {
-    ui_picker[[3]] <- append(ui_picker[[3]], list(div(class = "label-help", label_help)), after = 1)
+    ui_picker[[3]] <- append(ui_picker[[3]], list(tags$div(class = "label-help", label_help)), after = 1)
   }
 
   ui_fixed <- tags$div(
@@ -498,7 +498,7 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
   slider <- sliderInput(inputId, label, min, max, value, ...)
 
   if (!is.null(label_help)) {
-    slider[[3]] <- append(slider[[3]], list(div(class = "label-help", label_help)), after = 1)
+    slider[[3]] <- append(slider[[3]], list(tags$div(class = "label-help", label_help)), after = 1)
   }
 
   if (hide) {
@@ -557,7 +557,7 @@ optionalSliderInputValMinMax <- function(inputId, label, value_min_max, label_he
   slider <- optionalSliderInput(inputId, label, vals$min, vals$max, vals$value, ...)
 
   if (!is.null(label_help)) {
-    slider[[3]] <- append(slider[[3]], list(div(class = "label-help", label_help)), after = 1)
+    slider[[3]] <- append(slider[[3]], list(tags$div(class = "label-help", label_help)), after = 1)
   }
   return(slider)
 }
