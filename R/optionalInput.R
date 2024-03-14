@@ -13,13 +13,13 @@
 #'  A separator string to split the `choices` or `selected` inputs into the values of the different
 #'  columns.
 #'
-#' @param label_help (`shiny.tag` optional)\cr
+#' @param label_help (`shiny.tag`) optional,\cr
 #'  e.g. an object returned by [shiny::helpText()].
 #'
-#' @param fixed (`logical(1)` optional)\cr
+#' @param fixed (`logical(1)`) optional,\cr
 #'  whether to block user to select choices.
 #'
-#' @param fixed_on_single (`logical(1)` optional)\cr
+#' @param fixed_on_single (`logical(1)`) optional,\cr
 #'  whether to block user to select a choice when there is only one or less choice.
 #'  When `FALSE`, user is still able to select or deselect the choice.
 #'
@@ -456,8 +456,8 @@ extract_raw_choices <- function(choices, sep) {
 #' input widgets that provide only a single choice.
 #'
 #' @inheritParams shiny::sliderInput
-#' @param label_help (`shiny.tag`, optional)\cr
-#'  an object of class `shiny.tag`. E.g. an object returned by [shiny::helpText()]
+#' @param label_help (`shiny.tag`) optional\cr
+#'  object of class `shiny.tag`, e.g. an object returned by [shiny::helpText()]
 #' @param ... optional arguments to `sliderInput`
 #'
 #' @return (`shiny.tag`) HTML tag with `sliderInput` widget.
@@ -508,8 +508,8 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
   }
 }
 
-#' For `teal` modules we parameterize an \code{optionalSliderInput} with one argument
-#' \code{value_min_max}
+#' For `teal` modules we parameterize an `optionalSliderInput` with one argument
+#' `value_min_max`
 #'
 #' @description `r lifecycle::badge("stable")`
 #' The [optionalSliderInput()] function needs three arguments to determine
@@ -566,7 +566,7 @@ optionalSliderInputValMinMax <- function(inputId, label, value_min_max, label_he
 #'
 #' @param choices (`list` or `vector`)\cr
 #'  select choices
-#' @param values (optional)\cr
+#' @param values optional\cr
 #'  choices subset for which labels should be extracted, `NULL` for all choices.
 #'
 #' @return (`character`) vector with labels

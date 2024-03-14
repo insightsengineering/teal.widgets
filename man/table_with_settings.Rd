@@ -20,8 +20,8 @@ Useful for providing additional HTML classes for the output tag.}
 \item{table_r}{(\code{reactive})\cr
 reactive expression that yields an \code{rtable} object (\code{ElementaryTable} or \code{TableTree})}
 
-\item{show_hide_signal}{(\verb{reactive logical}, optional)\cr
-a mechanism to allow modules which call this module to show/hide the table_with_settings UI.}
+\item{show_hide_signal}{(\verb{reactive logical}) optional\cr
+mechanism to allow modules which call this module to show/hide the table_with_settings UI.}
 }
 \value{
 A \code{shiny} module.

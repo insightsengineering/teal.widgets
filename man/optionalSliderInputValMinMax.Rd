@@ -23,8 +23,8 @@ If of length 1 then the value gets set to that number and the \code{sliderInput}
 Otherwise, if it is of length three the three elements will map to \code{value}, \code{min} and \code{max} of
 the \code{\link[=optionalSliderInput]{optionalSliderInput()}} function.}
 
-\item{label_help}{(\code{shiny.tag}, optional)\cr
-an object of class \code{shiny.tag}. E.g. an object returned by \code{\link[shiny:helpText]{shiny::helpText()}}}
+\item{label_help}{(\code{shiny.tag}) optional\cr
+object of class \code{shiny.tag}, e.g. an object returned by \code{\link[shiny:helpText]{shiny::helpText()}}}
 
 \item{...}{optional arguments to \code{sliderInput}}
 }

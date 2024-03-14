@@ -10,7 +10,7 @@ extract_choices_labels(choices, values = NULL)
 \item{choices}{(\code{list} or \code{vector})\cr
 select choices}
 
-\item{values}{(optional)\cr
+\item{values}{optional\cr
 choices subset for which labels should be extracted, \code{NULL} for all choices.}
 }
 \value{

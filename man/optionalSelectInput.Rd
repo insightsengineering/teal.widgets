@@ -48,13 +48,13 @@ columns.}
 \item{options}{List of options, see \link[shinyWidgets]{pickerOptions} for all available options.
 To limit the number of selection possible, see example below.}
 
-\item{label_help}{(\code{shiny.tag} optional)\cr
+\item{label_help}{(\code{shiny.tag}) optional,\cr
 e.g. an object returned by \code{\link[shiny:helpText]{shiny::helpText()}}.}
 
-\item{fixed}{(\code{logical(1)} optional)\cr
+\item{fixed}{(\code{logical(1)}) optional,\cr
 whether to block user to select choices.}
 
-\item{fixed_on_single}{(\code{logical(1)} optional)\cr
+\item{fixed_on_single}{(\code{logical(1)}) optional,\cr
 whether to block user to select a choice when there is only one or less choice.
 When \code{FALSE}, user is still able to select or deselect the choice.}
 

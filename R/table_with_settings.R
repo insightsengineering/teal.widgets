@@ -39,8 +39,8 @@ table_with_settings_ui <- function(id, ...) {
 #' @inheritParams shiny::moduleServer
 #' @param table_r (`reactive`)\cr
 #'  reactive expression that yields an `rtable` object (`ElementaryTable` or `TableTree`)
-#' @param show_hide_signal (`reactive logical`, optional)\cr
-#'  a mechanism to allow modules which call this module to show/hide the table_with_settings UI.
+#' @param show_hide_signal (`reactive logical`) optional\cr
+#'  mechanism to allow modules which call this module to show/hide the table_with_settings UI.
 #'
 #' @rdname table_with_settings
 #'
