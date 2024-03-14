@@ -8,7 +8,7 @@
 #'           Note that this id can be used to show/hide this modal
 #'           with the appended `jQuery` methods show/hide.
 #' @param ... (`shiny.tag`) `shiny` UI elements that will be displayed in the modal UI
-#' @param modal_args (`list`) optional, list of arguments for the `shiny::modalDialog` function
+#' @param modal_args (`list`) optional list of arguments for the `shiny::modalDialog` function
 #'                   to customize the modal. Has `easyClose` set to `TRUE` as default
 #'
 #' @return (`shiny.tag`) returns `HTML` for `shiny` module UI which can be nested into a modal popup
