@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{plot_suppress}
 \alias{plot_suppress}
-\title{This function opens a PDF graphics device using \code{\link[grDevices]{pdf}} to suppress
+\title{This function opens a PDF graphics device using \code{\link[grDevices:pdf]{grDevices::pdf()}} to suppress
 the plot display in the IDE. The purpose of this function is to avoid opening graphic devices
 directly in the IDE.}
 \usage{
@@ -12,7 +12,7 @@ plot_suppress(x)
 \item{x}{lazy binding which generates the plot(s)}
 }
 \description{
-This function opens a PDF graphics device using \code{\link[grDevices]{pdf}} to suppress
+This function opens a PDF graphics device using \code{\link[grDevices:pdf]{grDevices::pdf()}} to suppress
 the plot display in the IDE. The purpose of this function is to avoid opening graphic devices
 directly in the IDE.
 }

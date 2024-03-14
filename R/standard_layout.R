@@ -12,12 +12,12 @@
 #'  panel on the right is  created.
 #' @param forms (`tagList`)\cr
 #'  for example [shiny::actionButton()] that are placed below the encodings panel
-#' @param pre_output (`shiny.tag`, optional)\cr
+#' @param pre_output (`shiny.tag`) optional,\cr
 #'  with text placed before the output to put the output into context. For example a title.
-#' @param post_output (`shiny.tag`, optional) with text placed after the output to put the output
+#' @param post_output (`shiny.tag`) optional, with text placed after the output to put the output
 #' into context. For example the [shiny::helpText()] elements are useful.
 #'
-#' @return an object of class \code{shiny.tag} with the UI code.
+#' @return an object of class `shiny.tag` with the UI code.
 #'
 #' @examples
 #' library(shiny)

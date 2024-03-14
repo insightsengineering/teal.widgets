@@ -19,8 +19,8 @@ selected.}
 create a regular slider; a length two vector will create a double-ended
 range slider. Must lie between \code{min} and \code{max}.}
 
-\item{label_help}{(\code{shiny.tag}, optional)\cr
-an object of class \code{shiny.tag}. E.g. an object returned by \code{\link[shiny:helpText]{shiny::helpText()}}}
+\item{label_help}{(\code{shiny.tag}) optional\cr
+object of class \code{shiny.tag}, e.g. an object returned by \code{\link[shiny:helpText]{shiny::helpText()}}}
 
 \item{...}{optional arguments to \code{sliderInput}}
 }
