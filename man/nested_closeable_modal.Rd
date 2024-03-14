@@ -13,7 +13,7 @@ with the appended \code{jQuery} methods show/hide.}
 
 \item{...}{(\code{shiny.tag}) \code{shiny} UI elements that will be displayed in the modal UI}
 
-\item{modal_args}{(\code{list}) optional, list of arguments for the \code{shiny::modalDialog} function
+\item{modal_args}{(\code{list}) optional list of arguments for the \code{shiny::modalDialog} function
 to customize the modal. Has \code{easyClose} set to \code{TRUE} as default}
 }
 \value{
