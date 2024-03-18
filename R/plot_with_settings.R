@@ -122,7 +122,7 @@ plot_with_settings_ui <- function(id) {
 #'
 #' server <- function(input, output, session) {
 #'   plot_r <- reactive({
-#'     ggplot(faithful, aes(x = waiting, y = eruptions)) +
+#'     ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
 #'       geom_point()
 #'   })
 #'
@@ -140,6 +140,7 @@ plot_with_settings_ui <- function(id) {
 #'
 #' # Example using a function as input to plot_r
 #' library(lattice)
+#'
 #' ui <- fluidPage(
 #'   radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
 #'   plot_with_settings_ui(
@@ -152,14 +153,14 @@ plot_with_settings_ui <- function(id) {
 #'   plot_r <- function() {
 #'     numbers <- seq_len(input$nums)
 #'     if (input$download_option == "ggplot") {
-#'       ggplot(data.frame(n = numbers), aes(n)) +
+#'       ggplot(data.frame(n = numbers), aes(.data$n)) +
 #'         geom_bar()
 #'     } else if (input$download_option == "trellis") {
 #'       densityplot(numbers)
 #'     } else if (input$download_option == "grob") {
 #'       tr_plot <- densityplot(numbers)
 #'       ggplotGrob(
-#'         ggplot(data.frame(n = numbers), aes(n)) +
+#'         ggplot(data.frame(n = numbers), aes(.data$n)) +
 #'           geom_bar()
 #'       )
 #'     } else if (input$download_option == "base") {
@@ -194,7 +195,7 @@ plot_with_settings_ui <- function(id) {
 #'
 #' server <- function(input, output, session) {
 #'   plot_r <- reactive({
-#'     ggplot(faithful, aes(x = waiting, y = eruptions)) +
+#'     ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
 #'       geom_point()
 #'   })
 #'
@@ -231,7 +232,7 @@ plot_with_settings_ui <- function(id) {
 #'
 #' server <- function(input, output, session) {
 #'   plot_r <- plot_r <- reactive(
-#'     ggplot(faithful, aes(x = waiting, y = eruptions)) +
+#'     ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
 #'       geom_point()
 #'   )
 #'

@@ -9,11 +9,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-This vignette will guide you through implementation of custom `ggplot2::labs` and `ggplot2::theme` for `ggplot2` graphics 
+This vignette will guide you through implementation of custom `ggplot2::labs` and `ggplot2::theme` for `ggplot2` graphics
 based modules.
 We will enable 2 ways of updating `ggplot2::labs` and `ggplot2::theme` by the end users.
-The `ggplot2` specification could be updated with the `teal.ggplot2_args` `options` variable or a `ggplot2_args` 
-argument in a `tm_g_*` module. We still take into account default specification set up by the module creator in the 
+The `ggplot2` specification could be updated with the `teal.ggplot2_args` `options` variable or a `ggplot2_args`
+argument in a `tm_g_*` module. We still take into account default specification set up by the module creator in the
 server function, which has the lowest priority.
 
 The implementation should consist of 5 steps:
@@ -23,13 +23,13 @@ the `ggplot2_args(labs = list(), theme = list())` function for single plot.
 and  `list(default = ggplot2_args(labs = list(), theme = list()))` multi-plot modules.
 2. Adding a validation (e.g. `stopifnot` or `checkmate`) of the `ggplot2_args` argument to the `tm_*` function.
 The validation is more complex for multi-plot modules, where the `ggplot2_args` could be a `list`.
-The module creator has to provide a list of plots names, which should be validated at this step and added to the `param` 
+The module creator has to provide a list of plots names, which should be validated at this step and added to the `param`
 field in `roxygen2`.
 For multi-plot modules the step `if (is_ggplot2_args) ggplot2_args <- list(default = ggplot2_args)` is recommended.
 3. Aggregating and reducing all `ggplot2_args` sources with `resolve_ggplot2_args()`.
 4. Usage of the `parse_ggplot2_args()` function which will parse inputs
 to list of expressions.
-5. Adding the created expression to the last chunk of a plot. `Reduce(function(x, y) call("+", x, y), list(...)` 
+5. Adding the created expression to the last chunk of a plot. `Reduce(function(x, y) call("+", x, y), list(...)`
 function could be helpful at this step.
 
 The `resolve_ggplot2_args()` function picks the first non NULL value for each argument, checking in order:
@@ -41,16 +41,16 @@ For multi-plot case, per plot (`user_plot`) and then default (`user_default`) se
 
 ### Additional topics
 
-When a more complex `ggplot2` object has to be used inside the `teal.widgets::ggplot2_args` function, then a `base::quote` 
-function would prevent an object expansion in Show R Code. For example the `ggplot2::element_text` function returns a 
-complex object, then we should use code like 
-`teal.widgets::ggplot2_args(theme = list(plot.title = quote(ggplot2::element_text(size = 20))))` to prevent Show R Code 
+When a more complex `ggplot2` object has to be used inside the `ggplot2_args` function, then a `base::quote`
+function would prevent an object expansion in Show R Code. For example the `ggplot2::element_text` function returns a
+complex object, then we should use code like
+`ggplot2_args(theme = list(plot.title = quote(ggplot2::element_text(size = 20))))` to prevent Show R Code
 expansion.
 
-If you get a `promise already under evaluation: recursive default argument reference or earlier problems?` error, then 
+If you get a `promise already under evaluation: recursive default argument reference or earlier problems?` error, then
 probably your function argument has the same name as a function which is an input for it.
-To solve the problem please use `::` to prefix it directly to a specific package, like 
-`new_fun <- function(ggplot2_args = teal.widgets::ggplot2_args())`.
+To solve the problem please use `::` to prefix it directly to a specific package, like
+`new_fun <- function(ggplot2_args = ggplot2_args())`.
 
 ## Loading libraries and data
 

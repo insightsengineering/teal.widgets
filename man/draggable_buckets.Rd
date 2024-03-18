@@ -28,6 +28,7 @@ A custom widget with draggable elements that can be put into buckets.
 }
 \examples{
 library(shiny)
+
 ui <- fluidPage(
   draggable_buckets("id", "Choices #1", c("a", "b"), c("bucket1", "bucket2")),
   draggable_buckets("id2", "Choices #2", letters, c("vowels", "consonants")),
