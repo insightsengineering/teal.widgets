@@ -39,8 +39,8 @@ table_with_settings_ui <- function(id, ...) {
 #' @inheritParams shiny::moduleServer
 #' @param table_r (`reactive`)\cr
 #'  reactive expression that yields an `rtable` object (`ElementaryTable` or `TableTree`)
-#' @param show_hide_signal (`reactive logical`, optional)\cr
-#'  a mechanism to allow modules which call this module to show/hide the table_with_settings UI.
+#' @param show_hide_signal (`reactive logical`) optional\cr
+#'  mechanism to allow modules which call this module to show/hide the table_with_settings UI.
 #'
 #' @rdname table_with_settings
 #'
@@ -107,11 +107,11 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
 
     observeEvent(input$expand, {
       showModal(
-        div(
+        tags$div(
           class = "table-modal",
           modalDialog(
             easyClose = TRUE,
-            div(
+            tags$div(
               class = "float-right",
               type_download_ui_table(ns("modal_downbutton"))
             ),
@@ -137,7 +137,7 @@ type_download_ui_table <- function(id) {
     right = TRUE,
     label = "",
     inputId = ns("dwnl"),
-    div(
+    tags$div(
       class = "modal-download-ui-table-container",
       radioButtons(ns("file_format"),
         label = "File type",
@@ -149,7 +149,7 @@ type_download_ui_table <- function(id) {
       ),
       conditionalPanel(
         condition = paste0("input['", ns("file_format"), "'] != '.csv'"),
-        div(
+        tags$div(
           class = "lock-btn",
           title = "on / off",
           shinyWidgets::prettyToggle(
@@ -166,7 +166,7 @@ type_download_ui_table <- function(id) {
             animation = "pulse"
           )
         ),
-        div(
+        tags$div(
           class = "paginate-ui",
           shinyWidgets::numericInputIcon(
             inputId = ns("lpp"),

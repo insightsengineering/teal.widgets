@@ -29,21 +29,21 @@ plot_with_settings_srv(
 A simple \code{function} is needed e.g. for base plots like \code{plot(1)} as the output can not be caught when downloading.
 Take into account that simple functions are less efficient than reactive, as not catching the result.}
 
-\item{height}{(\code{numeric}, optional)\cr
+\item{height}{(\code{numeric}) optional\cr
 vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
 the main and modal plot display. The value in the modal display is taken from the value of the
 slider in the main plot display.}
 
-\item{width}{(\code{numeric}, optional)\cr
+\item{width}{(\code{numeric}) optional\cr
 vector with three elements \code{c(VAL, MIN, MAX)}, where VAL is the starting value of the slider in
 the main and modal plot display; \code{NULL} for default display. The value in the modal
 display is taken from the value of the slider in the main plot display.}
 
-\item{show_hide_signal}{optional, (\code{reactive logical} a mechanism to allow modules which call this
+\item{show_hide_signal}{optional, (\verb{reactive logical} a mechanism to allow modules which call this
 module to show/hide the plot_with_settings UI)}
 
-\item{brushing}{(\code{logical}, optional)\cr
-a mechanism to enable / disable brushing on the main plot (in particular: not the one displayed
+\item{brushing}{(\code{logical}) optional\cr
+mechanism to enable / disable brushing on the main plot (in particular: not the one displayed
 in modal). All the brushing data is stored as a reactive object in the \code{"brush"} element of
 returned list. See the example for details.}
 
@@ -52,17 +52,17 @@ a mechanism to enable / disable clicking on data points on the main plot (in par
 one displayed in modal). All the clicking data is stored as a reactive object in the \code{"click"}
 element of returned list. See the example for details.}
 
-\item{dblclicking}{(\code{logical}, optional)\cr
-a mechanism to enable / disable double-clicking on data points on the main plot (in particular:
+\item{dblclicking}{(\code{logical}) optional\cr
+mechanism to enable / disable double-clicking on data points on the main plot (in particular:
 not the one displayed in modal). All the double clicking data is stored as a reactive object in
 the \code{"dblclick"} element of returned list. See the example for details.}
 
-\item{hovering}{(\code{logical(1)}, optional)\cr
-a mechanism to enable / disable hovering over data points on the main plot (in particular: not
+\item{hovering}{(\code{logical(1)}) optional\cr
+mechanism to enable / disable hovering over data points on the main plot (in particular: not
 the one displayed in modal). All the hovering data is stored as a reactive object in the
 \code{"hover"} element of returned list. See the example for details.}
 
-\item{graph_align}{(\code{character(1)}, optional)\cr
+\item{graph_align}{(\code{character(1)}) optional,\cr
 one of \code{"left"} (default), \code{"center"}, \code{"right"} or \code{"justify"}. The alignment of the graph on
 the main page.}
 }
@@ -91,7 +91,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   plot_r <- reactive({
-    ggplot(faithful, aes(x = waiting, y = eruptions)) +
+    ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
       geom_point()
   })
 
@@ -109,6 +109,7 @@ if (interactive()) {
 
 # Example using a function as input to plot_r
 library(lattice)
+
 ui <- fluidPage(
   radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
   plot_with_settings_ui(
@@ -121,14 +122,14 @@ server <- function(input, output, session) {
   plot_r <- function() {
     numbers <- seq_len(input$nums)
     if (input$download_option == "ggplot") {
-      ggplot(data.frame(n = numbers), aes(n)) +
+      ggplot(data.frame(n = numbers), aes(.data$n)) +
         geom_bar()
     } else if (input$download_option == "trellis") {
       densityplot(numbers)
     } else if (input$download_option == "grob") {
       tr_plot <- densityplot(numbers)
       ggplotGrob(
-        ggplot(data.frame(n = numbers), aes(n)) +
+        ggplot(data.frame(n = numbers), aes(.data$n)) +
           geom_bar()
       )
     } else if (input$download_option == "base") {
@@ -154,16 +155,16 @@ ui <- fluidPage(
     id = "plot_with_settings"
   ),
   fluidRow(
-    column(4, h3("Brush"), verbatimTextOutput("brushing_data")),
-    column(4, h3("Click"), verbatimTextOutput("clicking_data")),
-    column(4, h3("DblClick"), verbatimTextOutput("dblclicking_data")),
-    column(4, h3("Hover"), verbatimTextOutput("hovering_data"))
+    column(4, tags$h3("Brush"), verbatimTextOutput("brushing_data")),
+    column(4, tags$h3("Click"), verbatimTextOutput("clicking_data")),
+    column(4, tags$h3("DblClick"), verbatimTextOutput("dblclicking_data")),
+    column(4, tags$h3("Hover"), verbatimTextOutput("hovering_data"))
   )
 )
 
 server <- function(input, output, session) {
   plot_r <- reactive({
-    ggplot(faithful, aes(x = waiting, y = eruptions)) +
+    ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
       geom_point()
   })
 
@@ -200,7 +201,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   plot_r <- plot_r <- reactive(
-    ggplot(faithful, aes(x = waiting, y = eruptions)) +
+    ggplot(faithful, aes(x = .data$waiting, y = .data$eruptions)) +
       geom_point()
   )
 

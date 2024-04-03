@@ -1,7 +1,7 @@
 table_r <- shiny::reactive({
   l <- rtables::basic_table() %>%
     rtables::split_cols_by("Species") %>%
-    rtables::analyze(c("Sepal.Length"))
+    rtables::analyze("Sepal.Length")
   rtables::build_table(l, iris)
 })
 

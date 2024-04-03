@@ -15,13 +15,12 @@
 #' @export
 #'
 #' @examples
-#' # nolint start
 #' library(shiny)
 #' library(shinyjs)
 #'
 #' ui <- fluidPage(
 #'   useShinyjs(),
-#'   actionButton("show_1", "$('#modal_1').modal('show')"),
+#'   actionButton("show_1", "$(\"#modal_1\").modal(\"show\")"),
 #'   nested_closeable_modal(
 #'     "modal_1",
 #'     modal_args = list(
@@ -31,7 +30,7 @@
 #'       footer = NULL
 #'     ),
 #'     tags$div(
-#'       "This modal can be closed by running", tags$code("$('#modal_1').modal('hide')"),
+#'       "This modal can be closed by running", tags$code("$(\"#modal_1\").modal(\"hide\")"),
 #'       "in the JS console!",
 #'       tags$br(),
 #'       "Note that the second modal is placed right within this modal",
@@ -39,8 +38,8 @@
 #'       "Alternatively, calling the", tags$code("removeModal()"),
 #'       "will remove all the active modal popups",
 #'       tags$br(), tags$br(),
-#'       actionButton("show_2", "$('#modal_2').modal('show')"),
-#'       actionButton("hide_1", "$('#modal_1').modal('hide')"),
+#'       actionButton("show_2", "$(\"#modal_2\").modal(\"show\")"),
+#'       actionButton("hide_1", "$(\"#modal_1\").modal(\"hide\")"),
 #'       nested_closeable_modal(
 #'         id = "modal_2",
 #'         modal_args = list(
@@ -49,36 +48,37 @@
 #'           footer = NULL,
 #'           easyClose = TRUE
 #'         ),
-#'         div(
-#'           "This modal can be closed by running", tags$code("$('#modal_1').modal('hide')"),
+#'         tags$div(
+#'           "This modal can be closed by running", tags$code("$(\"#modal_1\").modal(\"hide\")"),
 #'           "in the JS console!",
 #'           "Note that removing the parent will remove the child.
 #'            But, reopening will remember the open state of child",
-#'           actionButton("hide_2", "$('#modal_2').modal('hide')"),
-#'           actionButton("hide_all", "$('#modal_1').modal('hide')")
+#'           actionButton("hide_2", "$(\"#modal_2\").modal(\"hide\")"),
+#'           actionButton("hide_all", "$(\"#modal_1\").modal(\"hide\")")
 #'         )
 #'       )
 #'     )
 #'   )
 #' )
+#'
 #' server <- function(input, output) {
 #'   observeEvent(input$show_1, {
-#'     runjs("$('#modal_1').modal('show')")
+#'     runjs("$(\"#modal_1\").modal(\"show\")")
 #'   })
 #'   observeEvent(input$show_2, {
-#'     runjs("$('#modal_2').modal('show')")
+#'     runjs("$(\"#modal_2\").modal(\"show\")")
 #'   })
 #'   observeEvent(c(input$hide_1, input$hide_all), {
-#'     runjs("$('#modal_1').modal('hide')")
+#'     runjs("$(\"#modal_1\").modal(\"hide\")")
 #'   })
 #'   observeEvent(input$hide_2, {
-#'     runjs("$('#modal_2').modal('hide')")
+#'     runjs("$(\"#modal_2\").modal(\"hide\")")
 #'   })
 #' }
+#'
 #' if (interactive()) {
 #'   shinyApp(ui, server)
 #' }
-#' # nolint end
 nested_closeable_modal <- function(id, ..., modal_args = list(easyClose = TRUE)) {
   checkmate::assert_string(id)
   checkmate::assert_list(modal_args)
@@ -90,7 +90,7 @@ nested_closeable_modal <- function(id, ..., modal_args = list(easyClose = TRUE))
       children("div")$
       children("div")$
       children("div")$
-      sibling(".modal-footer")$
+      siblings(".modal-footer")$
       find("button")$
       removeAttrs(c("data-dismiss", "data-bs-dismiss"))$
       addAttrs(onclick = paste0("$('#", id, "').modal('hide');"))$

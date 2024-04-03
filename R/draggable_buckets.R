@@ -15,6 +15,7 @@
 #'
 #' @examples
 #' library(shiny)
+#'
 #' ui <- fluidPage(
 #'   draggable_buckets("id", "Choices #1", c("a", "b"), c("bucket1", "bucket2")),
 #'   draggable_buckets("id2", "Choices #2", letters, c("vowels", "consonants")),
@@ -66,12 +67,12 @@ draggable_buckets <- function(input_id, label, elements = character(), buckets) 
   elements_iterator$it <- 0
 
   shiny::tagList(
-    shiny::singleton(shiny::tags$head(
+    shiny::singleton(tags$head(
       shiny::includeScript(system.file("widgets/draggable_buckets.js", package = "teal.widgets"))
     )),
     include_css_files("draggable_buckets.css"),
     shiny::div(
-      shiny::tags$span(label),
+      tags$span(label),
       render_unbucketed_elements(elements = elements, elements_iterator = elements_iterator, widget_id = input_id),
       render_buckets(buckets = buckets, elements_iterator = elements_iterator, widget_id = input_id),
       class = "draggableBuckets",
@@ -81,7 +82,7 @@ draggable_buckets <- function(input_id, label, elements = character(), buckets) 
 }
 
 render_unbucketed_elements <- function(elements, elements_iterator, widget_id) {
-  shiny::tags$div(
+  tags$div(
     lapply(elements, function(element) {
       elements_iterator$it <- elements_iterator$it + 1
       render_draggable_element(
@@ -115,7 +116,7 @@ render_buckets <- function(buckets, elements_iterator, widget_id) {
 }
 
 render_draggable_element <- function(value, id, widget_id) {
-  shiny::tags$div(
+  tags$div(
     value,
     id = id,
     class = "element",
@@ -128,8 +129,8 @@ render_draggable_element <- function(value, id, widget_id) {
 }
 
 render_bucket <- function(name, elements = NULL, elements_iterator = NULL, widget_id = NULL) {
-  shiny::tags$div(
-    shiny::tags$div(
+  tags$div(
+    tags$div(
       paste0(name, ":"),
       class = "bucket-name",
       ondragover = "allowDrop(event)",
