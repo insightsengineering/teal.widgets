@@ -30,6 +30,31 @@ app_tws <- function() {
   )
 }
 
+#' Verbatim popup app
+#'
+#' @description Example table with setting app for testing using \code{shinytest2}
+#'
+#' @keywords internal
+#'
+app_vpu <- function() {
+  shiny::shinyApp(
+    ui = shiny::fluidPage(
+      verbatim_popup_ui(
+        id = "verbatim_popup",
+        button_label = "Open me"
+      )
+    ),
+    server = function(input, output, session) {
+      verbatim_popup_srv(
+        id = "verbatim_popup",
+        "if (TRUE) { print('Popups are the best') }",
+        title = "Verbatim popup title",
+        style = FALSE
+      )
+    }
+  )
+}
+
 #' Plot with settings app
 #'
 #' @description Example plot with setting app for testing using \code{shinytest2}

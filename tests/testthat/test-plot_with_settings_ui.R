@@ -42,3 +42,29 @@ testthat::test_that("Plot with settings: UI screenshots", {
 
   app$stop()
 })
+
+testthat::test_that(
+  "e2e: teal.widgets::plot_with_settings is initialized with proper plot and buttons",
+  {
+    skip_if_too_deep(5)
+    app <- shinytest2::AppDriver$new(
+      app_pws(),
+      name = "pws",
+      variant = "app_pws_ui"
+    )
+
+    app$wait_for_idle(timeout = default_idle_timeout)
+
+    # Check there is an image.
+
+    # Check there are 3 buttons.
+
+    # Check content of the first button.
+
+    # Check content of the second button.
+
+    # Check content of the third button.
+    app$stop()
+  }
+)
+
