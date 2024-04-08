@@ -47,3 +47,5 @@ skip_if_too_deep <- function(depth) { # nolintr
     testthat::skip(paste("testing depth", testing_depth, "is below current testing specification", depth))
   }
 }
+
+default_idle_timeout <- 20000
