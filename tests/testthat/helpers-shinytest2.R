@@ -36,19 +36,19 @@ app_tws <- function() {
 #'
 #' @keywords internal
 #'
-app_vpu <- function() {
+app_vpu <- function(button_label, verbatim_content, title) {
   shiny::shinyApp(
     ui = shiny::fluidPage(
       verbatim_popup_ui(
         id = "verbatim_popup",
-        button_label = "Open me"
+        button_label = button_label
       )
     ),
     server = function(input, output, session) {
       verbatim_popup_srv(
         id = "verbatim_popup",
-        "if (TRUE) { print('Popups are the best') }",
-        title = "Verbatim popup title",
+        verbatim_content = verbatim_content,
+        title = title,
         style = FALSE
       )
     }

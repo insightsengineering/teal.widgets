@@ -7,7 +7,11 @@ testthat::test_that(
     verbatim_content_text <- "if (TRUE) { print('Popups are the best') }"
 
     app <- shinytest2::AppDriver$new(
-      app_vpu(),
+      app_vpu(
+        button_label = ui_popup_button_label,
+        verbatim_content = verbatim_content_text,
+        title = modal_title
+      ),
       name = "pws",
       variant = "app_vpu_ui"
     )
