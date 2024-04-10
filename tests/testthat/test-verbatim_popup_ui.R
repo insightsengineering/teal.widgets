@@ -1,3 +1,7 @@
+testthat::test_that("verbatim_popup_ui returns `shiny.tag.list`", {
+  testthat::expect_s3_class(verbatim_popup_ui("STH", "STH2"), "shiny.tag.list")
+})
+
 testthat::test_that(
   "e2e: teal.widgets::verbatim_popup is initialized with a button that opens a modal with a verbatim text",
   {

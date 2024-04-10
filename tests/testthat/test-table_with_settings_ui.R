@@ -1,3 +1,7 @@
+testthat::test_that("table_with_settings_ui returns `shiny.tag.list`", {
+  testthat::expect_s3_class(table_with_settings_ui("STH"), "shiny.tag.list")
+})
+
 testthat::test_that("Table with settings: UI screenshots", {
   skip_if_too_deep(5)
   app <- shinytest2::AppDriver$new(
