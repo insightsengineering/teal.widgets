@@ -14,13 +14,16 @@ testthat::test_that("Table with settings: UI screenshots", {
 
   # click on download button
   app$click("table_with_settings-downbutton-dwnl")
+  app$wait_for_idle(timeout = default_idle_timeout)
 
   # test clicking on modal
   app$click("table_with_settings-expand")
+  app$wait_for_idle(timeout = default_idle_timeout)
   # wait for the expand to happen
   Sys.sleep(0.1)
   app$set_inputs(`table_with_settings-modal_downbutton-lpp` = 70)
   app$click("table_with_settings-modal_downbutton-dwnl")
+  app$wait_for_idle(timeout = default_idle_timeout)
   app$set_inputs(`table_with_settings-modal_downbutton-file_name` = "table")
 
   # now test values in json

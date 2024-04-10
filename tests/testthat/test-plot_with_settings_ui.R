@@ -20,10 +20,12 @@ testthat::test_that("Plot with settings: UI screenshots", {
 
   # click on hide/show button
   app$click("button")
+  app$wait_for_idle(timeout = default_idle_timeout)
   app$expect_screenshot(
     threshold = threshold, kernel_size = kernel_size, delay = delay, name = "hidden"
   )
   app$click("button")
+  app$wait_for_idle(timeout = default_idle_timeout)
   app$expect_screenshot(
     threshold = threshold, kernel_size = kernel_size, delay = delay, name = "visible"
   )
@@ -32,10 +34,12 @@ testthat::test_that("Plot with settings: UI screenshots", {
   app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot2")
 
   app$click("plot_with_settings-downbutton-downl")
+  app$wait_for_idle(timeout = default_idle_timeout)
   app$expect_screenshot(
     threshold = threshold, kernel_size = kernel_size, delay = delay, name = "download_menu"
   )
   app$click("plot_with_settings-expbut")
+  app$wait_for_idle(timeout = default_idle_timeout)
   app$expect_screenshot(
     threshold = threshold, kernel_size = kernel_size, delay = delay, name = "resize_menu"
   )
