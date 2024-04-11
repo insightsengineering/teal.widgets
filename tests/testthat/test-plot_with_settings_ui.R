@@ -59,15 +59,70 @@ testthat::test_that(
 
     app$wait_for_idle(timeout = default_idle_timeout)
 
-    # Check there is an image.
+    # TODO: Check if there is an image.
 
-    # Check there are 3 buttons.
+    # Check if there are three buttons above the table.
 
-    # Check content of the first button.
+    plot_buttons_selector <- "#plot_with_settings-plot-with-settings > div.plot-settings-buttons"
+    plot_buttons <-
+      app$get_html(plot_buttons_selector) %>%
+      rvest::read_html() %>%
+      rvest::html_elements("button")
+    testthat::expect_length(plot_buttons, 3)
 
-    # Check content of the second button.
+    # Check is the first one is a toggle button.
+    testthat::expect_equal(
+      plot_buttons[[1]] %>%
+        rvest::html_attr("data-toggle"),
+      "dropdown"
+    )
+
+    # Review the content of the toggle.
+    testthat::expect_equal(
+      app$get_text("#plot_with_settings-downbutton-file_format-label"),
+      "File type"
+    )
+
+    testthat::expect_match(
+      app$get_value(input = "plot_with_settings-downbutton-file_name"),
+      sprintf("plot_%s", gsub("-", "", Sys.Date()))
+    )
+
+    # TODO - does it downloads the plot : P ? or do we need ot have it pre-downloaded for comparison
+    # app$expect_download("#plot_with_settings-downbutton-data_download")
+
+    # TODO - Check content of the second button.
 
     # Check content of the third button.
+
+    app$click(selector = "#plot_with_settings-expbut")
+    app$wait_for_idle(timeout = default_idle_timeout)
+
+    testthat::expect_identical(
+      app$get_text("#plot_with_settings-height-label"),
+      "Plot height"
+    )
+
+    testthat::expect_identical(
+      app$get_text("span.irs-min"),
+      c("100", "250")
+    )
+
+    testthat::expect_identical(
+      app$get_text("span.irs-max"),
+      c("1,200", "750")
+    )
+
+    testthat::expect_identical(
+      app$get_text("span.irs-single"),
+      c("400", "500")
+    )
+
+    testthat::expect_identical(
+      app$get_text("span.bootstrap-switch-handle-off.bootstrap-switch-default"),
+      "OFF"
+    )
+
     app$stop()
   }
 )
