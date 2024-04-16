@@ -4,7 +4,7 @@
 #'
 #' @keywords internal
 #'
-app_tws <- function() {
+app_driver_tws <- function() {
   shiny::shinyApp(
     ui = shiny::fluidPage(
       table_with_settings_ui(
@@ -30,13 +30,54 @@ app_tws <- function() {
   )
 }
 
+
+#' Panel group and item
+#'
+#' @description Example app with a panel on the left for plot settings
+#'
+#' @keywords internal
+#'
+app_driver_panel_group <- function() {
+  shiny::shinyApp(
+    ui = shiny::fluidPage(
+      teal.widgets::panel_group(
+        teal.widgets::panel_item(
+          title = "Plot settings",
+          teal.widgets::optionalSliderInputValMinMax("alpha", "Opacity:", c(1, 0, 1), ticks = FALSE),
+          teal.widgets::optionalSliderInputValMinMax("size", "Points size:", c(2, 1, 8), ticks = FALSE),
+          selectInput(
+            inputId = "ggtheme",
+            label = "Theme (by ggplot):",
+            choices = c(
+              "default",
+              "gray",
+              "bw",
+              "linedraw",
+              "light",
+              "dark",
+              "minimal",
+              "classic",
+              "void",
+              "test"
+            ),
+            selected = "default",
+            multiple = FALSE
+          )
+      )
+    )
+    ),
+    server = function(input, output, session) {
+
+    }
+  )
+}
 #' Verbatim popup app
 #'
 #' @description Example table with setting app for testing using \code{shinytest2}
 #'
 #' @keywords internal
 #'
-app_vpu <- function(button_label, verbatim_content, title) {
+app_driver_vpu <- function(button_label, verbatim_content, title) {
   shiny::shinyApp(
     ui = shiny::fluidPage(
       verbatim_popup_ui(
@@ -61,7 +102,7 @@ app_vpu <- function(button_label, verbatim_content, title) {
 #'
 #' @keywords internal
 #'
-app_pws <- function() {
+app_driver_pws <- function() {
   shiny::shinyApp(
     ui = shiny::fluidPage(
       shinyjs::useShinyjs(),

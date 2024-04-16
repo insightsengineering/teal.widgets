@@ -8,9 +8,9 @@ testthat::test_that("plot_with_settings_ui returns `shiny.tag.list`", {
 
 testthat::test_that("Plot with settings: UI screenshots", {
   app <- shinytest2::AppDriver$new(
-    app_pws(),
+    app_driver_pws(),
     name = "pws",
-    variant = "app_pws_ui"
+    variant = "app_driver_pws_ui"
   )
   threshold <- 75
   kernel_size <- 5
@@ -52,9 +52,9 @@ testthat::test_that(
   {
     skip_if_too_deep(5)
     app <- shinytest2::AppDriver$new(
-      app_pws(),
+      app_driver_pws(),
       name = "pws",
-      variant = "app_pws_ui"
+      variant = "app_driver_pws_ui"
     )
 
     app$wait_for_idle(timeout = default_idle_timeout)

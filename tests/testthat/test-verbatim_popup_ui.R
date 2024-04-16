@@ -5,9 +5,9 @@ testthat::test_that("verbatim_popup_ui returns `shiny.tag.list`", {
 testthat::test_that("Verbatim popup: UI screenshots", {
   skip_if_too_deep(5)
   app <- shinytest2::AppDriver$new(
-    app_vpu("text1", "text2", "text3"),
+    app_driver_vpu("text1", "text2", "text3"),
     name = "vpu",
-    variant = "app_vpu_ui"
+    variant = "app_driver_vpu_ui"
   )
   app$wait_for_idle(timeout = default_idle_timeout)
 
@@ -35,13 +35,13 @@ testthat::test_that(
     verbatim_content_text <- "if (TRUE) { print('Popups are the best') }"
 
     app <- shinytest2::AppDriver$new(
-      app_vpu(
+      app_driver_vpu(
         button_label = ui_popup_button_label,
         verbatim_content = verbatim_content_text,
         title = modal_title
       ),
       name = "vpu",
-      variant = "app_vpu_ui"
+      variant = "app_driver_vpu_ui"
     )
 
     app$wait_for_idle(timeout = default_idle_timeout)

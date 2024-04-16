@@ -5,9 +5,9 @@ testthat::test_that("table_with_settings_ui returns `shiny.tag.list`", {
 testthat::test_that("Table with settings: UI screenshots", {
   skip_if_too_deep(5)
   app <- shinytest2::AppDriver$new(
-    app_tws(),
+    app_driver_tws(),
     name = "tws",
-    variant = "app_tws_ui",
+    variant = "app_driver_tws_ui",
   )
   app$wait_for_idle(timeout = default_idle_timeout)
   app$set_inputs(`table_with_settings-downbutton-file_name` = "table")
@@ -36,9 +36,9 @@ testthat::test_that(
   {
     skip_if_too_deep(5)
     app <- shinytest2::AppDriver$new(
-      app_tws(),
+      app_driver_tws(),
       name = "tws",
-      variant = "app_tws_ui",
+      variant = "app_driver_tws_ui",
     )
 
     app$wait_for_idle(timeout = default_idle_timeout)
