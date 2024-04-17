@@ -4,49 +4,49 @@ testthat::test_that("table_with_settings_ui returns `shiny.tag.list`", {
 
 testthat::test_that("Table with settings: UI screenshots", {
   skip_if_too_deep(5)
-  app <- shinytest2::AppDriver$new(
+  app_driver <- shinytest2::AppDriver$new(
     app_driver_tws(),
     name = "tws",
     variant = "app_driver_tws_ui",
   )
-  app$wait_for_idle(timeout = default_idle_timeout)
-  app$set_inputs(`table_with_settings-downbutton-file_name` = "table")
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+  app_driver$set_inputs(`table_with_settings-downbutton-file_name` = "table")
 
   # click on download button
-  app$click("table_with_settings-downbutton-dwnl")
-  app$wait_for_idle(timeout = default_idle_timeout)
+  app_driver$click("table_with_settings-downbutton-dwnl")
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
 
   # test clicking on modal
-  app$click("table_with_settings-expand")
-  app$wait_for_idle(timeout = default_idle_timeout)
+  app_driver$click("table_with_settings-expand")
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
   # wait for the expand to happen
   Sys.sleep(0.1)
-  app$set_inputs(`table_with_settings-modal_downbutton-lpp` = 70)
-  app$click("table_with_settings-modal_downbutton-dwnl")
-  app$wait_for_idle(timeout = default_idle_timeout)
-  app$set_inputs(`table_with_settings-modal_downbutton-file_name` = "table")
+  app_driver$set_inputs(`table_with_settings-modal_downbutton-lpp` = 70)
+  app_driver$click("table_with_settings-modal_downbutton-dwnl")
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+  app_driver$set_inputs(`table_with_settings-modal_downbutton-file_name` = "table")
 
   # now test values in json
-  app$expect_values(screenshot_args = FALSE, name = "final_values")
-  app$stop()
+  app_driver$expect_values(screenshot_args = FALSE, name = "final_values")
+  app_driver$stop()
 })
 
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings is initialized with two buttons and a table",
   {
     skip_if_too_deep(5)
-    app <- shinytest2::AppDriver$new(
+    app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
     )
 
-    app$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     # Check if there are two buttons above the table.
     table_buttons_selector <- "#table_with_settings-table-with-settings > div.table-settings-buttons"
     table_buttons <-
-      app$get_html(table_buttons_selector) %>%
+      app_driver$get_html(table_buttons_selector) %>%
       rvest::read_html() %>%
       rvest::html_elements("button")
     testthat::expect_length(table_buttons, 2)
@@ -59,7 +59,7 @@ testthat::test_that(
     # First button has specific font-awesome icon.
     dwnl_button <- "#table_with_settings-downbutton-dwnl_state"
     testthat::expect_equal(
-      app$get_html(dwnl_button) %>%
+      app_driver$get_html(dwnl_button) %>%
         rvest::read_html() %>%
         rvest::html_element("i") %>%
         rvest::html_attr("class"),
@@ -67,36 +67,36 @@ testthat::test_that(
     )
 
     # Click the first TABLE button.
-    app$click(selector = dwnl_button)
-    app$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$click(selector = dwnl_button)
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     # Review the content of the toggle.
     testthat::expect_equal(
-      app$get_text("#table_with_settings-downbutton-file_format-label"),
+      app_driver$get_text("#table_with_settings-downbutton-file_format-label"),
       "File type"
     )
 
-    file_format_text <- app$get_text("#table_with_settings-downbutton-file_format > div")
+    file_format_text <- app_driver$get_text("#table_with_settings-downbutton-file_format > div")
     testthat::expect_match(file_format_text, "formatted txt\n", fixed = TRUE)
     testthat::expect_match(file_format_text, "csv\n", fixed = TRUE)
     testthat::expect_match(file_format_text, "pdf\n", fixed = TRUE)
 
     testthat::expect_equal(
-      app$get_text("#table_with_settings-downbutton-file_name-label"),
+      app_driver$get_text("#table_with_settings-downbutton-file_name-label"),
       "File name (without extension)"
     )
 
     testthat::expect_match(
-      app$get_value(input = "table_with_settings-downbutton-file_name"),
+      app_driver$get_value(input = "table_with_settings-downbutton-file_name"),
       sprintf("table_%s", gsub("-", "", Sys.Date()))
     )
 
     pagination <- "#dropdown-menu-table_with_settings-downbutton-dwnl .paginate-ui .form-group.shiny-input-container"
-    pagination_text <- app$get_text(pagination)
+    pagination_text <- app_driver$get_text(pagination)
     testthat::expect_match(pagination_text, "Paginate table:\n", fixed = TRUE)
     testthat::expect_match(pagination_text, "lines / page\n", fixed = TRUE)
 
-    download_button <- app$get_html("#table_with_settings-downbutton-data_download > i") %>% rvest::read_html()
+    download_button <- app_driver$get_html("#table_with_settings-downbutton-data_download > i") %>% rvest::read_html()
     testthat::expect_equal(
       download_button %>%
         rvest::html_node("i") %>%
@@ -110,13 +110,13 @@ testthat::test_that(
       "download icon"
     )
 
-    app$click(selector = "input[value='.csv']")
+    app_driver$click(selector = "input[value='.csv']")
     # check that pagination is missing
-    # app$get_text(pagination) # this returns values even though pagination is missing from the view
+    # app_driver$get_text(pagination) # this returns values even though pagination is missing from the view
     testthat::expect_false(
       any(
         unlist(
-          app$get_js(
+          app_driver$get_js(
             sprintf(
               "Array.from(document.querySelectorAll('%s')).map(el => el.checkVisibility())",
               pagination_class
@@ -127,11 +127,11 @@ testthat::test_that(
     )
 
     # Click the second TABLE button.
-    app$click(selector = "#table_with_settings-expand")
-    app$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$click(selector = "#table_with_settings-expand")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
     # Review the table modal content.
 
-    table_content <- app$get_text("#table_with_settings-table_out_modal")
+    table_content <- app_driver$get_text("#table_with_settings-table_out_modal")
 
     check_table <- function(content) {
       testthat::expect_match(content, "B: Placebo", fixed = TRUE)
@@ -143,14 +143,14 @@ testthat::test_that(
     check_table(table_content)
 
     # Close modal.
-    app$click(selector = "#shiny-modal-wrapper .modal-footer > button")
-    app$wait_for_idle(timeout = default_idle_timeout)
-    testthat::expect_null(app$get_html("#table_with_settings-table_out_modal"))
+    app_driver$click(selector = "#shiny-modal-wrapper .modal-footer > button")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    testthat::expect_null(app_driver$get_html("#table_with_settings-table_out_modal"))
 
     # Review the main table content.
-    main_table_content <- app$get_text("#table_with_settings-table_out_main")
+    main_table_content <- app_driver$get_text("#table_with_settings-table_out_main")
     check_table(main_table_content)
 
-    app$stop()
+    app_driver$stop()
   }
 )
