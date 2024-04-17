@@ -59,7 +59,8 @@ testthat::test_that(
 
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    # TODO: Check if there is an image.
+    # Check if there is an image.
+    is_visible("#plot_with_settings-plot_main > img")
 
     # Check if there are three buttons above the table.
 
@@ -88,10 +89,44 @@ testthat::test_that(
       sprintf("plot_%s", gsub("-", "", Sys.Date()))
     )
 
-    # TODO - does it downloads the plot : P ? or do we need ot have it pre-downloaded for comparison
-    # app_driver$expect_download("#plot_with_settings-downbutton-data_download")
+    # Check content of the second button.
+    app_driver$click(selector = "#plot_with_settings-expand")
 
-    # TODO - Check content of the second button.
+    testthat::expect_identical(
+      app_driver$get_value(input = "plot_with_settings-height_in_modal"),
+      400
+    )
+    testthat::expect_identical(
+      app_driver$get_text("#plot_with_settings-height_in_modal-label"),
+      "Plot height"
+    )
+    testthat::expect_identical(
+      app_driver$get_value(input = "plot_with_settings-width_in_modal"),
+      500
+    )
+    testthat::expect_identical(
+      app_driver$get_text("#plot_with_settings-width_in_modal-label"),
+      "Plot width"
+    )
+
+    testthat::expect_identical(
+      app_driver$get_text("span.irs-min"),
+      c("100", "250")
+    )
+
+    testthat::expect_identical(
+      app_driver$get_text("span.irs-max"),
+      c("1,200", "750")
+    )
+
+    # already covered in
+    # app_driver$get_value(input = "plot_with_settings-width_in_modal")
+    # app_driver$get_value(input = "plot_with_settings-height_in_modal")
+    testthat::expect_identical(
+      app_driver$get_text("span.irs-single"),
+      c("400", "500")
+    )
+    is_visible("#plot_with_settings-plot_main > img")
 
     # Check content of the third button.
 

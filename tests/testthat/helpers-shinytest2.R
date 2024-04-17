@@ -161,3 +161,17 @@ is_draw <- function(plot_fun) {
   }
   return(FALSE)
 }
+
+
+is_visible <- function(element) {
+  any(
+    unlist(
+      app_driver$get_js(
+        sprintf(
+          "Array.from(document.querySelectorAll('%s')).map(el => el.checkVisibility())",
+          element
+        )
+      )
+    )
+  )
+}

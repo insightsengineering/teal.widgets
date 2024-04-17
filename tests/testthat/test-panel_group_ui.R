@@ -9,19 +9,6 @@ testthat::test_that("e2e - panel_group: clicking plot settings accordion panel s
 
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  is_visible <- function(element) {
-    any(
-      unlist(
-        app_driver$get_js(
-          sprintf(
-            "Array.from(document.querySelectorAll('%s')).map(el => el.checkVisibility())",
-            element
-          )
-        )
-      )
-    )
-  }
-
   testthat::expect_false(is_visible("#size"))
   testthat::expect_false(is_visible("#alpha"))
   testthat::expect_false(is_visible("#ggtheme-label"))
