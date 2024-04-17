@@ -2,30 +2,6 @@ testthat::test_that("verbatim_popup_ui returns `shiny.tag.list`", {
   testthat::expect_s3_class(verbatim_popup_ui("STH", "STH2"), "shiny.tag.list")
 })
 
-testthat::test_that("Verbatim popup: UI screenshots", {
-  skip_if_too_deep(5)
-  app_driver <- shinytest2::AppDriver$new(
-    app_driver_vpu("text1", "text2", "text3"),
-    name = "vpu",
-    variant = "app_driver_vpu_ui"
-  )
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
-
-  threshold <- 75
-  kernel_size <- 5
-  delay <- 0.1
-
-  app_driver$set_window_size(width = 1000, height = 700)
-
-  app_driver$click(selector = "#verbatim_popup-button")
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
-
-  app_driver$expect_screenshot(
-    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "verbatim_popup"
-  )
-  app_driver$stop()
-})
-
 testthat::test_that(
   "e2e: teal.widgets::verbatim_popup is initialized with a button that opens a modal with a verbatim text",
   {

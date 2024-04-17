@@ -6,47 +6,6 @@ testthat::test_that("plot_with_settings_ui returns `shiny.tag.list`", {
   testthat::expect_s3_class(plot_with_settings_ui("STH"), "shiny.tag.list")
 })
 
-testthat::test_that("Plot with settings: UI screenshots", {
-  app_driver <- shinytest2::AppDriver$new(
-    app_driver_pws(),
-    name = "pws",
-    variant = "app_driver_pws_ui"
-  )
-  threshold <- 75
-  kernel_size <- 5
-  delay <- 0.1
-
-  app_driver$set_window_size(width = 1000, height = 700)
-
-  # click on hide/show button
-  app_driver$click("button")
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
-  app_driver$expect_screenshot(
-    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "hidden"
-  )
-  app_driver$click("button")
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
-  app_driver$expect_screenshot(
-    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "visible"
-  )
-
-  app_driver$set_inputs(`plot_with_settings-downbutton-file_name` = "plot1")
-  app_driver$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot2")
-
-  app_driver$click("plot_with_settings-downbutton-downl")
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
-  app_driver$expect_screenshot(
-    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "download_menu"
-  )
-  app_driver$click("plot_with_settings-expbut")
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
-  app_driver$expect_screenshot(
-    threshold = threshold, kernel_size = kernel_size, delay = delay, name = "resize_menu"
-  )
-
-  app_driver$stop()
-})
-
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings is initialized with proper plot and buttons",
   {

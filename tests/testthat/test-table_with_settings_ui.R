@@ -2,35 +2,6 @@ testthat::test_that("table_with_settings_ui returns `shiny.tag.list`", {
   testthat::expect_s3_class(table_with_settings_ui("STH"), "shiny.tag.list")
 })
 
-testthat::test_that("Table with settings: UI screenshots", {
-  skip_if_too_deep(5)
-  app_driver <- shinytest2::AppDriver$new(
-    app_driver_tws(),
-    name = "tws",
-    variant = "app_driver_tws_ui",
-  )
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
-  app_driver$set_inputs(`table_with_settings-downbutton-file_name` = "table")
-
-  # click on download button
-  app_driver$click("table_with_settings-downbutton-dwnl")
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
-
-  # test clicking on modal
-  app_driver$click("table_with_settings-expand")
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
-  # wait for the expand to happen
-  Sys.sleep(0.1)
-  app_driver$set_inputs(`table_with_settings-modal_downbutton-lpp` = 70)
-  app_driver$click("table_with_settings-modal_downbutton-dwnl")
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
-  app_driver$set_inputs(`table_with_settings-modal_downbutton-file_name` = "table")
-
-  # now test values in json
-  app_driver$expect_values(screenshot_args = FALSE, name = "final_values")
-  app_driver$stop()
-})
-
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings is initialized with two buttons and a table",
   {
