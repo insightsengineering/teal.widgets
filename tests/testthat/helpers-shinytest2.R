@@ -63,8 +63,8 @@ app_driver_panel_group <- function() {
             selected = "default",
             multiple = FALSE
           )
+        )
       )
-    )
     ),
     server = function(input, output, session) {
 

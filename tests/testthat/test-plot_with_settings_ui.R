@@ -120,4 +120,3 @@ testthat::test_that(
     app_driver$stop()
   }
 )
-
