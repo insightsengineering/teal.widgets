@@ -19,7 +19,7 @@ testthat::test_that(
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     # Check if there is an image.
-    is_visible("#plot_with_settings-plot_main > img")
+    testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
 
     # Check if there are three buttons above the table.
 
@@ -50,10 +50,11 @@ testthat::test_that(
 
     # Check content of the second button.
     app_driver$click(selector = "#plot_with_settings-expand")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     testthat::expect_identical(
       app_driver$get_value(input = "plot_with_settings-height_in_modal"),
-      400
+      400L
     )
     testthat::expect_identical(
       app_driver$get_text("#plot_with_settings-height_in_modal-label"),
@@ -61,7 +62,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       app_driver$get_value(input = "plot_with_settings-width_in_modal"),
-      500
+      500L
     )
     testthat::expect_identical(
       app_driver$get_text("#plot_with_settings-width_in_modal-label"),
@@ -85,7 +86,7 @@ testthat::test_that(
       app_driver$get_text("span.irs-single"),
       c("400", "500")
     )
-    is_visible("#plot_with_settings-plot_main > img")
+    testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
 
     # Check content of the third button.
 
@@ -99,17 +100,17 @@ testthat::test_that(
 
     testthat::expect_identical(
       app_driver$get_text("span.irs-min"),
-      c("100", "250")
+      rep(c("100", "250"), 2)
     )
 
     testthat::expect_identical(
       app_driver$get_text("span.irs-max"),
-      c("1,200", "750")
+      rep(c("1,200", "750"), 2)
     )
 
     testthat::expect_identical(
       app_driver$get_text("span.irs-single"),
-      c("400", "500")
+      rep(c("400", "500"), 2)
     )
 
     testthat::expect_identical(

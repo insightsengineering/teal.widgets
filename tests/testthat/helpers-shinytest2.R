@@ -163,7 +163,7 @@ is_draw <- function(plot_fun) {
 }
 
 
-is_visible <- function(element) {
+is_visible <- function(element, app_driver) {
   any(
     unlist(
       app_driver$get_js(

@@ -84,18 +84,9 @@ testthat::test_that(
     app_driver$click(selector = "input[value='.csv']")
     # check that pagination is missing
     # app_driver$get_text(pagination) # this returns values even though pagination is missing from the view
-    testthat::expect_false(
-      any(
-        unlist(
-          app_driver$get_js(
-            sprintf(
-              "Array.from(document.querySelectorAll('%s')).map(el => el.checkVisibility())",
-              pagination_class
-            )
-          )
-        )
-      )
-    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    testthat::expect_false(is_visible(pagination, app_driver))
 
     # Click the second TABLE button.
     app_driver$click(selector = "#table_with_settings-expand")

@@ -9,15 +9,15 @@ testthat::test_that("e2e - panel_group: clicking plot settings accordion panel s
 
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  testthat::expect_false(is_visible("#size"))
-  testthat::expect_false(is_visible("#alpha"))
-  testthat::expect_false(is_visible("#ggtheme-label"))
+  testthat::expect_false(is_visible("#size", app_driver))
+  testthat::expect_false(is_visible("#alpha", app_driver))
+  testthat::expect_false(is_visible("#ggtheme-label", app_driver))
 
   # After click they are visible.
   app_driver$click(selector = "#_div > div.panel-heading.collapsed")
-  testthat::expect_true(is_visible("#size"))
-  testthat::expect_true(is_visible("#alpha"))
-  testthat::expect_true(is_visible("#ggtheme-label"))
+  testthat::expect_true(is_visible("#size", app_driver))
+  testthat::expect_true(is_visible("#alpha", app_driver))
+  testthat::expect_true(is_visible("#ggtheme-label", app_driver))
 
   app_driver$stop()
 })
