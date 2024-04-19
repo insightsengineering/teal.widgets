@@ -71,30 +71,6 @@ app_driver_panel_group <- function() {
     }
   )
 }
-#' Verbatim popup app
-#'
-#' @description Example table with setting app for testing using \code{shinytest2}
-#'
-#' @keywords internal
-#'
-app_driver_vpu <- function(button_label, verbatim_content, title) {
-  shiny::shinyApp(
-    ui = shiny::fluidPage(
-      verbatim_popup_ui(
-        id = "verbatim_popup",
-        button_label = button_label
-      )
-    ),
-    server = function(input, output, session) {
-      verbatim_popup_srv(
-        id = "verbatim_popup",
-        verbatim_content = verbatim_content,
-        title = title,
-        style = FALSE
-      )
-    }
-  )
-}
 
 #' Function to check if a function has a side effect of drawing something
 #' @param `function` function which possibly draws something.
