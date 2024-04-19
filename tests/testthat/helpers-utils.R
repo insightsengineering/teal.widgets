@@ -1,4 +1,3 @@
-
 #' Function to check if a function has a side effect of drawing something
 #' @param `function` function which possibly draws something.
 #' @return `logical(1)` whether the function has a side effect of drawing a plot.
