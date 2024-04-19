@@ -82,7 +82,8 @@ testthat::test_that(
     #   rvest::html_elements("button")
     # testthat::expect_length(plot_buttons, 3)
     app_driver$stop()
-})
+  }
+)
 
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: buttons have proper FA icons and two of them are drop-downs",
@@ -152,169 +153,171 @@ testthat::test_that(
     )
 
     app_driver$stop()
-})
+  }
+)
 
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the first button opens a download menu
-  with file type, file name and download button", {
+  with file type, file name and download button",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_pws(),
+      name = "pws",
+      variant = "app_driver_pws_ui"
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  skip_if_too_deep(5)
-  app_driver <- shinytest2::AppDriver$new(
-    app_driver_pws(),
-    name = "pws",
-    variant = "app_driver_pws_ui"
-  )
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
+    testthat::expect_false(is_visible("#plot_with_settings-downbutton-data_download", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-downbutton-file_format", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-downbutton-file_name", app_driver))
 
-  testthat::expect_false(is_visible("#plot_with_settings-downbutton-data_download", app_driver))
-  testthat::expect_false(is_visible("#plot_with_settings-downbutton-file_format", app_driver))
-  testthat::expect_false(is_visible("#plot_with_settings-downbutton-file_name", app_driver))
+    app_driver$click(selector = "#plot_with_settings-downbutton-downl_state")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  app_driver$click(selector = "#plot_with_settings-downbutton-downl_state")
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
+    testthat::expect_equal(
+      app_driver$get_text("#plot_with_settings-downbutton-file_format-label"),
+      "File type"
+    )
+    testthat::expect_identical(
+      app_driver$get_value(input = "plot_with_settings-downbutton-file_format"),
+      "png"
+    )
 
-  testthat::expect_equal(
-    app_driver$get_text("#plot_with_settings-downbutton-file_format-label"),
-    "File type"
-  )
-  testthat::expect_identical(
-    app_driver$get_value(input = "plot_with_settings-downbutton-file_format"),
-    "png"
-  )
+    testthat::expect_equal(
+      app_driver$get_text("#plot_with_settings-downbutton-file_name-label"),
+      "File name (without extension)"
+    )
+    testthat::expect_match(
+      app_driver$get_value(input = "plot_with_settings-downbutton-file_name"),
+      sprintf("plot_%s", gsub("-", "", Sys.Date()))
+    )
 
-  testthat::expect_equal(
-    app_driver$get_text("#plot_with_settings-downbutton-file_name-label"),
-    "File name (without extension)"
-  )
-  testthat::expect_match(
-    app_driver$get_value(input = "plot_with_settings-downbutton-file_name"),
-    sprintf("plot_%s", gsub("-", "", Sys.Date()))
-  )
+    testthat::expect_true(is_visible("#plot_with_settings-downbutton-data_download", app_driver))
 
-  testthat::expect_true(is_visible("#plot_with_settings-downbutton-data_download", app_driver))
-
-  app_driver$stop()
-
-})
+    app_driver$stop()
+  }
+)
 
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the second button opens a modal
-  plot height, plot width, plot, download dropdown and dismiss button", {
+  plot height, plot width, plot, download dropdown and dismiss button",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_pws(),
+      name = "pws",
+      variant = "app_driver_pws_ui"
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  skip_if_too_deep(5)
-  app_driver <- shinytest2::AppDriver$new(
-    app_driver_pws(),
-    name = "pws",
-    variant = "app_driver_pws_ui"
-  )
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
-
-  testthat::expect_false(is_visible("#plot_with_settings-height_in_modal", app_driver))
-  testthat::expect_false(is_visible("#plot_with_settings-width_in_modal", app_driver))
-  testthat::expect_false(is_visible("#plot_with_settings-modal_downbutton-downl", app_driver))
-  testthat::expect_false(is_visible("#plot_with_settings-modal-downbutton-file_format", app_driver))
-  testthat::expect_false(is_visible("#plot_with_settings-modal-downbutton-file_name", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-height_in_modal", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-width_in_modal", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-modal_downbutton-downl", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-modal-downbutton-file_format", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-modal-downbutton-file_name", app_driver))
 
 
-  app_driver$click(selector = "#plot_with_settings-expand")
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$click(selector = "#plot_with_settings-expand")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  testthat::expect_identical(
-    app_driver$get_value(input = "plot_with_settings-height_in_modal"),
-    400L
-  )
-  testthat::expect_identical(
-    app_driver$get_text("#plot_with_settings-height_in_modal-label"),
-    "Plot height"
-  )
-  testthat::expect_identical(
-    app_driver$get_value(input = "plot_with_settings-width_in_modal"),
-    500L
-  )
-  testthat::expect_identical(
-    app_driver$get_text("#plot_with_settings-width_in_modal-label"),
-    "Plot width"
-  )
+    testthat::expect_identical(
+      app_driver$get_value(input = "plot_with_settings-height_in_modal"),
+      400L
+    )
+    testthat::expect_identical(
+      app_driver$get_text("#plot_with_settings-height_in_modal-label"),
+      "Plot height"
+    )
+    testthat::expect_identical(
+      app_driver$get_value(input = "plot_with_settings-width_in_modal"),
+      500L
+    )
+    testthat::expect_identical(
+      app_driver$get_text("#plot_with_settings-width_in_modal-label"),
+      "Plot width"
+    )
 
-  app_driver$set_inputs(`plot_with_settings-height_in_modal` = 100)
-  app_driver$set_inputs(`plot_with_settings-width_in_modal` = 1000)
-  testthat::expect_null(
-    app_driver$get_html(".shiny-output-error-validation"),
-    info = "No validation error is observed"
-  )
+    app_driver$set_inputs(`plot_with_settings-height_in_modal` = 100)
+    app_driver$set_inputs(`plot_with_settings-width_in_modal` = 1000)
+    testthat::expect_null(
+      app_driver$get_html(".shiny-output-error-validation"),
+      info = "No validation error is observed"
+    )
 
-  testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
+    testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
 
-  app_driver$click(selector = "#plot_with_settings-modal_downbutton-downl")
-  testthat::expect_equal(
-    app_driver$get_text("#plot_with_settings-modal_downbutton-file_format-label"),
-    "File type"
-  )
-  testthat::expect_identical(
-    app_driver$get_value(input = "plot_with_settings-modal_downbutton-file_format"),
-    "png"
-  )
+    app_driver$click(selector = "#plot_with_settings-modal_downbutton-downl")
+    testthat::expect_equal(
+      app_driver$get_text("#plot_with_settings-modal_downbutton-file_format-label"),
+      "File type"
+    )
+    testthat::expect_identical(
+      app_driver$get_value(input = "plot_with_settings-modal_downbutton-file_format"),
+      "png"
+    )
 
-  testthat::expect_equal(
-    app_driver$get_text("#plot_with_settings-modal_downbutton-file_name-label"),
-    "File name (without extension)"
-  )
-  testthat::expect_match(
-    app_driver$get_value(input = "plot_with_settings-modal_downbutton-file_name"),
-    sprintf("plot_%s", gsub("-", "", Sys.Date()))
-  )
+    testthat::expect_equal(
+      app_driver$get_text("#plot_with_settings-modal_downbutton-file_name-label"),
+      "File name (without extension)"
+    )
+    testthat::expect_match(
+      app_driver$get_value(input = "plot_with_settings-modal_downbutton-file_name"),
+      sprintf("plot_%s", gsub("-", "", Sys.Date()))
+    )
 
-  testthat::expect_true(is_visible("#plot_with_settings-modal_downbutton-data_download", app_driver))
+    testthat::expect_true(is_visible("#plot_with_settings-modal_downbutton-data_download", app_driver))
 
-  app_driver$stop()
-})
+    app_driver$stop()
+  }
+)
 
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the third button opens a dropdown menu
-  plot height, plot width, plot, download dropdown and dismiss button", {
+  plot height, plot width, plot, download dropdown and dismiss button",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_pws(),
+      name = "pws",
+      variant = "app_driver_pws_ui"
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  skip_if_too_deep(5)
-  app_driver <- shinytest2::AppDriver$new(
-    app_driver_pws(),
-    name = "pws",
-    variant = "app_driver_pws_ui"
-  )
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
+    testthat::expect_true(is_visible("#plot_with_settings-slider_ui", app_driver))
 
-  testthat::expect_true(is_visible("#plot_with_settings-slider_ui", app_driver))
-
-  app_driver$click(selector = "#plot_with_settings-expbut")
-  app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$click(selector = "#plot_with_settings-expbut")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
 
 
-  testthat::expect_identical(
-    app_driver$get_value(input = "plot_with_settings-height"),
-    400L
-  )
-  testthat::expect_identical(
-    app_driver$get_text("#plot_with_settings-height-label"),
-    "Plot height"
-  )
-  testthat::expect_identical(
-    app_driver$get_value(input = "plot_with_settings-width"),
-    500L
-  )
-  testthat::expect_identical(
-    app_driver$get_text("#plot_with_settings-width-label"),
-    "Plot width"
-  )
+    testthat::expect_identical(
+      app_driver$get_value(input = "plot_with_settings-height"),
+      400L
+    )
+    testthat::expect_identical(
+      app_driver$get_text("#plot_with_settings-height-label"),
+      "Plot height"
+    )
+    testthat::expect_identical(
+      app_driver$get_value(input = "plot_with_settings-width"),
+      500L
+    )
+    testthat::expect_identical(
+      app_driver$get_text("#plot_with_settings-width-label"),
+      "Plot width"
+    )
 
-  app_driver$set_inputs(`plot_with_settings-height` = 100)
-  app_driver$set_inputs(`plot_with_settings-width` = 1000)
-  testthat::expect_null(
-    app_driver$get_html(".shiny-output-error-validation"),
-    info = "No validation error is observed"
-  )
+    app_driver$set_inputs(`plot_with_settings-height` = 100)
+    app_driver$set_inputs(`plot_with_settings-width` = 1000)
+    testthat::expect_null(
+      app_driver$get_html(".shiny-output-error-validation"),
+      info = "No validation error is observed"
+    )
 
-  testthat::expect_identical(
-    app_driver$get_text("span.bootstrap-switch-handle-off.bootstrap-switch-default"),
-    "OFF"
-  )
+    testthat::expect_identical(
+      app_driver$get_text("span.bootstrap-switch-handle-off.bootstrap-switch-default"),
+      "OFF"
+    )
 
   app_driver$stop()
 })
