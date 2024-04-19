@@ -318,3 +318,9 @@ testthat::test_that(
 
   app_driver$stop()
 })
+
+#TODO
+# clicking download+download button downloads image in a specified format
+# expanded image can be resized
+# expanded image can be downloaded
+# image can be resized
