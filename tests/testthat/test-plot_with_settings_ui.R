@@ -74,19 +74,12 @@ testthat::test_that(
     testthat::expect_true(is_visible("#plot_with_settings-expand", app_driver))
     testthat::expect_true(is_visible("#plot_with_settings-expbut", app_driver))
 
-    # Equivalent to the above but without the knowledge of the element names.
-    # plot_buttons_selector <- "#plot_with_settings-plot-with-settings > div.plot-settings-buttons"
-    # plot_buttons <-
-    #   app_driver$get_html(plot_buttons_selector) %>%
-    #   rvest::read_html() %>%
-    #   rvest::html_elements("button")
-    # testthat::expect_length(plot_buttons, 3)
     app_driver$stop()
   }
 )
 
 testthat::test_that(
-  "e2e: teal.widgets::plot_with_settings: buttons have proper FA icons and two of them are drop-downs",
+  "e2e: teal.widgets::plot_with_settings: buttons have proper FA icons and two of them are dropdowns",
   {
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
@@ -184,6 +177,10 @@ testthat::test_that(
       "png"
     )
 
+    file_format_text <- app_driver$get_text("#plot_with_settings-downbutton-file_format > div")
+    testthat::expect_match(file_format_text, "svg\n", fixed = TRUE)
+    testthat::expect_match(file_format_text, "pdf\n", fixed = TRUE)
+
     testthat::expect_equal(
       app_driver$get_text("#plot_with_settings-downbutton-file_name-label"),
       "File name (without extension)"
@@ -194,6 +191,23 @@ testthat::test_that(
     )
 
     testthat::expect_true(is_visible("#plot_with_settings-downbutton-data_download", app_driver))
+
+    download_button <-
+      app_driver$get_html("#plot_with_settings-downbutton-data_download > i") %>%
+      rvest::read_html()
+
+    testthat::expect_equal(
+      download_button %>%
+        rvest::html_node("i") %>%
+        rvest::html_attr("class"),
+      "fas fa-download"
+    )
+    testthat::expect_equal(
+      download_button %>%
+        rvest::html_node("i") %>%
+        rvest::html_attr("aria-label"),
+      "download icon"
+    )
 
     app_driver$stop()
   }

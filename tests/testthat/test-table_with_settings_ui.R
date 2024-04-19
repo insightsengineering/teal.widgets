@@ -35,7 +35,7 @@ testthat::test_that("table_with_settings_ui returns `shiny.tag.list`", {
 })
 
 testthat::test_that(
-  "e2e: teal.widgets::table_with_settings is initialized with two buttons and a table",
+  "e2e: teal.widgets::table_with_settings is initialized with 2 buttons and a table",
   {
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
@@ -43,40 +43,87 @@ testthat::test_that(
       name = "tws",
       variant = "app_driver_tws_ui",
     )
-
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    # Check if there are two buttons above the table.
-    table_buttons_selector <- "#table_with_settings-table-with-settings > div.table-settings-buttons"
-    table_buttons <-
-      app_driver$get_html(table_buttons_selector) %>%
-      rvest::read_html() %>%
-      rvest::html_elements("button")
-    testthat::expect_length(table_buttons, 2)
-    # Check is the first one is a toggle button.
+    # Check if there is an table.
+    testthat::expect_true(is_visible("#table_with_settings-table_out_main", app_driver))
+
+    testthat::expect_true(is_visible("#table_with_settings-downbutton-dwnl", app_driver))
+    testthat::expect_true(is_visible("#table_with_settings-expand", app_driver))
+    app_driver$stop()
+})
+
+testthat::test_that(
+  "e2e: teal.widgets::table_with_settings: buttons have proper FA icons and one of them is dropdown",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_tws(),
+      name = "tws",
+      variant = "app_driver_tws_ui",
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
     testthat::expect_equal(
-      table_buttons[[1]] %>%
+      app_driver$get_html("#table_with_settings-downbutton-dwnl") %>%
+        rvest::read_html() %>%
+        rvest::html_element("button") %>%
         rvest::html_attr("data-toggle"),
       "dropdown"
     )
-    # First button has specific font-awesome icon.
-    dwnl_button <- "#table_with_settings-downbutton-dwnl_state"
+
     testthat::expect_equal(
-      app_driver$get_html(dwnl_button) %>%
+      app_driver$get_html("#table_with_settings-downbutton-dwnl") %>%
+        rvest::read_html() %>%
+        rvest::html_element("button") %>%
+        rvest::html_attr("aria-expanded"),
+      "false"
+    )
+
+    testthat::expect_equal(
+      app_driver$get_html("#table_with_settings-downbutton-dwnl") %>%
         rvest::read_html() %>%
         rvest::html_element("i") %>%
         rvest::html_attr("class"),
       "fas fa-download"
     )
 
-    # Click the first TABLE button.
-    app_driver$click(selector = dwnl_button)
+    testthat::expect_equal(
+      app_driver$get_html("#table_with_settings-expand") %>%
+        rvest::read_html() %>%
+        rvest::html_element("i") %>%
+        rvest::html_attr("class"),
+      "fas fa-up-right-and-down-left-from-center"
+    )
+    app_driver$stop()
+})
+
+testthat::test_that(
+  "e2e: teal.widgets::table_with_settings: the click on the first button opens a download menu
+  with file type, file name and download button",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_tws(),
+      name = "tws",
+      variant = "app_driver_tws_ui",
+    )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    # Review the content of the toggle.
+    testthat::expect_false(is_visible("#table_with_settings-downbutton-data_download", app_driver))
+    testthat::expect_false(is_visible("#table_with_settings-downbutton-file_format", app_driver))
+    testthat::expect_false(is_visible("#table_with_settings-downbutton-file_name", app_driver))
+
+    app_driver$click(selector = "#table_with_settings-downbutton-dwnl")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
     testthat::expect_equal(
       app_driver$get_text("#table_with_settings-downbutton-file_format-label"),
       "File type"
+    )
+    testthat::expect_identical(
+      app_driver$get_value(input = "table_with_settings-downbutton-file_format"),
+      ".txt"
     )
 
     file_format_text <- app_driver$get_text("#table_with_settings-downbutton-file_format > div")
@@ -94,12 +141,12 @@ testthat::test_that(
       sprintf("table_%s", gsub("-", "", Sys.Date()))
     )
 
-    pagination <- "#dropdown-menu-table_with_settings-downbutton-dwnl .paginate-ui .form-group.shiny-input-container"
-    pagination_text <- app_driver$get_text(pagination)
-    testthat::expect_match(pagination_text, "Paginate table:\n", fixed = TRUE)
-    testthat::expect_match(pagination_text, "lines / page\n", fixed = TRUE)
+    testthat::expect_true(is_visible("#table_with_settings-downbutton-data_download", app_driver))
 
-    download_button <- app_driver$get_html("#table_with_settings-downbutton-data_download > i") %>% rvest::read_html()
+    download_button <-
+      app_driver$get_html("#table_with_settings-downbutton-data_download > i") %>%
+      rvest::read_html()
+
     testthat::expect_equal(
       download_button %>%
         rvest::html_node("i") %>%
@@ -113,17 +160,52 @@ testthat::test_that(
       "download icon"
     )
 
+    app_driver$stop()
+})
+
+testthat::test_that(
+  "e2e: teal.widgets::table_with_settings: check pagination appearance for .txt and disappearance for .csv
+  for the first button",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_tws(),
+      name = "tws",
+      variant = "app_driver_tws_ui",
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    app_driver$click(selector = "#table_with_settings-downbutton-dwnl")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    pagination <- "#dropdown-menu-table_with_settings-downbutton-dwnl .paginate-ui .form-group.shiny-input-container"
+    pagination_text <- app_driver$get_text(pagination)
+    testthat::expect_match(pagination_text, "Paginate table:\n", fixed = TRUE)
+    testthat::expect_match(pagination_text, "lines / page\n", fixed = TRUE)
+
     app_driver$click(selector = "input[value='.csv']")
-    # check that pagination is missing
-    # app_driver$get_text(pagination) # this returns values even though pagination is missing from the view
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     testthat::expect_false(is_visible(pagination, app_driver))
 
-    # Click the second TABLE button.
+    app_driver$stop()
+})
+
+testthat::test_that(
+  "e2e: teal.widgets::table_with_settings: the click on second button opens a modal with a table",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_tws(),
+      name = "tws",
+      variant = "app_driver_tws_ui",
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    testthat::expect_false(is_visible("#table_with_settings-table_out_modal", app_driver))
+
     app_driver$click(selector = "#table_with_settings-expand")
     app_driver$wait_for_idle(timeout = default_idle_timeout)
-    # Review the table modal content.
 
     table_content <- app_driver$get_text("#table_with_settings-table_out_modal")
 
@@ -148,3 +230,101 @@ testthat::test_that(
     app_driver$stop()
   }
 )
+
+testthat::test_that(
+  "e2e: teal.widgets::table_with_settings: there is a download button on a modal opened by a second",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_tws(),
+      name = "tws",
+      variant = "app_driver_tws_ui",
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    testthat::expect_false(is_visible("#table_with_settings-modal_downbutton-dwnl", app_driver))
+
+    app_driver$click(selector = "#table_with_settings-expand")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$click(selector = "#table_with_settings-modal_downbutton-dwnl")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    testthat::expect_equal(
+      app_driver$get_text("#table_with_settings-modal_downbutton-file_format-label"),
+      "File type"
+    )
+    testthat::expect_identical(
+      app_driver$get_value(input = "table_with_settings-modal_downbutton-file_format"),
+      ".txt"
+    )
+
+    file_format_text <- app_driver$get_text("#table_with_settings-modal_downbutton-file_format > div")
+    testthat::expect_match(file_format_text, "formatted txt\n", fixed = TRUE)
+    testthat::expect_match(file_format_text, "csv\n", fixed = TRUE)
+    testthat::expect_match(file_format_text, "pdf\n", fixed = TRUE)
+
+    testthat::expect_equal(
+      app_driver$get_text("#table_with_settings-modal_downbutton-file_name-label"),
+      "File name (without extension)"
+    )
+
+    testthat::expect_match(
+      app_driver$get_value(input = "table_with_settings-modal_downbutton-file_name"),
+      sprintf("table_%s", gsub("-", "", Sys.Date()))
+    )
+
+    testthat::expect_true(is_visible("#table_with_settings-modal_downbutton-data_download", app_driver))
+
+    download_button <-
+      app_driver$get_html("#table_with_settings-modal_downbutton-data_download > i") %>%
+      rvest::read_html()
+
+    testthat::expect_equal(
+      download_button %>%
+        rvest::html_node("i") %>%
+        rvest::html_attr("class"),
+      "fas fa-download"
+    )
+    testthat::expect_equal(
+      download_button %>%
+        rvest::html_node("i") %>%
+        rvest::html_attr("aria-label"),
+      "download icon"
+    )
+
+    app_driver$stop()
+})
+
+
+testthat::test_that(
+  "e2e: teal.widgets::table_with_settings: check pagination appearance for .txt and disappearance for .csv
+  for the modal on the second button",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_tws(),
+      name = "tws",
+      variant = "app_driver_tws_ui",
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    testthat::expect_false(is_visible("#table_with_settings-modal_downbutton-dwnl", app_driver))
+
+    app_driver$click(selector = "#table_with_settings-expand")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$click(selector = "#table_with_settings-modal_downbutton-dwnl")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+
+    pagination <- "#dropdown-menu-table_with_settings-modal_downbutton-dwnl .paginate-ui .form-group.shiny-input-container"
+    pagination_text <- app_driver$get_text(pagination)
+    testthat::expect_match(pagination_text, "Paginate table:\n", fixed = TRUE)
+    testthat::expect_match(pagination_text, "lines / page\n", fixed = TRUE)
+
+    # TODO: - click the visible csv
+    # Warning message:
+    #   Multiple HTML elements found with selector input[value='.csv']
+    app_driver$click(selector = "input[value='.csv']")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    testthat::expect_false(is_visible(pagination, app_driver))
+
+    app_driver$stop()
+  })
