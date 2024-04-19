@@ -51,7 +51,8 @@ testthat::test_that(
     testthat::expect_true(is_visible("#table_with_settings-downbutton-dwnl", app_driver))
     testthat::expect_true(is_visible("#table_with_settings-expand", app_driver))
     app_driver$stop()
-})
+  }
+)
 
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings: buttons have proper FA icons and one of them is dropdown",
@@ -96,7 +97,8 @@ testthat::test_that(
       "fas fa-up-right-and-down-left-from-center"
     )
     app_driver$stop()
-})
+  }
+)
 
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings: the click on the first button opens a download menu
@@ -161,7 +163,8 @@ testthat::test_that(
     )
 
     app_driver$stop()
-})
+  }
+)
 
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings: check pagination appearance for .txt and disappearance for .csv
@@ -189,7 +192,8 @@ testthat::test_that(
     testthat::expect_false(is_visible(pagination, app_driver))
 
     app_driver$stop()
-})
+  }
+)
 
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings: the click on second button opens a modal with a table",
@@ -292,7 +296,8 @@ testthat::test_that(
     )
 
     app_driver$stop()
-})
+  }
+)
 
 
 testthat::test_that(
@@ -327,4 +332,5 @@ testthat::test_that(
     testthat::expect_false(is_visible(pagination, app_driver))
 
     app_driver$stop()
-  })
+  }
+)
