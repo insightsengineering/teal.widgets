@@ -30,6 +30,14 @@ app_driver_tws <- function() {
   )
 }
 
+check_table <- function(content) {
+  testthat::expect_match(content, "B: Placebo", fixed = TRUE, all = FALSE)
+  testthat::expect_match(content, "C: Combination", fixed = TRUE, all = FALSE)
+  testthat::expect_match(content, "SEX", fixed = TRUE, all = FALSE)
+  testthat::expect_match(content, "35.00", fixed = TRUE, all = FALSE)
+  testthat::expect_match(content, "41.00", fixed = TRUE, all = FALSE)
+}
+
 testthat::test_that("table_with_settings_ui returns `shiny.tag.list`", {
   testthat::expect_s3_class(table_with_settings_ui("STH"), "shiny.tag.list")
 })
@@ -213,13 +221,6 @@ testthat::test_that(
 
     table_content <- app_driver$get_text("#table_with_settings-table_out_modal")
 
-    check_table <- function(content) {
-      testthat::expect_match(content, "B: Placebo", fixed = TRUE)
-      testthat::expect_match(content, "C: Combination", fixed = TRUE)
-      testthat::expect_match(content, "SEX", fixed = TRUE)
-      testthat::expect_match(content, "35.00", fixed = TRUE)
-      testthat::expect_match(content, "41.00", fixed = TRUE)
-    }
     check_table(table_content)
 
     # Close modal.
@@ -334,3 +335,57 @@ testthat::test_that(
     app_driver$stop()
   }
 )
+
+testthat::test_that(
+  "e2e teal.widgets::table_with_settings: clicking download+download button downloads table in a specified format",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_tws(),
+      name = "tws",
+      variant = "app_driver_tws_ui",
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    app_driver$click(selector = "#table_with_settings-downbutton-dwnl")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$expect_download("table_with_settings-downbutton-data_download")
+
+    filename <- app_driver$get_download("table_with_settings-downbutton-data_download")
+    testthat::expect_match(filename, "txt$", fixed = FALSE)
+
+    content <- readLines(filename)
+
+    check_table(content)
+
+    app_driver$stop()
+  }
+)
+
+testthat::test_that("e2e teal.widgets::table_with_settings: expanded table can be downloaded", {
+  skip_if_too_deep(5)
+  app_driver <- shinytest2::AppDriver$new(
+    app_driver_tws(),
+    name = "tws",
+    variant = "app_driver_tws_ui",
+  )
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  app_driver$click(selector = "#table_with_settings-expand")
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  app_driver$click(selector = "#table_with_settings-modal_downbutton-dwnl")
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  app_driver$expect_download("table_with_settings-modal_downbutton-data_download")
+
+  filename <- app_driver$get_download("table_with_settings-modal_downbutton-data_download")
+  testthat::expect_match(filename, "txt$", fixed = FALSE)
+
+  content <- readLines(filename)
+
+  check_table(content)
+
+
+  app_driver$stop()
+})
