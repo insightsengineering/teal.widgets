@@ -47,6 +47,13 @@ app_driver_pws <- function() {
   )
 }
 
+get_active_module_pws_output <- function(app_driver, pws, attr) {
+  app_driver$get_html("html") %>%
+    rvest::read_html() %>%
+    rvest::html_nodes(sprintf("#plot_with_settings-%s > img", pws)) %>%
+    rvest::html_attr(attr)
+}
+
 testthat::test_that("type_download_ui returns `shiny.tag`", {
   testthat::expect_s3_class(type_download_ui("STH"), "shiny.tag")
 })
@@ -305,7 +312,7 @@ testthat::test_that(
 
 
     testthat::expect_identical(
-      app_driver$get_value(input = "plot_with_settings-height"),
+      app_driver$get_value(input = "plot_with_settings-height_in_modal"),
       400L
     )
     testthat::expect_identical(
@@ -313,7 +320,7 @@ testthat::test_that(
       "Plot height"
     )
     testthat::expect_identical(
-      app_driver$get_value(input = "plot_with_settings-width"),
+      app_driver$get_value(input = "plot_with_settings-width_in_modal"),
       500L
     )
     testthat::expect_identical(
@@ -343,8 +350,8 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    app_driver$set_inputs(`plot_with_settings-height` = 100)
-    app_driver$set_inputs(`plot_with_settings-width` = 1000)
+    app_driver$set_inputs(`plot_with_settings-height_in_modal` = 1000)
+    app_driver$set_inputs(`plot_with_settings-width_in_modal` = 350)
     testthat::expect_null(
       app_driver$get_html(".shiny-output-error-validation"),
       info = "No validation error is observed"
@@ -353,9 +360,134 @@ testthat::test_that(
   }
 )
 
+testthat::test_that(
+  "e2e teal.widgets::plot_with_settings: clicking download+download button downloads image in a specified format",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_pws(),
+      name = "pws",
+      variant = "app_driver_pws_ui"
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-# TODO
-# clicking download+download button downloads image in a specified format
-# expanded image can be resized
-# expanded image can be downloaded
-# image can be resized
+    app_driver$click(selector = "#plot_with_settings-downbutton-downl_state")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$expect_download("plot_with_settings-downbutton-data_download")
+
+    filename <- app_driver$get_download("plot_with_settings-downbutton-data_download")
+    testthat::expect_match(filename, "png$", fixed = FALSE)
+
+    app_driver$stop()
+  }
+)
+testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be resized", {
+  skip_if_too_deep(5)
+  app_driver <- shinytest2::AppDriver$new(
+    app_driver_pws(),
+    name = "pws",
+    variant = "app_driver_pws_ui"
+  )
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  app_driver$click(selector = "#plot_with_settings-expand")
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  plot_before <- get_active_module_pws_output(app_driver, pws = "plot_modal", attr =  "src")
+
+  testthat::expect_equal(
+    get_active_module_pws_output(app_driver, pws = "plot_modal", attr =  "width"),
+    "500"
+  )
+
+  testthat::expect_equal(
+    get_active_module_pws_output(app_driver, pws = "plot_modal", attr =  "height"),
+    "400"
+  )
+
+  app_driver$set_inputs(`plot_with_settings-height_in_modal` = 1000)
+  app_driver$set_inputs(`plot_with_settings-width_in_modal` = 350)
+
+  testthat::expect_equal(
+    get_active_module_pws_output(app_driver, pws = "plot_modal", attr =  "width"),
+    "350"
+  )
+
+  testthat::expect_equal(
+    get_active_module_pws_output(app_driver, pws = "plot_modal", attr =  "height"),
+    "1000"
+  )
+
+  testthat::expect_false(
+    identical(plot_before, get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "src"))
+  )
+
+  app_driver$stop()
+})
+testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be downloaded", {
+  skip_if_too_deep(5)
+  app_driver <- shinytest2::AppDriver$new(
+    app_driver_pws(),
+    name = "pws",
+    variant = "app_driver_pws_ui"
+  )
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  app_driver$click(selector = "#plot_with_settings-expand")
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  app_driver$click(selector = "#plot_with_settings-modal_downbutton-downl")
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  app_driver$expect_download("plot_with_settings-modal_downbutton-data_download")
+
+  filename <- app_driver$get_download("plot_with_settings-modal_downbutton-data_download")
+  testthat::expect_match(filename, "png$", fixed = FALSE)
+
+  app_driver$stop()
+})
+
+testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be resized", {
+  skip_if_too_deep(5)
+  app_driver <- shinytest2::AppDriver$new(
+    app_driver_pws(),
+    name = "pws",
+    variant = "app_driver_pws_ui"
+  )
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  app_driver$click(selector = "#plot_with_settings-expbut")
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  plot_before <- get_active_module_pws_output(app_driver, pws = "plot_main", attr =  "src")
+
+  testthat::expect_equal(
+    get_active_module_pws_output(app_driver, pws = "plot_main", attr =  "width"),
+    "500"
+  )
+
+  testthat::expect_equal(
+    get_active_module_pws_output(app_driver, pws = "plot_main", attr =  "height"),
+    "400"
+  )
+
+  app_driver$set_inputs(`plot_with_settings-height` = 1000)
+  app_driver$set_inputs(`plot_with_settings-width` = 350)
+
+  testthat::expect_equal(
+    get_active_module_pws_output(app_driver, pws = "plot_main", attr =  "width"),
+    "350"
+  )
+
+  testthat::expect_equal(
+    get_active_module_pws_output(app_driver, pws = "plot_main", attr =  "height"),
+    "1000"
+  )
+
+  testthat::expect_false(
+    identical(plot_before, get_active_module_pws_output(app_driver, pws = "plot_main", attr = "src"))
+  )
+
+  app_driver$stop()
+})
+
