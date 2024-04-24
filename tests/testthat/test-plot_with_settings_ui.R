@@ -393,15 +393,15 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver$click(selector = "#plot_with_settings-expand")
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  plot_before <- get_active_module_pws_output(app_driver, pws = "plot_modal", attr =  "src")
+  plot_before <- get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "src")
 
   testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_modal", attr =  "width"),
+    get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "width"),
     "500"
   )
 
   testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_modal", attr =  "height"),
+    get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "height"),
     "400"
   )
 
@@ -409,12 +409,12 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver$set_inputs(`plot_with_settings-width_in_modal` = 350)
 
   testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_modal", attr =  "width"),
+    get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "width"),
     "350"
   )
 
   testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_modal", attr =  "height"),
+    get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "height"),
     "1000"
   )
 
@@ -459,15 +459,15 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
   app_driver$click(selector = "#plot_with_settings-expbut")
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  plot_before <- get_active_module_pws_output(app_driver, pws = "plot_main", attr =  "src")
+  plot_before <- get_active_module_pws_output(app_driver, pws = "plot_main", attr = "src")
 
   testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_main", attr =  "width"),
+    get_active_module_pws_output(app_driver, pws = "plot_main", attr = "width"),
     "500"
   )
 
   testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_main", attr =  "height"),
+    get_active_module_pws_output(app_driver, pws = "plot_main", attr = "height"),
     "400"
   )
 
@@ -475,12 +475,12 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
   app_driver$set_inputs(`plot_with_settings-width` = 350)
 
   testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_main", attr =  "width"),
+    get_active_module_pws_output(app_driver, pws = "plot_main", attr = "width"),
     "350"
   )
 
   testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_main", attr =  "height"),
+    get_active_module_pws_output(app_driver, pws = "plot_main", attr = "height"),
     "1000"
   )
 
@@ -490,4 +490,3 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
 
   app_driver$stop()
 })
-
