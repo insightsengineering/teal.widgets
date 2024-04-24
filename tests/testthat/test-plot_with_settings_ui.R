@@ -321,13 +321,6 @@ testthat::test_that(
       "Plot width"
     )
 
-    app_driver$set_inputs(`plot_with_settings-height` = 100)
-    app_driver$set_inputs(`plot_with_settings-width` = 1000)
-    testthat::expect_null(
-      app_driver$get_html(".shiny-output-error-validation"),
-      info = "No validation error is observed"
-    )
-
     testthat::expect_identical(
       app_driver$get_text("span.bootstrap-switch-handle-off.bootstrap-switch-default"),
       "OFF"
@@ -336,6 +329,30 @@ testthat::test_that(
     app_driver$stop()
   }
 )
+
+
+testthat::test_that(
+  "e2e: teal.widgets::plot_with_settings: it is possible to set height and width for the plot
+  on the third button dropdown menu without errors",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_pws(),
+      name = "pws",
+      variant = "app_driver_pws_ui"
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    app_driver$set_inputs(`plot_with_settings-height` = 100)
+    app_driver$set_inputs(`plot_with_settings-width` = 1000)
+    testthat::expect_null(
+      app_driver$get_html(".shiny-output-error-validation"),
+      info = "No validation error is observed"
+    )
+    app_driver$stop()
+  }
+)
+
 
 # TODO
 # clicking download+download button downloads image in a specified format
