@@ -77,7 +77,7 @@ testthat::test_that(
     testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
 
     # Check if there are three buttons above the table.
-    testthat::expect_true(is_visible("#plot_with_settings-downbutton-downl_state", app_driver))
+    testthat::expect_true(is_visible("#plot_with_settings-downbutton-downl", app_driver))
     testthat::expect_true(is_visible("#plot_with_settings-expand", app_driver))
     testthat::expect_true(is_visible("#plot_with_settings-expbut", app_driver))
 
@@ -97,7 +97,7 @@ testthat::test_that(
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     testthat::expect_equal(
-      app_driver$get_html("#plot_with_settings-downbutton-downl_state") %>%
+      app_driver$get_html("#plot_with_settings-downbutton-downl") %>%
         rvest::read_html() %>%
         rvest::html_element("button") %>%
         rvest::html_attr("data-toggle"),
@@ -105,7 +105,7 @@ testthat::test_that(
     )
 
     testthat::expect_equal(
-      app_driver$get_html("#plot_with_settings-downbutton-downl_state") %>%
+      app_driver$get_html("#plot_with_settings-downbutton-downl") %>%
         rvest::read_html() %>%
         rvest::html_element("button") %>%
         rvest::html_attr("aria-expanded"),
@@ -113,7 +113,7 @@ testthat::test_that(
     )
 
     testthat::expect_equal(
-      app_driver$get_html("#plot_with_settings-downbutton-downl_state") %>%
+      app_driver$get_html("#plot_with_settings-downbutton-downl") %>%
         rvest::read_html() %>%
         rvest::html_element("i") %>%
         rvest::html_attr("class"),
@@ -172,7 +172,7 @@ testthat::test_that(
     testthat::expect_false(is_visible("#plot_with_settings-downbutton-file_format", app_driver))
     testthat::expect_false(is_visible("#plot_with_settings-downbutton-file_name", app_driver))
 
-    app_driver$click(selector = "#plot_with_settings-downbutton-downl_state")
+    app_driver$click(selector = "#plot_with_settings-downbutton-downl")
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     testthat::expect_equal(
@@ -305,14 +305,14 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    testthat::expect_true(is_visible("#plot_with_settings-slider_ui", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-slider_ui", app_driver))
 
     app_driver$click(selector = "#plot_with_settings-expbut")
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
 
     testthat::expect_identical(
-      app_driver$get_value(input = "plot_with_settings-height_in_modal"),
+      app_driver$get_value(input = "plot_with_settings-height"),
       400L
     )
     testthat::expect_identical(
@@ -320,12 +320,8 @@ testthat::test_that(
       "Plot height"
     )
     testthat::expect_identical(
-      app_driver$get_value(input = "plot_with_settings-width_in_modal"),
+      app_driver$get_value(input = "plot_with_settings-width"),
       500L
-    )
-    testthat::expect_identical(
-      app_driver$get_text("#plot_with_settings-width-label"),
-      "Plot width"
     )
 
     testthat::expect_identical(
@@ -371,7 +367,7 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    app_driver$click(selector = "#plot_with_settings-downbutton-downl_state")
+    app_driver$click(selector = "#plot_with_settings-downbutton-downl")
     app_driver$wait_for_idle(timeout = default_idle_timeout)
     app_driver$expect_download("plot_with_settings-downbutton-data_download")
 
