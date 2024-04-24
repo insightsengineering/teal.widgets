@@ -31,7 +31,7 @@ testthat::test_that("Plot with settings: UI screenshots", {
   app$set_inputs(`plot_with_settings-downbutton-file_name` = "plot1")
   app$set_inputs(`plot_with_settings-modal_downbutton-file_name` = "plot2")
 
-  app$click("plot_with_settings-downbutton-downl")
+  app$click("plot_with_settings-downbutton-dwnl")
   app$expect_screenshot(
     threshold = threshold, kernel_size = kernel_size, delay = delay, name = "download_menu"
   )

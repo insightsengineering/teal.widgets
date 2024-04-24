@@ -551,7 +551,7 @@ type_download_ui <- function(id) {
     inline = TRUE,
     right = TRUE,
     label = "",
-    inputId = ns("downl"),
+    inputId = ns("dwnl"),
     tags$div(
       radioButtons(ns("file_format"),
         label = "File type",
