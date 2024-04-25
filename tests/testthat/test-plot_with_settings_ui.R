@@ -294,7 +294,7 @@ testthat::test_that(
 )
 
 testthat::test_that(
-  "e2e: teal.widgets::plot_with_settings: the click on the third button opens a dropdown menu
+  "e2e: teal.widgets::plot_with_settings: the click on the resize button opens a dropdown menu
   plot height, plot width, plot, download dropdown and dismiss button",
   {
     skip_if_too_deep(5)
