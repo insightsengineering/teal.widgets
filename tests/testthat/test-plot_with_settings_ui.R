@@ -235,12 +235,13 @@ testthat::test_that(
     testthat::expect_false(is_visible("#plot_with_settings-height_in_modal", app_driver))
     testthat::expect_false(is_visible("#plot_with_settings-width_in_modal", app_driver))
     testthat::expect_false(is_visible("#plot_with_settings-modal_downbutton-downl", app_driver))
-    testthat::expect_false(is_visible("#plot_with_settings-modal-downbutton-file_format", app_driver))
-    testthat::expect_false(is_visible("#plot_with_settings-modal-downbutton-file_name", app_driver))
-
 
     app_driver$click(selector = "#plot_with_settings-expand")
     app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    testthat::expect_true(is_visible("#plot_with_settings-height_in_modal", app_driver))
+    testthat::expect_true(is_visible("#plot_with_settings-width_in_modal", app_driver))
+    testthat::expect_true(is_visible("#plot_with_settings-modal_downbutton-downl", app_driver))
 
     testthat::expect_identical(
       app_driver$get_value(input = "plot_with_settings-height_in_modal"),
@@ -259,10 +260,34 @@ testthat::test_that(
       "Plot width"
     )
 
-
     testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
 
+    app_driver$stop()
+  }
+)
+testthat::test_that(
+  "e2e: teal.widgets::plot_with_settings: the click on the download button in expand modal opens a download dropdown",
+  {
+    skip_if_too_deep(5)
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_pws(),
+      name = "pws",
+      variant = "app_driver_pws_ui"
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    testthat::expect_false(is_visible("#plot_with_settings-modal_downbutton-file_format", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-modal_downbutton-file_name", app_driver))
+
+    app_driver$click(selector = "#plot_with_settings-expand")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
     app_driver$click(selector = "#plot_with_settings-modal_downbutton-downl")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    testthat::expect_true(is_visible("#plot_with_settings-modal_downbutton-file_format", app_driver))
+    testthat::expect_true(is_visible("#plot_with_settings-modal_downbutton-file_name", app_driver))
+
     testthat::expect_equal(
       app_driver$get_text("#plot_with_settings-modal_downbutton-file_format-label"),
       "File type"
