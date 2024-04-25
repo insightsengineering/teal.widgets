@@ -109,7 +109,7 @@ testthat::test_that(
 )
 
 testthat::test_that(
-  "e2e: teal.widgets::table_with_settings: the click on the first button opens a download menu
+  "e2e: teal.widgets::table_with_settings: the click on the download button opens a download menu
   with file type, file name and download button",
   {
     skip_if_too_deep(5)
