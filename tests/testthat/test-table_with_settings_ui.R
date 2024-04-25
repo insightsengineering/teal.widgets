@@ -237,7 +237,7 @@ testthat::test_that(
 )
 
 testthat::test_that(
-  "e2e: teal.widgets::table_with_settings: there is a download button on a modal opened by a second",
+  "e2e: teal.widgets::table_with_settings: clicking download in an expand modal opens dropdown menu with download settings, such as: file type, file name, pagination",
   {
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
