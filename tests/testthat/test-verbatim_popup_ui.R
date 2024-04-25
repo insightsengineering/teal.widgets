@@ -78,8 +78,7 @@ testthat::test_that(
     )
 
     # Modal is closed, once the button is clicked.
-    app_driver$click(selector = "#shiny-modal-wrapper button[data-dismiss='modal']")
-    # There are two Dismiss buttons.
+    app_driver$click(selector = ".modal-body button[data-dismiss='modal']")
     app_driver$wait_for_idle(timeout = default_idle_timeout)
     testthat::expect_null(app_driver$get_html("#shiny-modal-wrapper"))
 
