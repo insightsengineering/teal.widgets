@@ -221,7 +221,7 @@ testthat::test_that(
 )
 
 testthat::test_that(
-  "e2e: teal.widgets::plot_with_settings: the click on the second button opens a modal
+  "e2e: teal.widgets::plot_with_settings: the click on the expand button opens a modal
   plot height, plot width, plot, download dropdown and dismiss button",
   {
     skip_if_too_deep(5)
