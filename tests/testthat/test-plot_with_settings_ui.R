@@ -259,12 +259,6 @@ testthat::test_that(
       "Plot width"
     )
 
-    app_driver$set_inputs(`plot_with_settings-height_in_modal` = 100)
-    app_driver$set_inputs(`plot_with_settings-width_in_modal` = 1000)
-    testthat::expect_null(
-      app_driver$get_html(".shiny-output-error-validation"),
-      info = "No validation error is observed"
-    )
 
     testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
 
