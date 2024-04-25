@@ -204,7 +204,7 @@ testthat::test_that(
 )
 
 testthat::test_that(
-  "e2e: teal.widgets::table_with_settings: the click on second button opens a modal with a table",
+  "e2e: teal.widgets::table_with_settings: the click on expand button opens a modal with a table",
   {
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
