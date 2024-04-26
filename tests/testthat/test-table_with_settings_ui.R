@@ -320,7 +320,8 @@ testthat::test_that(
     app_driver$click(selector = "#table_with_settings-modal_downbutton-dwnl")
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    pagination <- "#dropdown-menu-table_with_settings-modal_downbutton-dwnl .paginate-ui .form-group.shiny-input-container"
+    pagination <-
+      "#dropdown-menu-table_with_settings-modal_downbutton-dwnl .paginate-ui .form-group.shiny-input-container"
     pagination_text <- app_driver$get_text(pagination)
     testthat::expect_match(pagination_text, "Paginate table:\n", fixed = TRUE)
     testthat::expect_match(pagination_text, "lines / page\n", fixed = TRUE)
