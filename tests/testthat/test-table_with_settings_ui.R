@@ -326,13 +326,6 @@ testthat::test_that(
     testthat::expect_match(pagination_text, "Paginate table:\n", fixed = TRUE)
     testthat::expect_match(pagination_text, "lines / page\n", fixed = TRUE)
 
-    # TODO: - click the visible csv
-    # Warning message:
-    #   Multiple HTML elements found with selector input[value='.csv']
-    # app_driver$click(selector = "input[value='.csv']")
-    # app_driver$wait_for_idle(timeout = default_idle_timeout)
-    # testthat::expect_false(is_visible(pagination, app_driver))
-
     app_driver$stop()
   }
 )
