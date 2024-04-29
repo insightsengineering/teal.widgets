@@ -42,3 +42,6 @@ SECURITY.md
 coverage.*
 _\.new\.png$
 ^pkgdown$
+^.revdeprefs\.yaml$
+^revdep$
+^\.covrignore$
