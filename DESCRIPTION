@@ -1,7 +1,7 @@
 Package: teal.widgets
 Title: 'shiny' Widgets for 'teal' Applications
-Version: 0.4.2.9009
-Date: 2024-03-18
+Version: 0.4.2.9010
+Date: 2024-04-26
 Authors@R: c(
     person("Dawid", "Kaledkowski", , "dawid.kaledkowski@roche.com", role = c("aut", "cre")),
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = "aut"),
@@ -41,6 +41,7 @@ Suggests:
     lattice (>= 0.18-4),
     magrittr (>= 1.5),
     png,
+    rvest,
     shinytest2 (>= 0.2.0),
     shinyvalidate,
     testthat (>= 3.1.5),
