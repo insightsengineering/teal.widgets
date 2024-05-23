@@ -24,7 +24,7 @@ Depends:
 Imports:
     bslib,
     checkmate (>= 2.1.0),
-    ggplot2 (>= 3.4.0),
+    ggplot2 (>= 3.4.3),
     graphics,
     grDevices,
     htmltools (>= 0.5.4),
