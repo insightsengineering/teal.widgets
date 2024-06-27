@@ -11,20 +11,16 @@ plot_with_settings_ui <- function(id) {
       tags$script(
         # nolint start
         sprintf(
-          '$(document).on("shiny:connected", function(e) {
+          '
+          var resize_callback = function(e) {
             Shiny.onInputChange("%s", document.getElementById("%s").clientWidth);
             Shiny.onInputChange("%s", 0.87*window.innerWidth);
             //based on modal CSS property, also accounting for margins
-          });
-          $(window).resize(function(e) {
-            Shiny.onInputChange("%s", document.getElementById("%s").clientWidth);
-            Shiny.onInputChange("%s", 0.87*window.innerWidth);
-            //based on modal CSS property, also accounting for margins
-          });',
+          };
+          $(document).on("shiny:connected.tealWidgets", resize_callback);
+          $(window).on("resize.tealWidgets", resize_callback);
+        ',
           # nolint end
-          ns("flex_width"), # session input$ variable name
-          ns("plot_out_main"), # graph parent id
-          ns("plot_modal_width"), # session input$ variable name
           ns("flex_width"), # session input$ variable name
           ns("plot_out_main"), # graph parent id
           ns("plot_modal_width") # session input$ variable name
