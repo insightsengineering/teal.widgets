@@ -12,7 +12,7 @@ plot_with_settings_ui <- function(id) {
       tags$script(
         sprintf(
           'establishPlotResizing("%s", "%s", "%s");',
-          ns("plot_out_main"), # graph parent id
+          ns("plot_main"), # graph parent id
           ns("flex_width"), # session input$ variable name
           ns("plot_modal_width") # session input$ variable name
         )
