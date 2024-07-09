@@ -1,4 +1,5 @@
-//
+// Function that registers resize observer for particular parent elements.
+// Arguments are namespaced ids of DOM elements.
 var establishPlotResizing = function (
   plot_out,
   flex_width,
