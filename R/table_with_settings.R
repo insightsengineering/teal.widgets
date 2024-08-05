@@ -202,7 +202,7 @@ type_download_srv_table <- function(id, table_reactive) {
           try(rtables::paginate_table(
             tt = table_reactive(),
             lpp = as.numeric(input$lpp)
-          ))
+          ), silent = TRUE)
         }
 
         if (inherits(catch_warning, "try-error")) {

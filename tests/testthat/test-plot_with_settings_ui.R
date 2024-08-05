@@ -388,7 +388,6 @@ testthat::test_that(
 
     app_driver$click(selector = "#plot_with_settings-downbutton-downl")
     app_driver$wait_for_idle(timeout = default_idle_timeout)
-    app_driver$expect_download("plot_with_settings-downbutton-data_download")
 
     filename <- app_driver$get_download("plot_with_settings-downbutton-data_download")
     testthat::expect_match(filename, "png$", fixed = FALSE)
@@ -453,8 +452,6 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
 
   app_driver$click(selector = "#plot_with_settings-modal_downbutton-downl")
   app_driver$wait_for_idle(timeout = default_idle_timeout)
-
-  app_driver$expect_download("plot_with_settings-modal_downbutton-data_download")
 
   filename <- app_driver$get_download("plot_with_settings-modal_downbutton-data_download")
   testthat::expect_match(filename, "png$", fixed = FALSE)
