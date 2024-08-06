@@ -114,7 +114,7 @@ testthat::test_that("type_download_srv_table: pagination, lpp to small", {
     teal.widgets:::type_download_srv_table,
     args = list(id = "tws", table_reactive = table_r),
     expr = {
-      for (down_type in c(".txt", ".png")) {
+      for (down_type in c(".txt", ".pdf")) {
         session$setInputs(`pagination_switch` = TRUE)
         session$setInputs(`lpp` = 1)
         session$setInputs(`file_format` = down_type)
