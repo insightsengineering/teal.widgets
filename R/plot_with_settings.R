@@ -413,7 +413,7 @@ plot_with_settings_srv <- function(id,
     })
 
     output$width_warning <- renderUI({
-      grDevices::pdf(NULL) # reset Rplots.pdf for shiny server
+      grDevices::pdf(nullfile()) # reset Rplots.pdf for shiny server
       w <- grDevices::dev.size("px")[1]
       grDevices::dev.off()
       if (p_width() < w) {
