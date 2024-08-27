@@ -248,6 +248,10 @@ testthat::test_that("type_download_srv downloads a png file with different dimen
 })
 
 testthat::test_that("type_download_srv downloads a png file using default dimensions input dimensions are NULL", {
+  if (!require("png", quietly = TRUE)) {
+    skip("png package not available")
+  }
+
   shiny::testServer(
     teal.widgets:::type_download_srv,
     args = list(
