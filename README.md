@@ -35,19 +35,12 @@ This package provides various widgets for `teal` applications. Examples include:
 ## Installation
 
 ```r
-# stable versions
 install.packages('teal.widgets')
-
-# install.packages("pak")
-pak::pak("insightsengineering/teal.widgets@*release")
 ```
 
-Alternatively, you might want to use the development version available on [r-universe](https://r-universe.dev/).
+Alternatively, you might want to use the development version.
 
 ```r
-# beta versions
-install.packages('teal.widgets', repos = c('https://pharmaverse.r-universe.dev', getOption('repos')))
-
 # install.packages("pak")
 pak::pak("insightsengineering/teal.widgets")
 ```
