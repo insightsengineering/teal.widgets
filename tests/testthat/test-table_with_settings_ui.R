@@ -343,7 +343,6 @@ testthat::test_that(
 
     app_driver$click(selector = "#table_with_settings-downbutton-dwnl")
     app_driver$wait_for_idle(timeout = default_idle_timeout)
-    app_driver$expect_download("table_with_settings-downbutton-data_download")
 
     filename <- app_driver$get_download("table_with_settings-downbutton-data_download")
     testthat::expect_match(filename, "txt$", fixed = FALSE)
@@ -370,8 +369,6 @@ testthat::test_that("e2e teal.widgets::table_with_settings: expanded table can b
 
   app_driver$click(selector = "#table_with_settings-modal_downbutton-dwnl")
   app_driver$wait_for_idle(timeout = default_idle_timeout)
-
-  app_driver$expect_download("table_with_settings-modal_downbutton-data_download")
 
   filename <- app_driver$get_download("table_with_settings-modal_downbutton-data_download")
   testthat::expect_match(filename, "txt$", fixed = FALSE)

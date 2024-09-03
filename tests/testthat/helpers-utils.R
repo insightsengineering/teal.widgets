@@ -7,6 +7,7 @@ is_draw <- function(plot_fun) {
   checkmate::assert_function(plot_fun)
   grDevices::graphics.off() # close any current graphics devices
   cdev <- grDevices::dev.cur()
+  grDevices::pdf(nullfile())
   plot_fun()
   if (cdev != grDevices::dev.cur()) {
     on.exit(grDevices::dev.off())

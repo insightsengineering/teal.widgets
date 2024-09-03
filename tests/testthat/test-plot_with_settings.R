@@ -75,17 +75,16 @@ plot_funs <- list(
   function() boxplot(2),
   function() 2
 )
+plot_types <- list(
+  function() "gg",
+  function() "trel",
+  function() "grob",
+  function() "base",
+  function() "base",
+  function() "other"
+)
 
 testthat::test_that("print_plot is able to plot different types of graphics", {
-  plot_types <- list(
-    function() "ANYTHING",
-    function() "trel",
-    function() "grob",
-    function() "base",
-    function() "base",
-    function() "other"
-  )
-
   for (p in seq_along(plot_funs)) {
     testthat::expect_true(
       is_draw(function() print_plot(plot_funs[[p]], plot_types[[p]]))
@@ -234,6 +233,8 @@ testthat::test_that("type_download_srv download all types of files and change th
 })
 
 testthat::test_that("type_download_srv downloads a png file with different dimensions", {
+  testthat::skip_if_not_installed("png")
+
   shiny::testServer(
     teal.widgets:::type_download_srv,
     args = download_srv_args,
@@ -249,6 +250,8 @@ testthat::test_that("type_download_srv downloads a png file with different dimen
 })
 
 testthat::test_that("type_download_srv downloads a png file using default dimensions input dimensions are NULL", {
+  testthat::skip_if_not_installed("png")
+
   shiny::testServer(
     teal.widgets:::type_download_srv,
     args = list(
@@ -310,6 +313,8 @@ plot_with_settings_args <- list(
 )
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - base", {
+  testthat::skip_if_not_installed("png")
+
   plot_with_settings_args$plot_r <- function() plot(1)
   shiny::testServer(
     teal.widgets:::plot_with_settings_srv,
@@ -332,6 +337,8 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 })
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - ggplot2", {
+  testthat::skip_if_not_installed("png")
+
   plot_with_settings_args$plot_r <- function() {
     ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
       ggplot2::geom_line()
@@ -357,6 +364,8 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 })
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - grob", {
+  testthat::skip_if_not_installed("png")
+
   plot_with_settings_args$plot_r <- function() {
     ggplot2::ggplotGrob(
       ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
@@ -384,6 +393,8 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 })
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - trellis", {
+  testthat::skip_if_not_installed("png")
+
   plot_with_settings_args$plot_r <- function() {
     lattice::densityplot(1)
   }
@@ -408,6 +419,8 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 })
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - WRONG type", {
+  testthat::skip_if_not_installed("png")
+
   plot_with_settings_args$plot_r <- function() 2
 
   shiny::testServer(
@@ -443,6 +456,8 @@ testthat::test_that("plot_with_settings_srv expand no error", {
 })
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file from modal", {
+  testthat::skip_if_not_installed("png")
+
   plot_with_settings_args[["plot_r"]] <- function() plot(1)
   shiny::testServer(
     teal.widgets:::plot_with_settings_srv,
@@ -484,14 +499,13 @@ testthat::test_that("plot_with_settings_srv returns the click ggplot2 functional
 })
 
 testthat::test_that("plot_with_settings_srv and plot_type reactive types", {
-  plot_types <- c("gg", "trel", "grob", "base", "base", "other")
   for (p in seq_along(plot_funs)) {
     plot_with_settings_args[["plot_r"]] <- plot_funs[[p]]
     shiny::testServer(
       teal.widgets:::plot_with_settings_srv,
       args = plot_with_settings_args,
       expr = {
-        testthat::expect_identical(plot_type(), plot_types[p])
+        plot_suppress(testthat::expect_identical(plot_type(), plot_types[[p]]()))
       }
     )
   }

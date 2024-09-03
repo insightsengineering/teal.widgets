@@ -1,7 +1,7 @@
 Package: teal.widgets
 Title: 'shiny' Widgets for 'teal' Applications
-Version: 0.4.2.9014
-Date: 2024-07-10
+Version: 0.4.2.9020
+Date: 2024-09-03
 Authors@R: c(
     person("Dawid", "Kaledkowski", , "dawid.kaledkowski@roche.com", role = c("aut", "cre")),
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = "aut"),
@@ -48,7 +48,8 @@ Suggests:
     testthat (>= 3.1.5),
     withr (>= 2.1.0)
 VignetteBuilder:
-    knitr
+    knitr,
+    rmarkdown
 Config/Needs/verdepcheck: rstudio/bslib, mllg/checkmate,
     tidyverse/ggplot2, rstudio/htmltools, r-lib/lifecycle,
     insightsengineering/rtables, rstudio/shiny, daattali/shinyjs,
@@ -61,4 +62,4 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
