@@ -18,7 +18,6 @@ var establishPlotResizing = function (
     const plotContainer = document.getElementById(plot_out);
     if (plotContainer === null) return;
     plotObserver.observe(plotContainer, { box: "border-box" } );
-    plotNoticer.disconnect();
   });
 
   plotNoticer.observe(document, { subtree: true, childList: true });
