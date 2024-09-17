@@ -120,7 +120,6 @@ button_click_observer <- function(click_event,
           shiny::tagList(
             include_css_files(pattern = "verbatim_popup"),
             tags$div(
-              class = "mb-4",
               shiny::actionButton(
                 paste0(copy_button_id, 1),
                 "Copy to Clipboard",
