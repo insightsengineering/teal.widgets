@@ -24,12 +24,10 @@
 #' # use the input$dt_rows in the Shiny Server function
 #' server <- function(id) {
 #'   moduleServer(id, function(input, output, session) {
-#'     output$data_table <- renderDataTable(
-#'       {
-#'         iris
-#'       },
-#'       options = list(pageLength = input$dt_rows)
-#'     )
+#'     output$data_table <- renderDataTable(iris)
+#'     observe({
+#'       print(input$dt_rows)
+#'     })
 #'   })
 #' }
 #'

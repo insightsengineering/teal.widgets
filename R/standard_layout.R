@@ -67,20 +67,23 @@ standard_layout <- function(output,
 
   tag_enc_out <- if (!is.null(encoding)) {
     tagList(
-      tags$div(
-        class = "col-md-3",
+      column(
+        width = 3,
         tags$div(class = "well", encoding),
         if (is.null(forms)) {
           NULL
         } else {
-          tags$div(class = "form-group", forms)
+          tagList(
+            tags$br(),
+            tags$div(class = "form-group", forms)
+          )
         }
       ),
-      tags$div(class = "col-md-9", tag_output)
+      column(width = 9, tag_output)
     )
   } else {
-    tags$div(
-      class = "col-md-12",
+    column(
+      width = 12,
       tag_output,
       if (is.null(forms)) {
         NULL
@@ -90,5 +93,8 @@ standard_layout <- function(output,
     )
   }
 
-  fluidRow(tag_enc_out)
+  fluidRow(
+    class = "teal-widgets standard-layout",
+    tag_enc_out
+  )
 }

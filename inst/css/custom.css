@@ -1,0 +1,25 @@
+.teal-widgets code {
+  --bs-code-color: #c7254e;
+  background-color: #f9f2f4;
+}
+
+.teal-widgets .bootstrap-select > .dropdown-toggle {
+  background: var(--bs-white);
+  border: solid 1px #adadad;
+}
+
+.teal-widgets .btn {
+  --bs-btn-padding-y: 0.5em;
+}
+
+.teal-widgets .dropdown-menu {
+  --bs-dropdown-padding-y: 0.25rem;
+}
+
+.teal-widgets .dropdown-item {
+  --bs-dropdown-item-padding-y: 0.2rem;
+}
+.teal-widgets .btn {
+  --bs-btn-padding-x: 1em;
+  --bs-btn-padding-y: 0.25em;
+}
