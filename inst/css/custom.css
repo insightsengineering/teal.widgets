@@ -8,10 +8,6 @@
   border: solid 1px #adadad;
 }
 
-.teal-widgets .btn {
-  --bs-btn-padding-y: 0.5em;
-}
-
 .teal-widgets .dropdown-menu {
   --bs-dropdown-padding-y: 0.25rem;
 }
@@ -21,5 +17,5 @@
 }
 .teal-widgets .btn {
   --bs-btn-padding-x: 1em;
-  --bs-btn-padding-y: 0.25em;
+  --bs-btn-padding-y: 0.5em;
 }
