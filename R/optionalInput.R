@@ -154,12 +154,14 @@ optionalSelectInput <- function(inputId, # nolint
     checkmate::check_class(label, "html")
   )
   stopifnot(is.null(choices) || length(choices) >= 1)
-  stopifnot(
-    is.null(selected) ||
-      length(selected) == 0 ||
-      all(selected %in% choices) ||
-      all(selected %in% unlist(choices, recursive = FALSE))
-  )
+  if (!inherits(choices, "function")) {
+    stopifnot(
+      is.null(selected) ||
+        length(selected) == 0 ||
+        all(selected %in% choices) ||
+        all(selected %in% unlist(choices, recursive = FALSE))
+    )
+  }
   checkmate::assert_flag(multiple)
   checkmate::assert_string(sep, null.ok = TRUE)
   checkmate::assert_list(options)
@@ -212,7 +214,7 @@ optionalSelectInput <- function(inputId, # nolint
     shinyWidgets::pickerInput(
       inputId = inputId,
       label = label,
-      choices = raw_choices,
+      choices = if (inherits(raw_choices, "function")) raw_choices() else raw_choices,
       selected = raw_selected,
       multiple = TRUE,
       width = width,
