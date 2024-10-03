@@ -48,6 +48,9 @@
   padding: 0;
 }
 
-.bslib-sidebar-layout > .sidebar > .sidebar-content {
+.teal-widgets.standard-layout.has-encodings
+  .bslib-sidebar-layout
+  > .sidebar
+  > .sidebar-content {
   padding-top: 2rem;
 }

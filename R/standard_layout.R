@@ -66,16 +66,21 @@ standard_layout <- function(output,
   )
 
   tag_enc_out <- if (!is.null(encoding)) {
-    bslib::layout_sidebar(
-      sidebar = bslib::sidebar(
-        encoding,
-        if (is.null(forms)) {
-          NULL
-        } else {
-          forms
-        }
-      ),
-      tag_output
+    tags$div(
+      class = "teal-widgets standard-layout has-encodings",
+      bslib::layout_sidebar(
+        sidebar = bslib::sidebar(
+          tags$div(
+            encoding,
+            if (is.null(forms)) {
+              NULL
+            } else {
+              forms
+            }
+          )
+        ),
+        tag_output
+      )
     )
   } else {
     tags$div(
