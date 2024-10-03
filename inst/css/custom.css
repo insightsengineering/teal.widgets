@@ -19,3 +19,35 @@
   --bs-btn-padding-x: 1em;
   --bs-btn-padding-y: 0.5em;
 }
+
+.teal-widgets.plot-modal .modal-body {
+  max-width: 90vw;
+  max-height: 70vh;
+  overflow: scroll;
+}
+
+.modal-footer {
+  padding: 1rem;
+}
+
+.plot-settings-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.plot-settings-buttons a {
+  color: black;
+}
+
+.plot-settings-buttons i {
+  margin: 0 0.5rem;
+}
+
+.teal-widgets.standard-layout > .standard-layout-output .card {
+  padding: 0;
+}
+
+.bslib-sidebar-layout > .sidebar > .sidebar-content {
+  padding-top: 2rem;
+}

@@ -19,25 +19,27 @@ plot_with_settings_ui <- function(id) {
       )
     )),
     include_css_files("plot_with_settings"),
-    tags$div(
+    bslib::card(
       id = ns("plot-with-settings"),
       tags$div(
-        class = "plot-settings-buttons",
-        type_download_ui(ns("downbutton")),
-        actionButton(
-          ns("expand"),
-          label = character(0),
-          icon = icon("up-right-and-down-left-from-center"),
-          class = "btn-sm"
+        tags$div(
+          class = "plot-settings-buttons",
+          type_download_ui(ns("downbutton")),
+          actionLink(
+            ns("expand"),
+            label = character(0),
+            icon = icon("up-right-and-down-left-from-center"),
+            class = "btn-sm"
+          ),
+          bslib::popover(
+            icon("maximize"),
+            uiOutput(ns("slider_ui")),
+            uiOutput(ns("width_warning")),
+            options = list(triggers = "hover focus")
+          )
         ),
-        bslib::popover(
-          icon("maximize"),
-          uiOutput(ns("slider_ui")),
-          uiOutput(ns("width_warning")),
-          options = list(triggers = "hover focus")
-        )
-      ),
-      uiOutput(ns("plot_out_main"), class = "plot_out_container", width = "100%")
+        uiOutput(ns("plot_out_main"), class = "plot_out_container", width = "100%")
+      )
     )
   )
 }

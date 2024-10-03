@@ -59,31 +59,26 @@ standard_layout <- function(output,
   # if encoding=NULL then forms is placed below output
 
   tag_output <- tags$div(
-    class = "well",
-    tags$div(class = "pre-output", pre_output),
-    tags$div(class = "output", output),
-    tags$div(class = "post-output", post_output)
+    class = "teal-widgets standard-layout",
+    tags$div(class = "standard-layout-pre-output", pre_output),
+    tags$div(class = "standard-layout-output", output),
+    tags$div(class = "standard-layout-post-output", post_output)
   )
 
   tag_enc_out <- if (!is.null(encoding)) {
-    tagList(
-      column(
-        width = 3,
-        tags$div(class = "well", encoding),
+    bslib::layout_sidebar(
+      sidebar = bslib::sidebar(
+        encoding,
         if (is.null(forms)) {
           NULL
         } else {
-          tagList(
-            tags$br(),
-            tags$div(class = "form-group", forms)
-          )
+          forms
         }
       ),
-      column(width = 9, tag_output)
+      tag_output
     )
   } else {
-    column(
-      width = 12,
+    tags$div(
       tag_output,
       if (is.null(forms)) {
         NULL
@@ -93,8 +88,8 @@ standard_layout <- function(output,
     )
   }
 
-  fluidRow(
-    class = "teal-widgets standard-layout",
+  bslib::page_fluid(
+    # class = "teal-widgets standard-layout",
     tag_enc_out
   )
 }
