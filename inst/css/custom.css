@@ -20,6 +20,10 @@
   --bs-btn-padding-y: 0.5em;
 }
 
+.teal-widgets.plot-modal > .modal {
+  height: max-content;
+}
+
 .teal-widgets.plot-modal .modal-body {
   max-width: 90vw;
   max-height: 70vh;
