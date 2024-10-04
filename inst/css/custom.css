@@ -58,3 +58,12 @@
   > .sidebar-content {
   padding-top: 2rem;
 }
+
+
+.teal-widgets.button-click-observer .modal-header {
+  --bs-modal-header-padding: 1rem;
+}
+
+.teal-widgets.button-click-observer .modal-body {
+  padding: 0 1.5rem;
+}

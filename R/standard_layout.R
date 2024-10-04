@@ -75,7 +75,10 @@ standard_layout <- function(output,
             if (is.null(forms)) {
               NULL
             } else {
-              forms
+              tags$div(
+                tags$br(),
+                forms
+              )
             }
           )
         ),
