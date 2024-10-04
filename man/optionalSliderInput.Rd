@@ -34,5 +34,12 @@ on available in the server function but no corresponding visual clutter from
 input widgets that provide only a single choice.
 }
 \examples{
-optionalSliderInput("a", "b", 0, 1, 0.2)
+ui <- shiny::fluidPage(
+  shinyjs::useShinyjs(),
+  optionalSliderInput("s", "shown", 0, 1, 0.2),
+  optionalSliderInput("h", "hidden", 0, NA, 1),
+)
+if (interactive()) {
+  shiny::shinyApp(ui, function(input, output) {})
+}
 }
