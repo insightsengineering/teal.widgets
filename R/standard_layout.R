@@ -97,7 +97,7 @@ standard_layout <- function(output,
   }
 
   bslib::page_fluid(
-    # class = "teal-widgets standard-layout",
+    class = "teal-widgets standard-layout-wrapper",
     tag_enc_out
   )
 }

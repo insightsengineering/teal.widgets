@@ -67,3 +67,16 @@
 .teal-widgets.button-click-observer .modal-body {
   padding: 0 1.5rem;
 }
+
+.teal-widgets.standard-layout .bslib-mb-spacing {
+  margin-bottom: 0;
+}
+
+/* TODO: Bad implementation, this is because white well is called inside standard layout. */
+.teal-widgets.standard-layout .standard-layout-output > .well{
+  border: none;
+}
+
+.teal-widgets.standard-layout-wrapper {
+  padding-right: 0;
+}
