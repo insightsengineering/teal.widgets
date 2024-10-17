@@ -23,7 +23,7 @@ plot_with_settings_ui <- function(id) {
       id = ns("plot-with-settings"),
       tags$div(
         tags$div(
-          class = "plot-settings-buttons",
+          class = "teal-widgets settings-buttons",
           type_download_ui(ns("downbutton")),
           actionLink(
             ns("expand"),
@@ -439,7 +439,7 @@ plot_with_settings_srv <- function(id,
     observeEvent(input$expand, {
       showModal(
         tags$div(
-          class = "teal-widgets plot-modal",
+          class = "teal-widgets output-modal",
           modalDialog(
             easyClose = TRUE,
             tags$div(
