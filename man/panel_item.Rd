@@ -22,7 +22,7 @@ indicates whether the panel item is open or collapsed and is accessed with \code
 (\code{shiny.tag})
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}\cr
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}\cr
 Designed to be grouped using \code{\link{panel_group}} element. Used to handle \code{shiny} inputs in the encoding panel.
 }
 \examples{
