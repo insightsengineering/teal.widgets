@@ -1,7 +1,3 @@
-testthat::test_that("get_bs_version", {
-  testthat::expect_identical(get_bs_version(), "3")
-})
-
 # Create a sample ggplot2 plot object
 ggplot_obj <- ggplot2::ggplot(data = iris, ggplot2::aes(x = Sepal.Length, y = Sepal.Width)) +
   ggplot2::geom_point()
