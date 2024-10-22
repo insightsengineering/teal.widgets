@@ -70,7 +70,6 @@
   padding-top: 2rem;
 }
 
-
 .teal-widgets.button-click-observer .modal-header {
   --bs-modal-header-padding: 1rem;
 }
@@ -84,10 +83,15 @@
 }
 
 /* TODO: Bad implementation, this is because white well is called inside standard layout. */
-.teal-widgets.standard-layout .standard-layout-output > .well{
+.teal-widgets.standard-layout .standard-layout-output > .well {
   border: none;
 }
 
 .teal-widgets.standard-layout-wrapper {
   padding-right: 0;
+}
+
+.teal-widgets .plot-modal-sliders {
+  display: flex;
+  justify-content: space-around;
 }
