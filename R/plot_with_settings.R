@@ -242,6 +242,7 @@ plot_with_settings_ui <- function(id) {
 #'
 plot_with_settings_srv <- function(id,
                                    plot_r,
+                                   gg2plotly = TRUE,
                                    height = c(600, 200, 2000),
                                    width = NULL,
                                    show_hide_signal = reactive(TRUE),
@@ -296,7 +297,10 @@ plot_with_settings_srv <- function(id,
     }
 
     plot_type <- reactive({
-      if (inherits(plot_r(), "ggplot")) {
+      req(plot_suppress(plot_r()))
+      if (inherits(plot_r(), "ggplot") && gg2plotly) {
+        "ggplotly"
+      } else if (inherits(plot_r(), "ggplot")) {
         "gg"
       } else if (inherits(plot_r(), "trellis")) {
         "trel"
@@ -373,17 +377,55 @@ plot_with_settings_srv <- function(id,
 
     p_height <- reactive(`if`(!is.null(input$height), input$height, height[1]))
     p_width <- reactive(`if`(!is.null(input$width), input$width, default_slider_width()[1]))
-    output$plot_main <- renderPlot(
-      apply_plot_modifications(
-        plot_obj = plot_suppress(plot_r()),
-        plot_type = plot_suppress(plot_type()),
-        dblclicking = dblclicking,
-        ranges = ranges
-      ),
-      res = get_plot_dpi(),
-      height = p_height,
-      width = p_width
-    )
+
+    observeEvent(plot_type(), ignoreNULL = TRUE, once = TRUE, {
+      output$plot_main <- if (identical(plot_type(), "ggplotly")) {
+        plotly::renderPlotly({
+          plotly::event_register(
+            plotly::layout(
+              plotly::ggplotly(plot_r(), layerData = 1),
+              dragmode = "select"
+            ),
+            "plotly_selected"
+          )
+        })
+      } else {
+        renderPlot(
+          {
+            apply_plot_modifications(
+              plot_obj = plot_suppress(plot_r()),
+              plot_type = plot_suppress(plot_type()),
+              dblclicking = dblclicking,
+              ranges = ranges
+            )
+          },
+          res = get_plot_dpi(),
+          height = p_height,
+          width = p_width
+        )
+      }
+    })
+
+
+
+    plotly_brush <- reactive({
+      req(plot_suppress(plot_r()))
+      # layer_data(plot_r(), 3)
+      # ggplot_build(plot_r())$plot$data
+      bbox <- plotly::event_data("plotly_selected")
+      if (is.null(bbox)) {
+        return(NULL)
+      }
+      list(
+        mapping = list(
+          x = rlang::as_label(plot_r()$mapping$x),
+          y = rlang::as_label(plot_r()$mapping$y)
+        ),
+        xmin = min(bbox$x), xmax = max(bbox$x),
+        ymin = min(bbox$y), ymax = max(bbox$y),
+        direction = "xy"
+      )
+    })
 
     output$plot_modal <- renderPlot(
       apply_plot_modifications(
@@ -399,17 +441,21 @@ plot_with_settings_srv <- function(id,
 
     output$plot_out_main <- renderUI({
       req(plot_suppress(plot_r()))
-      tags$div(
-        align = graph_align,
-        plotOutput(
-          ns("plot_main"),
-          height = "100%",
-          brush = `if`(brushing, brushOpts(ns("plot_brush"), resetOnNew = FALSE), NULL),
-          click = `if`(clicking, clickOpts(ns("plot_click")), NULL),
-          dblclick = `if`(dblclicking, dblclickOpts(ns("plot_dblclick")), NULL),
-          hover = `if`(hovering, hoverOpts(ns("plot_hover")), NULL)
+      if (identical(plot_type(), "ggplotly")) {
+        plotly::plotlyOutput(ns("plot_main"))
+      } else {
+        tags$div(
+          align = graph_align,
+          plotOutput(
+            ns("plot_main"),
+            height = "100%",
+            brush = `if`(brushing, brushOpts(ns("plot_brush"), resetOnNew = FALSE), NULL),
+            click = `if`(clicking, clickOpts(ns("plot_click")), NULL),
+            dblclick = `if`(dblclicking, dblclickOpts(ns("plot_dblclick")), NULL),
+            hover = `if`(hovering, hoverOpts(ns("plot_hover")), NULL)
+          )
         )
-      )
+      }
     })
 
     output$width_warning <- renderUI({
@@ -500,25 +546,28 @@ plot_with_settings_srv <- function(id,
     return(
       list(
         brush = reactive({
-          # refresh brush data on the main plot size change
-          input$height
-          input$width
-          input$plot_brush
+          if (identical(plot_type(), "ggplotly")) {
+            plotly_brush()
+          } else {
+            input$height
+            input$width
+            input$plot_brush
+          }
         }),
         click = reactive({
-          # refresh click data on the main plot size change
+          # # refresh click data on the main plot size change
           input$height
           input$width
           input$plot_click
         }),
         dblclick = reactive({
-          # refresh double click data on the main plot size change
+          # # refresh double click data on the main plot size change
           input$height
           input$width
           input$plot_dblclick
         }),
         hover = reactive({
-          # refresh hover data on the main plot size change
+          # # refresh hover data on the main plot size change
           input$height
           input$width
           input$plot_hover
@@ -603,7 +652,7 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
 #'     x = "AGE",
 #'     y = "BMRKR1"
 #'   ),
-#'   xmin = 30, xmax = 40,
+#'   xmin = 30.1, xmax = 40,
 #'   ymin = 0.7, ymax = 10,
 #'   direction = "xy"
 #' )
