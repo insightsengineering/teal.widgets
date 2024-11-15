@@ -27,7 +27,7 @@ brush <- list(
     x = "AGE",
     y = "BMRKR1"
   ),
-  xmin = 30, xmax = 40,
+  xmin = 30.1, xmax = 40,
   ymin = 0.7, ymax = 10,
   direction = "xy"
 )

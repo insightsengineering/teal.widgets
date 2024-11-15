@@ -11,6 +11,7 @@ plot_with_settings_ui(id)
 plot_with_settings_srv(
   id,
   plot_r,
+  gg2plotly = TRUE,
   height = c(600, 200, 2000),
   width = NULL,
   show_hide_signal = reactive(TRUE),
