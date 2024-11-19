@@ -383,7 +383,7 @@ plot_with_settings_srv <- function(id,
         plotly::renderPlotly({
           plotly::event_register(
             plotly::layout(
-              plotly::ggplotly(plot_r(), layerData = 1),
+              plotly::ggplotly(plot_r(), layerData = 1, height = p_height()),
               dragmode = "select"
             ),
             "plotly_selected"
@@ -442,7 +442,7 @@ plot_with_settings_srv <- function(id,
     output$plot_out_main <- renderUI({
       req(plot_suppress(plot_r()))
       if (identical(plot_type(), "ggplotly")) {
-        plotly::plotlyOutput(ns("plot_main"))
+        plotly::plotlyOutput(ns("plot_main"), height = "100%")
       } else {
         tags$div(
           align = graph_align,
