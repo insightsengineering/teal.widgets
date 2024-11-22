@@ -32,6 +32,7 @@ plot_with_settings_ui <- function(id) {
         ),
         shinyWidgets::dropdownButton(
           circle = FALSE,
+          size = "sm",
           icon = icon("maximize"),
           inline = TRUE,
           right = TRUE,
@@ -534,6 +535,7 @@ type_download_ui <- function(id) {
   ns <- NS(id)
   shinyWidgets::dropdownButton(
     circle = FALSE,
+    size = "sm",
     icon = icon("download"),
     inline = TRUE,
     right = TRUE,
