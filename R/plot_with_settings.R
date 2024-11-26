@@ -282,7 +282,6 @@ plot_with_settings_srv <- function(id,
       # if width = NULL then set default_slider_width to be the value of the plot width on load
       observeEvent(session$clientData[[paste0("output_", ns("plot_main_width"))]],
         handlerExpr = {
-          print("default_slider_width is set")
           default_slider_width(default_w() * c(1, 0.5, 2.8))
         },
         once = TRUE,
