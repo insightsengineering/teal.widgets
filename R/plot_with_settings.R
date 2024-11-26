@@ -372,8 +372,19 @@ plot_with_settings_srv <- function(id,
       }
     })
 
-    p_height <- reactive(`if`(!is.null(input$height), input$height, height[1]))
-    p_width <- reactive(`if`(!is.null(input$width), input$width, default_slider_width()[1]))
+    p_height <- reactive(if (!is.null(input$height)) input$height else height[1])
+    p_width <- reactive(
+      if (!is.null(input$width)) {
+        input$width
+      } else {
+        if (!is.null(default_slider_width()[1])) {
+          default_slider_width()[1]
+        } else {
+          # Fallback to "auto"
+          "auto"
+        }
+      }
+    )
     output$plot_main <- renderPlot(
       apply_plot_modifications(
         plot_obj = plot_suppress(plot_r()),
