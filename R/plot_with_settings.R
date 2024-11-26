@@ -282,6 +282,7 @@ plot_with_settings_srv <- function(id,
       # if width = NULL then set default_slider_width to be the value of the plot width on load
       observeEvent(session$clientData[[paste0("output_", ns("plot_main_width"))]],
         handlerExpr = {
+          print("default_slider_width is set")
           default_slider_width(default_w() * c(1, 0.5, 2.8))
         },
         once = TRUE,
@@ -372,15 +373,28 @@ plot_with_settings_srv <- function(id,
       }
     })
 
-    p_height <- reactive(`if`(!is.null(input$height), input$height, height[1]))
-    p_width <- reactive(`if`(!is.null(input$width), input$width, default_slider_width()[1]))
+    p_height <- reactive(if (!is.null(input$height)) input$height else height[1])
+    p_width <- reactive(
+      if (!is.null(input$width)) {
+        input$width
+      } else {
+        if (!is.null(default_slider_width()[1])) {
+          default_slider_width()[1]
+        } else {
+          # Fallback to "auto"
+          "auto"
+        }
+      }
+    )
     output$plot_main <- renderPlot(
-      apply_plot_modifications(
-        plot_obj = plot_suppress(plot_r()),
-        plot_type = plot_suppress(plot_type()),
-        dblclicking = dblclicking,
-        ranges = ranges
-      ),
+      {
+        apply_plot_modifications(
+          plot_obj = plot_suppress(plot_r()),
+          plot_type = plot_suppress(plot_type()),
+          dblclicking = dblclicking,
+          ranges = ranges
+        )
+      },
       res = get_plot_dpi(),
       height = p_height,
       width = p_width
