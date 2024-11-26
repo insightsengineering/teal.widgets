@@ -387,14 +387,12 @@ plot_with_settings_srv <- function(id,
       }
     )
     output$plot_main <- renderPlot(
-      {
-        apply_plot_modifications(
-          plot_obj = plot_suppress(plot_r()),
-          plot_type = plot_suppress(plot_type()),
-          dblclicking = dblclicking,
-          ranges = ranges
-        )
-      },
+      apply_plot_modifications(
+        plot_obj = plot_suppress(plot_r()),
+        plot_type = plot_suppress(plot_type()),
+        dblclicking = dblclicking,
+        ranges = ranges
+      ),
       res = get_plot_dpi(),
       height = p_height,
       width = p_width
