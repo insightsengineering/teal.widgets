@@ -69,3 +69,7 @@ jobs:
       )
     name: R-hub 🌐
     uses: insightsengineering/r.pkg.template/.github/workflows/rhub.yaml@main
+    with:
+      lookup-refs: |
+        insightsengineering/formatters
+        insightsengineering/rtables
