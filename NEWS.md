@@ -1,4 +1,4 @@
-# teal.widgets 0.4.2.9022
+# teal.widgets 0.4.2.9025
 
 ### Breaking changes
 
