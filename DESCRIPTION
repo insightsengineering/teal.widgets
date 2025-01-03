@@ -56,7 +56,7 @@ Config/Needs/verdepcheck: rstudio/bslib, mllg/checkmate,
     dreamRs/shinyWidgets, r-lib/styler, rstudio/DT, yihui/knitr,
     deepayan/lattice, tidyverse/magrittr, cran/png, tidyverse/rvest,
     rstudio/rmarkdown, rstudio/shinytest2, rstudio/shinyvalidate,
-    r-lib/testthat, r-lib/withr
+    r-lib/testthat, r-lib/withr, insightsengineering/formatters
 Config/Needs/website: insightsengineering/nesttemplate
 Encoding: UTF-8
 Language: en-US
