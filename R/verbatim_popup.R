@@ -1,3 +1,15 @@
+#' @keyword internal
+#' @noRd
+verbatim_popup_deps <- function() {
+  htmltools::htmlDependency(
+    name = "teal-widgets-verbatim-popup",
+    version = utils::packageVersion("teal.widgets"),
+    package = "teal.widgets",
+    src = "js",
+    script = "verbatim_popup.js"
+  )
+}
+
 #' A `shiny` module that pops up verbatim text.
 #' @name verbatim_popup
 #' @description `r lifecycle::badge("experimental")`
@@ -42,9 +54,7 @@ verbatim_popup_ui <- function(id, button_label, type = c("button", "link"), ...)
   )
 
   shiny::tagList(
-    shiny::singleton(
-      tags$head(shiny::includeScript(system.file("js/verbatim_popup.js", package = "teal.widgets")))
-    ),
+    verbatim_popup_deps(),
     shinyjs::useShinyjs(),
     do.call(ui_function, c(ui_args, list(...)))
   )
