@@ -1,3 +1,15 @@
+#' @keywords internal
+#' @noRd
+optional_select_input_deps <- function() {
+  htmltools::htmlDependency(
+    name = "teal-widgets-optional-select-input",
+    version = utils::packageVersion("teal.widgets"),
+    package = "teal.widgets",
+    src = "optional-select-input",
+    stylesheet = "optional-select-input.css"
+  )
+}
+
 #' Wrapper for `pickerInput`
 #'
 #' @description `r lifecycle::badge("stable")`
@@ -244,7 +256,7 @@ optionalSelectInput <- function(inputId, # nolint
   )
 
   tags$div(
-    include_css_files(pattern = "picker_input"),
+    optional_select_input_deps(),
 
     # when selected values in ui_picker change
     # then update ui_fixed - specifically, update '{id}_selected_text' element

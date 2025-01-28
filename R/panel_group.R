@@ -72,6 +72,19 @@ panel_group <- function(..., id = NULL) {
   )
 }
 
+#' @keywords internal
+#' @noRd
+panel_item_deps <- function() {
+  htmltools::htmlDependency(
+    name = "teal-widgets-panel-item",
+    version = utils::packageVersion("teal.widgets"),
+    package = "teal.widgets",
+    src = "panel-item",
+    script = "panel-item.js",
+    stylesheet = "panel-item.css"
+  )
+}
+
 #' Panel item widget
 #'
 #' @description `r lifecycle::badge("experimental")`\cr
@@ -183,8 +196,7 @@ panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
 
 
     tagList(
-      include_css_files(pattern = "panel.css"),
-      tags$head(shiny::includeScript(system.file("js/panel_group.js", package = "teal.widgets"))),
+      panel_item_deps(),
       res_tag
     )
   })

@@ -1,5 +1,3 @@
-/* teal.widgets table_with_settings css */
-
 .table-settings-buttons {
   display: flex;
   flex-direction: row;
@@ -30,16 +28,33 @@
   margin-top: 30px;
 } /* margin for the buttons */
 
-.table-modal .modal .modal-dialog .modal-content .modal-body .table-modal-sliders {
+.table-modal
+  .modal
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .table-modal-sliders {
   overflow: hidden;
 }
 
-.table-modal .modal .modal-dialog .modal-content .modal-body .table-modal-sliders div:nth-child(1) {
+.table-modal
+  .modal
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .table-modal-sliders
+  div:nth-child(1) {
   float: left;
   width: 40%;
 }
 
-.table-modal .modal .modal-dialog .modal-content .modal-body .table-modal-sliders div:nth-child(2) {
+.table-modal
+  .modal
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .table-modal-sliders
+  div:nth-child(2) {
   float: right;
   width: 40%;
 }

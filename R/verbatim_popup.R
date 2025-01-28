@@ -1,12 +1,12 @@
-#' @keyword internal
+#' @keywords internal
 #' @noRd
 verbatim_popup_deps <- function() {
   htmltools::htmlDependency(
     name = "teal-widgets-verbatim-popup",
     version = utils::packageVersion("teal.widgets"),
     package = "teal.widgets",
-    src = "js",
-    script = "verbatim_popup.js"
+    src = "verbatim-popup",
+    script = "verbatim-popup.js"
   )
 }
 
@@ -128,9 +128,9 @@ button_click_observer <- function(click_event,
       shiny::showModal(
         shiny::modalDialog(
           shiny::tagList(
-            include_css_files(pattern = "verbatim_popup"),
             tags$div(
               class = "mb-4",
+              style = "margin-bottom: 1rem;",
               shiny::actionButton(
                 paste0(copy_button_id, 1),
                 "Copy to Clipboard",

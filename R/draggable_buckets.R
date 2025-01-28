@@ -1,3 +1,16 @@
+#' @keywords internal
+#' @noRd
+draggable_buckets_deps <- function() {
+  htmltools::htmlDependency(
+    name = "teal-widgets-draggable-buckets",
+    version = utils::packageVersion("teal.widgets"),
+    package = "teal.widgets",
+    src = "draggable-buckets",
+    script = "draggable-buckets.js",
+    stylesheet = "draggable-buckets.css"
+  )
+}
+
 #' @title Draggable Buckets
 #' @description  `r lifecycle::badge("experimental")`
 #' A custom widget with draggable elements that can be put into buckets.
@@ -67,10 +80,7 @@ draggable_buckets <- function(input_id, label, elements = character(), buckets) 
   elements_iterator$it <- 0
 
   shiny::tagList(
-    shiny::singleton(tags$head(
-      shiny::includeScript(system.file("widgets/draggable_buckets.js", package = "teal.widgets"))
-    )),
-    include_css_files("draggable_buckets.css"),
+    draggable_buckets_deps(),
     shiny::div(
       tags$span(label),
       render_unbucketed_elements(elements = elements, elements_iterator = elements_iterator, widget_id = input_id),
