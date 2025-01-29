@@ -228,7 +228,9 @@ testthat::test_that(
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
-      variant = "app_driver_pws_ui"
+      variant = "app_driver_pws_ui",
+      height = 1000,
+      width = 1000
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
@@ -320,7 +322,9 @@ testthat::test_that(
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
-      variant = "app_driver_pws_ui"
+      variant = "app_driver_pws_ui",
+      height = 1000,
+      width = 1000
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
@@ -400,7 +404,9 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver <- shinytest2::AppDriver$new(
     app_driver_pws(),
     name = "pws",
-    variant = "app_driver_pws_ui"
+    variant = "app_driver_pws_ui",
+    height = 1000,
+    width = 1000
   )
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 

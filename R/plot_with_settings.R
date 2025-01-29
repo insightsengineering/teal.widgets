@@ -6,6 +6,7 @@ plot_with_settings_deps <- function() {
     version = utils::packageVersion("teal.widgets"),
     package = "teal.widgets",
     src = "plot-with-settings",
+    script = "plot-with-settings.js",
     stylesheet = "plot-with-settings.css"
   )
 }
@@ -20,17 +21,6 @@ plot_with_settings_ui <- function(id) {
 
   tagList(
     plot_with_settings_deps(),
-    shiny::includeScript(system.file("plot-with-settings", "plot-with-settings.js", package = "teal.widgets")),
-    shiny::singleton(tags$head(
-      tags$script(
-        sprintf(
-          'establishPlotResizing("%s", "%s", "%s");',
-          ns("plot_main"), # graph parent id
-          ns("flex_width"), # session input$ variable name
-          ns("plot_modal_width") # session input$ variable name
-        )
-      )
-    )),
     tags$div(
       id = ns("plot-with-settings"),
       tags$div(
@@ -284,6 +274,14 @@ plot_with_settings_srv <- function(id,
 
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
+    shinyjs::runjs(
+      sprintf(
+        'establishPlotResizing("%s", "%s", "%s");',
+        ns("plot_main"), # graph parent id
+        ns("flex_width"), # session input$ variable name
+        ns("plot_modal_width") # session input$ variable name
+      )
+    )
     default_w <- function() session$clientData[[paste0("output_", ns("plot_main_width"))]]
     default_h <- function() session$clientData[[paste0("output_", ns("plot_main_height"))]]
 
