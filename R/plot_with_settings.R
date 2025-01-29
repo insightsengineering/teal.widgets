@@ -20,8 +20,8 @@ plot_with_settings_ui <- function(id) {
 
   tagList(
     plot_with_settings_deps(),
-    shiny::includeScript(system.file("plot-with-settings", "plot-with-settings.js", package = "teal.widgets")),
     shiny::singleton(tags$head(
+      shiny::includeScript(system.file("plot-with-settings", "plot-with-settings.js", package = "teal.widgets")),
       tags$script(
         sprintf(
           'establishPlotResizing("%s", "%s", "%s");',
