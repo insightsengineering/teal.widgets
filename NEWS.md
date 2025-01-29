@@ -1,4 +1,9 @@
-# teal.widgets 0.4.2.9029
+# teal.widgets 0.4.3
+
+### Miscellaneous
+* Improve the documentation for several functions by adding examples.
+* Fix several bugs related to plot resizing.
+* Fix the bug when `plot_width` not given in `plot_with_settings`.
 
 # teal.widgets 0.4.2
 
