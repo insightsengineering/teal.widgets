@@ -1,6 +1,5 @@
-/* teal.widgets draggable css */
-
 .draggableBuckets {
+  background: red !important;
   display: block;
   gap: 1rem;
   margin: 2px;
@@ -18,7 +17,7 @@
 }
 
 .element {
-  display:flex;
+  display: flex;
   justify-content: center;
   min-width: 1.5rem;
   background-color: hsl(0, 0%, 95%);
@@ -51,4 +50,3 @@
   position: absolute;
   margin-top: 8px;
 }
-

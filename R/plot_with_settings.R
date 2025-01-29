@@ -1,3 +1,16 @@
+#' @keywords internal
+#' @noRd
+plot_with_settings_deps <- function() {
+  htmltools::htmlDependency(
+    name = "teal-widgets-plot-with-settings",
+    version = utils::packageVersion("teal.widgets"),
+    package = "teal.widgets",
+    src = "plot-with-settings",
+    script = "plot-with-settings.js",
+    stylesheet = "plot-with-settings.css"
+  )
+}
+
 #' @name plot_with_settings
 #' @rdname plot_with_settings
 #' @export
@@ -7,8 +20,8 @@ plot_with_settings_ui <- function(id) {
   ns <- NS(id)
 
   tagList(
+    plot_with_settings_deps(),
     shiny::singleton(tags$head(
-      shiny::includeScript(system.file("js", "resize_plot.js", package = "teal.widgets")),
       tags$script(
         sprintf(
           'establishPlotResizing("%s", "%s", "%s");',
@@ -18,7 +31,6 @@ plot_with_settings_ui <- function(id) {
         )
       )
     )),
-    include_css_files("plot_with_settings"),
     tags$div(
       id = ns("plot-with-settings"),
       tags$div(

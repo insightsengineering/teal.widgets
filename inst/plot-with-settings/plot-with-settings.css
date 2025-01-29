@@ -1,5 +1,3 @@
-/* teal.widgets plot_with_settings css */
-
 .well .output {
   position: relative;
 }
@@ -36,16 +34,33 @@
   overflow-x: auto;
 }
 
-.plot-modal .modal .modal-dialog .modal-content .modal-body .plot-modal-sliders {
+.plot-modal
+  .modal
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .plot-modal-sliders {
   overflow: hidden;
 }
 
-.plot-modal .modal .modal-dialog .modal-content .modal-body .plot-modal-sliders div:nth-child(1) {
+.plot-modal
+  .modal
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .plot-modal-sliders
+  div:nth-child(1) {
   float: left;
   width: 40%;
 }
 
-.plot-modal .modal .modal-dialog .modal-content .modal-body .plot-modal-sliders div:nth-child(2) {
+.plot-modal
+  .modal
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .plot-modal-sliders
+  div:nth-child(2) {
   float: right;
   width: 40%;
 }

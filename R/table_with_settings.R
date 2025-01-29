@@ -1,3 +1,15 @@
+#' @keywords internal
+#' @noRd
+table_with_settings_deps <- function() {
+  htmltools::htmlDependency(
+    name = "teal-widgets-table-with-settings",
+    version = utils::packageVersion("teal.widgets"),
+    package = "teal.widgets",
+    src = "table-with-settings",
+    stylesheet = "table-with-settings.css"
+  )
+}
+
 #' @name table_with_settings
 #'
 #' @title `table_with_settings` module
@@ -17,7 +29,7 @@ table_with_settings_ui <- function(id, ...) {
   ns <- NS(id)
 
   tagList(
-    include_css_files("table_with_settings"),
+    table_with_settings_deps(),
     tags$div(
       id = ns("table-with-settings"),
       tags$div(

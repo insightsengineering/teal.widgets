@@ -1,8 +1,5 @@
 // this code alows the show R code "copy to clipbaord" button to work
-const copyToClipboard = (
-  elementIdToCopy,
-  onFailure = () => null
-) => {
+const copyToClipboard = (elementIdToCopy, onFailure = () => null) => {
   const copiedContent = document.getElementById(elementIdToCopy).innerText;
   if (navigator.clipboard) {
     navigator.clipboard.writeText(copiedContent).then(() => {
