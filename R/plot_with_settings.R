@@ -6,7 +6,6 @@ plot_with_settings_deps <- function() {
     version = utils::packageVersion("teal.widgets"),
     package = "teal.widgets",
     src = "plot-with-settings",
-    script = "plot_with_settings.js",
     stylesheet = "plot-with-settings.css"
   )
 }
@@ -21,6 +20,7 @@ plot_with_settings_ui <- function(id) {
 
   tagList(
     plot_with_settings_deps(),
+    shiny::includeScript(system.file("plot-with-settings", "plot-with-settings.js", package = "teal.widgets")),
     shiny::singleton(tags$head(
       tags$script(
         sprintf(
