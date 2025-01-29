@@ -6,7 +6,7 @@ plot_with_settings_deps <- function() {
     version = utils::packageVersion("teal.widgets"),
     package = "teal.widgets",
     src = "plot-with-settings",
-    script = "plot-with-settings.js",
+    script = "plot_with_settings.js",
     stylesheet = "plot-with-settings.css"
   )
 }
