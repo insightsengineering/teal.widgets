@@ -54,7 +54,7 @@ To solve the problem please use `::` to prefix it directly to a specific package
 
 ## Loading libraries and data
 
-```{r echo=TRUE, warning=FALSE, message=FALSE}
+```{r warning=FALSE}
 library(shiny)
 library(ggplot2)
 library(teal.widgets)
@@ -104,8 +104,8 @@ server <- function(input, output, session) {
   print(plot_expr)
   output$plot1 <- renderPlot(eval(plot_expr))
 }
-```
 
-```{r echo=TRUE, eval = FALSE}
-shinyApp(ui, server)
+if (interactive()) {
+  shinyApp(ui, server)
+}
 ```

@@ -40,7 +40,7 @@ For multi-table case, per table (`basic_table_args_table`) and then default (`ba
 
 ## Example - Single-Table Module
 
-```{r echo=TRUE}
+```{r warning=FALSE}
 library(shiny)
 library(teal.widgets)
 library(magrittr)
@@ -85,8 +85,8 @@ server <- function(input, output, session) {
   )
   output$table1 <- renderPrint(eval(table_expr))
 }
-```
 
-```{r echo=TRUE, eval = FALSE}
-shinyApp(ui, server)
+if (interactive()) {
+  shinyApp(ui, server)
+}
 ```
