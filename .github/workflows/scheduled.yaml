@@ -57,10 +57,6 @@ jobs:
       )
     name: revdepcheck ↩️
     uses: insightsengineering/r.pkg.template/.github/workflows/revdepcheck.yaml@main
-    with:
-      lookup-refs: |
-        insightsengineering/formatters
-        insightsengineering/rtables
   rhub:
     if: >
       github.event_name == 'schedule' || (
@@ -69,7 +65,3 @@ jobs:
       )
     name: R-hub 🌐
     uses: insightsengineering/r.pkg.template/.github/workflows/rhub.yaml@main
-    with:
-      lookup-refs: |
-        insightsengineering/formatters
-        insightsengineering/rtables
