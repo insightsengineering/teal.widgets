@@ -1,359 +1,359 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="ggplot2_args" timestamp="2025-01-31T17:58:58Z" hostname="8a8da277f01f" tests="33" skipped="0" failures="0" errors="0" time="0.381">
-    <testcase time="0.232" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
-    <testcase time="0.026" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
-    <testcase time="0.00700000000000001" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
+  <testsuite name="ggplot2_args" timestamp="2025-01-31T17:59:03Z" hostname="57ebf6b0e658" tests="33" skipped="0" failures="0" errors="0" time="0.36">
+    <testcase time="0.201" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
+    <testcase time="0.027" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
+    <testcase time="0.00800000000000001" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
+    <testcase time="0.001" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
     <testcase time="0.002" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
     <testcase time="0.001" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
-    <testcase time="0.001" classname="ggplot2_args" name="ggplot2_args_no_error_with_empty_inputs"/>
-    <testcase time="0.01" classname="ggplot2_args" name="ggplot2_args_function_returns_object_of_ggplot2_args_and_list_classes"/>
-    <testcase time="0.004" classname="ggplot2_args" name="ggplot2_args_accepts_named_lists_for_arguments_labs_and_theme"/>
+    <testcase time="0.011" classname="ggplot2_args" name="ggplot2_args_function_returns_object_of_ggplot2_args_and_list_classes"/>
+    <testcase time="0.00900000000000001" classname="ggplot2_args" name="ggplot2_args_accepts_named_lists_for_arguments_labs_and_theme"/>
     <testcase time="0.00900000000000001" classname="ggplot2_args" name="ggplot2_args_throws_error_when_argument_name_is_not_valid."/>
-    <testcase time="0.00900000000000001" classname="ggplot2_args" name="ggplot2_args_throws_error_when_argument_name_is_not_valid."/>
-    <testcase time="0.003" classname="ggplot2_args" name="resolve_ggplot2_args_accepts_empty_inputs"/>
+    <testcase time="0.005" classname="ggplot2_args" name="ggplot2_args_throws_error_when_argument_name_is_not_valid."/>
+    <testcase time="0.004" classname="ggplot2_args" name="resolve_ggplot2_args_accepts_empty_inputs"/>
     <testcase time="0.004" classname="ggplot2_args" name="resolve_ggplot2_args_support_NULL_inputs"/>
-    <testcase time="0.00600000000000001" classname="ggplot2_args" name="resolve_ggplot2_args_throws_error_with_empty_list"/>
+    <testcase time="0.00700000000000001" classname="ggplot2_args" name="resolve_ggplot2_args_throws_error_with_empty_list"/>
     <testcase time="0.005" classname="ggplot2_args" name="resolve_ggplot2_args_function_returns_object_of_ggplot2_args_and_list_classes"/>
     <testcase time="0.004" classname="ggplot2_args" name="parse_ggplot2_args_accepts_empty_inputs"/>
     <testcase time="0.001" classname="ggplot2_args" name="parse_ggplot2_args_accepts_empty_inputs"/>
-    <testcase time="0.00600000000000001" classname="ggplot2_args" name="parse_ggplot2_args_throws_error_with_empty_list"/>
-    <testcase time="0.004" classname="ggplot2_args" name="parse_ggplot2_args_accepts_an_empty_ggplot2_args_as_minimum_requirement."/>
-    <testcase time="0.003" classname="ggplot2_args" name="resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
-    <testcase time="0.002" classname="ggplot2_args" name="resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
-    <testcase time="0.002" classname="ggplot2_args" name="resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
-    <testcase time="0.003" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
-    <testcase time="0.002" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
-    <testcase time="0.00600000000000001" classname="ggplot2_args" name="resolve_ggplot2_args_prioritizes_user_plot_input_over_user_default_input."/>
+    <testcase time="0.00700000000000001" classname="ggplot2_args" name="parse_ggplot2_args_throws_error_with_empty_list"/>
+    <testcase time="0.003" classname="ggplot2_args" name="parse_ggplot2_args_accepts_an_empty_ggplot2_args_as_minimum_requirement."/>
+    <testcase time="0.005" classname="ggplot2_args" name="resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
+    <testcase time="0.001" classname="ggplot2_args" name="resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
+    <testcase time="0.00499999999999989" classname="ggplot2_args" name="resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
+    <testcase time="0.004" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
+    <testcase time="0.001" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_uses_input_from_only_end_user_provided_ggplot2_args_source"/>
+    <testcase time="0.004" classname="ggplot2_args" name="resolve_ggplot2_args_prioritizes_user_plot_input_over_user_default_input."/>
     <testcase time="0.004" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_prioritizes_user_plot_input_over_user_default_input."/>
-    <testcase time="0.003" classname="ggplot2_args" name="resolve_ggplot2_args_refers_to_global_teal.ggplot2_args_options_with_empty_input"/>
-    <testcase time="0.00399999999999989" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_refers_to_global_teal.ggplot2_args_options_with_empty_input"/>
+    <testcase time="0.004" classname="ggplot2_args" name="resolve_ggplot2_args_refers_to_global_teal.ggplot2_args_options_with_empty_input"/>
+    <testcase time="0.004" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_refers_to_global_teal.ggplot2_args_options_with_empty_input"/>
     <testcase time="0.005" classname="ggplot2_args" name="parse_ggplot2_args_deparse_needed_to_expand_ggplot2_objects_like_element_blank"/>
     <testcase time="0.003" classname="ggplot2_args" name="parse_ggplot2_args_deparse_needed_to_expand_ggplot2_objects_like_element_blank"/>
     <testcase time="0.004" classname="ggplot2_args" name="resolve_ggplot2_args_priorotizes_input_in_the_order_user_plot_user_default_teal.ggplot2_args_and_module_plot"/>
     <testcase time="0.004" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_priorotizes_input_in_the_order_user_plot_user_default_teal.ggplot2_args_and_module_plot"/>
     <testcase time="0.001" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_priorotizes_input_in_the_order_user_plot_user_default_teal.ggplot2_args_and_module_plot"/>
-    <testcase time="0.001" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_priorotizes_input_in_the_order_user_plot_user_default_teal.ggplot2_args_and_module_plot"/>
+    <testcase time="0.002" classname="ggplot2_args" name="parse_ggplot2_args_when_resolve_ggplot2_args_priorotizes_input_in_the_order_user_plot_user_default_teal.ggplot2_args_and_module_plot"/>
   </testsuite>
-  <testsuite name="optionalInput" timestamp="2025-01-31T17:58:58Z" hostname="8a8da277f01f" tests="7" skipped="0" failures="0" errors="0" time="0.078">
-    <testcase time="0.053" classname="optionalInput" name="optionalSliderInput_single_value"/>
-    <testcase time="0.00600000000000001" classname="optionalInput" name="optionalSliderInput_single_value_out_of_range"/>
+  <testsuite name="optionalInput" timestamp="2025-01-31T17:59:03Z" hostname="57ebf6b0e658" tests="7" skipped="0" failures="0" errors="0" time="0.084">
+    <testcase time="0.0570000000000001" classname="optionalInput" name="optionalSliderInput_single_value"/>
+    <testcase time="0.00700000000000001" classname="optionalInput" name="optionalSliderInput_single_value_out_of_range"/>
     <testcase time="0.004" classname="optionalInput" name="optionalSliderInput_double_value"/>
-    <testcase time="0.00600000000000001" classname="optionalInput" name="optionalSliderInput_double_value_out_of_range"/>
-    <testcase time="0.005" classname="optionalInput" name="optionalSliderInput_min_max_NA"/>
+    <testcase time="0.00700000000000001" classname="optionalInput" name="optionalSliderInput_double_value_out_of_range"/>
+    <testcase time="0.00600000000000001" classname="optionalInput" name="optionalSliderInput_min_max_NA"/>
     <testcase time="0.002" classname="optionalInput" name="optionalSliderInput_min_max_NA"/>
-    <testcase time="0.002" classname="optionalInput" name="optionalSliderInput_min_max_NA"/>
+    <testcase time="0.001" classname="optionalInput" name="optionalSliderInput_min_max_NA"/>
   </testsuite>
-  <testsuite name="plot_with_settings" timestamp="2025-01-31T17:58:58Z" hostname="8a8da277f01f" tests="72" skipped="0" failures="0" errors="0" time="5.311">
-    <testcase time="0.02" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_set_then_get_plot_dpi_returns_72_"/>
+  <testsuite name="plot_with_settings" timestamp="2025-01-31T17:59:03Z" hostname="57ebf6b0e658" tests="72" skipped="0" failures="0" errors="0" time="5.442">
+    <testcase time="0.0229999999999999" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_set_then_get_plot_dpi_returns_72_"/>
     <testcase time="0.003" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_at_least_24_then_get_plot_dpi_returns_its_value"/>
     <testcase time="0.001" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_at_least_24_then_get_plot_dpi_returns_its_value"/>
     <testcase time="0.002" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_at_least_24_then_get_plot_dpi_returns_its_value"/>
     <testcase time="0.001" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_at_least_24_then_get_plot_dpi_returns_its_value"/>
-    <testcase time="0.00399999999999989" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_less_24_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.004" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_less_24_then_get_plot_dpi_returns_72"/>
     <testcase time="0.001" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_less_24_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.002" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_less_24_then_get_plot_dpi_returns_72"/>
     <testcase time="0.001" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_less_24_then_get_plot_dpi_returns_72"/>
-    <testcase time="0.001" classname="plot_with_settings" name="if_teal.plot_dpi_is_an_integer_value_less_24_then_get_plot_dpi_returns_72"/>
-    <testcase time="0.004" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_an_integer_value_then_get_plot_dpi_returns_72"/>
-    <testcase time="0.001" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_an_integer_value_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.00400000000000011" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_an_integer_value_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.00099999999999989" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_an_integer_value_then_get_plot_dpi_returns_72"/>
+    <testcase time="0.00100000000000011" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_an_integer_value_then_get_plot_dpi_returns_72"/>
     <testcase time="0.002" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_an_integer_value_then_get_plot_dpi_returns_72"/>
-    <testcase time="0.001" classname="plot_with_settings" name="if_teal.plot_dpi_is_not_an_integer_value_then_get_plot_dpi_returns_72"/>
-    <testcase time="0.277" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
-    <testcase time="0.0479999999999998" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
-    <testcase time="0.0730000000000002" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
-    <testcase time="0.00499999999999989" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
-    <testcase time="0.00700000000000012" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
+    <testcase time="0.23" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
+    <testcase time="0.0459999999999998" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
+    <testcase time="0.144" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
     <testcase time="0.004" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
-    <testcase time="0.012" classname="plot_with_settings" name="clean_brushedPoints_returns_error_with_wrong_input"/>
-    <testcase time="0.004" classname="plot_with_settings" name="clean_brushedPoints_returns_error_with_wrong_input"/>
-    <testcase time="0.00499999999999989" classname="plot_with_settings" name="clean_brushedPoints_returns_error_with_wrong_input"/>
-    <testcase time="0.004" classname="plot_with_settings" name="clean_brushedPoints_returns_a_data_frame_with_minimal_correct_input"/>
+    <testcase time="0.00600000000000001" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
+    <testcase time="0.004" classname="plot_with_settings" name="print_plot_is_able_to_plot_different_types_of_graphics"/>
+    <testcase time="0.00800000000000001" classname="plot_with_settings" name="clean_brushedPoints_returns_error_with_wrong_input"/>
+    <testcase time="0.00600000000000001" classname="plot_with_settings" name="clean_brushedPoints_returns_error_with_wrong_input"/>
+    <testcase time="0.00600000000000001" classname="plot_with_settings" name="clean_brushedPoints_returns_error_with_wrong_input"/>
+    <testcase time="0.00499999999999989" classname="plot_with_settings" name="clean_brushedPoints_returns_a_data_frame_with_minimal_correct_input"/>
+    <testcase time="0.004" classname="plot_with_settings" name="clean_brushedPoints_removal_of_NA_points"/>
+    <testcase time="0.00300000000000011" classname="plot_with_settings" name="clean_brushedPoints_removal_of_NA_points"/>
     <testcase time="0.00299999999999989" classname="plot_with_settings" name="clean_brushedPoints_removal_of_NA_points"/>
-    <testcase time="0.002" classname="plot_with_settings" name="clean_brushedPoints_removal_of_NA_points"/>
-    <testcase time="0.002" classname="plot_with_settings" name="clean_brushedPoints_removal_of_NA_points"/>
-    <testcase time="0.176" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
-    <testcase time="0.0069999999999999" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
-    <testcase time="0.01" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
+    <testcase time="0.196" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
+    <testcase time="0.00800000000000001" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
+    <testcase time="0.0110000000000001" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
     <testcase time="0.00600000000000001" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
-    <testcase time="0.012" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
+    <testcase time="0.0129999999999999" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
     <testcase time="0.00600000000000001" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_with_default_name"/>
-    <testcase time="0.0529999999999999" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
-    <testcase time="0.00700000000000012" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
-    <testcase time="0.0109999999999999" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
+    <testcase time="0.056" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
+    <testcase time="0.0069999999999999" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
+    <testcase time="0.012" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
     <testcase time="0.00600000000000001" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
-    <testcase time="0.0110000000000001" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
+    <testcase time="0.012" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
     <testcase time="0.00600000000000001" classname="plot_with_settings" name="type_download_srv_download_all_types_of_files_and_change_the_name"/>
-    <testcase time="0.0509999999999999" classname="plot_with_settings" name="type_download_srv_downloads_a_png_file_with_different_dimensions"/>
-    <testcase time="0.0529999999999999" classname="plot_with_settings" name="type_download_srv_downloads_a_png_file_using_default_dimensions_input_dimensions_are_NULL"/>
-    <testcase time="0.0190000000000001" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
-    <testcase time="0.014" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
-    <testcase time="0.014" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.0530000000000002" classname="plot_with_settings" name="type_download_srv_downloads_a_png_file_with_different_dimensions"/>
+    <testcase time="0.0569999999999999" classname="plot_with_settings" name="type_download_srv_downloads_a_png_file_using_default_dimensions_input_dimensions_are_NULL"/>
+    <testcase time="0.02" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.016" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
     <testcase time="0.0149999999999999" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
-    <testcase time="0.0329999999999999" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
-    <testcase time="0.014" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
-    <testcase time="0.014" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.018" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.0149999999999999" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.0310000000000001" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.016" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
     <testcase time="0.0150000000000001" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
-    <testcase time="0.014" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
-    <testcase time="0.449" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_base"/>
-    <testcase time="0.0140000000000002" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_base"/>
-    <testcase time="0.484" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_ggplot2"/>
-    <testcase time="0.105" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_ggplot2"/>
-    <testcase time="0.658" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_grob"/>
-    <testcase time="0.0739999999999998" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_grob"/>
-    <testcase time="0.428" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_trellis"/>
-    <testcase time="0.0380000000000003" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_trellis"/>
-    <testcase time="0.393" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_WRONG_type"/>
-    <testcase time="0.0120000000000005" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_WRONG_type"/>
-    <testcase time="0.481999999999999" classname="plot_with_settings" name="plot_with_settings_srv_expand_no_error"/>
-    <testcase time="0.419" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_from_modal"/>
-    <testcase time="0.0169999999999995" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_from_modal"/>
-    <testcase time="0.33" classname="plot_with_settings" name="plot_with_settings_srv_returns_the_click_ggplot2_functionalities_metadata"/>
+    <testcase time="0.0149999999999997" classname="plot_with_settings" name="plot_with_settings_srv_assert_error"/>
+    <testcase time="0.447" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_base"/>
+    <testcase time="0.0130000000000003" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_base"/>
+    <testcase time="0.498" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_ggplot2"/>
+    <testcase time="0.106" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_ggplot2"/>
+    <testcase time="0.66" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_grob"/>
+    <testcase time="0.0750000000000002" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_grob"/>
+    <testcase time="0.532" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_trellis"/>
+    <testcase time="0.0289999999999999" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_trellis"/>
+    <testcase time="0.372" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_WRONG_type"/>
+    <testcase time="0.0129999999999999" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_WRONG_type"/>
+    <testcase time="0.361000000000001" classname="plot_with_settings" name="plot_with_settings_srv_expand_no_error"/>
+    <testcase time="0.436" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_from_modal"/>
+    <testcase time="0.0179999999999998" classname="plot_with_settings" name="plot_with_settings_srv_set_dimensions_and_download_a_png_file_from_modal"/>
+    <testcase time="0.359" classname="plot_with_settings" name="plot_with_settings_srv_returns_the_click_ggplot2_functionalities_metadata"/>
+    <testcase time="0.00199999999999978" classname="plot_with_settings" name="plot_with_settings_srv_returns_the_click_ggplot2_functionalities_metadata"/>
     <testcase time="0.00300000000000011" classname="plot_with_settings" name="plot_with_settings_srv_returns_the_click_ggplot2_functionalities_metadata"/>
     <testcase time="0.00199999999999978" classname="plot_with_settings" name="plot_with_settings_srv_returns_the_click_ggplot2_functionalities_metadata"/>
-    <testcase time="0.00199999999999978" classname="plot_with_settings" name="plot_with_settings_srv_returns_the_click_ggplot2_functionalities_metadata"/>
-    <testcase time="0.0920000000000005" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
-    <testcase time="0.0289999999999999" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
-    <testcase time="0.136" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
-    <testcase time="0.0309999999999997" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
+    <testcase time="0.101" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
     <testcase time="0.0310000000000006" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
-    <testcase time="0.0269999999999992" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
+    <testcase time="0.154999999999999" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
+    <testcase time="0.0360000000000005" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
+    <testcase time="0.0329999999999995" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
+    <testcase time="0.0350000000000001" classname="plot_with_settings" name="plot_with_settings_srv_and_plot_type_reactive_types"/>
   </testsuite>
-  <testsuite name="plot_with_settings_ui" timestamp="2025-01-31T17:59:04Z" hostname="8a8da277f01f" tests="63" skipped="0" failures="0" errors="0" time="42.085">
-    <testcase time="0.0110000000000001" classname="plot_with_settings_ui" name="type_download_ui_returns_shiny.tag_"/>
-    <testcase time="0.0140000000000002" classname="plot_with_settings_ui" name="plot_with_settings_ui_returns_shiny.tag.list_"/>
-    <testcase time="3.678" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_initializes_with_a_plot_and_toggle_download_and_resize_buttons"/>
-    <testcase time="0.00899999999999856" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_initializes_with_a_plot_and_toggle_download_and_resize_buttons"/>
-    <testcase time="0.00500000000000078" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_initializes_with_a_plot_and_toggle_download_and_resize_buttons"/>
+  <testsuite name="plot_with_settings_ui" timestamp="2025-01-31T17:59:08Z" hostname="57ebf6b0e658" tests="63" skipped="0" failures="0" errors="0" time="40.835">
+    <testcase time="0.0120000000000005" classname="plot_with_settings_ui" name="type_download_ui_returns_shiny.tag_"/>
+    <testcase time="0.00899999999999945" classname="plot_with_settings_ui" name="plot_with_settings_ui_returns_shiny.tag.list_"/>
+    <testcase time="3.823" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_initializes_with_a_plot_and_toggle_download_and_resize_buttons"/>
     <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_initializes_with_a_plot_and_toggle_download_and_resize_buttons"/>
-    <testcase time="2.761" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_buttons_have_proper_FA_icons_and_two_of_them_are_dropdowns"/>
-    <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_buttons_have_proper_FA_icons_and_two_of_them_are_dropdowns"/>
+    <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_initializes_with_a_plot_and_toggle_download_and_resize_buttons"/>
+    <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_initializes_with_a_plot_and_toggle_download_and_resize_buttons"/>
+    <testcase time="2.763" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_buttons_have_proper_FA_icons_and_two_of_them_are_dropdowns"/>
+    <testcase time="0.00699999999999967" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_buttons_have_proper_FA_icons_and_two_of_them_are_dropdowns"/>
     <testcase time="0.00500000000000078" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_buttons_have_proper_FA_icons_and_two_of_them_are_dropdowns"/>
+    <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_buttons_have_proper_FA_icons_and_two_of_them_are_dropdowns"/>
+    <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_buttons_have_proper_FA_icons_and_two_of_them_are_dropdowns"/>
     <testcase time="0.00499999999999901" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_buttons_have_proper_FA_icons_and_two_of_them_are_dropdowns"/>
     <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_buttons_have_proper_FA_icons_and_two_of_them_are_dropdowns"/>
-    <testcase time="0.00500000000000078" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_buttons_have_proper_FA_icons_and_two_of_them_are_dropdowns"/>
-    <testcase time="0.00499999999999901" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_buttons_have_proper_FA_icons_and_two_of_them_are_dropdowns"/>
-    <testcase time="2.719" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="2.7" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.00599999999999845" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
     <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.00499999999999901" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.532000000000002" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.0209999999999972" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.533000000000001" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.0219999999999985" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
     <testcase time="0.00500000000000256" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
     <testcase time="0.000999999999997669" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
     <testcase time="0.00400000000000134" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.218" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.00199999999999889" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="3.089" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="0.00500000000000256" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="1.308" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="0.00499999999999901" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="0.190999999999999" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.00900000000000034" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.00799999999999912" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.00300000000000011" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="2.632" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="0.00799999999999912" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="0.00900000000000034" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="1.359" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="0.0100000000000016" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
     <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
     <testcase time="0.00900000000000034" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="0.00499999999999901" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="0.150000000000002" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="0.00499999999999901" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="0.00399999999999778" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="0.140000000000001" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
     <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="2.751" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
-    <testcase time="0.00500000000000256" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
-    <testcase time="1.832" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
-    <testcase time="0.00599999999999667" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
-    <testcase time="0.00400000000000134" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
-    <testcase time="0.0100000000000016" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
-    <testcase time="0.0109999999999992" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
-    <testcase time="0.201000000000001" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
+    <testcase time="0.00499999999999901" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_expand_button_opens_a_modal_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="2.719" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
     <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
-    <testcase time="2.734" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_resize_button_opens_a_dropdown_menu_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="0.728000000000002" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_resize_button_opens_a_dropdown_menu_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="0.00399999999999778" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_resize_button_opens_a_dropdown_menu_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="0.216000000000001" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_resize_button_opens_a_dropdown_menu_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="1.751" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
+    <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
+    <testcase time="0.00400000000000134" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
+    <testcase time="0.0109999999999992" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
+    <testcase time="0.00400000000000134" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
+    <testcase time="0.192" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
+    <testcase time="0.0069999999999979" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_download_button_in_expand_modal_opens_a_download_dropdown"/>
+    <testcase time="2.642" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_resize_button_opens_a_dropdown_menu_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="0.698999999999998" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_resize_button_opens_a_dropdown_menu_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
     <testcase time="0.00499999999999901" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_resize_button_opens_a_dropdown_menu_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
-    <testcase time="2.758" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_it_is_possible_to_set_height_and_width_for_the_plot_on_the_third_button_dropdown_menu_without_errors"/>
-    <testcase time="3.395" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_clicking_download_download_button_downloads_image_in_a_specified_format"/>
-    <testcase time="4.07" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_expanded_image_can_be_resized"/>
+    <testcase time="0.141000000000002" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_resize_button_opens_a_dropdown_menu_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="0.00600000000000023" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_the_click_on_the_resize_button_opens_a_dropdown_menu_plot_height_plot_width_plot_download_dropdown_and_dismiss_button"/>
+    <testcase time="2.772" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_it_is_possible_to_set_height_and_width_for_the_plot_on_the_third_button_dropdown_menu_without_errors"/>
+    <testcase time="3.284" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_clicking_download_download_button_downloads_image_in_a_specified_format"/>
+    <testcase time="3.852" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_expanded_image_can_be_resized"/>
     <testcase time="0.00799999999999557" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_expanded_image_can_be_resized"/>
-    <testcase time="0.236000000000004" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_expanded_image_can_be_resized"/>
-    <testcase time="0.00900000000000034" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_expanded_image_can_be_resized"/>
+    <testcase time="0.212000000000003" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_expanded_image_can_be_resized"/>
     <testcase time="0.00999999999999801" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_expanded_image_can_be_resized"/>
-    <testcase time="4.682" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_expanded_image_can_be_downloaded"/>
-    <testcase time="3.448" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_main_image_can_be_resized"/>
-    <testcase time="0.00800000000000267" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_main_image_can_be_resized"/>
-    <testcase time="0.293999999999997" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_main_image_can_be_resized"/>
-    <testcase time="0.00800000000000267" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_main_image_can_be_resized"/>
+    <testcase time="0.0110000000000028" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_expanded_image_can_be_resized"/>
+    <testcase time="4.54499999999999" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_expanded_image_can_be_downloaded"/>
+    <testcase time="3.42400000000001" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_main_image_can_be_resized"/>
+    <testcase time="0.00899999999999324" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_main_image_can_be_resized"/>
+    <testcase time="0.159000000000006" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_main_image_can_be_resized"/>
+    <testcase time="0.00900000000000034" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_main_image_can_be_resized"/>
     <testcase time="0.0109999999999957" classname="plot_with_settings_ui" name="e2e_teal.widgets_plot_with_settings_main_image_can_be_resized"/>
   </testsuite>
-  <testsuite name="standard_layout" timestamp="2025-01-31T17:59:46Z" hostname="8a8da277f01f" tests="11" skipped="0" failures="0" errors="0" time="0.118">
-    <testcase time="0.0700000000000003" classname="standard_layout" name="Input_validation"/>
-    <testcase time="0.00500000000000256" classname="standard_layout" name="Input_validation"/>
-    <testcase time="0.00399999999999778" classname="standard_layout" name="Input_validation"/>
+  <testsuite name="standard_layout" timestamp="2025-01-31T17:59:49Z" hostname="57ebf6b0e658" tests="11" skipped="0" failures="0" errors="0" time="0.115">
+    <testcase time="0.0679999999999978" classname="standard_layout" name="Input_validation"/>
     <testcase time="0.00500000000000256" classname="standard_layout" name="Input_validation"/>
     <testcase time="0.00500000000000256" classname="standard_layout" name="Input_validation"/>
-    <testcase time="0.00399999999999778" classname="standard_layout" name="Input_validation"/>
+    <testcase time="0.00499999999999545" classname="standard_layout" name="Input_validation"/>
+    <testcase time="0.00500000000000256" classname="standard_layout" name="Input_validation"/>
+    <testcase time="0.00500000000000256" classname="standard_layout" name="Input_validation"/>
+    <testcase time="0.00600000000000023" classname="standard_layout" name="Basic_output"/>
+    <testcase time="0.00300000000000011" classname="standard_layout" name="Basic_output"/>
+    <testcase time="0.00399999999999778" classname="standard_layout" name="Basic_output"/>
+    <testcase time="0.00399999999999778" classname="standard_layout" name="Basic_output"/>
     <testcase time="0.00500000000000256" classname="standard_layout" name="Basic_output"/>
-    <testcase time="0.00399999999999778" classname="standard_layout" name="Basic_output"/>
-    <testcase time="0.00799999999999557" classname="standard_layout" name="Basic_output"/>
-    <testcase time="0.00400000000000489" classname="standard_layout" name="Basic_output"/>
-    <testcase time="0.00399999999999778" classname="standard_layout" name="Basic_output"/>
   </testsuite>
-  <testsuite name="table_args" timestamp="2025-01-31T17:59:46Z" hostname="8a8da277f01f" tests="30" skipped="0" failures="0" errors="0" time="0.363">
-    <testcase time="0.253" classname="table_args" name="basic_table_args_returns_empty_basic_table_args_with_empty_inputs"/>
-    <testcase time="0.000999999999997669" classname="table_args" name="basic_table_args_returns_empty_basic_table_args_with_empty_inputs"/>
-    <testcase time="0.00500000000000256" classname="table_args" name="basic_table_args_function_returns_list_of_the_basic_table_args_class"/>
-    <testcase time="0.00300000000000011" classname="table_args" name="basic_table_args_rtables_arguments_validation_correct_input"/>
-    <testcase time="0.0069999999999979" classname="table_args" name="basic_table_args_rtables_arguments_validation_incorrect_input"/>
+  <testsuite name="table_args" timestamp="2025-01-31T17:59:49Z" hostname="57ebf6b0e658" tests="30" skipped="0" failures="0" errors="0" time="0.383">
+    <testcase time="0.256999999999998" classname="table_args" name="basic_table_args_returns_empty_basic_table_args_with_empty_inputs"/>
+    <testcase time="0.00100000000000477" classname="table_args" name="basic_table_args_returns_empty_basic_table_args_with_empty_inputs"/>
+    <testcase time="0.00499999999999545" classname="table_args" name="basic_table_args_function_returns_list_of_the_basic_table_args_class"/>
+    <testcase time="0.0159999999999982" classname="table_args" name="basic_table_args_rtables_arguments_validation_correct_input"/>
+    <testcase time="0.007000000000005" classname="table_args" name="basic_table_args_rtables_arguments_validation_incorrect_input"/>
     <testcase time="0.00300000000000011" classname="table_args" name="resolve_basic_table_args_returns_empty_basic_table_args_with_empty_input"/>
-    <testcase time="0.007000000000005" classname="table_args" name="resolve_basic_table_args_error_with_empty_list_as_need_a_basic_table_args_class"/>
+    <testcase time="0.0069999999999979" classname="table_args" name="resolve_basic_table_args_error_with_empty_list_as_need_a_basic_table_args_class"/>
     <testcase time="0.00300000000000011" classname="table_args" name="resolve_basic_table_args_need_a_basic_table_args_class_or_NULL_for_each_of_its_arguments"/>
-    <testcase time="0.000999999999997669" classname="table_args" name="resolve_basic_table_args_need_a_basic_table_args_class_or_NULL_for_each_of_its_arguments"/>
-    <testcase time="0.00399999999999778" classname="table_args" name="resolve_basic_table_args_returns_empty_basic_table_args_with_any_list_input_in_basic_table_args"/>
-    <testcase time="0.00100000000000477" classname="table_args" name="resolve_basic_table_args_returns_empty_basic_table_args_with_any_list_input_in_basic_table_args"/>
-    <testcase time="0.00900000000000034" classname="table_args" name="resolve_basic_table_args_error_with_any_list_or_NULL_input_in_its_arguments_when_it_is_not_only_one"/>
-    <testcase time="0.00599999999999312" classname="table_args" name="resolve_basic_table_args_error_with_any_list_or_NULL_input_in_its_arguments_when_it_is_not_only_one"/>
+    <testcase time="0.00200000000000244" classname="table_args" name="resolve_basic_table_args_need_a_basic_table_args_class_or_NULL_for_each_of_its_arguments"/>
+    <testcase time="0.00300000000000011" classname="table_args" name="resolve_basic_table_args_returns_empty_basic_table_args_with_any_list_input_in_basic_table_args"/>
+    <testcase time="0.00199999999999534" classname="table_args" name="resolve_basic_table_args_returns_empty_basic_table_args_with_any_list_input_in_basic_table_args"/>
     <testcase time="0.0100000000000051" classname="table_args" name="resolve_basic_table_args_error_with_any_list_or_NULL_input_in_its_arguments_when_it_is_not_only_one"/>
+    <testcase time="0.0069999999999979" classname="table_args" name="resolve_basic_table_args_error_with_any_list_or_NULL_input_in_its_arguments_when_it_is_not_only_one"/>
+    <testcase time="0.00600000000000023" classname="table_args" name="resolve_basic_table_args_error_with_any_list_or_NULL_input_in_its_arguments_when_it_is_not_only_one"/>
     <testcase time="0.00399999999999778" classname="table_args" name="resolve_basic_table_args_support_NULL_inputs"/>
+    <testcase time="0.00500000000000256" classname="table_args" name="resolve_basic_table_args_returns_object_of_basic_table_args_and_list_classes"/>
     <testcase time="0.00399999999999778" classname="table_args" name="resolve_basic_table_args_returns_object_of_basic_table_args_and_list_classes"/>
-    <testcase time="0.00300000000000011" classname="table_args" name="resolve_basic_table_args_returns_object_of_basic_table_args_and_list_classes"/>
-    <testcase time="0.007000000000005" classname="table_args" name="parse_basic_table_args_throws_error_with_empty_list"/>
-    <testcase time="0.00300000000000011" classname="table_args" name="parse_basic_table_args_returns_language_object_of_empty_rtables_basic_table_call"/>
+    <testcase time="0.0069999999999979" classname="table_args" name="parse_basic_table_args_throws_error_with_empty_list"/>
+    <testcase time="0.00400000000000489" classname="table_args" name="parse_basic_table_args_returns_language_object_of_empty_rtables_basic_table_call"/>
     <testcase time="0.000999999999997669" classname="table_args" name="parse_basic_table_args_returns_language_object_of_empty_rtables_basic_table_call"/>
     <testcase time="0.00200000000000244" classname="table_args" name="parse_basic_table_args_returns_language_object_of_empty_rtables_basic_table_call"/>
-    <testcase time="0.00300000000000011" classname="table_args" name="resolve_basic_table_args_uses_input_from_only_end_user_provided_basic_table_args_source"/>
-    <testcase time="0.00199999999999534" classname="table_args" name="resolve_basic_table_args_uses_input_from_only_end_user_provided_basic_table_args_source"/>
-    <testcase time="0.00100000000000477" classname="table_args" name="resolve_basic_table_args_uses_input_from_only_end_user_provided_basic_table_args_source"/>
-    <testcase time="0.00399999999999778" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_uses_inputfrom_only_end_user_provided_basic_table_args_source"/>
-    <testcase time="0.000999999999997669" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_uses_inputfrom_only_end_user_provided_basic_table_args_source"/>
-    <testcase time="0.00400000000000489" classname="table_args" name="resolve_basic_table_args_refers_to_global_teal.basic_table_args_options_with_empty_input"/>
-    <testcase time="0.00300000000000011" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_refers_to_global_teal.basic_table_argsoptions_with_empty_input"/>
-    <testcase time="0.00399999999999778" classname="table_args" name="resolve_basic_table_args_prioritizes_input_in_the_order_user_table_user_default_teal.basic_table_args_and_module_plot"/>
-    <testcase time="0.00399999999999778" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_prioritizes_input_in_the_order_user_table_user_default_teal.basic_table_args_and_module_plot"/>
+    <testcase time="0.00399999999999778" classname="table_args" name="resolve_basic_table_args_uses_input_from_only_end_user_provided_basic_table_args_source"/>
+    <testcase time="0.000999999999997669" classname="table_args" name="resolve_basic_table_args_uses_input_from_only_end_user_provided_basic_table_args_source"/>
+    <testcase time="0.00200000000000244" classname="table_args" name="resolve_basic_table_args_uses_input_from_only_end_user_provided_basic_table_args_source"/>
+    <testcase time="0.00300000000000011" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_uses_inputfrom_only_end_user_provided_basic_table_args_source"/>
+    <testcase time="0.00200000000000244" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_uses_inputfrom_only_end_user_provided_basic_table_args_source"/>
+    <testcase time="0.00399999999999778" classname="table_args" name="resolve_basic_table_args_refers_to_global_teal.basic_table_args_options_with_empty_input"/>
+    <testcase time="0.00399999999999778" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_refers_to_global_teal.basic_table_argsoptions_with_empty_input"/>
+    <testcase time="0.00300000000000011" classname="table_args" name="resolve_basic_table_args_prioritizes_input_in_the_order_user_table_user_default_teal.basic_table_args_and_module_plot"/>
+    <testcase time="0.00400000000000489" classname="table_args" name="parse_basic_table_args_when_resolve_basic_table_args_prioritizes_input_in_the_order_user_table_user_default_teal.basic_table_args_and_module_plot"/>
   </testsuite>
-  <testsuite name="table_with_settings" timestamp="2025-01-31T17:59:46Z" hostname="8a8da277f01f" tests="28" skipped="0" failures="0" errors="0" time="4.026">
-    <testcase time="0.0189999999999984" classname="table_with_settings" name="table_with_settings_srv_assertions"/>
-    <testcase time="0.0180000000000007" classname="table_with_settings" name="table_with_settings_srv_assertions"/>
-    <testcase time="0.437000000000005" classname="table_with_settings" name="table_with_settings_srv_hiding_works"/>
-    <testcase time="0.475999999999999" classname="table_with_settings" name="table_with_settings_srv_return_html_table"/>
+  <testsuite name="table_with_settings" timestamp="2025-01-31T17:59:50Z" hostname="57ebf6b0e658" tests="28" skipped="0" failures="0" errors="0" time="4.208">
+    <testcase time="0.0219999999999985" classname="table_with_settings" name="table_with_settings_srv_assertions"/>
+    <testcase time="0.0169999999999959" classname="table_with_settings" name="table_with_settings_srv_assertions"/>
+    <testcase time="0.454000000000001" classname="table_with_settings" name="table_with_settings_srv_hiding_works"/>
+    <testcase time="0.307000000000002" classname="table_with_settings" name="table_with_settings_srv_return_html_table"/>
     <testcase time="0.00900000000000034" classname="table_with_settings" name="table_with_settings_srv_return_html_table"/>
-    <testcase time="0.305" classname="table_with_settings" name="table_with_settings_srv_expand_works"/>
-    <testcase time="0.171999999999997" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
-    <testcase time="0.097999999999999" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
-    <testcase time="0.100000000000001" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
-    <testcase time="0.027000000000001" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
-    <testcase time="0.0720000000000027" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
+    <testcase time="0.324999999999996" classname="table_with_settings" name="table_with_settings_srv_expand_works"/>
+    <testcase time="0.182000000000002" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
+    <testcase time="0.108999999999995" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
+    <testcase time="0.109000000000002" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
+    <testcase time="0.0290000000000035" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
+    <testcase time="0.0859999999999985" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
     <testcase time="0.0379999999999967" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_custom_name"/>
-    <testcase time="0.145000000000003" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
-    <testcase time="0.0379999999999967" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
-    <testcase time="0.0949999999999989" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
-    <testcase time="0.027000000000001" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
-    <testcase time="0.0750000000000028" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
-    <testcase time="0.0349999999999966" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
-    <testcase time="0.256999999999998" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
-    <testcase time="0.0860000000000056" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
-    <testcase time="0.230999999999995" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
-    <testcase time="0.027000000000001" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
-    <testcase time="0.182000000000002" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
-    <testcase time="0.0889999999999986" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
-    <testcase time="0.245000000000005" classname="table_with_settings" name="type_download_srv_table_pagination_lpp_to_small"/>
-    <testcase time="0.332999999999998" classname="table_with_settings" name="type_download_srv_table_pagination_lpp_to_small"/>
-    <testcase time="0.141999999999996" classname="table_with_settings" name="type_download_srv_table_content_of_the_table_csv"/>
-    <testcase time="0.248000000000005" classname="table_with_settings" name="type_download_srv_table_content_of_the_table_txt"/>
+    <testcase time="0.166000000000004" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.036999999999999" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.106000000000002" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.0289999999999964" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.0829999999999984" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.0380000000000038" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_no_name"/>
+    <testcase time="0.289999999999999" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.0940000000000012" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.274999999999999" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.0289999999999964" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.201000000000001" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.0910000000000011" classname="table_with_settings" name="type_download_srv_table_downloading_different_output_types_pagination"/>
+    <testcase time="0.276999999999994" classname="table_with_settings" name="type_download_srv_table_pagination_lpp_to_small"/>
+    <testcase time="0.365000000000002" classname="table_with_settings" name="type_download_srv_table_pagination_lpp_to_small"/>
+    <testcase time="0.161999999999999" classname="table_with_settings" name="type_download_srv_table_content_of_the_table_csv"/>
+    <testcase time="0.277999999999999" classname="table_with_settings" name="type_download_srv_table_content_of_the_table_txt"/>
   </testsuite>
-  <testsuite name="table_with_settings_ui" timestamp="2025-01-31T17:59:50Z" hostname="8a8da277f01f" tests="62" skipped="0" failures="0" errors="0" time="31.338">
-    <testcase time="0.0150000000000006" classname="table_with_settings_ui" name="table_with_settings_ui_returns_shiny.tag.list_"/>
-    <testcase time="2.39899999999999" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_is_initialized_with_2_buttons_and_a_table"/>
+  <testsuite name="table_with_settings_ui" timestamp="2025-01-31T17:59:54Z" hostname="57ebf6b0e658" tests="62" skipped="0" failures="0" errors="0" time="31.992">
+    <testcase time="0.0160000000000053" classname="table_with_settings_ui" name="table_with_settings_ui_returns_shiny.tag.list_"/>
+    <testcase time="2.477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_is_initialized_with_2_buttons_and_a_table"/>
     <testcase time="0.00600000000000023" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_is_initialized_with_2_buttons_and_a_table"/>
     <testcase time="0.00600000000000023" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_is_initialized_with_2_buttons_and_a_table"/>
-    <testcase time="2.434" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_buttons_have_proper_FA_icons_and_one_of_them_is_dropdown"/>
+    <testcase time="2.497" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_buttons_have_proper_FA_icons_and_one_of_them_is_dropdown"/>
+    <testcase time="0.00500000000000256" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_buttons_have_proper_FA_icons_and_one_of_them_is_dropdown"/>
     <testcase time="0.00600000000000023" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_buttons_have_proper_FA_icons_and_one_of_them_is_dropdown"/>
     <testcase time="0.00499999999999545" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_buttons_have_proper_FA_icons_and_one_of_them_is_dropdown"/>
-    <testcase time="0.00600000000000023" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_buttons_have_proper_FA_icons_and_one_of_them_is_dropdown"/>
-    <testcase time="2.491" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="2.504" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
     <testcase time="0.00600000000000023" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.00600000000000023" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.545999999999999" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.0100000000000051" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.00399999999999778" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.000999999999997669" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.0069999999999979" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.555999999999997" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.0110000000000028" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.00800000000000267" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
     <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.00499999999999545" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.18" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.00399999999999778" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.185000000000002" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="0.0069999999999979" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
     <testcase time="0.00600000000000023" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.00600000000000023" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="0.00200000000000244" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
-    <testcase time="2.978" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_first_button"/>
-    <testcase time="0.000999999999997669" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_first_button"/>
-    <testcase time="0.549999999999997" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_first_button"/>
-    <testcase time="2.46100000000001" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
-    <testcase time="1.074" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
+    <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_the_download_button_opens_a_download_menu_with_file_type_file_name_and_download_button"/>
+    <testcase time="3.015" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_first_button"/>
+    <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_first_button"/>
+    <testcase time="0.571999999999996" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_first_button"/>
+    <testcase time="2.499" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
+    <testcase time="1.08300000000001" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
     <testcase time="0.000999999999990564" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
-    <testcase time="0.00200000000000955" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
-    <testcase time="0.000999999999990564" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
-    <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
-    <testcase time="0.531999999999996" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
-    <testcase time="0.00400000000000489" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
     <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
     <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
     <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
+    <testcase time="0.527000000000001" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
+    <testcase time="0.00400000000000489" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
+    <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
     <testcase time="0.000999999999990564" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
-    <testcase time="2.438" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
-    <testcase time="1.60499999999999" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
-    <testcase time="0.0100000000000051" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
-    <testcase time="0.00400000000000489" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
-    <testcase time="0.000999999999990564" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
-    <testcase time="0.00200000000000955" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
-    <testcase time="0.00399999999999068" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
-    <testcase time="0.178000000000011" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
-    <testcase time="0.00600000000000023" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
-    <testcase time="0.00600000000000023" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
+    <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
+    <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_the_click_on_expand_button_opens_a_modal_with_a_table"/>
+    <testcase time="2.55900000000001" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
+    <testcase time="1.63499999999999" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
+    <testcase time="0.0130000000000052" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
+    <testcase time="0.00499999999999545" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
+    <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
     <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
-    <testcase time="2.45999999999999" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_modal_on_the_second_button"/>
-    <testcase time="1.628" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_modal_on_the_second_button"/>
-    <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_modal_on_the_second_button"/>
-    <testcase time="3.083" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_download_button_downloads_table_in_a_specified_format"/>
-    <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_download_button_downloads_table_in_a_specified_format"/>
-    <testcase time="0.00200000000000955" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_download_button_downloads_table_in_a_specified_format"/>
-    <testcase time="0.000999999999990564" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_download_button_downloads_table_in_a_specified_format"/>
+    <testcase time="0.00400000000000489" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
+    <testcase time="0.185999999999993" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
+    <testcase time="0.007000000000005" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
+    <testcase time="0.007000000000005" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
+    <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_in_an_expand_modal_opens_dropdown_menu_with_dwnl_settings_such_as_file_type_file_name_pagination"/>
+    <testcase time="2.538" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_modal_on_the_second_button"/>
+    <testcase time="1.626" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_modal_on_the_second_button"/>
+    <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_check_pagination_appearance_for_.txt_and_disappearance_for_.csv_for_the_modal_on_the_second_button"/>
+    <testcase time="3.152" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_download_button_downloads_table_in_a_specified_format"/>
     <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_download_button_downloads_table_in_a_specified_format"/>
     <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_download_button_downloads_table_in_a_specified_format"/>
-    <testcase time="4.143" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_expanded_table_can_be_downloaded"/>
-    <testcase time="0.00200000000000955" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_expanded_table_can_be_downloaded"/>
+    <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_download_button_downloads_table_in_a_specified_format"/>
+    <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_download_button_downloads_table_in_a_specified_format"/>
+    <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_clicking_download_download_button_downloads_table_in_a_specified_format"/>
+    <testcase time="4.20999999999999" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_expanded_table_can_be_downloaded"/>
+    <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_expanded_table_can_be_downloaded"/>
     <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_expanded_table_can_be_downloaded"/>
     <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_expanded_table_can_be_downloaded"/>
-    <testcase time="0.000999999999990564" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_expanded_table_can_be_downloaded"/>
-    <testcase time="0.00200000000000955" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_expanded_table_can_be_downloaded"/>
+    <testcase time="0.00100000000000477" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_expanded_table_can_be_downloaded"/>
+    <testcase time="0.00199999999999534" classname="table_with_settings_ui" name="e2e_teal.widgets_table_with_settings_expanded_table_can_be_downloaded"/>
   </testsuite>
-  <testsuite name="utils" timestamp="2025-01-31T18:00:22Z" hostname="8a8da277f01f" tests="5" skipped="0" failures="0" errors="0" time="0.082">
-    <testcase time="0.0599999999999881" classname="utils" name="get_bs_version"/>
+  <testsuite name="utils" timestamp="2025-01-31T18:00:26Z" hostname="57ebf6b0e658" tests="5" skipped="0" failures="0" errors="0" time="0.087">
+    <testcase time="0.063999999999993" classname="utils" name="get_bs_version"/>
     <testcase time="0.007000000000005" classname="utils" name="apply_plot_modifications_Modify_ggplot_object_with_dblclicking_enabled"/>
     <testcase time="0.00499999999999545" classname="utils" name="apply_plot_modifications_Modify_ggplot_object_with_dblclicking_disabled"/>
-    <testcase time="0.00500000000000966" classname="utils" name="apply_plot_modifications_Modify_grob_object"/>
-    <testcase time="0.00499999999999545" classname="utils" name="apply_plot_modifications_Do_not_modify_plot_object"/>
+    <testcase time="0.00600000000000023" classname="utils" name="apply_plot_modifications_Modify_grob_object"/>
+    <testcase time="0.00500000000000966" classname="utils" name="apply_plot_modifications_Do_not_modify_plot_object"/>
   </testsuite>
-  <testsuite name="verbatim_popup" timestamp="2025-01-31T18:00:22Z" hostname="8a8da277f01f" tests="16" skipped="0" failures="0" errors="0" time="0.274">
+  <testsuite name="verbatim_popup" timestamp="2025-01-31T18:00:26Z" hostname="57ebf6b0e658" tests="16" skipped="0" failures="0" errors="0" time="0.297">
     <testcase time="0.00799999999999557" classname="verbatim_popup" name="format_content_returns_a_shiny_reactive_when_passed_a_string"/>
-    <testcase time="0.00500000000000966" classname="verbatim_popup" name="format_content_returns_a_shiny_reactive_when_passed_an_expression"/>
-    <testcase time="0.00499999999999545" classname="verbatim_popup" name="format_content_returns_a_shiny_reactive_when_passed_a_reactive"/>
+    <testcase time="0.00499999999999545" classname="verbatim_popup" name="format_content_returns_a_shiny_reactive_when_passed_an_expression"/>
+    <testcase time="0.00600000000000023" classname="verbatim_popup" name="format_content_returns_a_shiny_reactive_when_passed_a_reactive"/>
     <testcase time="0.00600000000000023" classname="verbatim_popup" name="format_content_returns_a_reactive_when_passed_a_condition"/>
-    <testcase time="0.00499999999999545" classname="verbatim_popup" name="format_content_returns_a_reactive_when_passed_a_reactive_holding_a_condition"/>
+    <testcase time="0.00600000000000023" classname="verbatim_popup" name="format_content_returns_a_reactive_when_passed_a_reactive_holding_a_condition"/>
     <testcase time="0.00400000000000489" classname="verbatim_popup" name="format_content_concatenates_the_passed_array_of_strings"/>
-    <testcase time="0.00400000000000489" classname="verbatim_popup" name="format_content_concatenates_the_passed_array_of_expressions"/>
+    <testcase time="0.00499999999999545" classname="verbatim_popup" name="format_content_concatenates_the_passed_array_of_expressions"/>
     <testcase time="0.00600000000000023" classname="verbatim_popup" name="format_content_concatenates_the_passed_array_of_string_inside_a_reactive"/>
-    <testcase time="0.155000000000001" classname="verbatim_popup" name="format_content_returns_a_reactive_storing_a_styled_string_when_passed_an_expression_character_or_reactive_when_style_TRUE"/>
-    <testcase time="0.0319999999999965" classname="verbatim_popup" name="format_content_returns_a_reactive_storing_a_styled_string_when_passed_an_expression_character_or_reactive_when_style_TRUE"/>
-    <testcase time="0.00699999999999079" classname="verbatim_popup" name="format_content_returns_a_reactive_storing_a_styled_string_when_passed_an_expression_character_or_reactive_when_style_TRUE"/>
-    <testcase time="0.007000000000005" classname="verbatim_popup" name="button_click_observer_returns_an_observer"/>
-    <testcase time="0.00600000000000023" classname="verbatim_popup" name="verbatim_popup_ui_returns_a_tag_list"/>
+    <testcase time="0.162000000000006" classname="verbatim_popup" name="format_content_returns_a_reactive_storing_a_styled_string_when_passed_an_expression_character_or_reactive_when_style_TRUE"/>
+    <testcase time="0.0339999999999918" classname="verbatim_popup" name="format_content_returns_a_reactive_storing_a_styled_string_when_passed_an_expression_character_or_reactive_when_style_TRUE"/>
+    <testcase time="0.00800000000000978" classname="verbatim_popup" name="format_content_returns_a_reactive_storing_a_styled_string_when_passed_an_expression_character_or_reactive_when_style_TRUE"/>
+    <testcase time="0.00699999999999079" classname="verbatim_popup" name="button_click_observer_returns_an_observer"/>
+    <testcase time="0.007000000000005" classname="verbatim_popup" name="verbatim_popup_ui_returns_a_tag_list"/>
     <testcase time="0.007000000000005" classname="verbatim_popup" name="verbatim_popup_ui_with_type_not_equal_to_button_or_link_throws_error"/>
-    <testcase time="0.00900000000000034" classname="verbatim_popup" name="verbatim_popup_ui_with_type_button_produces_a_button"/>
-    <testcase time="0.00799999999999557" classname="verbatim_popup" name="verbatim_popup_ui_with_type_link_produces_a_link"/>
+    <testcase time="0.00999999999999091" classname="verbatim_popup" name="verbatim_popup_ui_with_type_button_produces_a_button"/>
+    <testcase time="0.0160000000000053" classname="verbatim_popup" name="verbatim_popup_ui_with_type_link_produces_a_link"/>
   </testsuite>
-  <testsuite name="verbatim_popup_ui" timestamp="2025-01-31T18:00:22Z" hostname="8a8da277f01f" tests="7" skipped="0" failures="0" errors="0" time="3.072">
-    <testcase time="0.00600000000000023" classname="verbatim_popup_ui" name="verbatim_popup_ui_returns_shiny.tag.list_"/>
-    <testcase time="1.95099999999999" classname="verbatim_popup_ui" name="e2e_teal.widgets_verbatim_popup_is_initialized_with_a_button_that_opens_a_modal_with_a_verbatim_text"/>
-    <testcase time="0.571000000000012" classname="verbatim_popup_ui" name="e2e_teal.widgets_verbatim_popup_is_initialized_with_a_button_that_opens_a_modal_with_a_verbatim_text"/>
-    <testcase time="0.00600000000000023" classname="verbatim_popup_ui" name="e2e_teal.widgets_verbatim_popup_is_initialized_with_a_button_that_opens_a_modal_with_a_verbatim_text"/>
-    <testcase time="0.00399999999999068" classname="verbatim_popup_ui" name="e2e_teal.widgets_verbatim_popup_is_initialized_with_a_button_that_opens_a_modal_with_a_verbatim_text"/>
+  <testsuite name="verbatim_popup_ui" timestamp="2025-01-31T18:00:26Z" hostname="57ebf6b0e658" tests="7" skipped="0" failures="0" errors="0" time="3.044">
+    <testcase time="0.007000000000005" classname="verbatim_popup_ui" name="verbatim_popup_ui_returns_shiny.tag.list_"/>
+    <testcase time="1.919" classname="verbatim_popup_ui" name="e2e_teal.widgets_verbatim_popup_is_initialized_with_a_button_that_opens_a_modal_with_a_verbatim_text"/>
+    <testcase time="0.573999999999998" classname="verbatim_popup_ui" name="e2e_teal.widgets_verbatim_popup_is_initialized_with_a_button_that_opens_a_modal_with_a_verbatim_text"/>
+    <testcase time="0.00499999999999545" classname="verbatim_popup_ui" name="e2e_teal.widgets_verbatim_popup_is_initialized_with_a_button_that_opens_a_modal_with_a_verbatim_text"/>
     <testcase time="0.00500000000000966" classname="verbatim_popup_ui" name="e2e_teal.widgets_verbatim_popup_is_initialized_with_a_button_that_opens_a_modal_with_a_verbatim_text"/>
-    <testcase time="0.528999999999996" classname="verbatim_popup_ui" name="e2e_teal.widgets_verbatim_popup_is_initialized_with_a_button_that_opens_a_modal_with_a_verbatim_text"/>
+    <testcase time="0.00399999999999068" classname="verbatim_popup_ui" name="e2e_teal.widgets_verbatim_popup_is_initialized_with_a_button_that_opens_a_modal_with_a_verbatim_text"/>
+    <testcase time="0.530000000000001" classname="verbatim_popup_ui" name="e2e_teal.widgets_verbatim_popup_is_initialized_with_a_button_that_opens_a_modal_with_a_verbatim_text"/>
   </testsuite>
 </testsuites>
