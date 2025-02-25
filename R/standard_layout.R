@@ -1,3 +1,15 @@
+#' @keywords internal
+#' @noRd
+standard_layout_deps <- function() {
+  htmltools::htmlDependency(
+    name = "teal-widgets-standard-layout",
+    version = utils::packageVersion("teal.widgets"),
+    package = "teal.widgets",
+    src = "standard-layout",
+    stylesheet = "standard-layout.css"
+  )
+}
+
 #' Standard UI layout
 #'
 #' @description `r lifecycle::badge("stable")`\cr
@@ -98,6 +110,7 @@ standard_layout <- function(output,
 
   bslib::page_fluid(
     class = "teal-widgets standard-layout-wrapper",
+    standard_layout_deps(),
     tag_enc_out
   )
 }

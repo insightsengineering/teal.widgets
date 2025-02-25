@@ -23,3 +23,8 @@
   display: inline-block;
   min-width: 0.8em;
 }
+
+.teal-widgets code {
+  --bs-code-color: #c7254e;
+  background-color: #f9f2f4;
+}
