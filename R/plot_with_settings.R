@@ -21,30 +21,21 @@ plot_with_settings_ui <- function(id) {
 
   tagList(
     plot_with_settings_deps(),
-    tags$div(
+    bslib::card(
       id = ns("plot-with-settings"),
       tags$div(
-        class = "plot-settings-buttons",
-        type_download_ui(ns("downbutton")),
-        actionButton(
-          ns("expand"),
-          label = character(0),
-          icon = icon("up-right-and-down-left-from-center"),
-          class = "btn-sm"
-        ),
-        shinyWidgets::dropdownButton(
-          circle = FALSE,
-          size = "sm",
-          icon = icon("maximize"),
-          inline = TRUE,
-          right = TRUE,
-          label = "",
-          inputId = ns("expbut"),
-          uiOutput(ns("slider_ui")),
-          uiOutput(ns("width_warning"))
+        tags$div(
+          class = "teal-widgets settings-buttons",
+          type_download_ui(ns("downbutton")),
+          actionLink(
+            ns("expand"),
+            label = character(0),
+            icon = icon("up-right-and-down-left-from-center"),
+            class = "btn-sm"
+          ),
+          uiOutput(ns("plot_out_main"), class = "plot_out_container", width = "100%")
         )
-      ),
-      uiOutput(ns("plot_out_main"), class = "plot_out_container", width = "100%")
+      )
     )
   )
 }
@@ -463,7 +454,7 @@ plot_with_settings_srv <- function(id,
     observeEvent(input$expand, {
       showModal(
         tags$div(
-          class = "plot-modal",
+          class = "teal-widgets plot-modal",
           modalDialog(
             easyClose = TRUE,
             tags$div(
@@ -554,14 +545,8 @@ plot_with_settings_srv <- function(id,
 #' @keywords internal
 type_download_ui <- function(id) {
   ns <- NS(id)
-  shinyWidgets::dropdownButton(
-    circle = FALSE,
-    size = "sm",
-    icon = icon("download"),
-    inline = TRUE,
-    right = TRUE,
-    label = "",
-    inputId = ns("downl"),
+  bslib::popover(
+    icon("download"),
     tags$div(
       radioButtons(ns("file_format"),
         label = "File type",

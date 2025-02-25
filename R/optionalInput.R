@@ -196,10 +196,6 @@ optionalSelectInput <- function(inputId, # nolint
     "live-search" = ifelse(length(choices) > 10, TRUE, FALSE)
   )
 
-  # if called outside the fluidPage then will assume bs 3
-  bs_version <- get_bs_version()
-  if (isTRUE(bs_version != "3")) default_options[["style"]] <- "btn-outline-secondary"
-
   options <- if (!identical(options, list())) {
     c(options, default_options[setdiff(names(default_options), names(options))])
   } else {
@@ -477,7 +473,14 @@ extract_raw_choices <- function(choices, sep) {
 #' @export
 #'
 #' @examples
-#' optionalSliderInput("a", "b", 0, 1, 0.2)
+#' ui <- shiny::fluidPage(
+#'   shinyjs::useShinyjs(),
+#'   optionalSliderInput("s", "shown", 0, 1, 0.2),
+#'   optionalSliderInput("h", "hidden", 0, NA, 1),
+#' )
+#' if (interactive()) {
+#'   shiny::shinyApp(ui, function(input, output) {})
+#' }
 optionalSliderInput <- function(inputId, label, min, max, value, label_help = NULL, ...) { # nolint
   checkmate::assert_number(min, na.ok = TRUE)
   checkmate::assert_number(max, na.ok = TRUE)
@@ -541,8 +544,14 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
 #'
 #' @examples
 #'
-#' optionalSliderInputValMinMax("a", "b", 1)
-#' optionalSliderInputValMinMax("a", "b", c(3, 1, 5))
+#' ui <- shiny::fluidPage(
+#'   shinyjs::useShinyjs(),
+#'   optionalSliderInputValMinMax("a1", "b1", 1),
+#'   optionalSliderInputValMinMax("a2", "b2", c(3, 1, 5))
+#' )
+#' if (interactive()) {
+#'   shiny::shinyApp(ui, function(input, output) {})
+#' }
 optionalSliderInputValMinMax <- function(inputId, label, value_min_max, label_help = NULL, ...) { # nolint
   checkmate::assert(
     checkmate::check_numeric(

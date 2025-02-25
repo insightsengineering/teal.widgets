@@ -30,12 +30,12 @@ table_with_settings_ui <- function(id, ...) {
 
   tagList(
     table_with_settings_deps(),
-    tags$div(
+    bslib::card(
       id = ns("table-with-settings"),
       tags$div(
-        class = "table-settings-buttons",
+        class = "teal-widgets settings-buttons",
         type_download_ui_table(ns("downbutton")),
-        actionButton(
+        actionLink(
           inputId = ns("expand"), label = character(0),
           icon = icon("up-right-and-down-left-from-center"), class = "btn-sm"
         ),
@@ -120,7 +120,7 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
     observeEvent(input$expand, {
       showModal(
         tags$div(
-          class = "table-modal",
+          class = "teal-widgets output-modal",
           modalDialog(
             easyClose = TRUE,
             tags$div(
@@ -142,15 +142,9 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
 
 type_download_ui_table <- function(id) {
   ns <- NS(id)
-  shinyWidgets::dropdownButton(
-    circle = FALSE,
-    icon = icon("download"),
-    inline = TRUE,
-    right = TRUE,
-    label = "",
-    inputId = ns("dwnl"),
+  bslib::popover(
+    icon("download"),
     tags$div(
-      class = "modal-download-ui-table-container",
       radioButtons(ns("file_format"),
         label = "File type",
         choices = c("formatted txt" = ".txt", "csv" = ".csv", "pdf" = ".pdf"),

@@ -1,6 +1,6 @@
 #' Panel group widget
 #'
-#' @description `r lifecycle::badge("experimental")`\cr
+#' @description `r lifecycle::badge("deprecated")`\cr
 #' Designed to group [`panel_item`] elements. Used to handle `shiny` inputs in the encoding panel.
 #' @param id optional, (`character`)\cr
 #' @param ... (`shiny.tag`)\cr
@@ -47,28 +47,22 @@
 #'
 #' @export
 panel_group <- function(..., id = NULL) {
+  lifecycle::deprecate_soft(
+    when = "0.4.3",
+    what = "panel_group()",
+    details = paste(
+      "The `panel_group()` and `panel_item()` view can be achieved by using the `bslib` package.",
+      "Please use the `bslib::accordion()` and `bslib::accordion_panel()` functions instead.",
+      "This function will be removed in the next release."
+    )
+  )
   checkmate::assert_string(id, null.ok = TRUE)
 
   # panel-group
   # div
 
-  tags$div(
-    id = id,
-    ...,
-    .renderHook = function(res_tag) {
-      bs_version <- get_bs_version()
-      if (bs_version == "3") {
-        htmltools::tagAppendAttributes(res_tag, class = "panel-group")
-      } else if (bs_version %in% c("4", "5")) {
-        res_tag <- htmltools::tagAppendAttributes(res_tag, class = "my-4")
-        htmltools::tagQuery(res_tag)$
-          find(".card")$
-          removeClass("my-2")$
-          allTags()
-      } else {
-        stop("Bootstrap 3, 4, and 5 are supported.")
-      }
-    }
+  bslib::accordion(
+    ...
   )
 }
 
@@ -87,7 +81,7 @@ panel_item_deps <- function() {
 
 #' Panel item widget
 #'
-#' @description `r lifecycle::badge("experimental")`\cr
+#' @description `r lifecycle::badge("deprecated")`\cr
 #' Designed to be grouped using [`panel_group`] element. Used to handle `shiny` inputs in the encoding panel.
 #' @param title (`character`)\cr title of panel
 #' @param ... content of panel
@@ -121,83 +115,23 @@ panel_item_deps <- function() {
 #'
 #' @export
 panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
+  lifecycle::deprecate_soft(
+    when = "0.4.3",
+    what = "panel_item()",
+    details = paste(
+      "The `panel_group()` and `panel_item()` view can be achieved by using the `bslib` package.",
+      "Please use the `bslib::accordion()` and `bslib::accordion_panel()` functions instead.",
+      "This function will be removed in the next release."
+    )
+  )
   stopifnot(checkmate::test_character(title, len = 1) || inherits(title, c("shiny.tag", "shiny.tag.list", "html")))
   checkmate::assert_flag(collapsed)
   checkmate::assert_string(input_id, null.ok = TRUE)
 
-  div_id <- paste0(input_id, "_div")
-  panel_id <- paste0(input_id, "_panel_body_", sample(1:10000, 1))
-
-
-  tags$div(.renderHook = function(res_tag) {
-    bs_version <- get_bs_version()
-
-    # alter tag structure
-    if (bs_version == "3") {
-      res_tag$children <- list(
-        tags$div(
-          id = div_id,
-          class = "panel panel-default",
-          tags$div(
-            class = paste("panel-heading", ifelse(collapsed, "collapsed", "")),
-            `data-toggle` = "collapse",
-            href = paste0("#", panel_id),
-            `aria-expanded` = ifelse(collapsed, "false", "true"),
-            icon(ifelse(collapsed, "angle-right", "angle-down"), class = "dropdown-icon"),
-            tags$label(
-              class = "panel-title inline",
-              title,
-            )
-          ),
-          tags$div(
-            class = paste("panel-collapse collapse", ifelse(collapsed, "", "in")),
-            id = panel_id,
-            tags$div(
-              class = "panel-body",
-              ...
-            )
-          )
-        )
-      )
-    } else if (bs_version %in% c("4", "5")) {
-      res_tag$children <- list(
-        tags$div(
-          class = "card my-2",
-          tags$div(
-            class = "card-header",
-            tags$div(
-              class = paste("card-heading", ifelse(collapsed, "collapsed", "")),
-              # bs4
-              `data-toggle` = "collapse",
-              # bs5
-              `data-bs-toggle` = "collapse",
-              href = paste0("#", panel_id),
-              `aria-expanded` = ifelse(collapsed, "false", "true"),
-              icon(ifelse(collapsed, "angle-right", "angle-down"), class = "dropdown-icon"),
-              tags$label(
-                class = "card-title inline",
-                title,
-              )
-            )
-          ),
-          tags$div(
-            id = panel_id,
-            class = paste("collapse", ifelse(collapsed, "", "show")),
-            tags$div(
-              class = "card-body",
-              ...
-            )
-          )
-        )
-      )
-    } else {
-      stop("Bootstrap 3, 4, and 5 are supported.")
-    }
-
-
-    tagList(
-      panel_item_deps(),
-      res_tag
-    )
-  })
+  bslib::accordion_panel(
+    id = input_id,
+    title = title,
+    open = !collapsed,
+    ...
+  )
 }
