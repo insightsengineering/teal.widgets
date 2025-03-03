@@ -1,15 +1,3 @@
-#' @keywords internal
-#' @noRd
-optional_select_input_deps <- function() {
-  htmltools::htmlDependency(
-    name = "teal-widgets-optional-select-input",
-    version = utils::packageVersion("teal.widgets"),
-    package = "teal.widgets",
-    src = "optional-select-input",
-    stylesheet = "optional-select-input.css"
-  )
-}
-
 #' Wrapper for `pickerInput`
 #'
 #' @description `r lifecycle::badge("stable")`
@@ -212,6 +200,11 @@ optionalSelectInput <- function(inputId, # nolint
   raw_choices <- extract_raw_choices(choices, attr(choices, "sep"))
   raw_selected <- extract_raw_choices(selected, attr(choices, "sep"))
 
+  # Making sure the default dropdown popup can be displayed in the whole body, even outside the sidebars.
+  if (is.null(options$container)) {
+    options$container <- "body"
+  }
+
   ui_picker <- tags$div(
     id = paste0(inputId, "_input"),
     # visibility feature marked with display: none/block instead of shinyjs::hide/show
@@ -252,8 +245,6 @@ optionalSelectInput <- function(inputId, # nolint
   )
 
   tags$div(
-    optional_select_input_deps(),
-
     # when selected values in ui_picker change
     # then update ui_fixed - specifically, update '{id}_selected_text' element
     tags$script(

@@ -18,17 +18,3 @@
   max-height: 70vh;
   overflow: scroll;
 }
-
-.teal-widgets.settings-buttons {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.teal-widgets.settings-buttons a {
-  color: black;
-}
-
-.teal-widgets.settings-buttons i {
-  margin: 0 0.5rem;
-}
