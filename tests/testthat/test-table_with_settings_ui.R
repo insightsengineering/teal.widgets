@@ -38,8 +38,8 @@ check_table <- function(content) {
   testthat::expect_match(content, "41.00", fixed = TRUE, all = FALSE)
 }
 
-testthat::test_that("table_with_settings_ui returns `shiny.tag.list`", {
-  testthat::expect_s3_class(table_with_settings_ui("STH"), "shiny.tag.list")
+testthat::test_that("table_with_settings_ui returns `shiny.tag`", {
+  testthat::expect_s3_class(table_with_settings_ui("STH"), "shiny.tag")
 })
 
 testthat::test_that(
