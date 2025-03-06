@@ -39,7 +39,7 @@ optional slider input with one argument here called \code{value_min_max}.
 }
 \examples{
 
-ui <- shiny::fluidPage(
+ui <- bslib::page_fluid(
   shinyjs::useShinyjs(),
   optionalSliderInputValMinMax("a1", "b1", 1),
   optionalSliderInputValMinMax("a2", "b2", c(3, 1, 5))

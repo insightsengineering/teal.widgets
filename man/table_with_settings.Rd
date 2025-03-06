@@ -35,7 +35,7 @@ library(shiny)
 library(rtables)
 library(magrittr)
 
-ui <- fluidPage(
+ui <- bslib::page_fluid(
   table_with_settings_ui(
     id = "table_with_settings"
   )

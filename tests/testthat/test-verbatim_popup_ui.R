@@ -6,7 +6,7 @@
 #'
 app_driver_vpu <- function(button_label, verbatim_content, title) {
   shiny::shinyApp(
-    ui = shiny::fluidPage(
+    ui = bslib::page_fluid(
       verbatim_popup_ui(
         id = "verbatim_popup",
         button_label = button_label

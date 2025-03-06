@@ -16,5 +16,9 @@
 .teal-widgets.output-modal .modal-body {
   max-width: 90vw;
   max-height: 70vh;
+}
+
+.teal-widgets.table-content,
+.teal-widgets.table-modal-content {
   overflow: scroll;
 }

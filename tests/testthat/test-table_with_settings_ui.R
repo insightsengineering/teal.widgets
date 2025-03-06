@@ -6,7 +6,7 @@
 #'
 app_driver_tws <- function() {
   shiny::shinyApp(
-    ui = shiny::fluidPage(
+    ui = bslib::page_fluid(
       table_with_settings_ui(
         id = "table_with_settings"
       )

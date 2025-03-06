@@ -45,15 +45,16 @@
 #' )
 #'
 #' ui_grid <- function(...) {
-#'   fluidPage(
-#'     fluidRow(
-#'       lapply(list(...), function(x) column(4, wellPanel(x)))
+#'   bslib::page_fluid(
+#'     bslib::layout_columns(
+#'       col_widths = c(4, 4, 4),
+#'       ...
 #'     )
 #'   )
 #' }
 #'
 #' ui <- ui_grid(
-#'   tags$div(
+#'   wellPanel(
 #'     optionalSelectInput(
 #'       inputId = "c1",
 #'       label = "Fixed choices",
@@ -63,7 +64,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c1_out")
 #'   ),
-#'   tags$div(
+#'   wellPanel(
 #'     optionalSelectInput(
 #'       inputId = "c2",
 #'       label = "Single choice",
@@ -72,7 +73,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c2_out")
 #'   ),
-#'   tags$div(
+#'   wellPanel(
 #'     optionalSelectInput(
 #'       inputId = "c3",
 #'       label = "NULL choices",
@@ -80,7 +81,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c3_out")
 #'   ),
-#'   tags$div(
+#'   wellPanel(
 #'     optionalSelectInput(
 #'       inputId = "c4",
 #'       label = "Default",
@@ -89,7 +90,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c4_out")
 #'   ),
-#'   tags$div(
+#'   wellPanel(
 #'     optionalSelectInput(
 #'       inputId = "c5",
 #'       label = "Named vector",
@@ -98,7 +99,7 @@
 #'     ),
 #'     verbatimTextOutput(outputId = "c5_out")
 #'   ),
-#'   tags$div(
+#'   wellPanel(
 #'     selectInput(
 #'       inputId = "c6_choices", label = "Update choices", choices = letters, multiple = TRUE
 #'     ),
@@ -464,7 +465,7 @@ extract_raw_choices <- function(choices, sep) {
 #' @export
 #'
 #' @examples
-#' ui <- shiny::fluidPage(
+#' ui <- bslib::page_fluid(
 #'   shinyjs::useShinyjs(),
 #'   optionalSliderInput("s", "shown", 0, 1, 0.2),
 #'   optionalSliderInput("h", "hidden", 0, NA, 1),
@@ -535,7 +536,7 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
 #'
 #' @examples
 #'
-#' ui <- shiny::fluidPage(
+#' ui <- bslib::page_fluid(
 #'   shinyjs::useShinyjs(),
 #'   optionalSliderInputValMinMax("a1", "b1", 1),
 #'   optionalSliderInputValMinMax("a2", "b2", c(3, 1, 5))

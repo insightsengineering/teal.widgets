@@ -47,7 +47,7 @@ modal window with verbatim-styled text.
 \examples{
 library(shiny)
 
-ui <- fluidPage(verbatim_popup_ui("my_id", button_label = "Open popup"))
+ui <- bslib::page_fluid(verbatim_popup_ui("my_id", button_label = "Open popup"))
 srv <- function(input, output) {
   verbatim_popup_srv(
     "my_id",

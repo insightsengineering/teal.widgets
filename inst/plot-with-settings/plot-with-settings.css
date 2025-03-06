@@ -1,0 +1,22 @@
+.teal-widgets .plot-modal-sliders {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.teal-widgets.plot-modal .modal {
+  --bs-modal-width: 80vw;
+  --bs-modal-margin: 30px;
+}
+
+.teal-widgets.plot-content,
+.teal-widgets.plot-modal-content {
+  overflow: scroll;
+}
+
+.teal-widgets.settings-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}

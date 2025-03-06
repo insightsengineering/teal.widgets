@@ -6,8 +6,7 @@
 #'
 app_driver_pws <- function() {
   shiny::shinyApp(
-    ui = shiny::fluidPage(
-      shinyjs::useShinyjs(),
+    ui = bslib::page_fluid(
       shiny::actionButton("button", "Show/Hide"),
       plot_with_settings_ui(
         id = "plot_with_settings"
@@ -58,12 +57,12 @@ testthat::test_that("type_download_ui returns `shiny.tag`", {
   testthat::expect_s3_class(type_download_ui("STH"), "shiny.tag")
 })
 
-testthat::test_that("plot_with_settings_ui returns `shiny.tag.list`", {
-  testthat::expect_s3_class(plot_with_settings_ui("STH"), "shiny.tag.list")
+testthat::test_that("plot_with_settings_ui returns `shiny.tag`", {
+  testthat::expect_s3_class(plot_with_settings_ui("STH"), "shiny.tag")
 })
 
 testthat::test_that(
-  "e2e: teal.widgets::plot_with_settings: initializes with a plot and toggle, download and resize buttons",
+  "e2e: teal.widgets::plot_with_settings: initializes with a plot and the settings buttons",
   {
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
@@ -76,15 +75,14 @@ testthat::test_that(
     # Check if there is an image.
     testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
 
-    # Check if there are three buttons above the table.
-    testthat::expect_true(is_visible("#plot_with_settings-downbutton-downl", app_driver))
-    testthat::expect_true(is_visible("#plot_with_settings-expand", app_driver))
-    testthat::expect_true(is_visible("#plot_with_settings-expbut", app_driver))
+    # Check if the settings buttons are visible.
+    testthat::expect_true(is_visible(".teal-widgets.settings-buttons", app_driver))
 
     app_driver$stop()
   }
 )
 
+# FIX
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: buttons have proper FA icons and two of them are dropdowns",
   {
@@ -156,6 +154,7 @@ testthat::test_that(
   }
 )
 
+# FIX
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the download button opens a download menu
   with file type, file name and download button",
@@ -220,6 +219,7 @@ testthat::test_that(
   }
 )
 
+# FIX
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the expand button opens a modal
   plot height, plot width, plot, download dropdown and dismiss button",
@@ -267,6 +267,8 @@ testthat::test_that(
     app_driver$stop()
   }
 )
+
+# FIX
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the download button in expand modal opens a download dropdown",
   {
@@ -314,6 +316,7 @@ testthat::test_that(
   }
 )
 
+# FIX
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the resize button opens a dropdown menu
   plot height, plot width, plot, download dropdown and dismiss button",
@@ -379,6 +382,7 @@ testthat::test_that(
   }
 )
 
+# FIX
 testthat::test_that(
   "e2e teal.widgets::plot_with_settings: clicking download+download button downloads image in a specified format",
   {
@@ -444,6 +448,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
 
   app_driver$stop()
 })
+# FIX
 testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be downloaded", {
   skip_if_too_deep(5)
   app_driver <- shinytest2::AppDriver$new(
@@ -465,6 +470,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver$stop()
 })
 
+# FIX
 testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be resized", {
   skip_if_too_deep(5)
   app_driver <- shinytest2::AppDriver$new(

@@ -29,8 +29,3 @@
 .teal-widgets.standard-layout-wrapper {
   padding-right: 0;
 }
-
-.teal-widgets .plot-modal-sliders {
-  display: flex;
-  justify-content: space-around;
-}

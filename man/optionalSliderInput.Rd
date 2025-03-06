@@ -34,7 +34,7 @@ on available in the server function but no corresponding visual clutter from
 input widgets that provide only a single choice.
 }
 \examples{
-ui <- shiny::fluidPage(
+ui <- bslib::page_fluid(
   shinyjs::useShinyjs(),
   optionalSliderInput("s", "shown", 0, 1, 0.2),
   optionalSliderInput("h", "hidden", 0, NA, 1),

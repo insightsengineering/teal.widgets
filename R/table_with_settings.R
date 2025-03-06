@@ -28,20 +28,34 @@ table_with_settings_ui <- function(id, ...) {
 
   ns <- NS(id)
 
-  tagList(
+  tags$div(
     table_with_settings_deps(),
+    shinyjs::useShinyjs(),
     bslib::card(
       id = ns("table-with-settings"),
       tags$div(
         class = "teal-widgets settings-buttons",
-        type_download_ui_table(ns("downbutton")),
-        actionLink(
-          inputId = ns("expand"), label = character(0),
-          icon = icon("up-right-and-down-left-from-center"), class = "btn-sm"
+        bslib::tooltip(
+          trigger = tags$div(type_download_ui_table(ns("downbutton"))),
+          options = list(trigger = "hover"),
+          "Download"
         ),
+        bslib::tooltip(
+          trigger = tags$div(
+            actionLink(
+              ns("expand"),
+              label = character(0),
+              icon = icon("up-right-and-down-left-from-center"),
+              class = "btn-sm",
+              style = "color: #000;"
+            )
+          ),
+          options = list(trigger = "hover"),
+          "Expand"
+        )
       ),
       tags$div(
-        class = "table-settings-table",
+        class = "teal-widgets table-content",
         uiOutput(ns("table_out_main"), width = "100%", ...)
       )
     )
@@ -65,7 +79,7 @@ table_with_settings_ui <- function(id, ...) {
 #' library(rtables)
 #' library(magrittr)
 #'
-#' ui <- fluidPage(
+#' ui <- bslib::page_fluid(
 #'   table_with_settings_ui(
 #'     id = "table_with_settings"
 #'   )
@@ -125,9 +139,16 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
             easyClose = TRUE,
             tags$div(
               class = "float-right",
-              type_download_ui_table(ns("modal_downbutton"))
+              bslib::tooltip(
+                trigger = tags$div(type_download_ui_table(ns("modal_downbutton"))),
+                options = list(trigger = "hover"),
+                "Download"
+              )
             ),
-            uiOutput(ns("table_out_modal"), class = "table_out_container")
+            tags$div(
+              class = "teal-widgets table-modal-content",
+              uiOutput(ns("table_out_modal"))
+            )
           )
         )
       )
