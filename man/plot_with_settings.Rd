@@ -84,7 +84,6 @@ library(shiny)
 library(ggplot2)
 
 ui <- bslib::page_fluid(
-  shinyjs::useShinyjs(),
   plot_with_settings_ui(
     id = "plot_with_settings"
   )
@@ -112,7 +111,6 @@ if (interactive()) {
 library(lattice)
 
 ui <- bslib::page_fluid(
-  shinyjs::useShinyjs(),
   radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
   plot_with_settings_ui(
     id = "plot_with_settings"
@@ -153,7 +151,6 @@ if (interactive()) {
 
 # Example with brushing/hovering/clicking/double-clicking
 ui <- bslib::page_fluid(
-  shinyjs::useShinyjs(),
   plot_with_settings_ui(
     id = "plot_with_settings"
   ),
