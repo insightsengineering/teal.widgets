@@ -348,7 +348,7 @@ variable_type_icons <- function(var_type) {
     }
   ))
 
-  return(res)
+  res
 }
 
 #' Optional content for `optionalSelectInput`
@@ -367,32 +367,32 @@ variable_type_icons <- function(var_type) {
 #'
 picker_options_content <- function(var_name, var_label, var_type) {
   if (length(var_name) == 0) {
-    return(character(0))
-  }
-  if (length(var_type) == 0 && length(var_label) == 0) {
-    return(var_name)
-  }
-  checkmate::assert_character(var_name, min.len = 1, any.missing = FALSE)
-  stopifnot(
-    identical(var_type, character(0)) || length(var_type) == length(var_name),
-    identical(var_label, character(0)) || length(var_label) == length(var_name)
-  )
-
-  var_icon <- variable_type_icons(var_type)
-
-  res <- trimws(paste(
-    var_icon,
-    var_name,
-    vapply(
-      var_label,
-      function(x) {
-        ifelse(x == "", "", toString(tags$small(x, class = "text-muted")))
-      },
-      character(1)
+    res <- character(0)
+  } else if (length(var_type) == 0 && length(var_label) == 0) {
+    res <- var_name
+  } else {
+    checkmate::assert_character(var_name, min.len = 1, any.missing = FALSE)
+    stopifnot(
+      identical(var_type, character(0)) || length(var_type) == length(var_name),
+      identical(var_label, character(0)) || length(var_label) == length(var_name)
     )
-  ))
 
-  return(res)
+    var_icon <- variable_type_icons(var_type)
+
+    res <- trimws(paste(
+      var_icon,
+      var_name,
+      vapply(
+        var_label,
+        function(x) {
+          ifelse(x == "", "", toString(tags$small(x, class = "text-muted")))
+        },
+        character(1)
+      )
+    ))
+  }
+
+  res
 }
 
 #' Create `choicesOpt` for `pickerInput`
@@ -406,27 +406,24 @@ picker_options_content <- function(var_name, var_label, var_type) {
 picker_options <- function(choices) {
   if (inherits(choices, "choices_labeled")) {
     raw_choices <- extract_raw_choices(choices, sep = attr(choices, "sep"))
-    return(
-      list(
-        content = picker_options_content(
-          var_name  = raw_choices,
-          var_label = extract_choices_labels(choices),
-          var_type  = if (is.null(attr(choices, "types"))) character(0) else attr(choices, "types")
-        )
+    res <- list(
+      content = picker_options_content(
+        var_name  = raw_choices,
+        var_label = extract_choices_labels(choices),
+        var_type  = if (is.null(attr(choices, "types"))) character(0) else attr(choices, "types")
       )
     )
   } else if (all(vapply(choices, inherits, logical(1), "choices_labeled"))) {
     choices <- unlist(unname(choices))
-    return(
-      list(content = picker_options_content(
-        var_name  = choices,
-        var_label = extract_choices_labels(choices),
-        var_type  = if (is.null(attr(choices, "types"))) character(0) else attr(choices, "types")
-      ))
-    )
+    res <- list(content = picker_options_content(
+      var_name  = choices,
+      var_label = extract_choices_labels(choices),
+      var_type  = if (is.null(attr(choices, "types"))) character(0) else attr(choices, "types")
+    ))
   } else {
-    return(NULL)
+    res <- NULL
   }
+  res
 }
 
 #' Extract raw values from choices
@@ -572,7 +569,7 @@ optionalSliderInputValMinMax <- function(inputId, label, value_min_max, label_he
   if (!is.null(label_help)) {
     slider[[3]] <- append(slider[[3]], list(tags$div(class = "label-help", label_help)), after = 1)
   }
-  return(slider)
+  slider
 }
 
 #' Extract labels from choices basing on attributes and names
@@ -598,5 +595,5 @@ extract_choices_labels <- function(choices, values = NULL) {
     res <- res[vapply(values, function(val) which(val == choices), numeric(1))]
   }
 
-  return(res)
+  res
 }

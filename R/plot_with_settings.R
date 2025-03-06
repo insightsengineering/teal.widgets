@@ -349,6 +349,7 @@ plot_with_settings_srv <- function(id,
     })
 
     output$slider_ui <- renderUI({
+      req(default_slider_width())
       tags$div(
         optionalSliderInputValMinMax(
           inputId = ns("height"),
@@ -541,34 +542,32 @@ plot_with_settings_srv <- function(id,
       default_h = default_h
     )
 
-    return(
-      list(
-        brush = reactive({
-          # refresh brush data on the main plot size change
-          input$height
-          input$width
-          input$plot_brush
-        }),
-        click = reactive({
-          # refresh click data on the main plot size change
-          input$height
-          input$width
-          input$plot_click
-        }),
-        dblclick = reactive({
-          # refresh double click data on the main plot size change
-          input$height
-          input$width
-          input$plot_dblclick
-        }),
-        hover = reactive({
-          # refresh hover data on the main plot size change
-          input$height
-          input$width
-          input$plot_hover
-        }),
-        dim = reactive(c(p_width(), p_height()))
-      )
+    list(
+      brush = reactive({
+        # refresh brush data on the main plot size change
+        input$height
+        input$width
+        input$plot_brush
+      }),
+      click = reactive({
+        # refresh click data on the main plot size change
+        input$height
+        input$width
+        input$plot_click
+      }),
+      dblclick = reactive({
+        # refresh double click data on the main plot size change
+        input$height
+        input$width
+        input$plot_dblclick
+      }),
+      hover = reactive({
+        # refresh hover data on the main plot size change
+        input$height
+        input$width
+        input$plot_hover
+      }),
+      dim = reactive(c(p_width(), p_height()))
     )
   })
 }

@@ -11,9 +11,11 @@ is_draw <- function(plot_fun) {
   plot_fun()
   if (cdev != grDevices::dev.cur()) {
     on.exit(grDevices::dev.off())
-    return(TRUE)
+    res <- TRUE
+  } else {
+    res <- FALSE
   }
-  return(FALSE)
+  res
 }
 
 
