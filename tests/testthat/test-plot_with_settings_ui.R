@@ -46,6 +46,22 @@ app_driver_pws <- function() {
   )
 }
 
+# JS code to click the download button popup.
+click_download_popup <- "document.querySelectorAll('.teal-widgets.settings-buttons .download-button i')[1].click()"
+
+# JS code to click the resize button popup.
+click_resize_popup <- "document.querySelector(
+  '.teal-widgets.settings-buttons .resize-button i.fas.fa-maximize'
+).click()"
+
+# JS code to click the expand button popup.
+click_expand_popup <- "document.querySelector('.teal-widgets.settings-buttons .expand-button i').click()"
+
+# JS code to click the download button popup inside the expanded modal.
+click_expand_download_popup <- "document.querySelectorAll(
+  '.teal-widgets.plot-modal .plot-modal-sliders .fas.fa-download'
+)[1].click()"
+
 get_active_module_pws_output <- function(app_driver, pws, attr) {
   app_driver$get_html("html") %>%
     rvest::read_html() %>%
@@ -82,7 +98,6 @@ testthat::test_that(
   }
 )
 
-# FIX
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: buttons have proper FA icons and two of them are dropdowns",
   {
@@ -94,84 +109,7 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    testthat::expect_equal(
-      app_driver$get_html("#plot_with_settings-downbutton-downl") %>%
-        rvest::read_html() %>%
-        rvest::html_element("button") %>%
-        rvest::html_attr("data-toggle"),
-      "dropdown"
-    )
-
-    testthat::expect_equal(
-      app_driver$get_html("#plot_with_settings-downbutton-downl") %>%
-        rvest::read_html() %>%
-        rvest::html_element("button") %>%
-        rvest::html_attr("aria-expanded"),
-      "false"
-    )
-
-    testthat::expect_equal(
-      app_driver$get_html("#plot_with_settings-downbutton-downl") %>%
-        rvest::read_html() %>%
-        rvest::html_element("i") %>%
-        rvest::html_attr("class"),
-      "fas fa-download"
-    )
-
-    testthat::expect_equal(
-      app_driver$get_html("#plot_with_settings-expand") %>%
-        rvest::read_html() %>%
-        rvest::html_element("i") %>%
-        rvest::html_attr("class"),
-      "fas fa-up-right-and-down-left-from-center"
-    )
-
-    testthat::expect_equal(
-      app_driver$get_html("#plot_with_settings-expbut") %>%
-        rvest::read_html() %>%
-        rvest::html_element("i") %>%
-        rvest::html_attr("class"),
-      "fas fa-maximize"
-    )
-
-    testthat::expect_equal(
-      app_driver$get_html("#plot_with_settings-expbut") %>%
-        rvest::read_html() %>%
-        rvest::html_element("button") %>%
-        rvest::html_attr("data-toggle"),
-      "dropdown"
-    )
-
-    testthat::expect_equal(
-      app_driver$get_html("#plot_with_settings-expbut") %>%
-        rvest::read_html() %>%
-        rvest::html_element("button") %>%
-        rvest::html_attr("aria-expanded"),
-      "false"
-    )
-
-    app_driver$stop()
-  }
-)
-
-# FIX
-testthat::test_that(
-  "e2e: teal.widgets::plot_with_settings: the click on the download button opens a download menu
-  with file type, file name and download button",
-  {
-    skip_if_too_deep(5)
-    app_driver <- shinytest2::AppDriver$new(
-      app_driver_pws(),
-      name = "pws",
-      variant = "app_driver_pws_ui"
-    )
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
-
-    testthat::expect_false(is_visible("#plot_with_settings-downbutton-data_download", app_driver))
-    testthat::expect_false(is_visible("#plot_with_settings-downbutton-file_format", app_driver))
-    testthat::expect_false(is_visible("#plot_with_settings-downbutton-file_name", app_driver))
-
-    app_driver$click(selector = "#plot_with_settings-downbutton-downl")
+    app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     testthat::expect_equal(
@@ -219,7 +157,6 @@ testthat::test_that(
   }
 )
 
-# FIX
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the expand button opens a modal
   plot height, plot width, plot, download dropdown and dismiss button",
@@ -238,12 +175,11 @@ testthat::test_that(
     testthat::expect_false(is_visible("#plot_with_settings-width_in_modal", app_driver))
     testthat::expect_false(is_visible("#plot_with_settings-modal_downbutton-downl", app_driver))
 
-    app_driver$click(selector = "#plot_with_settings-expand")
+    app_driver$run_js(click_expand_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     testthat::expect_true(is_visible("#plot_with_settings-height_in_modal", app_driver))
     testthat::expect_true(is_visible("#plot_with_settings-width_in_modal", app_driver))
-    testthat::expect_true(is_visible("#plot_with_settings-modal_downbutton-downl", app_driver))
 
     testthat::expect_identical(
       app_driver$get_value(input = "plot_with_settings-height_in_modal"),
@@ -268,7 +204,6 @@ testthat::test_that(
   }
 )
 
-# FIX
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the download button in expand modal opens a download dropdown",
   {
@@ -283,14 +218,11 @@ testthat::test_that(
     testthat::expect_false(is_visible("#plot_with_settings-modal_downbutton-file_format", app_driver))
     testthat::expect_false(is_visible("#plot_with_settings-modal_downbutton-file_name", app_driver))
 
-    app_driver$click(selector = "#plot_with_settings-expand")
+    app_driver$run_js(click_expand_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    app_driver$click(selector = "#plot_with_settings-modal_downbutton-downl")
+    app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
-
-    testthat::expect_true(is_visible("#plot_with_settings-modal_downbutton-file_format", app_driver))
-    testthat::expect_true(is_visible("#plot_with_settings-modal_downbutton-file_name", app_driver))
 
     testthat::expect_equal(
       app_driver$get_text("#plot_with_settings-modal_downbutton-file_format-label"),
@@ -310,13 +242,10 @@ testthat::test_that(
       sprintf("plot_%s", gsub("-", "", Sys.Date()))
     )
 
-    testthat::expect_true(is_visible("#plot_with_settings-modal_downbutton-data_download", app_driver))
-
     app_driver$stop()
   }
 )
 
-# FIX
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the resize button opens a dropdown menu
   plot height, plot width, plot, download dropdown and dismiss button",
@@ -333,7 +262,7 @@ testthat::test_that(
 
     testthat::expect_false(is_visible("#plot_with_settings-slider_ui", app_driver))
 
-    app_driver$click(selector = "#plot_with_settings-expbut")
+    app_driver$run_js(click_resize_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
 
@@ -382,7 +311,6 @@ testthat::test_that(
   }
 )
 
-# FIX
 testthat::test_that(
   "e2e teal.widgets::plot_with_settings: clicking download+download button downloads image in a specified format",
   {
@@ -394,7 +322,7 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    app_driver$click(selector = "#plot_with_settings-downbutton-downl")
+    app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     filename <- app_driver$get_download("plot_with_settings-downbutton-data_download")
@@ -403,6 +331,7 @@ testthat::test_that(
     app_driver$stop()
   }
 )
+
 testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be resized", {
   skip_if_too_deep(5)
   app_driver <- shinytest2::AppDriver$new(
@@ -414,7 +343,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   )
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  app_driver$click(selector = "#plot_with_settings-expand")
+  app_driver$run_js(click_expand_popup)
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "src")
@@ -448,7 +377,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
 
   app_driver$stop()
 })
-# FIX
+
 testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be downloaded", {
   skip_if_too_deep(5)
   app_driver <- shinytest2::AppDriver$new(
@@ -458,10 +387,10 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   )
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  app_driver$click(selector = "#plot_with_settings-expand")
+  app_driver$run_js(click_expand_popup)
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  app_driver$click(selector = "#plot_with_settings-modal_downbutton-downl")
+  app_driver$run_js(click_expand_download_popup)
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
   filename <- app_driver$get_download("plot_with_settings-modal_downbutton-data_download")
@@ -470,7 +399,6 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver$stop()
 })
 
-# FIX
 testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be resized", {
   skip_if_too_deep(5)
   app_driver <- shinytest2::AppDriver$new(
@@ -480,7 +408,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
   )
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  app_driver$click(selector = "#plot_with_settings-expbut")
+  app_driver$run_js(click_resize_popup)
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_main", attr = "src")

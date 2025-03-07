@@ -22,3 +22,10 @@
 .teal-widgets.table-modal-content {
   overflow: scroll;
 }
+
+.teal-widgets.settings-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}

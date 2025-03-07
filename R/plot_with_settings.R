@@ -30,6 +30,7 @@ plot_with_settings_ui <- function(id) {
           bslib::tooltip(
             trigger = tags$div(type_download_ui(ns("downbutton"))),
             options = list(trigger = "hover"),
+            class = "download-button",
             "Download"
           ),
           bslib::tooltip(
@@ -42,6 +43,7 @@ plot_with_settings_ui <- function(id) {
               )
             ),
             options = list(trigger = "hover"),
+            class = "resize-button",
             "Resize"
           ),
           bslib::tooltip(
@@ -55,6 +57,7 @@ plot_with_settings_ui <- function(id) {
               )
             ),
             options = list(trigger = "hover"),
+            class = "expand-button",
             "Expand"
           ),
         ),
