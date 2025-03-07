@@ -360,6 +360,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
 
   app_driver$set_inputs(`plot_with_settings-height_in_modal` = 1000)
   app_driver$set_inputs(`plot_with_settings-width_in_modal` = 350)
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
 
   testthat::expect_equal(
     get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "width"),
