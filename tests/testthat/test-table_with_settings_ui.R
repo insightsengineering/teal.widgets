@@ -151,15 +151,14 @@ testthat::test_that(
     app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    pagination <- ".paginate-ui"
-    pagination_text <- app_driver$get_text(pagination)
+    pagination_text <- app_driver$get_text(".paginate-ui")
     testthat::expect_match(pagination_text, "Paginate table:\n", fixed = TRUE)
     testthat::expect_match(pagination_text, "lines / page\n", fixed = TRUE)
 
     app_driver$click(selector = "input[value='.csv']")
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    testthat::expect_false(is_visible(pagination, app_driver))
+    testthat::expect_false(is_visible(".paginate-ui", app_driver))
 
     app_driver$stop()
   }
@@ -280,9 +279,7 @@ testthat::test_that(
     app_driver$run_js(click_expand_download_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    pagination <-
-      "#dropdown-menu-table_with_settings-modal_downbutton-dwnl .paginate-ui .form-group.shiny-input-container"
-    pagination_text <- app_driver$get_text(pagination)
+    pagination_text <- app_driver$get_text(".paginate-ui")
     testthat::expect_match(pagination_text, "Paginate table:\n", fixed = TRUE)
     testthat::expect_match(pagination_text, "lines / page\n", fixed = TRUE)
 
