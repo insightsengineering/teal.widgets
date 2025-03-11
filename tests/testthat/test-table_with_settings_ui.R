@@ -55,6 +55,7 @@ testthat::test_that("table_with_settings_ui returns `shiny.tag`", {
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings is initialized with 2 buttons and a table",
   {
+    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -76,6 +77,7 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings: the click on the download button opens a download menu
   with file type, file name and download button",
   {
+    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -140,6 +142,7 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings: check pagination appearance for .txt and disappearance for .csv
   for the first button",
   {
+    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -167,6 +170,7 @@ testthat::test_that(
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings: the click on expand button opens a modal with a table",
   {
+    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -201,6 +205,7 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings: clicking download in an expand modal opens dropdown menu with dwnl settings,
   such as: file type, file name, pagination",
   {
+    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -266,6 +271,7 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings: check pagination appearance for .txt and disappearance for .csv
   for the modal on the second button",
   {
+    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -290,6 +296,7 @@ testthat::test_that(
 testthat::test_that(
   "e2e teal.widgets::table_with_settings: clicking download+download button downloads table in a specified format",
   {
+    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -313,6 +320,7 @@ testthat::test_that(
 )
 
 testthat::test_that("e2e teal.widgets::table_with_settings: expanded table can be downloaded", {
+  testthat::skip("chromium")
   skip_if_too_deep(5)
   app_driver <- shinytest2::AppDriver$new(
     app_driver_tws(),
