@@ -28,20 +28,36 @@ table_with_settings_ui <- function(id, ...) {
 
   ns <- NS(id)
 
-  tagList(
+  tags$div(
     table_with_settings_deps(),
-    tags$div(
+    shinyjs::useShinyjs(),
+    bslib::card(
       id = ns("table-with-settings"),
       tags$div(
-        class = "table-settings-buttons",
-        type_download_ui_table(ns("downbutton")),
-        actionButton(
-          inputId = ns("expand"), label = character(0),
-          icon = icon("up-right-and-down-left-from-center"), class = "btn-sm"
+        class = "teal-widgets settings-buttons",
+        bslib::tooltip(
+          trigger = tags$div(type_download_ui_table(ns("downbutton"))),
+          options = list(trigger = "hover"),
+          class = "download-button",
+          "Download"
         ),
+        bslib::tooltip(
+          trigger = tags$div(
+            actionLink(
+              ns("expand"),
+              label = character(0),
+              icon = icon("up-right-and-down-left-from-center"),
+              class = "btn-sm",
+              style = "color: #000;"
+            )
+          ),
+          options = list(trigger = "hover"),
+          class = "expand-button",
+          "Expand"
+        )
       ),
       tags$div(
-        class = "table-settings-table",
+        class = "teal-widgets table-content",
         uiOutput(ns("table_out_main"), width = "100%", ...)
       )
     )
@@ -65,7 +81,7 @@ table_with_settings_ui <- function(id, ...) {
 #' library(rtables)
 #' library(magrittr)
 #'
-#' ui <- fluidPage(
+#' ui <- bslib::page_fluid(
 #'   table_with_settings_ui(
 #'     id = "table_with_settings"
 #'   )
@@ -120,14 +136,21 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
     observeEvent(input$expand, {
       showModal(
         tags$div(
-          class = "table-modal",
+          class = "teal-widgets output-modal",
           modalDialog(
             easyClose = TRUE,
             tags$div(
               class = "float-right",
-              type_download_ui_table(ns("modal_downbutton"))
+              bslib::tooltip(
+                trigger = tags$div(type_download_ui_table(ns("modal_downbutton"))),
+                options = list(trigger = "hover"),
+                "Download"
+              )
             ),
-            uiOutput(ns("table_out_modal"), class = "table_out_container")
+            tags$div(
+              class = "teal-widgets table-modal-content",
+              uiOutput(ns("table_out_modal"))
+            )
           )
         )
       )
@@ -142,15 +165,9 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
 
 type_download_ui_table <- function(id) {
   ns <- NS(id)
-  shinyWidgets::dropdownButton(
-    circle = FALSE,
-    icon = icon("download"),
-    inline = TRUE,
-    right = TRUE,
-    label = "",
-    inputId = ns("dwnl"),
+  bslib::popover(
+    icon("download"),
     tags$div(
-      class = "modal-download-ui-table-container",
       radioButtons(ns("file_format"),
         label = "File type",
         choices = c("formatted txt" = ".txt", "csv" = ".csv", "pdf" = ".pdf"),

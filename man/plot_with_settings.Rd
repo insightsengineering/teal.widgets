@@ -83,7 +83,7 @@ If an invalid value is set then the default value is used and a warning is outpu
 library(shiny)
 library(ggplot2)
 
-ui <- fluidPage(
+ui <- bslib::page_fluid(
   plot_with_settings_ui(
     id = "plot_with_settings"
   )
@@ -110,7 +110,7 @@ if (interactive()) {
 # Example using a function as input to plot_r
 library(lattice)
 
-ui <- fluidPage(
+ui <- bslib::page_fluid(
   radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
   plot_with_settings_ui(
     id = "plot_with_settings"
@@ -150,7 +150,7 @@ if (interactive()) {
 }
 
 # Example with brushing/hovering/clicking/double-clicking
-ui <- fluidPage(
+ui <- bslib::page_fluid(
   plot_with_settings_ui(
     id = "plot_with_settings"
   ),
@@ -191,7 +191,7 @@ if (interactive()) {
 # Example which allows module to be hidden/shown
 library("shinyjs")
 
-ui <- fluidPage(
+ui <- bslib::page_fluid(
   useShinyjs(),
   actionButton("button", "Show/Hide"),
   plot_with_settings_ui(

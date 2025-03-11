@@ -89,15 +89,16 @@ data <- data.frame(
 )
 
 ui_grid <- function(...) {
-  fluidPage(
-    fluidRow(
-      lapply(list(...), function(x) column(4, wellPanel(x)))
+  bslib::page_fluid(
+    bslib::layout_columns(
+      col_widths = c(4, 4, 4),
+      ...
     )
   )
 }
 
 ui <- ui_grid(
-  tags$div(
+  wellPanel(
     optionalSelectInput(
       inputId = "c1",
       label = "Fixed choices",
@@ -107,7 +108,7 @@ ui <- ui_grid(
     ),
     verbatimTextOutput(outputId = "c1_out")
   ),
-  tags$div(
+  wellPanel(
     optionalSelectInput(
       inputId = "c2",
       label = "Single choice",
@@ -116,7 +117,7 @@ ui <- ui_grid(
     ),
     verbatimTextOutput(outputId = "c2_out")
   ),
-  tags$div(
+  wellPanel(
     optionalSelectInput(
       inputId = "c3",
       label = "NULL choices",
@@ -124,7 +125,7 @@ ui <- ui_grid(
     ),
     verbatimTextOutput(outputId = "c3_out")
   ),
-  tags$div(
+  wellPanel(
     optionalSelectInput(
       inputId = "c4",
       label = "Default",
@@ -133,7 +134,7 @@ ui <- ui_grid(
     ),
     verbatimTextOutput(outputId = "c4_out")
   ),
-  tags$div(
+  wellPanel(
     optionalSelectInput(
       inputId = "c5",
       label = "Named vector",
@@ -142,7 +143,7 @@ ui <- ui_grid(
     ),
     verbatimTextOutput(outputId = "c5_out")
   ),
-  tags$div(
+  wellPanel(
     selectInput(
       inputId = "c6_choices", label = "Update choices", choices = letters, multiple = TRUE
     ),

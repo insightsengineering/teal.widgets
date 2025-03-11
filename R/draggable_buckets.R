@@ -29,7 +29,7 @@ draggable_buckets_deps <- function() {
 #' @examples
 #' library(shiny)
 #'
-#' ui <- fluidPage(
+#' ui <- bslib::page_fluid(
 #'   draggable_buckets("id", "Choices #1", c("a", "b"), c("bucket1", "bucket2")),
 #'   draggable_buckets("id2", "Choices #2", letters, c("vowels", "consonants")),
 #'   verbatimTextOutput("out"),
@@ -56,7 +56,7 @@ draggable_buckets_deps <- function() {
 #' if (interactive()) shinyApp(ui, server)
 #'
 #' # With default elements in the bucket
-#' ui <- fluidPage(
+#' ui <- bslib::page_fluid(
 #'   draggable_buckets("id", "Choices #1", c("a", "b"), list(bucket1 = character(), bucket2 = c("c"))),
 #'   verbatimTextOutput("out")
 #' )

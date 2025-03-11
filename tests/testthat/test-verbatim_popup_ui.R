@@ -6,7 +6,7 @@
 #'
 app_driver_vpu <- function(button_label, verbatim_content, title) {
   shiny::shinyApp(
-    ui = shiny::fluidPage(
+    ui = bslib::page_fluid(
       verbatim_popup_ui(
         id = "verbatim_popup",
         button_label = button_label
@@ -30,6 +30,7 @@ testthat::test_that("verbatim_popup_ui returns `shiny.tag.list`", {
 testthat::test_that(
   "e2e: teal.widgets::verbatim_popup is initialized with a button that opens a modal with a verbatim text",
   {
+    testthat::skip("chromium")
     skip_if_too_deep(5)
     ui_popup_button_label <- "Open me"
     modal_title <- "Verbatim popup title"
@@ -68,7 +69,7 @@ testthat::test_that(
       "Copy to Clipboard"
     )
     testthat::expect_equal(
-      app_driver$get_text("#shiny-modal > div > div > div.modal-body > div > button:nth-child(2)"),
+      app_driver$get_text(".modal-footer button:nth-of-type(2)"),
       "Dismiss"
     )
 

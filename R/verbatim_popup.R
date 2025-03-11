@@ -27,7 +27,7 @@ verbatim_popup_deps <- function() {
 #' @examples
 #' library(shiny)
 #'
-#' ui <- fluidPage(verbatim_popup_ui("my_id", button_label = "Open popup"))
+#' ui <- bslib::page_fluid(verbatim_popup_ui("my_id", button_label = "Open popup"))
 #' srv <- function(input, output) {
 #'   verbatim_popup_srv(
 #'     "my_id",
@@ -126,31 +126,32 @@ button_click_observer <- function(click_event,
     handlerExpr = {
       req(modal_content())
       shiny::showModal(
-        shiny::modalDialog(
-          shiny::tagList(
+        div(
+          class = "teal-widgets button-click-observer",
+          shiny::modalDialog(
             tags$div(
-              class = "mb-4",
-              style = "margin-bottom: 1rem;",
+              tags$div(
+                shiny::actionButton(
+                  paste0(copy_button_id, 1),
+                  "Copy to Clipboard",
+                  onclick = paste0("copyToClipboard('", copied_area_id, "')")
+                ),
+                shiny::modalButton("Dismiss")
+              ),
+              tags$pre(id = copied_area_id, modal_content()),
+            ),
+            title = modal_title,
+            footer = shiny::tagList(
               shiny::actionButton(
-                paste0(copy_button_id, 1),
+                paste0(copy_button_id, 2),
                 "Copy to Clipboard",
                 onclick = paste0("copyToClipboard('", copied_area_id, "')")
               ),
               shiny::modalButton("Dismiss")
             ),
-            tags$pre(id = copied_area_id, modal_content()),
-          ),
-          title = modal_title,
-          footer = shiny::tagList(
-            shiny::actionButton(
-              paste0(copy_button_id, 2),
-              "Copy to Clipboard",
-              onclick = paste0("copyToClipboard('", copied_area_id, "')")
-            ),
-            shiny::modalButton("Dismiss")
-          ),
-          size = "l",
-          easyClose = TRUE
+            size = "l",
+            easyClose = TRUE
+          )
         )
       )
     }

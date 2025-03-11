@@ -28,7 +28,7 @@ using \code{jQuery} and modal \code{id}, without disturbing the parent modal.
 library(shiny)
 library(shinyjs)
 
-ui <- fluidPage(
+ui <- bslib::page_fluid(
   useShinyjs(),
   actionButton("show_1", "$(\"#modal_1\").modal(\"show\")"),
   nested_closeable_modal(

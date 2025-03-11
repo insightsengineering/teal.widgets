@@ -6,8 +6,8 @@ plot_with_settings_deps <- function() {
     version = utils::packageVersion("teal.widgets"),
     package = "teal.widgets",
     src = "plot-with-settings",
-    script = "plot-with-settings.js",
-    stylesheet = "plot-with-settings.css"
+    stylesheet = "plot-with-settings.css",
+    script = "plot-with-settings.js"
   )
 }
 
@@ -19,32 +19,54 @@ plot_with_settings_ui <- function(id) {
 
   ns <- NS(id)
 
-  tagList(
+  tags$div(
     plot_with_settings_deps(),
-    tags$div(
+    shinyjs::useShinyjs(),
+    bslib::card(
       id = ns("plot-with-settings"),
       tags$div(
-        class = "plot-settings-buttons",
-        type_download_ui(ns("downbutton")),
-        actionButton(
-          ns("expand"),
-          label = character(0),
-          icon = icon("up-right-and-down-left-from-center"),
-          class = "btn-sm"
+        tags$div(
+          class = "teal-widgets settings-buttons",
+          bslib::tooltip(
+            trigger = tags$div(type_download_ui(ns("downbutton"))),
+            options = list(trigger = "hover"),
+            class = "download-button",
+            "Download"
+          ),
+          bslib::tooltip(
+            trigger = tags$div(
+              bslib::popover(
+                id = ns("expbut"),
+                trigger = icon("maximize"),
+                uiOutput(ns("slider_ui")),
+                uiOutput(ns("width_warning"))
+              )
+            ),
+            options = list(trigger = "hover"),
+            class = "resize-button",
+            "Resize"
+          ),
+          bslib::tooltip(
+            trigger = tags$div(
+              actionLink(
+                ns("expand"),
+                label = character(0),
+                icon = icon("up-right-and-down-left-from-center"),
+                class = "btn-sm",
+                style = "color: #000;"
+              )
+            ),
+            options = list(trigger = "hover"),
+            class = "expand-button",
+            "Expand"
+          ),
         ),
-        shinyWidgets::dropdownButton(
-          circle = FALSE,
-          size = "sm",
-          icon = icon("maximize"),
-          inline = TRUE,
-          right = TRUE,
-          label = "",
-          inputId = ns("expbut"),
-          uiOutput(ns("slider_ui")),
-          uiOutput(ns("width_warning"))
+        tags$br(),
+        tags$div(
+          class = "teal-widgets plot-content",
+          uiOutput(ns("plot_out_main"))
         )
-      ),
-      uiOutput(ns("plot_out_main"), class = "plot_out_container", width = "100%")
+      )
     )
   )
 }
@@ -104,7 +126,7 @@ plot_with_settings_ui <- function(id) {
 #' library(shiny)
 #' library(ggplot2)
 #'
-#' ui <- fluidPage(
+#' ui <- bslib::page_fluid(
 #'   plot_with_settings_ui(
 #'     id = "plot_with_settings"
 #'   )
@@ -131,7 +153,7 @@ plot_with_settings_ui <- function(id) {
 #' # Example using a function as input to plot_r
 #' library(lattice)
 #'
-#' ui <- fluidPage(
+#' ui <- bslib::page_fluid(
 #'   radioButtons("download_option", "Select the Option", list("ggplot", "trellis", "grob", "base")),
 #'   plot_with_settings_ui(
 #'     id = "plot_with_settings"
@@ -171,7 +193,7 @@ plot_with_settings_ui <- function(id) {
 #' }
 #'
 #' # Example with brushing/hovering/clicking/double-clicking
-#' ui <- fluidPage(
+#' ui <- bslib::page_fluid(
 #'   plot_with_settings_ui(
 #'     id = "plot_with_settings"
 #'   ),
@@ -212,7 +234,7 @@ plot_with_settings_ui <- function(id) {
 #' # Example which allows module to be hidden/shown
 #' library("shinyjs")
 #'
-#' ui <- fluidPage(
+#' ui <- bslib::page_fluid(
 #'   useShinyjs(),
 #'   actionButton("button", "Show/Hide"),
 #'   plot_with_settings_ui(
@@ -330,6 +352,7 @@ plot_with_settings_srv <- function(id,
     })
 
     output$slider_ui <- renderUI({
+      req(default_slider_width())
       tags$div(
         optionalSliderInputValMinMax(
           inputId = ns("height"),
@@ -463,7 +486,7 @@ plot_with_settings_srv <- function(id,
     observeEvent(input$expand, {
       showModal(
         tags$div(
-          class = "plot-modal",
+          class = "teal-widgets plot-modal",
           modalDialog(
             easyClose = TRUE,
             tags$div(
@@ -474,7 +497,8 @@ plot_with_settings_srv <- function(id,
                 value_min_max = round(c(p_height(), height[2:3])),
                 ticks = FALSE,
                 step = 1L,
-                round = TRUE
+                round = TRUE,
+                width = "30vw"
               ),
               optionalSliderInputValMinMax(
                 inputId = ns("width_in_modal"),
@@ -493,16 +517,18 @@ plot_with_settings_srv <- function(id,
                 )),
                 ticks = FALSE,
                 step = 1L,
-                round = TRUE
+                round = TRUE,
+                width = "30vw"
+              ),
+              bslib::tooltip(
+                trigger = tags$div(type_download_ui(ns("modal_downbutton"))),
+                options = list(trigger = "hover"),
+                "Download"
               )
             ),
             tags$div(
-              class = "float-right",
-              type_download_ui(ns("modal_downbutton"))
-            ),
-            tags$div(
-              align = "center",
-              uiOutput(ns("plot_out_modal"), class = "plot_out_container")
+              class = "teal-widgets plot-modal-content",
+              uiOutput(ns("plot_out_modal"))
             )
           )
         )
@@ -519,34 +545,32 @@ plot_with_settings_srv <- function(id,
       default_h = default_h
     )
 
-    return(
-      list(
-        brush = reactive({
-          # refresh brush data on the main plot size change
-          input$height
-          input$width
-          input$plot_brush
-        }),
-        click = reactive({
-          # refresh click data on the main plot size change
-          input$height
-          input$width
-          input$plot_click
-        }),
-        dblclick = reactive({
-          # refresh double click data on the main plot size change
-          input$height
-          input$width
-          input$plot_dblclick
-        }),
-        hover = reactive({
-          # refresh hover data on the main plot size change
-          input$height
-          input$width
-          input$plot_hover
-        }),
-        dim = reactive(c(p_width(), p_height()))
-      )
+    list(
+      brush = reactive({
+        # refresh brush data on the main plot size change
+        input$height
+        input$width
+        input$plot_brush
+      }),
+      click = reactive({
+        # refresh click data on the main plot size change
+        input$height
+        input$width
+        input$plot_click
+      }),
+      dblclick = reactive({
+        # refresh double click data on the main plot size change
+        input$height
+        input$width
+        input$plot_dblclick
+      }),
+      hover = reactive({
+        # refresh hover data on the main plot size change
+        input$height
+        input$width
+        input$plot_hover
+      }),
+      dim = reactive(c(p_width(), p_height()))
     )
   })
 }
@@ -554,14 +578,8 @@ plot_with_settings_srv <- function(id,
 #' @keywords internal
 type_download_ui <- function(id) {
   ns <- NS(id)
-  shinyWidgets::dropdownButton(
-    circle = FALSE,
-    size = "sm",
-    icon = icon("download"),
-    inline = TRUE,
-    right = TRUE,
-    label = "",
-    inputId = ns("downl"),
+  bslib::popover(
+    icon("download"),
     tags$div(
       radioButtons(ns("file_format"),
         label = "File type",
