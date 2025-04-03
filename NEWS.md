@@ -1,9 +1,10 @@
 # teal.widgets 0.4.3.9001
 
 ### Breaking changes
-
 * `panel_group()` and `panel_item()` are deprecated. Please use the `bslib::accordion()` and `bslib::accordion_panel()` instead.
 
+### Bug fixes
+* Recompute the `live-search` option value dynamically in `updateOptionalSelectInput` (#291)
 
 # teal.widgets 0.4.3
 
