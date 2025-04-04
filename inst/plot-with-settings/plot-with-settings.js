@@ -5,7 +5,7 @@ var establishPlotResizing = function (plot_out, flex_width) {
   var plotObserver = new ResizeObserver(function () {
     Shiny.onInputChange(
       flex_width,
-      document.getElementById(plot_out).clientWidth
+      document.getElementById(plot_out).clientWidth - 10 // Reducing the plot width by 10px to avoid overflow
     );
   });
 
