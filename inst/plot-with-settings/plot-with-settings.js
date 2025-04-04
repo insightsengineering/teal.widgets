@@ -3,9 +3,10 @@
 var establishPlotResizing = function (plot_out, flex_width) {
   // Create resize observer to trigger shiny actions when plot container is resized.
   var plotObserver = new ResizeObserver(function () {
+    paddingTolerance = 10;
     Shiny.onInputChange(
       flex_width,
-      document.getElementById(plot_out).clientWidth - 10 // Reducing the plot width by 10px to avoid overflow
+      document.getElementById(plot_out).clientWidth - paddingTolerance // Reducing the plot width to avoid overflow
     );
   });
 
