@@ -20,7 +20,7 @@
 
 .teal-widgets.table-content,
 .teal-widgets.table-modal-content {
-  overflow: scroll;
+  overflow: auto;
 }
 
 .teal-widgets.settings-buttons {

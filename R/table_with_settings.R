@@ -33,6 +33,7 @@ table_with_settings_ui <- function(id, ...) {
     shinyjs::useShinyjs(),
     bslib::card(
       id = ns("table-with-settings"),
+      full_screen = TRUE,
       tags$div(
         class = "teal-widgets settings-buttons",
         bslib::tooltip(
@@ -40,20 +41,6 @@ table_with_settings_ui <- function(id, ...) {
           options = list(trigger = "hover"),
           class = "download-button",
           "Download"
-        ),
-        bslib::tooltip(
-          trigger = tags$div(
-            actionLink(
-              ns("expand"),
-              label = character(0),
-              icon = icon("up-right-and-down-left-from-center"),
-              class = "btn-sm",
-              style = "color: #000;"
-            )
-          ),
-          options = list(trigger = "hover"),
-          class = "expand-button",
-          "Expand"
         )
       ),
       tags$div(
@@ -130,34 +117,6 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
 
     type_download_srv_table(
       id = "downbutton",
-      table_reactive = table_r
-    )
-
-    observeEvent(input$expand, {
-      showModal(
-        tags$div(
-          class = "teal-widgets output-modal",
-          modalDialog(
-            easyClose = TRUE,
-            tags$div(
-              class = "float-right",
-              bslib::tooltip(
-                trigger = tags$div(type_download_ui_table(ns("modal_downbutton"))),
-                options = list(trigger = "hover"),
-                "Download"
-              )
-            ),
-            tags$div(
-              class = "teal-widgets table-modal-content",
-              uiOutput(ns("table_out_modal"))
-            )
-          )
-        )
-      )
-    })
-
-    type_download_srv_table(
-      id = "modal_downbutton",
       table_reactive = table_r
     )
   })
