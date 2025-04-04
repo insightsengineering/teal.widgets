@@ -48,7 +48,6 @@ plot_with_settings_ui <- function(id) {
             "Download"
           )
         ),
-        tags$br(),
         tags$div(
           id = ns("plot-out-main"),
           class = "teal-widgets plot-content",
