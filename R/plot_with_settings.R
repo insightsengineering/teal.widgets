@@ -63,6 +63,7 @@ plot_with_settings_ui <- function(id) {
         ),
         tags$br(),
         tags$div(
+          id = ns("plot-out-main"),
           class = "teal-widgets plot-content",
           uiOutput(ns("plot_out_main"))
         )
@@ -299,7 +300,7 @@ plot_with_settings_srv <- function(id,
     shinyjs::runjs(
       sprintf(
         'establishPlotResizing("%s", "%s", "%s");',
-        ns("plot_main"), # graph parent id
+        ns("plot-out-main"), # graph parent id
         ns("flex_width"), # session input$ variable name
         ns("plot_modal_width") # session input$ variable name
       )
@@ -449,6 +450,7 @@ plot_with_settings_srv <- function(id,
         plotOutput(
           ns("plot_main"),
           height = "100%",
+          width = p_width(),
           brush = `if`(brushing, brushOpts(ns("plot_brush"), resetOnNew = FALSE), NULL),
           click = `if`(clicking, clickOpts(ns("plot_click")), NULL),
           dblclick = `if`(dblclicking, dblclickOpts(ns("plot_dblclick")), NULL),
