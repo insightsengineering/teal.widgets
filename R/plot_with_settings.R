@@ -24,15 +24,10 @@ plot_with_settings_ui <- function(id) {
     shinyjs::useShinyjs(),
     bslib::card(
       id = ns("plot-with-settings"),
+      full_screen = TRUE,
       tags$div(
         tags$div(
           class = "teal-widgets settings-buttons",
-          bslib::tooltip(
-            trigger = tags$div(type_download_ui(ns("downbutton"))),
-            options = list(trigger = "hover"),
-            class = "download-button",
-            "Download"
-          ),
           bslib::tooltip(
             trigger = tags$div(
               bslib::popover(
@@ -47,22 +42,14 @@ plot_with_settings_ui <- function(id) {
             "Resize"
           ),
           bslib::tooltip(
-            trigger = tags$div(
-              actionLink(
-                ns("expand"),
-                label = character(0),
-                icon = icon("up-right-and-down-left-from-center"),
-                class = "btn-sm",
-                style = "color: #000;"
-              )
-            ),
+            trigger = tags$div(type_download_ui(ns("downbutton"))),
             options = list(trigger = "hover"),
-            class = "expand-button",
-            "Expand"
-          ),
+            class = "download-button",
+            "Download"
+          )
         ),
-        tags$br(),
         tags$div(
+          id = ns("plot-out-main"),
           class = "teal-widgets plot-content",
           uiOutput(ns("plot_out_main"))
         )
@@ -87,29 +74,27 @@ plot_with_settings_ui <- function(id) {
 #'  Take into account that simple functions are less efficient than reactive, as not catching the result.
 #' @param height (`numeric`) optional\cr
 #'  vector with three elements c(VAL, MIN, MAX), where VAL is the starting value of the slider in
-#'  the main and modal plot display. The value in the modal display is taken from the value of the
-#'  slider in the main plot display.
+#'  the main and expanded plot display.
 #' @param width (`numeric`) optional\cr
 #'  vector with three elements `c(VAL, MIN, MAX)`, where VAL is the starting value of the slider in
-#'  the main and modal plot display; `NULL` for default display. The value in the modal
-#'  display is taken from the value of the slider in the main plot display.
+#'  the main and expanded plot display; `NULL` for default display.
 #' @param show_hide_signal optional, (`reactive logical` a mechanism to allow modules which call this
 #'     module to show/hide the plot_with_settings UI)
 #' @param brushing (`logical`) optional\cr
-#'  mechanism to enable / disable brushing on the main plot (in particular: not the one displayed
-#'  in modal). All the brushing data is stored as a reactive object in the `"brush"` element of
+#'  mechanism to enable / disable brushing on the main plot.
+#' All the brushing data is stored as a reactive object in the `"brush"` element of
 #'  returned list. See the example for details.
 #' @param clicking (`logical`)\cr
-#'  a mechanism to enable / disable clicking on data points on the main plot (in particular: not the
-#'  one displayed in modal). All the clicking data is stored as a reactive object in the `"click"`
+#'  a mechanism to enable / disable clicking on data points on the main plot.
+#' All the clicking data is stored as a reactive object in the `"click"`
 #'  element of returned list. See the example for details.
 #' @param dblclicking (`logical`) optional\cr
-#'  mechanism to enable / disable double-clicking on data points on the main plot (in particular:
-#'  not the one displayed in modal). All the double clicking data is stored as a reactive object in
+#'  mechanism to enable / disable double-clicking on data points on the main plot.
+#' All the double clicking data is stored as a reactive object in the
 #'  the `"dblclick"` element of returned list. See the example for details.
 #' @param hovering (`logical(1)`) optional\cr
-#'  mechanism to enable / disable hovering over data points on the main plot (in particular: not
-#'  the one displayed in modal). All the hovering data is stored as a reactive object in the
+#'  mechanism to enable / disable hovering over data points on the main plot.
+#' All the hovering data is stored as a reactive object in the
 #' `"hover"` element of returned list. See the example for details.
 #' @param graph_align (`character(1)`) optional,\cr
 #'  one of `"left"` (default), `"center"`, `"right"` or `"justify"`. The alignment of the graph on
@@ -298,10 +283,9 @@ plot_with_settings_srv <- function(id,
     ns <- session$ns
     shinyjs::runjs(
       sprintf(
-        'establishPlotResizing("%s", "%s", "%s");',
-        ns("plot_main"), # graph parent id
-        ns("flex_width"), # session input$ variable name
-        ns("plot_modal_width") # session input$ variable name
+        'establishPlotResizing("%s", "%s");',
+        ns("plot-out-main"), # graph parent id
+        ns("flex_width") # session input$ variable name
       )
     )
     default_w <- function() session$clientData[[paste0("output_", ns("plot_main_width"))]]
@@ -430,18 +414,6 @@ plot_with_settings_srv <- function(id,
       width = p_width
     )
 
-    output$plot_modal <- renderPlot(
-      apply_plot_modifications(
-        plot_obj = plot_suppress(plot_r()),
-        plot_type = plot_suppress(plot_type()),
-        dblclicking = dblclicking,
-        ranges = ranges
-      ),
-      res = get_plot_dpi(),
-      height = reactive(input$height_in_modal),
-      width = reactive(input$width_in_modal)
-    )
-
     output$plot_out_main <- renderUI({
       req(plot_suppress(plot_r()))
       tags$div(
@@ -449,6 +421,7 @@ plot_with_settings_srv <- function(id,
         plotOutput(
           ns("plot_main"),
           height = "100%",
+          width = p_width(),
           brush = `if`(brushing, brushOpts(ns("plot_brush"), resetOnNew = FALSE), NULL),
           click = `if`(clicking, clickOpts(ns("plot_click")), NULL),
           dblclick = `if`(dblclicking, dblclickOpts(ns("plot_dblclick")), NULL),
@@ -476,72 +449,6 @@ plot_with_settings_srv <- function(id,
       plot_w = p_width,
       default_w = default_w,
       plot_h = p_height,
-      default_h = default_h
-    )
-
-    output$plot_out_modal <- renderUI({
-      plotOutput(ns("plot_modal"), height = input$height_in_modal, width = input$width_in_modal)
-    })
-
-    observeEvent(input$expand, {
-      showModal(
-        tags$div(
-          class = "teal-widgets plot-modal",
-          modalDialog(
-            easyClose = TRUE,
-            tags$div(
-              class = "plot-modal-sliders",
-              optionalSliderInputValMinMax(
-                inputId = ns("height_in_modal"),
-                label = "Plot height",
-                value_min_max = round(c(p_height(), height[2:3])),
-                ticks = FALSE,
-                step = 1L,
-                round = TRUE,
-                width = "30vw"
-              ),
-              optionalSliderInputValMinMax(
-                inputId = ns("width_in_modal"),
-                label = "Plot width",
-                value_min_max = round(c(
-                  ifelse(
-                    is.null(input$width) || !isFALSE(input$width_resize_switch),
-                    ifelse(
-                      is.null(input$plot_modal_width) || input$plot_modal_width > default_slider_width()[3],
-                      default_slider_width()[1],
-                      input$plot_modal_width
-                    ),
-                    input$width
-                  ),
-                  default_slider_width()[2:3]
-                )),
-                ticks = FALSE,
-                step = 1L,
-                round = TRUE,
-                width = "30vw"
-              ),
-              bslib::tooltip(
-                trigger = tags$div(type_download_ui(ns("modal_downbutton"))),
-                options = list(trigger = "hover"),
-                "Download"
-              )
-            ),
-            tags$div(
-              class = "teal-widgets plot-modal-content",
-              uiOutput(ns("plot_out_modal"))
-            )
-          )
-        )
-      )
-    })
-
-    type_download_srv(
-      id = "modal_downbutton",
-      plot_reactive = plot_r,
-      plot_type = plot_type,
-      plot_w = reactive(input$width_in_modal),
-      default_w = default_w,
-      plot_h = reactive(input$height_in_modal),
       default_h = default_h
     )
 
