@@ -302,7 +302,10 @@ updateOptionalSelectInput <- function(session, # nolint
     label = label,
     selected = as.character(raw_selected),
     choices = raw_choices,
-    choicesOpt = picker_options(choices)
+    choicesOpt = picker_options(choices),
+    options = list(
+      `live-search` = ifelse(length(raw_choices) > 10, TRUE, FALSE)
+    )
   )
 
   invisible(NULL)
