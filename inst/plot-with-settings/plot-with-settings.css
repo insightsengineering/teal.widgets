@@ -11,7 +11,7 @@
 
 .teal-widgets.plot-content,
 .teal-widgets.plot-modal-content {
-  overflow: scroll;
+  overflow: auto;
 }
 
 .teal-widgets.settings-buttons {

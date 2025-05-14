@@ -25,7 +25,9 @@
 .teal-widgets.standard-layout .standard-layout-output > .well {
   border: none;
 }
-
+.teal-widgets.standard-layout .standard-layout-output > .well-sm {
+  padding: 1rem;
+}
 .teal-widgets.standard-layout-wrapper {
-  padding-right: 0;
+  padding: 0;
 }
