@@ -5,7 +5,6 @@
 #' @keywords internal
 #'
 app_driver_pws <- function() {
-  testthat::skip("chromium")
   shiny::shinyApp(
     ui = bslib::page_fluid(
       shiny::actionButton("button", "Show/Hide"),
@@ -56,7 +55,7 @@ click_resize_popup <- "document.querySelector(
 ).click()"
 
 # JS code to click the expand button popup.
-click_expand_popup <- "document.querySelector('.teal-widgets.settings-buttons .expand-button i').click()"
+click_expand_popup <- "document.querySelector('#plot_with_settings-plot-with-settings > bslib-tooltip > button').click()"
 
 # JS code to click the download button popup inside the expanded modal.
 click_expand_download_popup <- "document.querySelectorAll(
@@ -81,7 +80,6 @@ testthat::test_that("plot_with_settings_ui returns `shiny.tag`", {
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: initializes with a plot and the settings buttons",
   {
-    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
@@ -104,7 +102,7 @@ testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: buttons have proper FA icons and two of them are dropdowns",
   {
     skip_if_too_deep(5)
-    testthat::skip("chromium")
+
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
@@ -164,7 +162,6 @@ testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the expand button opens a modal
   plot height, plot width, plot, download dropdown and dismiss button",
   {
-    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
@@ -175,18 +172,15 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    testthat::expect_false(is_visible("#plot_with_settings-height_in_modal", app_driver))
-    testthat::expect_false(is_visible("#plot_with_settings-width_in_modal", app_driver))
-    testthat::expect_false(is_visible("#plot_with_settings-modal_downbutton-downl", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-plot-with-settings", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-plot-with-settings > div > div > div.teal-widgets.settings-buttons > bslib-tooltip.download-button", app_driver))
+    testthat::expect_false(is_visible("#plot_with_settings-expbut", app_driver))
 
-    app_driver$run_js(click_expand_popup)
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
-
-    testthat::expect_true(is_visible("#plot_with_settings-height_in_modal", app_driver))
-    testthat::expect_true(is_visible("#plot_with_settings-width_in_modal", app_driver))
-
+    app_driver$run_js(click_expand_popup, timeout = default_idle_timeout)
+    testthat::expect_true(is_visible("#bslib-full-screen-overlay", app_driver))
+    app_driver$view()
     testthat::expect_identical(
-      app_driver$get_value(input = "plot_with_settings-height_in_modal"),
+      app_driver$get_value(input = "#plot_with_settings-plot-with-settings"),
       400L
     )
     testthat::expect_identical(
@@ -211,7 +205,6 @@ testthat::test_that(
 testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the download button in expand modal opens a download dropdown",
   {
-    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
@@ -255,7 +248,6 @@ testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the resize button opens a dropdown menu
   plot height, plot width, plot, download dropdown and dismiss button",
   {
-    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
@@ -299,7 +291,6 @@ testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: it is possible to set height and width for the plot
   on the third button dropdown menu without errors",
   {
-    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
@@ -321,7 +312,6 @@ testthat::test_that(
 testthat::test_that(
   "e2e teal.widgets::plot_with_settings: clicking download+download button downloads image in a specified format",
   {
-    testthat::skip("chromium")
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
@@ -341,7 +331,6 @@ testthat::test_that(
 )
 
 testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be resized", {
-  testthat::skip("chromium")
   skip_if_too_deep(5)
   app_driver <- shinytest2::AppDriver$new(
     app_driver_pws(),
@@ -389,7 +378,6 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
 })
 
 testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be downloaded", {
-  testthat::skip("chromium")
   skip_if_too_deep(5)
   app_driver <- shinytest2::AppDriver$new(
     app_driver_pws(),
@@ -411,7 +399,6 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
 })
 
 testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be resized", {
-  testthat::skip("chromium")
   skip_if_too_deep(5)
   app_driver <- shinytest2::AppDriver$new(
     app_driver_pws(),
