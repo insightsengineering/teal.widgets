@@ -30,15 +30,26 @@ app_driver_tws <- function() {
   )
 }
 
-# JS code to click the download button popup.
-click_download_popup <- "document.querySelectorAll('.teal-widgets.settings-buttons .download-button i')[3].click()"
-
+# nolinter start
 # JS code to click the expand button popup.
-click_expand_popup <- "document.querySelector('.teal-widgets.settings-buttons .expand-button i').click()"
+click_expand_popup <- "document.querySelector('#table_with_settings-table-with-settings > bslib-tooltip > button').click()"
 
 # JS code to click the download button popup inside the expanded modal.
-click_expand_download_popup <- "document.querySelectorAll('.modal-dialog .fas.fa-download')[1].click()"
+click_download_popup <- "// Select the element with the popover
+                      const popoverTrigger = document.querySelector('i.fas.fa-download[data-bs-toggle=\"popover\"]');
+                      // Initialize the popover if it isn't already initialized
+                      const popover = bootstrap.Popover.getOrCreateInstance(popoverTrigger);
+                      // Show the popover programmatically
+                      popover.show();"
 
+# JS code to click the download button popup inside the expanded modal.
+click_closed_download_popup <- "// Select the element with the popover
+                      const popoverTrigger = document.querySelector('i.fas.fa-download[data-bs-toggle=\"popover\"]');
+                      // Initialize the popover if it isn't already initialized
+                      const popover = bootstrap.Popover.getOrCreateInstance(popoverTrigger);
+                      // Show the popover programmatically
+                      popover.hide();"
+# nolinter end
 
 check_table <- function(content) {
   testthat::expect_match(content, "B: Placebo", fixed = TRUE, all = FALSE)
@@ -179,19 +190,21 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    testthat::expect_false(is_visible("#table_with_settings-table_out_modal", app_driver))
+    testthat::expect_false(is_visible("#table_with_settings-table_out_main", app_driver))
+    testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
 
     app_driver$run_js(click_expand_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    table_content <- app_driver$get_text("#table_with_settings-table_out_modal")
+    table_content <- app_driver$get_text("#table_with_settings-table_out_main")
 
     check_table(table_content)
 
+    testthat::expect_true(is_visible("#bslib-full-screen-overlay", app_driver))
     # Close modal.
-    app_driver$click(selector = "#shiny-modal-wrapper .modal-footer > button")
+    app_driver$run_js("document.querySelector('#bslib-full-screen-overlay .bslib-full-screen-exit').click();")
     app_driver$wait_for_idle(timeout = default_idle_timeout)
-    testthat::expect_null(app_driver$get_html("#table_with_settings-table_out_modal"))
+    testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
 
     # Review the main table content.
     main_table_content <- app_driver$get_text("#table_with_settings-table_out_main")
@@ -201,6 +214,7 @@ testthat::test_that(
   }
 )
 
+# Fail here
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings: clicking download in an expand modal opens dropdown menu with dwnl settings,
   such as: file type, file name, pagination",
@@ -216,37 +230,38 @@ testthat::test_that(
 
     app_driver$run_js(click_expand_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
-    app_driver$run_js(click_expand_download_popup)
+    app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     testthat::expect_equal(
-      app_driver$get_text("#table_with_settings-modal_downbutton-file_format-label"),
+      app_driver$get_text("#table_with_settings-downbutton-file_format-label"),
       "File type"
     )
+    values <- app_driver$get_values()
     testthat::expect_identical(
-      app_driver$get_value(input = "table_with_settings-modal_downbutton-file_format"),
+      values$input$`table_with_settings-downbutton-file_format`,
       ".txt"
     )
 
-    file_format_text <- app_driver$get_text("#table_with_settings-modal_downbutton-file_format > div")
+    file_format_text <- app_driver$get_text("#table_with_settings-downbutton-file_format > div")
     testthat::expect_match(file_format_text, "formatted txt\n", fixed = TRUE)
     testthat::expect_match(file_format_text, "csv\n", fixed = TRUE)
     testthat::expect_match(file_format_text, "pdf\n", fixed = TRUE)
 
     testthat::expect_equal(
-      app_driver$get_text("#table_with_settings-modal_downbutton-file_name-label"),
+      app_driver$get_text("#table_with_settings-downbutton-file_name-label"),
       "File name (without extension)"
     )
 
     testthat::expect_match(
-      app_driver$get_value(input = "table_with_settings-modal_downbutton-file_name"),
+      app_driver$get_value(input = "table_with_settings-downbutton-file_name"),
       sprintf("table_%s", gsub("-", "", Sys.Date()))
     )
 
-    testthat::expect_true(is_visible("#table_with_settings-modal_downbutton-data_download", app_driver))
+    testthat::expect_true(is_visible("#table_with_settings-downbutton-data_download", app_driver))
 
     download_button <-
-      app_driver$get_html("#table_with_settings-modal_downbutton-data_download > i") %>%
+      app_driver$get_html("#table_with_settings-downbutton-data_download > i") %>%
       rvest::read_html()
 
     testthat::expect_equal(
@@ -282,7 +297,7 @@ testthat::test_that(
 
     app_driver$run_js(click_expand_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
-    app_driver$run_js(click_expand_download_popup)
+    app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
     pagination_text <- app_driver$get_text(".paginate-ui")
@@ -332,10 +347,10 @@ testthat::test_that("e2e teal.widgets::table_with_settings: expanded table can b
   app_driver$run_js(click_expand_popup)
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  app_driver$run_js(click_expand_download_popup)
+  app_driver$run_js(click_download_popup)
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  filename <- app_driver$get_download("table_with_settings-modal_downbutton-data_download")
+  filename <- app_driver$get_download("table_with_settings-downbutton-data_download")
   testthat::expect_match(filename, "txt$", fixed = FALSE)
 
   content <- readLines(filename)
