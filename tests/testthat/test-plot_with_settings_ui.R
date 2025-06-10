@@ -71,7 +71,7 @@ click_download_popup <- "// Select the element with the popover
 get_active_module_pws_output <- function(app_driver, pws, attr) {
   app_driver$get_html("html") %>%
     rvest::read_html() %>%
-    rvest::html_nodes(sprintf("#plot_with_settings-%s > img", pws)) %>%
+    rvest::html_elements(sprintf("#plot_with_settings-%s > img", pws)) %>%
     rvest::html_attr(attr)
 }
 
@@ -149,13 +149,13 @@ testthat::test_that(
 
     testthat::expect_equal(
       download_button %>%
-        rvest::html_node("i") %>%
+        rvest::html_element("i") %>%
         rvest::html_attr("class"),
       "fas fa-download"
     )
     testthat::expect_equal(
       download_button %>%
-        rvest::html_node("i") %>%
+        rvest::html_element("i") %>%
         rvest::html_attr("aria-label"),
       "download icon"
     )
