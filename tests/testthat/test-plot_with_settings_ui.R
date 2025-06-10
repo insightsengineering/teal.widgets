@@ -340,33 +340,35 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "src")
-
-  testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "width"),
-    "500"
+  values <- app_driver$get_values()
+  testthat::expect_equal(values$output$`plot_with_settings-plot_main`$width,
+    500L
   )
 
   testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "height"),
-    "400"
+    values$output$`plot_with_settings-plot_main`$height,
+    400L
   )
-
-  app_driver$set_inputs(`plot_with_settings-height_in_modal` = 1000)
-  app_driver$set_inputs(`plot_with_settings-width_in_modal` = 350)
+  app_driver$run_js(click_resize_popup)
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "width"),
-    "350"
+  app_driver$set_inputs(`plot_with_settings-height` = 1000)
+  app_driver$set_inputs(`plot_with_settings-width` = 350)
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+  values_resized <- app_driver$get_values()
+
+  testthat::expect_equal(values_resized$output$`plot_with_settings-plot_main`$width,
+                         350L
   )
 
   testthat::expect_equal(
-    get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "height"),
-    "1000"
+    values_resized$output$`plot_with_settings-plot_main`$height,
+    1000L
   )
 
   testthat::expect_false(
-    identical(plot_before, get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "src"))
+    identical(values$output$`plot_with_settings-plot_main`$src,
+              values_resized$output$`plot_with_settings-plot_main`$src)
   )
 
   app_driver$stop()
@@ -384,10 +386,10 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver$run_js(click_expand_popup)
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  app_driver$run_js(click_expand_download_popup)
+  app_driver$run_js(click_download_popup)
   app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-  filename <- app_driver$get_download("plot_with_settings-modal_downbutton-data_download")
+  filename <- app_driver$get_download("plot_with_settings-downbutton-data_download")
   testthat::expect_match(filename, "png$", fixed = FALSE)
 
   app_driver$stop()
@@ -436,27 +438,3 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
 
   app_driver$stop()
 })
-
-
-
-app$set_inputs(`plot_with_settings-plot_click` = character(0), allow_no_input_binding_ = TRUE)
-app$set_inputs(`plot_with_settings-plot_dblclick` = character(0), allow_no_input_binding_ = TRUE)
-app$set_inputs(`plot_with_settings-plot_hover` = character(0), allow_no_input_binding_ = TRUE)
-app$set_inputs(`plot_with_settings-plot_brush` = character(0), allow_no_input_binding_ = TRUE)
-# Update output value
-app$set_window_size(width = 3139, height = 1271)
-app$set_inputs(`plot_with_settings-expbut` = TRUE)
-app$set_window_size(width = 3139, height = 1271)
-# Update output value
-app$set_inputs(`plot_with_settings-width_resize_switch` = FALSE)
-app$set_inputs(`plot_with_settings-height` = 400)
-app$set_inputs(`plot_with_settings-width` = 500)
-# Update output value
-app$set_window_size(width = 3139, height = 1271)
-app$set_inputs(`plot_with_settings-height` = 646)
-# Update output value
-app$set_window_size(width = 3139, height = 1271)
-app$set_inputs(`plot_with_settings-height` = 365)
-# Update output value
-app$set_window_size(width = 3139, height = 1271)
-app$expect_values()
