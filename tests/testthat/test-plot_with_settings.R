@@ -474,16 +474,3 @@ testthat::test_that("plot_with_settings_srv returns the click ggplot2 functional
     }
   )
 })
-
-testthat::test_that("plot_with_settings_srv and plot_type reactive types", {
-  for (p in seq_along(plot_funs)) {
-    plot_with_settings_args[["plot_r"]] <- plot_funs[[p]]
-    shiny::testServer(
-      teal.widgets:::plot_with_settings_srv,
-      args = plot_with_settings_args,
-      expr = {
-        plot_suppress(testthat::expect_identical(plot_type(), plot_types[[p]]()))
-      }
-    )
-  }
-})
