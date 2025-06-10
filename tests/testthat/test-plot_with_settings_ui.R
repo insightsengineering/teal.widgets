@@ -46,21 +46,27 @@ app_driver_pws <- function() {
   )
 }
 
-# JS code to click the download button popup.
-click_download_popup <- "document.querySelectorAll('.teal-widgets.settings-buttons .download-button i')[1].click()"
 
 # JS code to click the resize button popup.
-click_resize_popup <- "document.querySelector(
-  '.teal-widgets.settings-buttons .resize-button i.fas.fa-maximize'
-).click()"
+#nolinter start
+click_resize_popup <-"// Select the element with the popover
+                      const popoverTrigger = document.querySelector('i.fas.fa-maximize[data-bs-toggle=\"popover\"]');
+                      // Initialize the popover if it isn't already initialized
+                      const popover = bootstrap.Popover.getOrCreateInstance(popoverTrigger);
+                      // Show the popover programmatically
+                      popover.show();"
 
 # JS code to click the expand button popup.
 click_expand_popup <- "document.querySelector('#plot_with_settings-plot-with-settings > bslib-tooltip > button').click()"
 
 # JS code to click the download button popup inside the expanded modal.
-click_expand_download_popup <- "document.querySelectorAll(
-  '.teal-widgets.plot-modal .plot-modal-sliders .fas.fa-download'
-)[1].click()"
+click_download_popup <- "// Select the element with the popover
+                      const popoverTrigger = document.querySelector('i.fas.fa-download[data-bs-toggle=\"popover\"]');
+                      // Initialize the popover if it isn't already initialized
+                      const popover = bootstrap.Popover.getOrCreateInstance(popoverTrigger);
+                      // Show the popover programmatically
+                      popover.show();"
+# nolinter end
 
 get_active_module_pws_output <- function(app_driver, pws, attr) {
   app_driver$get_html("html") %>%
@@ -159,7 +165,7 @@ testthat::test_that(
 )
 
 testthat::test_that(
-  "e2e: teal.widgets::plot_with_settings: the click on the expand button opens a modal
+  "e2e: teal.widgets::plot_with_settings: the click on the expand button opens an overlay
   plot height, plot width, plot, download dropdown and dismiss button",
   {
     skip_if_too_deep(5)
@@ -171,33 +177,24 @@ testthat::test_that(
       width = 1000
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$get_text("#plot_with_settings-plot-with-settings > div > div > div.teal-widgets.settings-buttons > bslib-tooltip.resize-button > div:nth-child(1)")
+    pre_click <- app_driver$get_values()
+    testthat::expect_false(app_driver$get_value(input = "plot_with_settings-plot-with-settings_full_screen"))
 
-    testthat::expect_false(is_visible("#plot_with_settings-plot-with-settings", app_driver))
-    testthat::expect_false(is_visible("#plot_with_settings-plot-with-settings > div > div > div.teal-widgets.settings-buttons > bslib-tooltip.download-button", app_driver))
-    testthat::expect_false(is_visible("#plot_with_settings-expbut", app_driver))
+    app_driver$set_inputs(`plot_with_settings-expbut` = TRUE)
 
+    # Expand the plot and evaluate the output
     app_driver$run_js(click_expand_popup, timeout = default_idle_timeout)
     testthat::expect_true(is_visible("#bslib-full-screen-overlay", app_driver))
-    app_driver$view()
-    testthat::expect_identical(
-      app_driver$get_value(input = "#plot_with_settings-plot-with-settings"),
-      400L
-    )
-    testthat::expect_identical(
-      app_driver$get_text("#plot_with_settings-height_in_modal-label"),
-      "Plot height"
-    )
-    testthat::expect_identical(
-      app_driver$get_value(input = "plot_with_settings-width_in_modal"),
-      500L
-    )
-    testthat::expect_identical(
-      app_driver$get_text("#plot_with_settings-width_in_modal-label"),
-      "Plot width"
-    )
 
-    testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
+    # Resize button
+    testthat::expect_true(is_visible("#plot_with_settings-expbut > i", app_driver))
 
+    # Download button
+    testthat::expect_true(is_visible("#plot_with_settings-plot-with-settings > div > div > div.teal-widgets.settings-buttons > bslib-tooltip.download-button > div:nth-child(2) > bslib-popover > i", app_driver))
+
+    # Dismiss button
+    testthat::expect_equal(app_driver$get_text("#bslib-full-screen-overlay"), "Close ")
     app_driver$stop()
   }
 )
@@ -213,30 +210,25 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    testthat::expect_false(is_visible("#plot_with_settings-modal_downbutton-file_format", app_driver))
-    testthat::expect_false(is_visible("#plot_with_settings-modal_downbutton-file_name", app_driver))
-
-    app_driver$run_js(click_expand_popup)
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
-
     app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle(timeout = default_idle_timeout)
+    testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
 
     testthat::expect_equal(
-      app_driver$get_text("#plot_with_settings-modal_downbutton-file_format-label"),
+      app_driver$get_text("#plot_with_settings-downbutton-file_format-label"),
       "File type"
     )
     testthat::expect_identical(
-      app_driver$get_value(input = "plot_with_settings-modal_downbutton-file_format"),
+      app_driver$get_value(input = "plot_with_settings-downbutton-file_format"),
       "png"
     )
 
     testthat::expect_equal(
-      app_driver$get_text("#plot_with_settings-modal_downbutton-file_name-label"),
+      app_driver$get_text("#plot_with_settings-downbutton-file_name-label"),
       "File name (without extension)"
     )
     testthat::expect_match(
-      app_driver$get_value(input = "plot_with_settings-modal_downbutton-file_name"),
+      app_driver$get_value(input = "plot_with_settings-downbutton-file_name"),
       sprintf("plot_%s", gsub("-", "", Sys.Date()))
     )
 
@@ -260,7 +252,9 @@ testthat::test_that(
 
     testthat::expect_false(is_visible("#plot_with_settings-slider_ui", app_driver))
 
+    # nolint start
     app_driver$run_js(click_resize_popup)
+    # nolint end
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
 
@@ -299,8 +293,9 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
 
-    app_driver$set_inputs(`plot_with_settings-height_in_modal` = 1000)
-    app_driver$set_inputs(`plot_with_settings-width_in_modal` = 350)
+    app_driver$set_inputs(`plot_with_settings-height` = 1000)
+    app_driver$set_inputs(`plot_with_settings-width_resize_switch` = 350)
+
     testthat::expect_null(
       app_driver$get_html(".shiny-output-error-validation"),
       info = "No validation error is observed"
@@ -441,3 +436,27 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
 
   app_driver$stop()
 })
+
+
+
+app$set_inputs(`plot_with_settings-plot_click` = character(0), allow_no_input_binding_ = TRUE)
+app$set_inputs(`plot_with_settings-plot_dblclick` = character(0), allow_no_input_binding_ = TRUE)
+app$set_inputs(`plot_with_settings-plot_hover` = character(0), allow_no_input_binding_ = TRUE)
+app$set_inputs(`plot_with_settings-plot_brush` = character(0), allow_no_input_binding_ = TRUE)
+# Update output value
+app$set_window_size(width = 3139, height = 1271)
+app$set_inputs(`plot_with_settings-expbut` = TRUE)
+app$set_window_size(width = 3139, height = 1271)
+# Update output value
+app$set_inputs(`plot_with_settings-width_resize_switch` = FALSE)
+app$set_inputs(`plot_with_settings-height` = 400)
+app$set_inputs(`plot_with_settings-width` = 500)
+# Update output value
+app$set_window_size(width = 3139, height = 1271)
+app$set_inputs(`plot_with_settings-height` = 646)
+# Update output value
+app$set_window_size(width = 3139, height = 1271)
+app$set_inputs(`plot_with_settings-height` = 365)
+# Update output value
+app$set_window_size(width = 3139, height = 1271)
+app$expect_values()
