@@ -2,7 +2,7 @@
 % Please edit documentation in R/optionalInput.R
 \name{optionalSliderInputValMinMax}
 \alias{optionalSliderInputValMinMax}
-\title{Optional Slider Input ValMinMax}
+\title{Optional Slider Input with minimal and maximal values}
 \usage{
 optionalSliderInputValMinMax(
   inputId,
