@@ -214,7 +214,6 @@ testthat::test_that(
   }
 )
 
-# Fail here
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings: clicking download in an expand modal opens dropdown menu with dwnl settings,
   such as: file type, file name, pagination",
