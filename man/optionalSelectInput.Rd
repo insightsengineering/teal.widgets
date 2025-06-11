@@ -78,16 +78,6 @@ instead. Toggle of \code{HTML} elements is just the visual effect to avoid displ
 \examples{
 library(shiny)
 
-# Create a minimal example data frame
-data <- data.frame(
-  AGE = c(25, 30, 40, 35, 28),
-  SEX = c("Male", "Female", "Male", "Female", "Male"),
-  PARAMCD = c("Val1", "Val2", "Val3", "Val4", "Val5"),
-  PARAM = c("Param1", "Param2", "Param3", "Param4", "Param5"),
-  AVISIT = c("Visit1", "Visit2", "Visit3", "Visit4", "Visit5"),
-  stringsAsFactors = TRUE
-)
-
 ui_grid <- function(...) {
   bslib::page_fluid(
     bslib::layout_columns(
