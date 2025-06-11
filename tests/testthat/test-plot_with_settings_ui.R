@@ -75,6 +75,25 @@ get_active_module_pws_output <- function(app_driver, pws, attr) {
     rvest::html_attr(attr)
 }
 
+is_scrollable <- function(app, selector) {
+  js_is_scrollable <- "function isScrollable(element) {
+
+    const hasVerticalScroll = element.scrollHeight > element.clientHeight;
+    const hasHorizontalScroll = element.scrollWidth > element.clientWidth;
+
+    return {
+      vertical: hasVerticalScroll,
+      horizontal: hasHorizontalScroll,
+      any: hasVerticalScroll || hasHorizontalScroll
+    };
+  };"
+
+
+  element <- sprintf("const targetElement = document.querySelector('%s');", selector)
+  js <- paste(js_is_scrollable, element, "isScrollable(targetElement);", collapse = "\n")
+  app$get_js(js)
+}
+
 testthat::test_that("type_download_ui returns `shiny.tag`", {
   testthat::expect_s3_class(type_download_ui("STH"), "shiny.tag")
 })
@@ -435,6 +454,29 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
   testthat::expect_false(
     identical(plot_before, get_active_module_pws_output(app_driver, pws = "plot_main", attr = "src"))
   )
+
+  app_driver$stop()
+})
+
+testthat::test_that("e2e teal.widgets::plot_with_settings: scrollbar appears when image is resized", {
+  skip_if_too_deep(5)
+  app_driver <- shinytest2::AppDriver$new(
+    app_driver_pws(),
+    name = "pws",
+    variant = "app_driver_pws_ui"
+  )
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  app_driver$run_js(click_expand_popup)
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+  app_driver$run_js(click_resize_popup)
+  app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+  app_driver$set_inputs(`plot_with_settings-height` = 10000)
+  app_driver$set_inputs(`plot_with_settings-width` = 350)
+  scrollable <- is_scrollable(app_driver, ".card-body.html-fill-container")
+  testthat::expect_true(scrollable$any)
+  testthat::expect_true(scrollable$vertical)
 
   app_driver$stop()
 })
