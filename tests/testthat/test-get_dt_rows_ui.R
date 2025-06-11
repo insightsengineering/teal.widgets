@@ -8,7 +8,7 @@ app_driver_gdr <- function() {
   ui <- function(id) {
     ns <- NS(id)
     tagList(
-      DTOutput(ns("data_table")),
+      DT::DTOutput(ns("data_table")),
       get_dt_rows(ns("data_table"), ns("dt_rows"))
     )
   }
