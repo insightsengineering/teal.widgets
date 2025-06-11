@@ -48,8 +48,8 @@ app_driver_pws <- function() {
 
 
 # JS code to click the resize button popup.
-#nolinter start
-click_resize_popup <-"// Select the element with the popover
+# nolint start
+click_resize_popup <- "// Select the element with the popover
                       const popoverTrigger = document.querySelector('i.fas.fa-maximize[data-bs-toggle=\"popover\"]');
                       // Initialize the popover if it isn't already initialized
                       const popover = bootstrap.Popover.getOrCreateInstance(popoverTrigger);
@@ -66,7 +66,7 @@ click_download_popup <- "// Select the element with the popover
                       const popover = bootstrap.Popover.getOrCreateInstance(popoverTrigger);
                       // Show the popover programmatically
                       popover.show();"
-# nolinter end
+# nolint end
 
 get_active_module_pws_output <- function(app_driver, pws, attr) {
   app_driver$get_html("html") %>%
@@ -360,7 +360,8 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "src")
   values <- app_driver$get_values()
-  testthat::expect_equal(values$output$`plot_with_settings-plot_main`$width,
+  testthat::expect_equal(
+    values$output$`plot_with_settings-plot_main`$width,
     500L
   )
 
@@ -376,8 +377,9 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver$wait_for_idle(timeout = default_idle_timeout)
   values_resized <- app_driver$get_values()
 
-  testthat::expect_equal(values_resized$output$`plot_with_settings-plot_main`$width,
-                         350L
+  testthat::expect_equal(
+    values_resized$output$`plot_with_settings-plot_main`$width,
+    350L
   )
 
   testthat::expect_equal(
@@ -386,8 +388,10 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   )
 
   testthat::expect_false(
-    identical(values$output$`plot_with_settings-plot_main`$src,
-              values_resized$output$`plot_with_settings-plot_main`$src)
+    identical(
+      values$output$`plot_with_settings-plot_main`$src,
+      values_resized$output$`plot_with_settings-plot_main`$src
+    )
   )
 
   app_driver$stop()

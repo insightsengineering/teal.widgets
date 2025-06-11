@@ -30,7 +30,7 @@ app_driver_tws <- function() {
   )
 }
 
-# nolinter start
+# nolint start
 # JS code to click the expand button popup.
 click_expand_popup <- "document.querySelector('#table_with_settings-table-with-settings > bslib-tooltip > button').click()"
 
@@ -49,7 +49,7 @@ click_closed_download_popup <- "// Select the element with the popover
                       const popover = bootstrap.Popover.getOrCreateInstance(popoverTrigger);
                       // Show the popover programmatically
                       popover.hide();"
-# nolinter end
+# nolint end
 
 check_table <- function(content) {
   testthat::expect_match(content, "B: Placebo", fixed = TRUE, all = FALSE)
@@ -66,7 +66,6 @@ testthat::test_that("table_with_settings_ui returns `shiny.tag`", {
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings is initialized with 2 buttons and a table",
   {
-
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -88,7 +87,6 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings: the click on the download button opens a download menu
   with file type, file name and download button",
   {
-
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -153,7 +151,6 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings: check pagination appearance for .txt and disappearance for .csv
   for the first button",
   {
-
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -181,7 +178,6 @@ testthat::test_that(
 testthat::test_that(
   "e2e: teal.widgets::table_with_settings: the click on expand button opens a modal with a table",
   {
-
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -218,7 +214,6 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings: clicking download in an expand modal opens dropdown menu with dwnl settings,
   such as: file type, file name, pagination",
   {
-
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -285,7 +280,6 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings: check pagination appearance for .txt and disappearance for .csv
   for the modal on the second button",
   {
-
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -310,7 +304,6 @@ testthat::test_that(
 testthat::test_that(
   "e2e teal.widgets::table_with_settings: clicking download+download button downloads table in a specified format",
   {
-
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
@@ -334,7 +327,6 @@ testthat::test_that(
 )
 
 testthat::test_that("e2e teal.widgets::table_with_settings: expanded table can be downloaded", {
-
   skip_if_too_deep(5)
   app_driver <- shinytest2::AppDriver$new(
     app_driver_tws(),

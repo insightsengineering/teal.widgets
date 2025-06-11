@@ -1,11 +1,10 @@
-
 app_driver_osivmm <- function() {
   ui <- bslib::page_fluid(
     shinyjs::useShinyjs(),
     tags$div(
-    optionalSliderInputValMinMax("a1", "b1", 1)),
+      optionalSliderInputValMinMax("a1", "b1", 1)
+    ),
     optionalSliderInputValMinMax("a2", "b2", c(3, 1, 5))
-    )
   )
   shiny::shinyApp(ui, function(input, output) {})
 }
@@ -25,4 +24,5 @@ testthat::test_that(
     testthat::expect_false(is_visible("#a1-label", app_driver))
     testthat::expect_true(is_visible("#a2-label", app_driver))
     app_driver$stop()
-})
+  }
+)

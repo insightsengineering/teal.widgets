@@ -30,7 +30,6 @@ testthat::test_that("verbatim_popup_ui returns `shiny.tag.list`", {
 testthat::test_that(
   "e2e: teal.widgets::verbatim_popup is initialized with a button that opens a modal with a verbatim text",
   {
-    
     skip_if_too_deep(5)
     ui_popup_button_label <- "Open me"
     modal_title <- "Verbatim popup title"

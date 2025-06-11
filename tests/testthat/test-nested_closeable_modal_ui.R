@@ -1,4 +1,3 @@
-
 app_driver_ncm <- function() {
   ui <- bslib::page_fluid(
     shinyjs::useShinyjs(),
@@ -36,4 +35,5 @@ testthat::test_that(
     testthat::expect_true(is_visible("#show_1", app_driver))
     testthat::expect_false(is_visible(".modal-content", app_driver))
     app_driver$stop()
-  })
+  }
+)
