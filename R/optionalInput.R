@@ -532,8 +532,8 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
 #'
 #' ui <- bslib::page_fluid(
 #'   shinyjs::useShinyjs(),
-#'   optionalSliderInputValMinMax("a1", "b1", 1),
-#'   optionalSliderInputValMinMax("a2", "b2", c(3, 1, 5))
+#'   optionalSliderInputValMinMax("a1", "b1", 1), # Hidden
+#'   optionalSliderInputValMinMax("a2", "b2", c(3, 1, 5)) # Shown
 #' )
 #' if (interactive()) {
 #'   shiny::shinyApp(ui, function(input, output) {})
