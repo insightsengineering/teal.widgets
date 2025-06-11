@@ -44,6 +44,5 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
     testthat::expect_true(is_visible("#my_table_module-data_table", app_driver))
-    app_driver$view()
   }
 )

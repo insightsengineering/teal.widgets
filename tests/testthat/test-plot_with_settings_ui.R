@@ -215,8 +215,8 @@ testthat::test_that(
     # Download button
     testthat::expect_true(is_visible(paste0(
       "#plot_with_settings-plot-with-settings > div > div > div.teal-widgets.settings-buttons",
-      " > bslib-tooltip.download-button > div:nth-child(2) > bslib-popover > i", app_driver
-    )))
+      " > bslib-tooltip.download-button > div:nth-child(2) > bslib-popover > i"), app_driver
+    ))
 
     # Dismiss button
     testthat::expect_equal(app_driver$get_text("#bslib-full-screen-overlay"), "Close ")
