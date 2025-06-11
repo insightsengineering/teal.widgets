@@ -196,7 +196,10 @@ testthat::test_that(
       width = 1000
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
-    app_driver$get_text("#plot_with_settings-plot-with-settings > div > div > div.teal-widgets.settings-buttons > bslib-tooltip.resize-button > div:nth-child(1)")
+    app_driver$get_text(paste0(
+      "#plot_with_settings-plot-with-settings > div > div > ",
+      "div.teal-widgets.settings-buttons > bslib-tooltip.resize-button > div:nth-child(1)"
+    ))
     pre_click <- app_driver$get_values()
     testthat::expect_false(app_driver$get_value(input = "plot_with_settings-plot-with-settings_full_screen"))
 
@@ -210,7 +213,10 @@ testthat::test_that(
     testthat::expect_true(is_visible("#plot_with_settings-expbut > i", app_driver))
 
     # Download button
-    testthat::expect_true(is_visible("#plot_with_settings-plot-with-settings > div > div > div.teal-widgets.settings-buttons > bslib-tooltip.download-button > div:nth-child(2) > bslib-popover > i", app_driver))
+    testthat::expect_true(is_visible(paste0(
+      "#plot_with_settings-plot-with-settings > ",
+      "div > div > div.teal-widgets.settings-buttons > bslib-tooltip.download-button > div:nth-child(2) > bslib-popover > i", app_driver
+    )))
 
     # Dismiss button
     testthat::expect_equal(app_driver$get_text("#bslib-full-screen-overlay"), "Close ")

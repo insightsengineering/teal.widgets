@@ -507,7 +507,7 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
   }
 }
 
-#' Optional Slider Input ValMinMax
+#' Optional Slider Input with minimal and maximal values
 #'
 #' For `teal` modules we parameterize an `optionalSliderInput` with one argument
 #' `value_min_max`
