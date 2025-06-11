@@ -448,6 +448,8 @@ extract_raw_choices <- function(choices, sep) {
   }
 }
 
+#' Optional Slider Input Widget
+#'
 #' if min or max are `NA` then the slider widget will be hidden
 #'
 #' @description `r lifecycle::badge("stable")`\cr
@@ -515,6 +517,8 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
   }
 }
 
+#' Optional Slider Input ValMinMax
+#'
 #' For `teal` modules we parameterize an `optionalSliderInput` with one argument
 #' `value_min_max`
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/optionalInput.R
 \name{optionalSliderInput}
 \alias{optionalSliderInput}
-\title{if min or max are \code{NA} then the slider widget will be hidden}
+\title{Optional Slider Input Widget}
 \usage{
 optionalSliderInput(inputId, label, min, max, value, label_help = NULL, ...)
 }
@@ -32,6 +32,9 @@ object of class \code{shiny.tag}, e.g. an object returned by \code{\link[shiny:h
 Hidden input widgets are useful to have the \code{input[[inputId]]} variable
 on available in the server function but no corresponding visual clutter from
 input widgets that provide only a single choice.
+}
+\details{
+if min or max are \code{NA} then the slider widget will be hidden
 }
 \examples{
 ui <- bslib::page_fluid(
