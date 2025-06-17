@@ -347,14 +347,10 @@ plot_with_settings_srv <- function(id,
           round = TRUE
         ),
         tags$b("Plot width"),
-        shinyWidgets::switchInput(
-          inputId = ns("width_resize_switch"),
-          onLabel = "ON",
-          offLabel = "OFF",
-          label = "Auto width",
-          value = `if`(is.null(width), TRUE, FALSE),
-          size = "mini",
-          labelWidth = "80px"
+        bslib::input_switch(
+          id = ns("width_resize_switch"),
+          label = "Automatic",
+          value = `if`(is.null(width), TRUE, FALSE)
         ),
         optionalSliderInputValMinMax(
           inputId = ns("width"),
