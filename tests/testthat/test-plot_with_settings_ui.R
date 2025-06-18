@@ -298,8 +298,8 @@ testthat::test_that(
     )
 
     testthat::expect_identical(
-      app_driver$get_text("span.bootstrap-switch-handle-off.bootstrap-switch-default"),
-      "OFF"
+      app_driver$get_text("#plot_with_settings-slider_ui > div > div:nth-child(3) > div > label > span"),
+      "Automatic"
     )
 
     app_driver$stop()
