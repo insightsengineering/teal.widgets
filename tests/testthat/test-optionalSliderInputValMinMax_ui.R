@@ -14,7 +14,6 @@ testthat::test_that(
   "e2e: teal.widgets::optionalSliderInputValMinMax: initializes",
   {
     skip_if_too_deep(5)
-    testthat::skip_if_not_installed("shinyjs")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_osivmm(),
       name = "osivmm",

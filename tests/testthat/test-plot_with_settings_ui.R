@@ -69,6 +69,7 @@ click_download_popup <- "// Select the element with the popover
 # nolint end
 
 get_active_module_pws_output <- function(app_driver, pws, attr) {
+  testthat::skip_if_not_installed("rvest")
   app_driver$get_html("html") %>%
     rvest::read_html() %>%
     rvest::html_elements(sprintf("#plot_with_settings-%s > img", pws)) %>%
@@ -127,7 +128,7 @@ testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: buttons have proper FA icons and two of them are dropdowns",
   {
     skip_if_too_deep(5)
-
+    testthat::skip_if_not_installed("rvest")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",

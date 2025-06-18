@@ -5,6 +5,7 @@
 #' @keywords internal
 #'
 app_driver_gdr <- function() {
+  testthat::skip_if_not_installed("DT")
   ui <- function(id) {
     ns <- NS(id)
     tagList(
@@ -44,5 +45,6 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
     testthat::expect_true(is_visible("#my_table_module-data_table", app_driver))
+    app_driver$stop()
   }
 )

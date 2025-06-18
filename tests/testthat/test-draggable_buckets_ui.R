@@ -10,7 +10,6 @@ testthat::test_that(
   "e2e: teal.widgets::draggable_buckets: initializes",
   {
     skip_if_too_deep(5)
-    testthat::skip_if_not_installed("shinyjs")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_db(),
       name = "db",
