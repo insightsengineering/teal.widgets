@@ -100,15 +100,17 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
     gv <- app_driver$get_values()
-    output <- list(c1_out = "[1] \"A\" \"B\"", c2_out = "[1] \"A\"", c3_out = "NULL",
-                   c4_out = "[1] \"A\"", c5_out = "[1] \"A\"", c6_out = "NULL")
+    output <- list(
+      c1_out = "[1] \"A\" \"B\"", c2_out = "[1] \"A\"", c3_out = "NULL",
+      c4_out = "[1] \"A\"", c5_out = "[1] \"A\"", c6_out = "NULL"
+    )
     for (i in 1:6) {
       sel <- sprintf(
         "body > div.container-fluid > bslib-layout-columns > div:nth-child(%s)",
         i
       )
 
-      output_sel <- paste0("#c", i,"_out")
+      output_sel <- paste0("#c", i, "_out")
       testthat::expect_true(is_visible(sel, app_driver))
       testthat::expect_equal(gv$output[[i]], output[[i]])
     }

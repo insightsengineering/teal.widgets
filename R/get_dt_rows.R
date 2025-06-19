@@ -25,14 +25,12 @@
 #' # use the input$dt_rows in the Shiny Server function
 #' server <- function(id) {
 #'   moduleServer(id, function(input, output, session) {
-#'
 #'     output$data_table <- DT::renderDataTable(iris)
 #'     # Change rows selected to see the first line on the UI change
 #'     rows <- reactive({
 #'       paste0("Selected Rows ", input$dt_rows)
-#'       })
+#'     })
 #'     output$rows <- renderText(rows())
-#'
 #'   })
 #' }
 #'
