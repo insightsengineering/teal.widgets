@@ -33,11 +33,12 @@
 #'     output$rows <- renderText(rows())
 #'   })
 #' }
-#'
-#' shinyApp(
-#'   ui = ui("my_table_module"),
-#'   server = function(input, output, session) server("my_table_module")
-#' )
+#' if (interactive()) {
+#'   shinyApp(
+#'     ui = ui("my_table_module"),
+#'     server = function(input, output, session) server("my_table_module")
+#'   )
+#' }
 #' @export
 get_dt_rows <- function(dt_name, dt_rows) {
   tags$head(
