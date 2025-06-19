@@ -19,7 +19,6 @@ app_driver_ncm <- function() {
     })
   })
 }
-click_modal <- "document.querySelector('#show_1').click();"
 
 testthat::test_that(
   "e2e: teal.widgets::nested_closeable_modal: initializes",
@@ -33,6 +32,9 @@ testthat::test_that(
     app_driver$wait_for_idle(timeout = default_idle_timeout)
     testthat::expect_true(is_visible("#show_1", app_driver))
     testthat::expect_false(is_visible(".modal-content", app_driver))
+    testthat::expect_false(is_visible("#modal_1 > div > div", app_driver))
+    app_driver$run_js("document.querySelector('#show_1').click();")
+    testthat::expect_true(is_visible("#modal_1 > div > div", app_driver))
     app_driver$stop()
   }
 )
