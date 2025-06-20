@@ -27,7 +27,7 @@ app_driver_gdr <- function() {
 }
 
 testthat::test_that(
-  "e2e: teal.widgets::get_dt_rows: table is visible",
+  "e2e: teal.widgets::get_dt_rows: rows are settable and visible",
   {
     skip_if_too_deep(5)
     app_driver <- shinytest2::AppDriver$new(
@@ -37,8 +37,18 @@ testthat::test_that(
     )
     app_driver$wait_for_idle(timeout = default_idle_timeout)
     testthat::expect_true(is_visible("#my_table_module-data_table", app_driver))
+
+    # Check initial value
     dt_state <- app_driver$get_values(input = "my_table_module-data_table_state")
     testthat::expect_equal(dt_state$input$`my_table_module-data_table_state`$length, 10)
+
+    # Change rows value
+    # FIXME: Couldn't find a way to programatically change that
+
+    # Check value again
+    dt_state <- app_driver$get_values(input = "my_table_module-data_table_state")
+    testthat::expect_equal(dt_state$input$`my_table_module-data_table_state`$length, 10)
+
     app_driver$stop()
   }
 )
