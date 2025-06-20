@@ -45,7 +45,7 @@ Suggests:
     rvest (>= 1.0.3),
     shinytest2 (>= 0.2.0),
     shinyvalidate,
-    testthat (>= 3.2.0),
+    testthat (>= 3.2.3),
     withr (>= 2.1.0)
 VignetteBuilder:
     knitr,
