@@ -32,9 +32,12 @@ testthat::test_that(
     app_driver$wait_for_idle(timeout = default_idle_timeout)
     testthat::expect_true(is_visible("#show_1", app_driver))
     testthat::expect_false(is_visible(".modal-content", app_driver))
+    testthat::expect_false(is_visible("#modal_1 > div > div > div.modal-header", app_driver))
     testthat::expect_false(is_visible("#modal_1 > div > div", app_driver))
     app_driver$run_js("document.querySelector('#show_1').click();")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
     testthat::expect_true(is_visible("#modal_1 > div > div", app_driver))
+    testthat::expect_true(is_visible("#modal_1 > div > div > div.modal-header", app_driver))
     app_driver$stop()
   }
 )
