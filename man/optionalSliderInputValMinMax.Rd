@@ -2,8 +2,7 @@
 % Please edit documentation in R/optionalInput.R
 \name{optionalSliderInputValMinMax}
 \alias{optionalSliderInputValMinMax}
-\title{For \code{teal} modules we parameterize an \code{optionalSliderInput} with one argument
-\code{value_min_max}}
+\title{Optional Slider Input with minimal and maximal values}
 \usage{
 optionalSliderInputValMinMax(
   inputId,
@@ -37,12 +36,16 @@ The \code{\link[=optionalSliderInput]{optionalSliderInput()}} function needs thr
 whether to hide the \code{sliderInput} widget or not. For \code{teal} modules we specify an
 optional slider input with one argument here called \code{value_min_max}.
 }
+\details{
+For \code{teal} modules we parameterize an \code{optionalSliderInput} with one argument
+\code{value_min_max}
+}
 \examples{
 
 ui <- bslib::page_fluid(
   shinyjs::useShinyjs(),
-  optionalSliderInputValMinMax("a1", "b1", 1),
-  optionalSliderInputValMinMax("a2", "b2", c(3, 1, 5))
+  optionalSliderInputValMinMax("a1", "b1", 1), # Hidden
+  optionalSliderInputValMinMax("a2", "b2", c(3, 1, 5)) # Shown
 )
 if (interactive()) {
   shiny::shinyApp(ui, function(input, output) {})

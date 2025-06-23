@@ -34,16 +34,6 @@
 #' @examples
 #' library(shiny)
 #'
-#' # Create a minimal example data frame
-#' data <- data.frame(
-#'   AGE = c(25, 30, 40, 35, 28),
-#'   SEX = c("Male", "Female", "Male", "Female", "Male"),
-#'   PARAMCD = c("Val1", "Val2", "Val3", "Val4", "Val5"),
-#'   PARAM = c("Param1", "Param2", "Param3", "Param4", "Param5"),
-#'   AVISIT = c("Visit1", "Visit2", "Visit3", "Visit4", "Visit5"),
-#'   stringsAsFactors = TRUE
-#' )
-#'
 #' ui_grid <- function(...) {
 #'   bslib::page_fluid(
 #'     bslib::layout_columns(
@@ -448,6 +438,8 @@ extract_raw_choices <- function(choices, sep) {
   }
 }
 
+#' Optional Slider Input Widget
+#'
 #' if min or max are `NA` then the slider widget will be hidden
 #'
 #' @description `r lifecycle::badge("stable")`\cr
@@ -515,6 +507,8 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
   }
 }
 
+#' Optional Slider Input with minimal and maximal values
+#'
 #' For `teal` modules we parameterize an `optionalSliderInput` with one argument
 #' `value_min_max`
 #'
@@ -538,8 +532,8 @@ optionalSliderInput <- function(inputId, label, min, max, value, label_help = NU
 #'
 #' ui <- bslib::page_fluid(
 #'   shinyjs::useShinyjs(),
-#'   optionalSliderInputValMinMax("a1", "b1", 1),
-#'   optionalSliderInputValMinMax("a2", "b2", c(3, 1, 5))
+#'   optionalSliderInputValMinMax("a1", "b1", 1), # Hidden
+#'   optionalSliderInputValMinMax("a2", "b2", c(3, 1, 5)) # Shown
 #' )
 #' if (interactive()) {
 #'   shiny::shinyApp(ui, function(input, output) {})
