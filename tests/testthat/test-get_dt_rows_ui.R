@@ -14,16 +14,17 @@ app_driver_gdr <- function() {
     moduleServer(id, function(input, output, session) {
       output$data_table <- DT::renderDataTable(
         iris,
-        extensions = 'Buttons',
+        extensions = "Buttons",
         options = list(
-          dom = 'Bfrtip',
+          dom = "Bfrtip",
           buttons = list(
             list(
               extend = "collection",
-              text = 'Show 25',
-              attr = list(id = 'show_25'),
+              text = "Show 25",
+              attr = list(id = "show_25"),
               action = DT::JS(
-                "function ( e, dt, node, config ) { dt.page.len(25); dt.ajax.reload(); }")
+                "function ( e, dt, node, config ) { dt.page.len(25); dt.ajax.reload(); }"
+              )
             )
           )
         )
