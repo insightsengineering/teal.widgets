@@ -203,14 +203,12 @@ testthat::test_that("parse_ggplot2_args, deparse needed to expand ggplot2 object
     ))
   } else {
     p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
-    ggplot2::geom_point()
-  p_with_theme <- p + eval(parse_element$theme)
-  testthat::expect_true(inherits(p_with_theme$theme, "theme"))
-  testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
-  testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
+      ggplot2::geom_point()
+    p_with_theme <- p + eval(parse_element$theme)
+    testthat::expect_true(inherits(p_with_theme$theme, "theme"))
+    testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
+    testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
   }
-  
-
 })
 
 testthat::test_that(
@@ -295,11 +293,11 @@ testthat::test_that(
       )
     } else {
       p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
-      ggplot2::geom_point()
-    p_with_theme <- p + eval(parsed_all$theme)
-    testthat::expect_true(inherits(p_with_theme$theme, "theme"))
-    testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
-    testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
+        ggplot2::geom_point()
+      p_with_theme <- p + eval(parsed_all$theme)
+      testthat::expect_true(inherits(p_with_theme$theme, "theme"))
+      testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
+      testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
     }
   }
 )
