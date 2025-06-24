@@ -188,7 +188,8 @@ testthat::test_that("parse_ggplot2_args, deparse needed to expand ggplot2 object
     )
   )
 
-  p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) + ggplot2::geom_point()
+  p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
+    ggplot2::geom_point()
   p_with_theme <- p + eval(parse_element$theme)
   testthat::expect_true(inherits(p_with_theme$theme, "theme"))
   testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
@@ -251,7 +252,8 @@ testthat::test_that(
       parsed_all$ggtheme,
       quote(ggplot2::theme_gray())
     )
-    p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) + ggplot2::geom_point()
+    p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
+      ggplot2::geom_point()
     p_with_theme <- p + eval(parsed_all$theme)
     testthat::expect_true(inherits(p_with_theme$theme, "theme"))
     testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
