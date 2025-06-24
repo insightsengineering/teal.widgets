@@ -188,11 +188,26 @@ testthat::test_that("parse_ggplot2_args, deparse needed to expand ggplot2 object
     )
   )
 
-  p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) + ggplot2::geom_point()
-  p_with_theme <- p + eval(parse_element$theme)
-  testthat::expect_true(inherits(p_with_theme$theme, "theme"))
-  testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
-  testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
+  if (packageVersion("ggplot2") <= "3.5.2") {
+    testthat::expect_true(!identical(
+      parse_element,
+      list(theme = quote(ggplot2::theme(axis.text = list())))
+    ))
+
+    testthat::expect_true(identical(
+      deparse(parse_element$theme, 140),
+      deparse(
+        quote(ggplot2::theme(axis.text = structure(list(), class = c("element_blank", "element")))),
+        140
+      )
+    ))
+  } else {
+    p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) + ggplot2::geom_point()
+    p_with_theme <- p + eval(parse_element$theme)
+    testthat::expect_true(inherits(p_with_theme$theme, "theme"))
+    testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
+    testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
+  }
 })
 
 testthat::test_that(
@@ -208,16 +223,32 @@ testthat::test_that(
         )
       )
     })
-    testthat::expect_identical(
-      result$labs,
-      list(
-        y = "USER_YLAB_DIRECT",
-        x = "USER_XLAB_DEFAULT",
-        title = "ENV_TITLE",
-        subtitle = "DEVELOPER_SUBTITLE"
+
+    if (packageVersion("ggplot2") <= "3.5.2") {
+      testthat::expect_identical(
+        result,
+        ggplot2_args(
+          labs = list(
+            y = "USER_YLAB_DIRECT",
+            x = "USER_XLAB_DEFAULT",
+            title = "ENV_TITLE",
+            subtitle = "DEVELOPER_SUBTITLE"
+          ),
+          theme = list(axis.text = structure(list(), class = c("element_blank", "element")))
+        )
       )
-    )
-    testthat::expect_true(inherits(result$theme$axis.text, "element_blank"))
+    } else {
+      testthat::expect_identical(
+        result$labs,
+        list(
+          y = "USER_YLAB_DIRECT",
+          x = "USER_XLAB_DEFAULT",
+          title = "ENV_TITLE",
+          subtitle = "DEVELOPER_SUBTITLE"
+        )
+      )
+      testthat::expect_true(inherits(result$theme$axis.text, "element_blank"))
+    }
   }
 )
 
@@ -240,6 +271,7 @@ testthat::test_that(
         ggtheme = "gray"
       )
     })
+
     testthat::expect_identical(
       parsed_all$labs,
       quote(ggplot2::labs(
@@ -247,14 +279,23 @@ testthat::test_that(
         title = "ENV_TITLE", subtitle = "DEVELOPER_SUBTITLE"
       ))
     )
+
     testthat::expect_identical(
       parsed_all$ggtheme,
       quote(ggplot2::theme_gray())
     )
-    p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) + ggplot2::geom_point()
-    p_with_theme <- p + eval(parsed_all$theme)
-    testthat::expect_true(inherits(p_with_theme$theme, "theme"))
-    testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
-    testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
+
+    if (packageVersion("ggplot2") <= "3.5.2") {
+      testthat::expect_identical(
+        deparse(parsed_all$theme, 500),
+        'ggplot2::theme(axis.text = structure(list(), class = c("element_blank", "element")))'
+      )
+    } else {
+      p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) + ggplot2::geom_point()
+      p_with_theme <- p + eval(parsed_all$theme)
+      testthat::expect_true(inherits(p_with_theme$theme, "theme"))
+      testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
+      testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
+    }
   }
 )
