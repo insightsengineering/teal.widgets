@@ -188,44 +188,68 @@ testthat::test_that("parse_ggplot2_args, deparse needed to expand ggplot2 object
     )
   )
 
-  testthat::expect_true(!identical(
-    parse_element,
-    list(theme = quote(ggplot2::theme(axis.text = list())))
-  ))
+  if (packageVersion("ggplot2") <= "3.5.2") {
+    testthat::expect_true(!identical(
+      parse_element,
+      list(theme = quote(ggplot2::theme(axis.text = list())))
+    ))
 
-  testthat::expect_true(identical(
-    deparse(parse_element$theme, 140),
-    deparse(
-      quote(ggplot2::theme(axis.text = structure(list(), class = c("element_blank", "element")))),
-      140
-    )
-  ))
+    testthat::expect_true(identical(
+      deparse(parse_element$theme, 140),
+      deparse(
+        quote(ggplot2::theme(axis.text = structure(list(), class = c("element_blank", "element")))),
+        140
+      )
+    ))
+  } else {
+    p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
+      ggplot2::geom_point()
+    p_with_theme <- p + eval(parse_element$theme)
+    testthat::expect_true(inherits(p_with_theme$theme, "theme"))
+    testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
+    testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
+  }
 })
 
 testthat::test_that(
   "resolve_ggplot2_args priorotizes input in the order: user_plot, user_default, teal.ggplot2_args and module_plot",
   code = {
-    testthat::expect_identical(
-      withr::with_options(list(teal.ggplot2_args = ggplot2_args(labs = list(title = "ENV_TITLE"))), {
-        resolve_ggplot2_args(
-          user_plot = ggplot2_args(labs = list(y = "USER_YLAB_DIRECT")),
-          user_default = ggplot2_args(labs = list(x = "USER_XLAB_DEFAULT", y = "USER_YLAB_DEFAULT")),
-          module_plot = ggplot2_args(
-            labs = list(subtitle = "DEVELOPER_SUBTITLE", x = "USER_XLAB_DEV"),
-            theme = list(axis.text = ggplot2::element_blank())
-          )
+    result <- withr::with_options(list(teal.ggplot2_args = ggplot2_args(labs = list(title = "ENV_TITLE"))), {
+      resolve_ggplot2_args(
+        user_plot = ggplot2_args(labs = list(y = "USER_YLAB_DIRECT")),
+        user_default = ggplot2_args(labs = list(x = "USER_XLAB_DEFAULT", y = "USER_YLAB_DEFAULT")),
+        module_plot = ggplot2_args(
+          labs = list(subtitle = "DEVELOPER_SUBTITLE", x = "USER_XLAB_DEV"),
+          theme = list(axis.text = ggplot2::element_blank())
         )
-      }),
-      ggplot2_args(
-        labs = list(
+      )
+    })
+
+    if (packageVersion("ggplot2") <= "3.5.2") {
+      testthat::expect_identical(
+        result,
+        ggplot2_args(
+          labs = list(
+            y = "USER_YLAB_DIRECT",
+            x = "USER_XLAB_DEFAULT",
+            title = "ENV_TITLE",
+            subtitle = "DEVELOPER_SUBTITLE"
+          ),
+          theme = list(axis.text = structure(list(), class = c("element_blank", "element")))
+        )
+      )
+    } else {
+      testthat::expect_identical(
+        result$labs,
+        list(
           y = "USER_YLAB_DIRECT",
           x = "USER_XLAB_DEFAULT",
           title = "ENV_TITLE",
           subtitle = "DEVELOPER_SUBTITLE"
-        ),
-        theme = list(axis.text = structure(list(), class = c("element_blank", "element")))
+        )
       )
-    )
+      testthat::expect_true(inherits(result$theme$axis.text, "element_blank"))
+    }
   }
 )
 
@@ -262,11 +286,18 @@ testthat::test_that(
       quote(ggplot2::theme_gray())
     )
 
-    # testthat::expect_identical automatically deparse quote for a comparison
-    # Because of element_blank we need to compare it to expanded version
-    testthat::expect_identical(
-      deparse(parsed_all$theme, 500),
-      'ggplot2::theme(axis.text = structure(list(), class = c("element_blank", "element")))'
-    )
+    if (packageVersion("ggplot2") <= "3.5.2") {
+      testthat::expect_identical(
+        deparse(parsed_all$theme, 500),
+        'ggplot2::theme(axis.text = structure(list(), class = c("element_blank", "element")))'
+      )
+    } else {
+      p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
+        ggplot2::geom_point()
+      p_with_theme <- p + eval(parsed_all$theme)
+      testthat::expect_true(inherits(p_with_theme$theme, "theme"))
+      testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
+      testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
+    }
   }
 )
