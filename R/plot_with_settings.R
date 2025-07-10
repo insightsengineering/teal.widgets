@@ -303,13 +303,6 @@ plot_with_settings_srv <- function(id,
         once = TRUE,
         ignoreNULL = TRUE
       )
-
-      observeEvent(delayed_flex_width(), {
-        if (delayed_flex_width() > 0 && !isFALSE(input$width_resize_switch)) {
-          default_slider_width(delayed_flex_width() * c(1, 0.5, 2.8))
-          updateSliderInput(session, inputId = "width", value = delayed_flex_width())
-        }
-      })
     }
 
     plot_type <- reactive({
@@ -364,7 +357,7 @@ plot_with_settings_srv <- function(id,
     })
 
     observeEvent(input$width_resize_switch | delayed_flex_width(), {
-      if (length(input$width_resize_switch) && input$width_resize_switch) {
+      if (!isFALSE(input$width_resize_switch)) {
         shinyjs::disable("width")
         updateSliderInput(session, inputId = "width", value = delayed_flex_width())
       } else {
