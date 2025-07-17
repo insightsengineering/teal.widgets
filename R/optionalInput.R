@@ -170,6 +170,7 @@ optionalSelectInput <- function(inputId, # nolint
   default_options <- list(
     "actions-box" = multiple,
     "none-selected-text" = "- Nothing selected -",
+    "allow-clear" = ifelse(multiple, FALSE, TRUE),
     "max-options" = ifelse(multiple, Inf, 1),
     "show-subtext" = TRUE,
     "live-search" = ifelse(length(choices) > 10, TRUE, FALSE)
