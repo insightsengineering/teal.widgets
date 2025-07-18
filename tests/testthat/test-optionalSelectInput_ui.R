@@ -114,6 +114,30 @@ testthat::test_that(
       testthat::expect_true(is_visible(sel, app_driver))
       testthat::expect_equal(gv$output[[i]], output[[i]])
     }
+
+    # app_driver$click(
+    #   selector = "body > div.container-fluid > bslib-layout-columns > div:nth-child(2) span.bs-select-clear-selected"
+    # )
+
+    # app_driver$get_value(output = "c2_out") %>%
+    #   testthat::expect_equal("NULL")
+
+    # app_driver$get_value(input = "c2") %>%
+    #   testthat::expect_equal(NULL)
+
+    # app_driver$get_text("#c2_input .filter-option-inner-inner") |>
+    #   testthat::expect_equal("- Nothing selected -")
+
+    # Check allow clear behavior on c2 input where multiple is FALSE
+    allow_clear_selector <- "body > div.container-fluid > bslib-layout-columns > div:nth-child(2) span.bs-select-clear-selected" # nolint
+    app_driver$click(selector = allow_clear_selector)
+    testthat::expect_equal(app_driver$get_value(output = "c2_out"), "NULL")
+    testthat::expect_equal(app_driver$get_value(input = "c2"), NULL)
+    testthat::expect_equal(
+      app_driver$get_text("#c2_input .filter-option-inner-inner"),
+      "- Nothing selected -"
+    )
+
     app_driver$stop()
   }
 )
