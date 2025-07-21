@@ -129,7 +129,7 @@ testthat::test_that(
     #   testthat::expect_equal("- Nothing selected -")
 
     # Check allow clear behavior on c2 input where multiple is FALSE
-    allow_clear_selector <- "body > div.container-fluid > bslib-layout-columns > div:nth-child(2) span.bs-select-clear-selected" # nolint
+    allow_clear_selector <- "#c2_input span.bs-select-clear-selected"
     app_driver$click(selector = allow_clear_selector)
     testthat::expect_equal(app_driver$get_value(output = "c2_out"), "NULL")
     testthat::expect_equal(app_driver$get_value(input = "c2"), NULL)
