@@ -1,4 +1,4 @@
-# teal.widgets 0.4.3.9009
+# teal.widgets 0.4.3.9010
 
 ### Breaking changes
 * `panel_group()` and `panel_item()` are deprecated. Please use the `bslib::accordion()` and `bslib::accordion_panel()` instead.
