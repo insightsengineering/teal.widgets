@@ -89,7 +89,9 @@ $.extend(draggableBuckets, {
 
   subscribe: function (el, callback) {
     if (this.observers === undefined) this.observers = {};
-    this.observers[el] = new MutationObserver(callback);
+    this.observers[el] = new MutationObserver(function () {
+      callback({ priority: "event" });
+    });
     this.observers[el].observe(el, {
       subtree: true,
       childList: true,
