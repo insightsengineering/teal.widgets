@@ -68,7 +68,7 @@ testthat::test_that(
       "Copy to Clipboard"
     )
     testthat::expect_equal(
-      app_driver$get_text(".modal-footer button:nth-of-type(2)"),
+      app_driver$get_text(".modal-footer button:nth-of-type(1)"),
       "Dismiss"
     )
 
