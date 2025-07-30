@@ -105,7 +105,7 @@ testthat::test_that("verbatim_popup_ui with type 'button' produces a button", {
   testthat::expect_true(grepl("^<button ", ui_char))
 })
 
-testthat::test_that("verbatim_popup_ui with type 'link' produces a link", {
+testthat::test_that("verbatim_popup_ui with type 'link' produces a button with a class link", {
   ui_char <- as.character(verbatim_popup_ui(id = "test_id", button_label = "Test button label", type = "link"))
-  testthat::expect_true(grepl("^<a ", ui_char))
+  testthat::expect_true(grepl("^<button class=.+\\blink\\b", ui_char))
 })
