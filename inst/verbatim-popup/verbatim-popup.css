@@ -1,0 +1,11 @@
+.teal-widgets-busy-disable.link {
+  color: var(--bs-primary);
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--bs-primary-border-subtle);
+  padding: 0.5rem;
+}
+
+.teal-widgets-busy-disable.link:hover {
+  border-color: var(--bs-primary);
+}

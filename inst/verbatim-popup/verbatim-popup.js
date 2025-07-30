@@ -35,3 +35,10 @@ const copyToClipboard = (elementIdToCopy, onFailure = () => null) => {
 
   document.body.removeChild(textArea);
 };
+
+$(document).on("shiny:busy", function () {
+  $(".teal-widgets-busy-disable").prop("disabled", true);
+});
+$(document).on("shiny:idle", function () {
+  $(".teal-widgets-busy-disable").prop("disabled", false);
+});
