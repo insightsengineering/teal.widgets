@@ -6,6 +6,7 @@ verbatim_popup_deps <- function() {
     version = utils::packageVersion("teal.widgets"),
     package = "teal.widgets",
     src = "verbatim-popup",
+    style = "verbatim-popup.css",
     script = "verbatim-popup.js"
   )
 }
@@ -42,21 +43,17 @@ verbatim_popup_ui <- function(id, button_label, type = c("button", "link"), ...)
   checkmate::assert_string(id)
   checkmate::assert_string(button_label)
 
-  ui_function <- switch(match.arg(type),
-    "button" = shiny::actionButton,
-    "link" = shiny::actionLink
-  )
-
   ns <- shiny::NS(id)
-  ui_args <- list(
-    inputId = ns("button"),
-    label = button_label
-  )
 
   shiny::tagList(
     verbatim_popup_deps(),
     shinyjs::useShinyjs(),
-    do.call(ui_function, c(ui_args, list(...)))
+    shiny::actionButton(
+      inputId = ns("button"),
+      label = button_label,
+      class = c("teal-widgets-busy-disable", match.arg(type)),
+      ...
+    )
   )
 }
 
