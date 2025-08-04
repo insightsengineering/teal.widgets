@@ -31,7 +31,7 @@ Imports:
     lifecycle (>= 0.2.0),
     methods,
     rtables (>= 0.6.6),
-    shiny (>= 1.11.1),
+    shiny (>= 1.8.1),
     shinyjs (>= 2.1.0),
     shinyWidgets (>= 0.5.1),
     styler (>= 1.2.0)
