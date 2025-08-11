@@ -12,7 +12,7 @@ draggable_buckets_deps <- function() {
 }
 
 #' @title Draggable Buckets
-#' @description  `r lifecycle::badge("experimental")`
+#' @description
 #' A custom widget with draggable elements that can be put into buckets.
 #'
 #' @param input_id (`character(1)`) the `HTML` id of this widget

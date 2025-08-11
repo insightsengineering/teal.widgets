@@ -1,6 +1,6 @@
 #' Builds a `basic_table_args` object
 #'
-#' @description `r lifecycle::badge("experimental")`
+#' @description
 #' This function has to be used to build an input for a `basic_table_args` argument.
 #' The `basic_table_args` argument should be a part of every module which contains any `rtables` object.
 #' Arguments are validated to match their `rtables` equivalents.
@@ -29,7 +29,7 @@ basic_table_args <- function(...) {
 
 #' Resolves and reduces multiple `basic_table_args` objects
 #'
-#' @description `r lifecycle::badge("experimental")`
+#' @description
 #' Resolving and reducing multiple `basic_table_args` objects.
 #' This function is intended to utilize user provided settings, defaults provided by the module creator and
 #' also `teal` option. See `Details`, below, to understand the logic.
@@ -88,7 +88,7 @@ resolve_basic_table_args <- function(user_table = basic_table_args(),
 
 #' Parses `basic_table_args` object into the `basic_table` expression
 #'
-#' @description `r lifecycle::badge("experimental")`
+#' @description
 #' A function to parse expression from the `basic_table_args` object.
 #' @param basic_table_args (`basic_table_args`)\cr
 #'  This argument could be a result of the [`resolve_basic_table_args()`].
