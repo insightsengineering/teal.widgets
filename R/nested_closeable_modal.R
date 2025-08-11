@@ -1,6 +1,6 @@
 #' Nested Closeable Modal Popup
 #'
-#' @description
+#' @description `r lifecycle::badge("deprecated")`
 #' Alternative to `shiny::modalDialog`. Create a nested modal popup that can be shown/hidden
 #' using `jQuery` and modal `id`, without disturbing the parent modal.
 #'
@@ -82,6 +82,11 @@
 nested_closeable_modal <- function(id, ..., modal_args = list(easyClose = TRUE)) {
   checkmate::assert_string(id)
   checkmate::assert_list(modal_args)
+  lifecycle::deprecate_soft(
+    when = "0.4.4",
+    what = "nested_closeable_modal()"
+  )
+
   modal_args <- append(list(...), modal_args)
   tagList(
     htmltools::tagQuery(do.call(modalDialog, modal_args))$
