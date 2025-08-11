@@ -12,7 +12,7 @@ standard_layout_deps <- function() {
 
 #' Standard UI layout
 #'
-#' @description `r lifecycle::badge("stable")`\cr
+#' @description
 #' Create a standard UI layout with output on the right and an encoding panel on
 #' the left. This is the layout used by the `teal` modules.
 #'

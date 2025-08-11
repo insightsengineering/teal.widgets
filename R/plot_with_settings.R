@@ -61,7 +61,7 @@ plot_with_settings_ui <- function(id) {
 #' Plot-with-settings module
 #'
 #' @rdname plot_with_settings
-#' @description `r lifecycle::badge("stable")`\cr
+#' @description
 #' Universal module for plots with settings for height, width, and download.
 #'
 #' @export
@@ -524,7 +524,7 @@ type_download_srv <- function(id, plot_reactive, plot_type, plot_w, default_w, p
 
 #' Clean brushed points
 #'
-#' @description `r lifecycle::badge("stable")`\cr
+#' @description
 #' Cleans and organizes output to account for NAs and remove empty rows. Wrapper around `shiny::brushedPoints`.
 #' @param data (`data.frame`)\cr
 #'  A data.frame from which to select rows.

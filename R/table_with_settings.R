@@ -14,7 +14,7 @@ table_with_settings_deps <- function() {
 #'
 #' @title `table_with_settings` module
 #'
-#' @description `r lifecycle::badge("stable")`\cr
+#' @description
 #' Module designed to create a `shiny` table output based on `rtable` object (`ElementaryTable` or `TableTree`) input.
 #' @inheritParams shiny::moduleServer
 #' @param ... (`character`)\cr
