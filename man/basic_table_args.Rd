@@ -13,7 +13,6 @@ basic_table_args(...)
 (\code{basic_table_args}) object.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 This function has to be used to build an input for a \code{basic_table_args} argument.
 The \code{basic_table_args} argument should be a part of every module which contains any \code{rtables} object.
 Arguments are validated to match their \code{rtables} equivalents.

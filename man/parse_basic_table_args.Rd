@@ -14,7 +14,6 @@ This argument could be a result of the \code{\link[=resolve_basic_table_args]{re
 (\code{language}) the \code{rtables::basic_table()} filled with additional arguments.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 A function to parse expression from the \code{basic_table_args} object.
 }
 \examples{

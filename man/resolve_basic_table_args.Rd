@@ -31,7 +31,6 @@ Application level setting. Can be \code{NULL}.}
 \code{basic_table_args} object.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 Resolving and reducing multiple \code{basic_table_args} objects.
 This function is intended to utilize user provided settings, defaults provided by the module creator and
 also \code{teal} option. See \code{Details}, below, to understand the logic.

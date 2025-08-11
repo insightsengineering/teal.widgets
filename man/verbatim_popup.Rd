@@ -40,7 +40,6 @@ when the flag is \code{TRUE} and enabled otherwise.}
 the UI function returns a \code{shiny.tag.list} object
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 This module consists of a button that once clicked pops up a
 modal window with verbatim-styled text.
 }

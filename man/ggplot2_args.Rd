@@ -17,7 +17,6 @@ where all fields have to match \code{\link[ggplot2:theme]{ggplot2::theme()}} arg
 (\code{ggplot2_args}) object.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 Constructor of \code{ggplot2_args} class of objects.
 The \code{ggplot2_args} argument should be a part of every module which contains any \code{ggplot2} graphics.
 The function arguments are validated to match their \code{ggplot2} equivalents.

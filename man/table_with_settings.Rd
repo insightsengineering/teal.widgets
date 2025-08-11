@@ -27,7 +27,6 @@ mechanism to allow modules which call this module to show/hide the table_with_se
 A \code{shiny} module.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}\cr
 Module designed to create a \code{shiny} table output based on \code{rtable} object (\code{ElementaryTable} or \code{TableTree}) input.
 }
 \examples{

@@ -68,7 +68,6 @@ The width of the input passed to \code{pickerInput}  e.g. \code{'auto'}, \code{'
 non-interactive element listing selected values.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 Wrapper for \code{\link[shinyWidgets:pickerInput]{shinyWidgets::pickerInput()}} with additional features.
 When \code{fixed = TRUE} or when the number of \code{choices} is less or equal to 1 (see \code{fixed_on_single}),
 the \code{pickerInput} widget is hidden and non-interactive widget will be displayed

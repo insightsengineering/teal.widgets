@@ -17,7 +17,6 @@ The data from a brush e.g. \code{input$plot_brush}.}
 A \code{data.frame} of selected rows.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}\cr
 Cleans and organizes output to account for NAs and remove empty rows. Wrapper around \code{shiny::brushedPoints}.
 }
 \examples{
