@@ -1,6 +1,6 @@
 #' Nested Closeable Modal Popup
 #'
-#' @description `r lifecycle::badge("experimental")`
+#' @description
 #' Alternative to `shiny::modalDialog`. Create a nested modal popup that can be shown/hidden
 #' using `jQuery` and modal `id`, without disturbing the parent modal.
 #'
