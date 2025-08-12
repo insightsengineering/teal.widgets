@@ -13,7 +13,7 @@ verbatim_popup_deps <- function() {
 
 #' A `shiny` module that pops up verbatim text.
 #' @name verbatim_popup
-#' @description `r lifecycle::badge("experimental")`
+#' @description
 #' This module consists of a button that once clicked pops up a
 #' modal window with verbatim-styled text.
 #'

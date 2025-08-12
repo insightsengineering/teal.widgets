@@ -1,6 +1,6 @@
 #' Creates `ggplot2_args` object
 #'
-#' @description `r lifecycle::badge("experimental")`
+#' @description
 #' Constructor of `ggplot2_args` class of objects.
 #' The `ggplot2_args` argument should be a part of every module which contains any `ggplot2` graphics.
 #' The function arguments are validated to match their `ggplot2` equivalents.
@@ -44,7 +44,7 @@ ggplot2_args <- function(labs = list(), theme = list()) {
 
 #' Resolving and reducing multiple `ggplot2_args` objects
 #'
-#' @description `r lifecycle::badge("experimental")`
+#' @description
 #' Resolving and reducing multiple `ggplot2_args` objects.
 #' This function is intended to utilize user provided settings, defaults provided by the module creator and
 #' also `teal` option. See `Details`, below, to understand the logic.
@@ -109,7 +109,7 @@ resolve_ggplot2_args <- function(user_plot = ggplot2_args(),
 
 #' Parse `ggplot2_args` object into the `ggplot2` expression
 #'
-#' @description `r lifecycle::badge("experimental")`
+#' @description
 #' A function to parse expression from the `ggplot2_args` object.
 #' @param ggplot2_args (`ggplot2_args`)\cr
 #'  This argument could be a result of the [resolve_ggplot2_args()].

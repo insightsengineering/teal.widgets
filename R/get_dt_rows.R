@@ -1,6 +1,6 @@
 #' Map `lenghtMenu` property
 #'
-#' @description `r lifecycle::badge("stable")`\cr
+#' @description
 #' Maps the `lengthMenu` selected value property of `DT::datatable` to a `shiny` variable.
 #' @param dt_name `ns()` of `inputId` of the `DT::datatable`
 #' @param dt_rows `ns()` of `inputId` of the variable that holds the current selected value of `lengthMenu`

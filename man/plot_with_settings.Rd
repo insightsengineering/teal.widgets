@@ -68,7 +68,6 @@ the main page.}
 A \code{shiny} module.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}\cr
 Universal module for plots with settings for height, width, and download.
 }
 \details{

@@ -28,7 +28,6 @@ object of class \code{shiny.tag}, e.g. an object returned by \code{\link[shiny:h
 (\code{shiny.tag}) HTML tag with \code{sliderInput} widget.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}\cr
 Hidden input widgets are useful to have the \code{input[[inputId]]} variable
 on available in the server function but no corresponding visual clutter from
 input widgets that provide only a single choice.

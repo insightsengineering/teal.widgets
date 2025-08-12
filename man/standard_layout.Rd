@@ -34,7 +34,6 @@ into context. For example the \code{\link[shiny:helpText]{shiny::helpText()}} el
 an object of class \code{shiny.tag} with the UI code.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}\cr
 Create a standard UI layout with output on the right and an encoding panel on
 the left. This is the layout used by the \code{teal} modules.
 }

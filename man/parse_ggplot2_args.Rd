@@ -21,7 +21,6 @@ name of the \code{ggplot2} theme to be applied, e.g. \code{"dark"}.}
 (\code{list}) of up to three elements of class \code{languange}: \code{"labs"}, \code{"ggtheme"} and \code{"theme"}.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 A function to parse expression from the \code{ggplot2_args} object.
 }
 \examples{

@@ -20,7 +20,7 @@ to customize the modal. Has \code{easyClose} set to \code{TRUE} as default}
 (\code{shiny.tag}) returns \code{HTML} for \code{shiny} module UI which can be nested into a modal popup
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 Alternative to \code{shiny::modalDialog}. Create a nested modal popup that can be shown/hidden
 using \code{jQuery} and modal \code{id}, without disturbing the parent modal.
 }

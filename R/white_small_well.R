@@ -1,6 +1,6 @@
 #' Small well class for HTML
 #'
-#' @description `r lifecycle::badge("stable")`\cr
+#' @description
 #' Adds Small Well class and overflow-x property to HTML output element.
 #' @param ... other arguments to pass to tag object's div attributes.
 #'
