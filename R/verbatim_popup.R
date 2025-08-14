@@ -6,7 +6,7 @@ verbatim_popup_deps <- function() {
     version = utils::packageVersion("teal.widgets"),
     package = "teal.widgets",
     src = "verbatim-popup",
-    style = "verbatim-popup.css",
+    stylesheet = "verbatim-popup.css",
     script = "verbatim-popup.js"
   )
 }
