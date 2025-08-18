@@ -8,7 +8,8 @@
 * `nested_closeable_modal()` was soft deprecated.
 
 ### Bug fixes
-* Recompute the `live-search` option value dynamically in `updateOptionalSelectInput` (#291)
+* Recompute the `live-search` option value dynamically in `updateOptionalSelectInput` (#291).
+* Fix bug where plot height reset after resizing (#301).
 
 # teal.widgets 0.4.3
 
