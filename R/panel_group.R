@@ -48,7 +48,7 @@
 #' @export
 panel_group <- function(..., id = NULL) {
   lifecycle::deprecate_soft(
-    when = "0.5.0",
+    when = "0.4.3",
     what = "panel_group()",
     details = paste(
       "The `panel_group()` and `panel_item()` view can be achieved by using the `bslib` package.",
@@ -116,7 +116,7 @@ panel_item_deps <- function() {
 #' @export
 panel_item <- function(title, ..., collapsed = TRUE, input_id = NULL) {
   lifecycle::deprecate_soft(
-    when = "0.5.0",
+    when = "0.4.3",
     what = "panel_item()",
     details = paste(
       "The `panel_group()` and `panel_item()` view can be achieved by using the `bslib` package.",
