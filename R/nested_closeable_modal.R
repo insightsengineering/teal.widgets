@@ -83,7 +83,7 @@ nested_closeable_modal <- function(id, ..., modal_args = list(easyClose = TRUE))
   checkmate::assert_string(id)
   checkmate::assert_list(modal_args)
   lifecycle::deprecate_soft(
-    when = "0.4.4",
+    when = "0.5.0",
     what = "nested_closeable_modal()"
   )
 

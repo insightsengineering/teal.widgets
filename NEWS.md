@@ -1,11 +1,15 @@
-# teal.widgets 0.4.3.9016
+# teal.widgets 0.5.0
+
+### Enhancements
+* Improved the layout and appearance of the widgets using `bslib` components (#288).
 
 ### Breaking changes
-* `panel_group()` and `panel_item()` are deprecated. Please use the `bslib::accordion()` and `bslib::accordion_panel()` instead.
-* `nested_closeable_modal()` was deprecated.
+* `panel_group()` and `panel_item()` are soft deprecated. Please use the `bslib::accordion()` and `bslib::accordion_panel()` instead.
+* `nested_closeable_modal()` was soft deprecated.
 
 ### Bug fixes
-* Recompute the `live-search` option value dynamically in `updateOptionalSelectInput` (#291)
+* Recompute the `live-search` option value dynamically in `updateOptionalSelectInput` (#291).
+* Fix bug where plot height reset after resizing (#301).
 
 # teal.widgets 0.4.3
 
