@@ -111,7 +111,7 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
       }
     })
 
-    output$table_out_main <- output$table_out_modal <- gt::render_gt({
+    output$table <- output$table_out_main <- output$table_out_modal <- gt::render_gt({
       gtsummary::as_gt(table_r())
     })
 
