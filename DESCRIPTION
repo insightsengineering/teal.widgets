@@ -22,6 +22,7 @@ BugReports: https://github.com/insightsengineering/teal.widgets/issues
 Depends:
     R (>= 3.6)
 Imports:
+    bsicons,
     bslib (>= 0.8.0),
     checkmate (>= 2.1.0),
     ggplot2 (>= 3.4.3),
@@ -62,4 +63,4 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3

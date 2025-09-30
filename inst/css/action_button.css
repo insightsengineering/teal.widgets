@@ -1,0 +1,42 @@
+.teal-widgets.outline-button {
+  padding: 0.3em;
+  border-radius: 5px;
+  background: transparent;
+}
+
+.teal-widgets.outline-button.disabled,
+.teal-widgets.outline-button:disabled {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.teal-widgets.outline-button.primary {
+  color: var(--bs-primary);
+  border: solid 1px var(--bs-primary);
+}
+
+.teal-widgets.outline-button.primary:hover:not(:disabled) {
+  background: var(--bs-primary-bg-subtle);
+}
+
+.teal-widgets.outline-button.danger {
+  color: var(--bs-danger);
+  border: solid 1px var(--bs-danger);
+}
+
+.teal-widgets.outline-button.danger:hover:not(:disabled) {
+  background: var(--bs-danger-bg-subtle);
+}
+
+.teal-widgets.outline-button .badge {
+  margin-top: 1em;
+}
+
+.teal-widgets.outline-button.secondary {
+  color: var(--bs-secondary);
+  border: solid 1px var(--bs-secondary);
+}
+
+.teal-widgets.outline-button.secondary:hover:not(:disabled) {
+  background: var(--bs-secondary-bg-subtle);
+}
