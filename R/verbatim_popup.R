@@ -11,11 +11,11 @@ verbatim_popup_deps <- function() {
       script = "verbatim-popup.js"
     ),
     htmltools::htmlDependency(
-        name = "teal-widgets-busy-disable",
-        version = utils::packageVersion("teal.widgets"),
-        package = "teal.widgets",
-        src = "js",
-        script = "busy-disable.js"
+      name = "teal-widgets-busy-disable",
+      version = utils::packageVersion("teal.widgets"),
+      package = "teal.widgets",
+      src = "js",
+      script = "busy-disable.js"
     )
   )
 }
