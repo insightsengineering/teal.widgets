@@ -43,6 +43,7 @@ reference:
       - white_small_well
       - verbatim_popup
       - nested_closeable_modal
+      - action_button_with_busy
   - title: "ggplot2 and basic_table arguments"
     desc: "Aggregation and validation of arguments"
     contents:
