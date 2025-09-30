@@ -1,13 +1,22 @@
 #' @keywords internal
 #' @noRd
 verbatim_popup_deps <- function() {
-  htmltools::htmlDependency(
-    name = "teal-widgets-verbatim-popup",
-    version = utils::packageVersion("teal.widgets"),
-    package = "teal.widgets",
-    src = "verbatim-popup",
-    stylesheet = "verbatim-popup.css",
-    script = "verbatim-popup.js"
+  shiny::tagList(
+    htmltools::htmlDependency(
+      name = "teal-widgets-verbatim-popup",
+      version = utils::packageVersion("teal.widgets"),
+      package = "teal.widgets",
+      src = "verbatim-popup",
+      stylesheet = "verbatim-popup.css",
+      script = "verbatim-popup.js"
+    ),
+    htmltools::htmlDependency(
+        name = "teal-widgets-busy-disable",
+        version = utils::packageVersion("teal.widgets"),
+        package = "teal.widgets",
+        src = "js",
+        script = "busy-disable.js"
+    )
   )
 }
 
