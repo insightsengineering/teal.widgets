@@ -40,7 +40,7 @@ library(shiny)
 
 ui <- fluidPage(
   sliderInput("obs", "Number of observations", 0, 1000, 500),
-  action_button("goButton", "Go!", class = "btn-success"),
+  action_button_with_busy("goButton", "Go!", class = "btn-success"),
   plotOutput("distPlot")
 )
 
