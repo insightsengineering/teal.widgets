@@ -18,7 +18,7 @@ get_dt_rows(dt_name, dt_rows)
 Maps the \code{lengthMenu} selected value property of \code{DT::datatable} to a \code{shiny} variable.
 }
 \examples{
-\dontshow{if (require("DT")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("DT", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 library(shiny)
 library(DT)
 

@@ -106,7 +106,7 @@ plot_with_settings_ui <- function(id) {
 #'
 #' @return A `shiny` module.
 #'
-#' @examples
+#' @examplesIf requireNamespace("lattice", quietly = TRUE)
 #' # Example using a reactive as input to plot_r
 #' library(shiny)
 #' library(ggplot2)
