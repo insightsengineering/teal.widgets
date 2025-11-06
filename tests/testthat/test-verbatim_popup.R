@@ -231,7 +231,7 @@ testthat::test_that("verbatim_popup_srv creates observers correctly", {
 # Test verbatim_popup_srv with reactive content
 testthat::test_that("verbatim_popup_srv works with reactive verbatim_content", {
   test_content <- shiny::reactiveVal("Initial content")
-  
+
   shiny::testServer(
     app = verbatim_popup_srv,
     args = list(

@@ -52,12 +52,11 @@ testthat::test_that("optionalSelectInput is a Shiny ui component", {
 
 testthat::test_that("if inputId is not a string optionalSliderInputValMinMax returns error", {
   testthat::expect_error(optionalSliderInputValMinMax(
-     list,
-     "label",
-     c(5, 1, 10),
-     label_help = shiny::helpText("Help")
-    )
-  )
+    list,
+    "label",
+    c(5, 1, 10),
+    label_help = shiny::helpText("Help")
+  ))
 })
 
 testthat::test_that("value_min_max with invalid length throws error", {
@@ -74,10 +73,10 @@ testthat::test_that("value out of range in value_min_max throws error", {
 testthat::test_that("optionalSliderInputValMinMax is a Shiny ui component", {
   testthat::expect_s3_class(
     optionalSliderInputValMinMax(
-     "id",
-     "label",
-     c(5, 1, 10),
-     label_help = shiny::helpText("Help")
+      "id",
+      "label",
+      c(5, 1, 10),
+      label_help = shiny::helpText("Help")
     ),
     "shiny.tag"
   )
