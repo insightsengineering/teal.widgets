@@ -102,3 +102,20 @@ testthat::test_that(
     app_driver$stop()
   }
 )
+
+testthat::test_that("fails when inputId is not from the expected type", {
+  expect_error(draggable_buckets(numeric(1), "test_label", "element_1", "bucket_1"))
+})
+
+testthat::test_that("fails when label is not from the expected type", {
+  expect_error(draggable_buckets("my_input_id", numeric(), "element_1", "bucket_1"))
+})
+
+testthat::test_that("fails when buckets is not from the expected type", {
+  expect_error(draggable_buckets("my_input_id", "test_label", "element_1", numeric()))
+})
+
+testthat::test_that("Snapshot test for ui component dragable buckets", {
+  testthat::local_edition(3)
+  expect_snapshot(as.character(draggable_buckets("my_input_id", "test_label", "element_1", "buckets_1")))
+})
