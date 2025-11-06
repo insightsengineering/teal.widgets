@@ -85,3 +85,8 @@ testthat::test_that(
     app_driver$stop()
   }
 )
+
+testthat::test_that("snapshot test for verbatim_popup_ui", {
+  testthat::local_edition(3)
+  testthat::expect_snapshot(verbatim_popup_ui("STH", "STH2"))
+})
