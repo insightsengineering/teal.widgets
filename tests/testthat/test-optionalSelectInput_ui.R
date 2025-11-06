@@ -128,3 +128,8 @@ testthat::test_that(
     app_driver$stop()
   }
 )
+
+testthat::test_that("Snapshot test for optionalSelectInput", {
+  testthat::local_edition(3)
+  testthat::expect_snapshot(as.character(optionalSelectInput("my_select_input", "my label", c("choice_1", "choice_2"), sep = " ")))
+})
