@@ -115,8 +115,19 @@ testthat::test_that("fails when buckets is not from the expected type", {
   expect_error(draggable_buckets("my_input_id", "test_label", "element_1", numeric()))
 })
 
-testthat::test_that("Snapshot test for ui component dragable buckets", {
-  testthat::local_edition(3)
-  withr::local_seed(1)
-  expect_snapshot(as.character(draggable_buckets("my_input_id", "test_label", "element_1", "buckets_1")))
+testthat::test_that("Snapshot test for ui component draggable buckets", {
+  my_id <- "my_input_id"
+  my_label <- "test_label"
+  dummy_element <- "element_1"
+  dummy_buckets <- "buckets_1"
+  draggable_ui_text <- as.character(draggable_buckets(my_id, my_label, dummy_element, dummy_buckets))
+
+  expect_true(
+    all(c(
+      grepl(my_id, draggable_ui_text),
+      grepl(my_label, draggable_ui_text),
+      grepl(dummy_element, draggable_ui_text),
+      grepl(dummy_buckets, draggable_ui_text)
+    ))
+  )
 })

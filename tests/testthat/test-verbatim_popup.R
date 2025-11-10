@@ -222,8 +222,10 @@ testthat::test_that("verbatim_popup_srv creates observers correctly", {
       disabled = shiny::reactiveVal(FALSE)
     ),
     expr = {
-      # The server function should execute without error
-      testthat::expect_true(TRUE)
+      # Verify session is created
+      testthat::expect_type(session, "environment")
+      # Verify namespace function exists
+      testthat::expect_type(session$ns, "closure")
     }
   )
 })
@@ -240,12 +242,16 @@ testthat::test_that("verbatim_popup_srv works with reactive verbatim_content", {
       style = FALSE
     ),
     expr = {
-      # Should initialize without error
-      testthat::expect_true(TRUE)
+      # Verify we can access and update the reactive content
+      initial_val <- test_content()
+      testthat::expect_equal(initial_val, "Initial content")
+      test_content("Updated content")
+      testthat::expect_equal(test_content(), "Updated content")
     }
   )
 })
 
+# Test verbatim_popup_srv with style=TRUE
 testthat::test_that("verbatim_popup_srv works with style=TRUE", {
   shiny::testServer(
     app = verbatim_popup_srv,
@@ -255,8 +261,10 @@ testthat::test_that("verbatim_popup_srv works with style=TRUE", {
       style = TRUE
     ),
     expr = {
-      # Should initialize and format content with styling
-      testthat::expect_true(TRUE)
+      # Verify session object is created
+      testthat::expect_type(session, "environment")
+      # Server should initialize without errors
+      testthat::expect_no_error(session$ns("test"))
     }
   )
 })

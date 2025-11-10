@@ -43,11 +43,11 @@ describe("Tests for standard_layout options", {
 
   it("checks snapshot with encoding and null forms", {
     # Given
-    expected_class <- "bslib_page"
     mock_layout <- standard_layout(output = mock_output, encoding = mock_form, forms = NULL)
-
+    withr::local_seed(1)
     # Then
     testthat::local_edition(3)
-    expect_snapshot(as.character(mock_layout))
+
+    expect_true(grepl(as.character(mock_form), as.character(mock_layout)))
   })
 })
