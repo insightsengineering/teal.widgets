@@ -9,7 +9,7 @@ draggable_buckets_deps <- function() {
     script = "draggable-buckets.js",
     stylesheet = "draggable-buckets.css"
   )
-} # nocovend
+}
 
 #' @title Draggable Buckets
 #' @description
