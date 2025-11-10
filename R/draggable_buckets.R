@@ -1,6 +1,6 @@
 #' @keywords internal
 #' @noRd
-draggable_buckets_deps <- function() { # nocov start
+draggable_buckets_deps <- function() {
   htmltools::htmlDependency(
     name = "teal-widgets-draggable-buckets",
     version = utils::packageVersion("teal.widgets"),

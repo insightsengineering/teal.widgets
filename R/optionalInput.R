@@ -311,7 +311,7 @@ updateOptionalSelectInput <- function(session, # nolint
 #'  vector of HTML icons corresponding to  data type in each column.
 #' @keywords internal
 #'
-variable_type_icons <- function(var_type) { # nocov start
+variable_type_icons <- function(var_type) {
   checkmate::assert_character(var_type, any.missing = FALSE)
 
   class_to_icon <- list(
@@ -343,7 +343,7 @@ variable_type_icons <- function(var_type) { # nocov start
   ))
 
   res
-} # nocov end
+}
 
 #' Optional content for `optionalSelectInput`
 #'
@@ -359,7 +359,7 @@ variable_type_icons <- function(var_type) { # nocov start
 #' @return (`character`) HTML contents with all elements combined
 #' @keywords internal
 #'
-picker_options_content <- function(var_name, var_label, var_type) { # nocov start
+picker_options_content <- function(var_name, var_label, var_type) {
   if (length(var_name) == 0) {
     res <- character(0)
   } else if (length(var_type) == 0 && length(var_label) == 0) {
@@ -387,7 +387,7 @@ picker_options_content <- function(var_name, var_label, var_type) { # nocov star
   }
 
   res
-} # nocov end
+}
 
 #' Create `choicesOpt` for `pickerInput`
 #'
@@ -397,7 +397,7 @@ picker_options_content <- function(var_name, var_label, var_type) { # nocov star
 #' @return (`list`)\cr
 #'  to be passed as `choicesOpt` argument.
 #' @keywords internal
-picker_options <- function(choices) { # nocov start
+picker_options <- function(choices) {
   if (inherits(choices, "choices_labeled")) {
     raw_choices <- extract_raw_choices(choices, sep = attr(choices, "sep"))
     res <- list(
@@ -418,7 +418,7 @@ picker_options <- function(choices) { # nocov start
     res <- NULL
   }
   res
-} # nocov end
+}
 
 #' Extract raw values from choices
 #'
@@ -429,7 +429,7 @@ picker_options <- function(choices) { # nocov start
 #'  the different columns.
 #' @return choices simplified
 #' @keywords internal
-extract_raw_choices <- function(choices, sep) { # nocov start
+extract_raw_choices <- function(choices, sep) {
   if (!is.null(sep)) {
     vapply(choices, paste, collapse = sep, character(1))
   } else if (inherits(choices, "choices_labeled")) {
@@ -437,7 +437,7 @@ extract_raw_choices <- function(choices, sep) { # nocov start
   } else {
     choices
   }
-} # nocov end
+}
 
 #' Optional Slider Input Widget
 #'
@@ -579,7 +579,7 @@ optionalSliderInputValMinMax <- function(inputId, label, value_min_max, label_he
 #'
 #' @return (`character`) vector with labels
 #' @keywords internal
-extract_choices_labels <- function(choices, values = NULL) { # nocov start
+extract_choices_labels <- function(choices, values = NULL) {
   res <- if (inherits(choices, "choices_labeled")) {
     attr(choices, "raw_labels")
   } else if (!is.null(names(choices)) && !setequal(names(choices), unlist(unname(choices)))) {
@@ -594,4 +594,4 @@ extract_choices_labels <- function(choices, values = NULL) { # nocov start
   }
 
   res
-} # nocov end
+}

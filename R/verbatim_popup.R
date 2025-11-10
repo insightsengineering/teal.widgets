@@ -1,6 +1,6 @@
 #' @keywords internal
 #' @noRd
-verbatim_popup_deps <- function() { # nocov start
+verbatim_popup_deps <- function() {
   htmltools::htmlDependency(
     name = "teal-widgets-verbatim-popup",
     version = utils::packageVersion("teal.widgets"),
@@ -9,7 +9,7 @@ verbatim_popup_deps <- function() { # nocov start
     stylesheet = "verbatim-popup.css",
     script = "verbatim-popup.js"
   )
-} # nocov end
+}
 
 #' A `shiny` module that pops up verbatim text.
 #' @name verbatim_popup

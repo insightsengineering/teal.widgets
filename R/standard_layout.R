@@ -1,6 +1,6 @@
 #' @keywords internal
 #' @noRd
-standard_layout_deps <- function() { # nocov start
+standard_layout_deps <- function() {
   htmltools::htmlDependency(
     name = "teal-widgets-standard-layout",
     version = utils::packageVersion("teal.widgets"),
@@ -8,7 +8,7 @@ standard_layout_deps <- function() { # nocov start
     src = "standard-layout",
     stylesheet = "standard-layout.css"
   )
-} # nocov end
+}
 
 #' Standard UI layout
 #'

@@ -1,6 +1,6 @@
 #' @keywords internal
 #' @noRd
-plot_with_settings_deps <- function() { # nocov start
+plot_with_settings_deps <- function() {
   htmltools::htmlDependency(
     name = "teal-widgets-plot-with-settings",
     version = utils::packageVersion("teal.widgets"),
@@ -9,7 +9,7 @@ plot_with_settings_deps <- function() { # nocov start
     stylesheet = "plot-with-settings.css",
     script = "plot-with-settings.js"
   )
-} # nocov end
+}
 
 #' @name plot_with_settings
 #' @rdname plot_with_settings
