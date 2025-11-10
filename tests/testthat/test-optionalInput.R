@@ -39,7 +39,9 @@ testthat::test_that("if label is not a string returns an error", {
 })
 
 testthat::test_that("if with is not a valid css unit returns an error", {
-  testthat::expect_error(optionalSelectInput("my_input_id", "my label", c("choice_1", "choice_2"), width = "wrong css unit"))
+  testthat::expect_error(
+    optionalSelectInput("my_input_id", "my label", c("choice_1", "choice_2"), width = "wrong css unit")
+  )
 })
 
 testthat::test_that("if options is not a list returns an error", {

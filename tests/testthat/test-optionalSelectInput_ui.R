@@ -227,12 +227,12 @@ testthat::test_that("there is js show hide functionality only if fixed on single
   id <- "my_select_input"
   label <- "my_label"
   choices <- c("choice_1", "choice_2")
-  optional_select_input_text_not_fixed_on_single <- as.character(
+  text_not_fixed_on_single <- as.character(
     optionalSelectInput(id, label, choices, fixed_on_single = FALSE)
   )
-  optional_select_input_text_fixed_on_single <- as.character(
+  text_fixed_on_single <- as.character(
     optionalSelectInput(id, label, choices, fixed_on_single = TRUE)
   )
-  expect_false(grepl("hide", optional_select_input_text_not_fixed_on_single))
-  expect_true(grepl("hide", optional_select_input_text_fixed_on_single))
+  expect_false(grepl("hide", text_not_fixed_on_single))
+  expect_true(grepl("hide", text_fixed_on_single))
 })
