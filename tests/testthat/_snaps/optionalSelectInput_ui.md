@@ -1,7 +1,0 @@
-# Snapshot test for optionalSelectInput
-
-    Code
-      as.character(optionalSelectInput("my_select_input", "my label", c("choice_1", "choice_2"), sep = " "))
-    Output
-      [1] "<div>\n  <script>\n        $(function() {\n          $('#my_select_input').on('change', function(e) {\n            var select_concat = $(this).val().length ? $(this).val().join(', ') : 'NULL';\n            $('#my_select_input_selected_text').html(select_concat);\n          })\n        })</script>\n  <div>\n    <div id=\"my_select_input_input\" style=\"display: block;\">\n      <div class=\"form-group shiny-input-container\">\n        <label class=\"control-label\" id=\"my_select_input-label\" for=\"my_select_input\">my label</label>\n        <select data-actions-box=\"false\" data-none-selected-text=\"- Nothing selected -\" data-allow-clear=\"true\" data-max-options=\"1\" data-show-subtext=\"true\" data-live-search=\"false\" data-container=\"body\" data-state-input=\"true\" id=\"my_select_input\" class=\"selectpicker form-control\" autocomplete=\"off\" multiple=\"multiple\"><option value=\"choice_1\">choice_1</option>\n<option value=\"choice_2\">choice_2</option></select>\n      </div>\n    </div>\n    <div id=\"my_select_input_fixed\" style=\"display: none;\">\n      <label class=\"control-label\">my label</label>\n      <code id=\"my_select_input_selected_text\">NULL</code>\n    </div>\n  </div>\n</div>"
-

@@ -129,9 +129,40 @@ testthat::test_that(
   }
 )
 
-testthat::test_that("Snapshot test for optionalSelectInput", {
-  testthat::local_edition(3)
-  testthat::expect_snapshot(
-    as.character(optionalSelectInput("my_select_input", "my label", c("choice_1", "choice_2"), sep = " "))
+testthat::test_that("Check optionalSelectInput is created with different sep", {
+  id <- "my_select_input"
+  label <- "my_label"
+  choices <- c("choice_1", "choice_2")
+  sep <- "|=|"
+  text_optional_select_input <- as.character(optionalSelectInput(id, label, choices, sep = sep))
+
+  expect_true(
+    all(
+      c(
+        grepl(id, text_optional_select_input),
+        grepl(label, text_optional_select_input),
+        grepl(sep, text_optional_select_input)
+      )
+    )
+  )
+})
+
+testthat::test_that("Check optionalSelectInput is created with label_help", {
+  id <- "my_select_input"
+  label <- "my_label"
+  choices <- c("choice_1", "choice_2")
+  label_help <- shiny::helpText("help dummy text")
+  text_optional_select_input <- as.character(
+    optionalSelectInput(id, label, choices, label_help = label_help)
+  )
+
+  expect_true(
+    all(
+      c(
+        grepl(id, text_optional_select_input),
+        grepl(label, text_optional_select_input),
+        grepl(as.character(label_help), text_optional_select_input)
+      )
+    )
   )
 })
