@@ -28,5 +28,6 @@ testthat::test_that(
 
 testthat::test_that("snapshot test for optionalSliderInputValMinMax", {
   testthat::local_edition(3)
+  withr::local_seed(1)
   testthat::expect_snapshot(as.character(optionalSliderInput("my slider", "my label", 0, 10, 2)))
 })

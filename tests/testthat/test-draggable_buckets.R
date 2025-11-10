@@ -117,5 +117,6 @@ testthat::test_that("fails when buckets is not from the expected type", {
 
 testthat::test_that("Snapshot test for ui component dragable buckets", {
   testthat::local_edition(3)
+  withr::local_seed(1)
   expect_snapshot(as.character(draggable_buckets("my_input_id", "test_label", "element_1", "buckets_1")))
 })
