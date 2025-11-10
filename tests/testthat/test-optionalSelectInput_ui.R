@@ -166,3 +166,73 @@ testthat::test_that("Check optionalSelectInput is created with label_help", {
     )
   )
 })
+
+testthat::test_that("Check optionalSelectInput width is applied", {
+  id <- "my_select_input"
+  label <- "my_label"
+  choices <- c("choice_1", "choice_2")
+  width <- "200px"
+  text_optional_select_input <- as.character(optionalSelectInput(id, label, choices, width = width))
+
+  expect_true(
+    all(
+      c(
+        grepl(id, text_optional_select_input),
+        grepl(label, text_optional_select_input),
+        grepl(as.character(width), text_optional_select_input)
+      )
+    )
+  )
+})
+
+
+testthat::test_that("Check options for optionalSelectInput are applied", {
+  id <- "my_select_input"
+  label <- "my_label"
+  choices <- c("choice_1", "choice_2")
+  options <- list("live-search" = FALSE)
+  text_optional_select_input <- as.character(optionalSelectInput(id, label, choices, options = options))
+
+  expect_true(
+    all(
+      c(
+        grepl(id, text_optional_select_input),
+        grepl(label, text_optional_select_input),
+        grepl("live-search", text_optional_select_input)
+      )
+    )
+  )
+})
+
+
+testthat::test_that("Check that choices are empty if not introduced by user", {
+  id <- "my_select_input"
+  label <- "my_label"
+  expect_true(grepl("option value=\"\"", as.character(optionalSelectInput(id, label))))
+})
+
+testthat::test_that("selected marks the initial choice", {
+  id <- "my_select_input"
+  label <- "my_label"
+  choices <- c("choice_1", "choice_2")
+  selected <- choices[1]
+  text_to_find <- paste0("selected>", selected)
+  optional_select_input_text <- as.character(optionalSelectInput(id, label, choices, selected))
+  expect_true(grepl(text_to_find, optional_select_input_text))
+})
+
+testthat::test_that("there is js show hide functionality only if fixed on single is TRUE and length is more than one", {
+  js_on_single_text <- "hide"
+
+  id <- "my_select_input"
+  label <- "my_label"
+  choices <- c("choice_1", "choice_2")
+  optional_select_input_text_not_fixed_on_single <- as.character(
+    optionalSelectInput(id, label, choices, fixed_on_single = FALSE)
+  )
+  optional_select_input_text_fixed_on_single <- as.character(
+    optionalSelectInput(id, label, choices, fixed_on_single = TRUE)
+  )
+  expect_false(grepl("hide", optional_select_input_text_not_fixed_on_single))
+  expect_true(grepl("hide", optional_select_input_text_fixed_on_single))
+})

@@ -1,4 +1,4 @@
-# snapshot test for optionalSliderInputValMinMax
+# snapshot test for optionalSliderInput
 
     Code
       as.character(optionalSliderInput("my slider", "my label", 0, 10, 2))
