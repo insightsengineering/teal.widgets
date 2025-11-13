@@ -47,8 +47,6 @@ describe("Tests for standard_layout options", {
     testthat::skip_if_not_installed("withr")
     withr::local_seed(1)
     # Then
-    testthat::local_edition(3)
-
     expect_true(grepl(as.character(mock_form), as.character(mock_layout)))
   })
 })

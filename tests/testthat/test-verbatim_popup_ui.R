@@ -151,7 +151,6 @@ testthat::test_that(
 )
 
 testthat::test_that("snapshot test for verbatim_popup_ui", {
-  testthat::local_edition(3)
   testthat::skip_if_not_installed("withr")
   withr::local_seed(1)
   testthat::expect_snapshot(verbatim_popup_ui("STH", "STH2"))
