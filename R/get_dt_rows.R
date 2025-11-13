@@ -9,7 +9,7 @@
 #'
 #' @return (`shiny::tagList`) A `shiny tagList`.
 #'
-#' @examplesIf require("DT")
+#' @examplesIf requireNamespace("DT", quietly = TRUE)
 #' library(shiny)
 #' library(DT)
 #'
