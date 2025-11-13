@@ -104,11 +104,17 @@ testthat::test_that(
 )
 
 testthat::test_that("fails when inputId is not from the expected type", {
-  expect_error(draggable_buckets(numeric(1), "test_label", "element_1", "bucket_1"))
+  expect_error(
+    draggable_buckets(numeric(1), "test_label", "element_1", "bucket_1"),
+    "Assertion on 'input_id' failed: Must be of type 'string', not 'double'."
+  )
 })
 
 testthat::test_that("fails when label is not from the expected type", {
-  expect_error(draggable_buckets("my_input_id", numeric(), "element_1", "bucket_1"))
+  expect_error(
+    draggable_buckets("my_input_id", numeric(), "element_1", "bucket_1"),
+    'Assertion on \'inherits(label, "character") || inherits(label, "shiny.tag")\' failed: Must be TRUE.'
+  )
 })
 
 testthat::test_that("fails when buckets is not from the expected type", {

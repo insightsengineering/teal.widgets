@@ -211,25 +211,6 @@ testthat::test_that("verbatim_popup_ui passes additional arguments to actionButt
   testthat::expect_true(grepl("custom-class", ui_char))
 })
 
-# Test verbatim_popup_srv with testServer
-testthat::test_that("verbatim_popup_srv creates observers correctly", {
-  shiny::testServer(
-    app = verbatim_popup_srv,
-    args = list(
-      verbatim_content = "Test content",
-      title = "Test Title",
-      style = FALSE,
-      disabled = shiny::reactiveVal(FALSE)
-    ),
-    expr = {
-      # Verify session is created
-      testthat::expect_type(session, "environment")
-      # Verify namespace function exists
-      testthat::expect_type(session$ns, "closure")
-    }
-  )
-})
-
 # Test verbatim_popup_srv with reactive content
 testthat::test_that("verbatim_popup_srv works with reactive verbatim_content", {
   test_content <- shiny::reactiveVal("Initial content")
