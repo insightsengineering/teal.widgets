@@ -85,3 +85,73 @@ testthat::test_that(
     app_driver$stop()
   }
 )
+
+testthat::test_that(
+  "e2e: verbatim_popup button can be disabled and enabled",
+  {
+    skip_if_too_deep(5)
+
+    app <- shiny::shinyApp(
+      ui = bslib::page_fluid(
+        shinyjs::useShinyjs(),
+        verbatim_popup_ui(
+          id = "verbatim_popup",
+          button_label = "Show Popup"
+        ),
+        shiny::actionButton("toggle_disable", "Toggle Disable")
+      ),
+      server = function(input, output, session) {
+        disabled_state <- shiny::reactiveVal(FALSE)
+
+        verbatim_popup_srv(
+          id = "verbatim_popup",
+          verbatim_content = "Test content",
+          title = "Test Title",
+          style = FALSE,
+          disabled = disabled_state
+        )
+
+        shiny::observeEvent(input$toggle_disable, {
+          disabled_state(!disabled_state())
+        })
+      }
+    )
+
+    app_driver <- shinytest2::AppDriver$new(
+      app,
+      name = "verbatim_popup_disabled",
+      variant = "app_driver_vpu_disabled"
+    )
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    popup_button_selector <- "#verbatim_popup-button"
+
+    # Initially button should be enabled (not disabled)
+    button_html <- app_driver$get_html(popup_button_selector)
+    testthat::expect_false(grepl("disabled", button_html, ignore.case = TRUE))
+
+    # Toggle to disabled state
+    app_driver$click("toggle_disable")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    # Button should now be disabled
+    button_html <- app_driver$get_html(popup_button_selector)
+    testthat::expect_true(grepl("disabled", button_html, ignore.case = TRUE))
+
+    # Toggle back to enabled state
+    app_driver$click("toggle_disable")
+    app_driver$wait_for_idle(timeout = default_idle_timeout)
+
+    # Button should be enabled again
+    button_html <- app_driver$get_html(popup_button_selector)
+    testthat::expect_false(grepl("disabled", button_html, ignore.case = TRUE))
+
+    app_driver$stop()
+  }
+)
+
+testthat::test_that("snapshot test for verbatim_popup_ui", {
+  testthat::skip_if_not_installed("withr")
+  withr::local_seed(1)
+  testthat::expect_snapshot(verbatim_popup_ui("STH", "STH2"))
+})

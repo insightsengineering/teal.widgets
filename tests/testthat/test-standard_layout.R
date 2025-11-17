@@ -27,3 +27,26 @@ testthat::test_that("Input validation", {
     post_output = 1
   ), regexp = "Assertion on 'post_output' failed")
 })
+
+describe("Tests for standard_layout options", {
+  mock_output <- shiny::plotOutput("test")
+  mock_form <- shiny::actionButton("test", "")
+
+  it("checks that the class is correct", {
+    # Given
+    expected_class <- "bslib_page"
+    mock_layout <- standard_layout(output = mock_output, encoding = NULL, forms = mock_form)
+
+    # Then
+    expect_true(any(expected_class %in% class(mock_layout)))
+  })
+
+  it("checks snapshot with encoding and null forms", {
+    # Given
+    mock_layout <- standard_layout(output = mock_output, encoding = mock_form, forms = NULL)
+    testthat::skip_if_not_installed("withr")
+    withr::local_seed(1)
+    # Then
+    expect_true(grepl(as.character(mock_form), as.character(mock_layout)))
+  })
+})

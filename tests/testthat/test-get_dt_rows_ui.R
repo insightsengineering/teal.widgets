@@ -71,3 +71,7 @@ testthat::test_that(
     app_driver$stop()
   }
 )
+
+testthat::test_that("Check class of get_dt_rows", {
+  testthat::expect_s3_class(get_dt_rows("my table", "0"), "shiny.tag")
+})

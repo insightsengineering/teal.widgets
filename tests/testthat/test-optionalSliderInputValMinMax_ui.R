@@ -25,3 +25,17 @@ testthat::test_that(
     app_driver$stop()
   }
 )
+
+testthat::test_that("we create label help for optionalSliderInputValMinMax", {
+  help_text <- "my-help"
+  text_slider_input_min_max <- as.character(
+    optionalSliderInputValMinMax("my slider", "my label", 2, label_help = shiny::helpText(help_text))
+  )
+  expect_true(grepl(help_text, text_slider_input_min_max))
+})
+
+testthat::test_that("snapshot test for optionalSliderInput", {
+  testthat::skip_if_not_installed("whitr")
+  withr::local_seed(1)
+  testthat::expect_snapshot(as.character(optionalSliderInput("my slider", "my label", 0, 10, 2)))
+})
