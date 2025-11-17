@@ -64,7 +64,10 @@ plot_funs <- list(
     print(ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
       ggplot2::geom_point())
   },
-  function() lattice::densityplot(1),
+  function() {
+    testthat::skip_if_not_installed("lattice")
+    lattice::densityplot(1)
+  },
   function() {
     ggplot2::ggplotGrob(
       ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
@@ -394,6 +397,7 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - trellis", {
   testthat::skip_if_not_installed("png")
+  testthat::skip_if_not_installed("lattice")
 
   plot_with_settings_args$plot_r <- function() {
     lattice::densityplot(1)
