@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.816725978647687" branch-rate="0" lines-covered="918" lines-valid="1124" branches-covered="0" branches-valid="0" complexity="0" version="3.6.4" timestamp="2025-11-20 11:19:37.609846">
+<coverage line-rate="0.816725978647687" branch-rate="0" lines-covered="918" lines-valid="1124" branches-covered="0" branches-valid="0" complexity="0" version="3.6.4" timestamp="2025-11-20 16:19:43.830868">
   <sources>
     <source>/__w/teal.widgets/teal.widgets/teal.widgets</source>
   </sources>
@@ -703,29 +703,29 @@
             </method>
             <method name="optionalSliderInput" signature="" line-rate="0.956521739130435" branch-rate="0" complexity="0">
               <lines>
-                <line number="470" hits="24" branch="false"/>
-                <line number="471" hits="24" branch="false"/>
-                <line number="472" hits="24" branch="false"/>
-                <line number="474" hits="24" branch="false"/>
-                <line number="475" hits="24" branch="false"/>
-                <line number="477" hits="24" branch="false"/>
-                <line number="479" hits="24" branch="false"/>
+                <line number="470" hits="25" branch="false"/>
+                <line number="471" hits="25" branch="false"/>
+                <line number="472" hits="25" branch="false"/>
+                <line number="474" hits="25" branch="false"/>
+                <line number="475" hits="25" branch="false"/>
+                <line number="477" hits="25" branch="false"/>
+                <line number="479" hits="25" branch="false"/>
                 <line number="480" hits="2" branch="false"/>
                 <line number="481" hits="2" branch="false"/>
-                <line number="483" hits="22" branch="false"/>
-                <line number="484" hits="22" branch="false"/>
-                <line number="487" hits="24" branch="false"/>
+                <line number="483" hits="23" branch="false"/>
+                <line number="484" hits="23" branch="false"/>
+                <line number="487" hits="25" branch="false"/>
                 <line number="488" hits="3" branch="false"/>
-                <line number="490" hits="24" branch="false"/>
+                <line number="490" hits="25" branch="false"/>
                 <line number="491" hits="2" branch="false"/>
-                <line number="494" hits="24" branch="false"/>
+                <line number="494" hits="25" branch="false"/>
                 <line number="495" hits="2" branch="false"/>
-                <line number="498" hits="22" branch="false"/>
-                <line number="500" hits="21" branch="false"/>
+                <line number="498" hits="23" branch="false"/>
+                <line number="500" hits="22" branch="false"/>
                 <line number="501" hits="0" branch="false"/>
-                <line number="504" hits="21" branch="false"/>
+                <line number="504" hits="22" branch="false"/>
                 <line number="505" hits="3" branch="false"/>
-                <line number="507" hits="18" branch="false"/>
+                <line number="507" hits="19" branch="false"/>
               </lines>
             </method>
             <method name="optionalSliderInputValMinMax" signature="" line-rate="1" branch-rate="0" complexity="0">
@@ -970,29 +970,29 @@
             <line number="435" hits="20" branch="false"/>
             <line number="436" hits="0" branch="false"/>
             <line number="438" hits="20" branch="false"/>
-            <line number="470" hits="24" branch="false"/>
-            <line number="471" hits="24" branch="false"/>
-            <line number="472" hits="24" branch="false"/>
-            <line number="474" hits="24" branch="false"/>
-            <line number="475" hits="24" branch="false"/>
-            <line number="477" hits="24" branch="false"/>
-            <line number="479" hits="24" branch="false"/>
+            <line number="470" hits="25" branch="false"/>
+            <line number="471" hits="25" branch="false"/>
+            <line number="472" hits="25" branch="false"/>
+            <line number="474" hits="25" branch="false"/>
+            <line number="475" hits="25" branch="false"/>
+            <line number="477" hits="25" branch="false"/>
+            <line number="479" hits="25" branch="false"/>
             <line number="480" hits="2" branch="false"/>
             <line number="481" hits="2" branch="false"/>
-            <line number="483" hits="22" branch="false"/>
-            <line number="484" hits="22" branch="false"/>
-            <line number="487" hits="24" branch="false"/>
+            <line number="483" hits="23" branch="false"/>
+            <line number="484" hits="23" branch="false"/>
+            <line number="487" hits="25" branch="false"/>
             <line number="488" hits="3" branch="false"/>
-            <line number="490" hits="24" branch="false"/>
+            <line number="490" hits="25" branch="false"/>
             <line number="491" hits="2" branch="false"/>
-            <line number="494" hits="24" branch="false"/>
+            <line number="494" hits="25" branch="false"/>
             <line number="495" hits="2" branch="false"/>
-            <line number="498" hits="22" branch="false"/>
-            <line number="500" hits="21" branch="false"/>
+            <line number="498" hits="23" branch="false"/>
+            <line number="500" hits="22" branch="false"/>
             <line number="501" hits="0" branch="false"/>
-            <line number="504" hits="21" branch="false"/>
+            <line number="504" hits="22" branch="false"/>
             <line number="505" hits="3" branch="false"/>
-            <line number="507" hits="18" branch="false"/>
+            <line number="507" hits="19" branch="false"/>
             <line number="543" hits="19" branch="false"/>
             <line number="544" hits="19" branch="false"/>
             <line number="545" hits="19" branch="false"/>
