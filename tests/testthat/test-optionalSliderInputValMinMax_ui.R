@@ -35,7 +35,7 @@ testthat::test_that("we create label help for optionalSliderInputValMinMax", {
 })
 
 testthat::test_that("snapshot test for optionalSliderInput", {
-  testthat::skip_if_not_installed("whitr")
+  testthat::skip_if_not_installed("withr")
   withr::local_seed(1)
   testthat::expect_snapshot(as.character(optionalSliderInput("my slider", "my label", 0, 10, 2)))
 })
