@@ -193,17 +193,7 @@ testthat::test_that(
     testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
 
     app_driver$run_js(click_expand_popup)
-
-    # Wait for table content to be rendered in the modal - poll until content appears
-    max_attempts <- 10
-    for (i in seq_len(max_attempts)) {
-      app_driver$wait_for_idle(timeout = longer_timeout)
-      table_content <- app_driver$get_text("#table_with_settings-table_out_main")
-      if (nchar(table_content) > 0 && grepl("B: Placebo|C: Combination", table_content)) {
-        break
-      }
-      Sys.sleep(0.5)
-    }
+    app_driver$wait_for_idle(timeout = longer_timeout * 4)
 
     table_content <- app_driver$get_text("#table_with_settings-table_out_main")
 
