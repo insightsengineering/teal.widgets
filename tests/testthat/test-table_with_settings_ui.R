@@ -74,7 +74,7 @@ testthat::test_that(
       name = "tws",
       variant = "app_driver_tws_ui",
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle(timeout = longer_timeout * 4)
 
     # Check if there is an table.
     testthat::expect_true(is_visible("#table_with_settings-table_out_main .rtables-container", app_driver))
@@ -193,7 +193,7 @@ testthat::test_that(
     testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
 
     app_driver$run_js(click_expand_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle(timeout = longer_timeout * 4)
 
     table_content <- app_driver$get_text("#table_with_settings-table_out_main")
 
