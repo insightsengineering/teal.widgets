@@ -74,17 +74,7 @@ testthat::test_that(
       name = "tws",
       variant = "app_driver_tws_ui",
     )
-
-    # Wait for table content to be ready - poll until table content appears
-    max_attempts <- 10
-    for (i in seq_len(max_attempts)) {
-      app_driver$wait_for_idle(timeout = longer_timeout)
-      table_text <- app_driver$get_text("#table_with_settings-table_out_main")
-      if (nchar(table_text) > 0 && grepl("B: Placebo|C: Combination", table_text)) {
-        break
-      }
-      Sys.sleep(0.5)
-    }
+    app_driver$wait_for_idle(timeout = longer_timeout * 4)
 
     # Check if there is an table.
     testthat::expect_true(is_visible("#table_with_settings-table_out_main .rtables-container", app_driver))
