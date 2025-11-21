@@ -74,7 +74,17 @@ testthat::test_that(
       name = "tws",
       variant = "app_driver_tws_ui",
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+
+    # Wait for table content to be ready - poll until table content appears
+    max_attempts <- 10
+    for (i in seq_len(max_attempts)) {
+      app_driver$wait_for_idle(timeout = longer_timeout)
+      table_text <- app_driver$get_text("#table_with_settings-table_out_main")
+      if (nchar(table_text) > 0 && grepl("B: Placebo|C: Combination", table_text)) {
+        break
+      }
+      Sys.sleep(0.5)
+    }
 
     # Check if there is an table.
     testthat::expect_true(is_visible("#table_with_settings-table_out_main .rtables-container", app_driver))
@@ -193,7 +203,17 @@ testthat::test_that(
     testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
 
     app_driver$run_js(click_expand_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+
+    # Wait for table content to be rendered in the modal - poll until content appears
+    max_attempts <- 10
+    for (i in seq_len(max_attempts)) {
+      app_driver$wait_for_idle(timeout = longer_timeout)
+      table_content <- app_driver$get_text("#table_with_settings-table_out_main")
+      if (nchar(table_content) > 0 && grepl("B: Placebo|C: Combination", table_content)) {
+        break
+      }
+      Sys.sleep(0.5)
+    }
 
     table_content <- app_driver$get_text("#table_with_settings-table_out_main")
 
