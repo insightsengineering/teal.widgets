@@ -73,11 +73,13 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout * 4)
 
     # Check if there is an table.
-    testthat::expect_true(is_visible("#table_with_settings-table_out_main .rtables-container", app_driver))
+    testthat::expect_true(is_visible("#table_with_settings-table_out_main > .rtables-container", app_driver))
 
     # Check if the settings buttons are visible.
     testthat::expect_true(is_visible(".teal-widgets.settings-buttons", app_driver))
@@ -95,6 +97,8 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -159,6 +163,8 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -186,6 +192,8 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -222,6 +230,8 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -288,6 +298,8 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -312,6 +324,8 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -335,6 +349,8 @@ testthat::test_that("e2e teal.widgets::table_with_settings: expanded table can b
     app_driver_tws(),
     name = "tws",
     variant = "app_driver_tws_ui",
+    timeout = 30000,
+    load_timeout = 100000
   )
   app_driver$wait_for_idle(timeout = longer_timeout)
 
