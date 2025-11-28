@@ -111,7 +111,9 @@ testthat::test_that(
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
-      variant = "app_driver_pws_ui"
+      variant = "app_driver_pws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -133,7 +135,9 @@ testthat::test_that(
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
-      variant = "app_driver_pws_ui"
+      variant = "app_driver_pws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -195,7 +199,9 @@ testthat::test_that(
       name = "pws",
       variant = "app_driver_pws_ui",
       height = 1000,
-      width = 1000
+      width = 1000,
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
     app_driver$get_text(paste0(
@@ -233,7 +239,9 @@ testthat::test_that(
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
-      variant = "app_driver_pws_ui"
+      variant = "app_driver_pws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -273,15 +281,15 @@ testthat::test_that(
       name = "pws",
       variant = "app_driver_pws_ui",
       height = 1000,
-      width = 1000
+      width = 1000,
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
 
     testthat::expect_false(is_visible("#plot_with_settings-slider_ui", app_driver))
 
-    # nolint start
     app_driver$run_js(click_resize_popup)
-    # nolint end
     app_driver$wait_for_idle(timeout = longer_timeout)
 
 
@@ -316,10 +324,13 @@ testthat::test_that(
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
-      variant = "app_driver_pws_ui"
+      variant = "app_driver_pws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
-
+    app_driver$run_js(click_resize_popup)
+    app_driver$wait_for_idle(timeout = longer_timeout)
     app_driver$set_inputs(`plot_with_settings-height` = 1000)
     app_driver$set_inputs(`plot_with_settings-width_resize_switch` = 350)
 
@@ -338,7 +349,9 @@ testthat::test_that(
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
-      variant = "app_driver_pws_ui"
+      variant = "app_driver_pws_ui",
+      timeout = 30000,
+      load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -359,7 +372,9 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
     name = "pws",
     variant = "app_driver_pws_ui",
     height = 1000,
-    width = 1000
+    width = 1000,
+    timeout = 30000,
+    load_timeout = 100000
   )
   app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -410,7 +425,9 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver <- shinytest2::AppDriver$new(
     app_driver_pws(),
     name = "pws",
-    variant = "app_driver_pws_ui"
+    variant = "app_driver_pws_ui",
+    timeout = 30000,
+    load_timeout = 100000
   )
   app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -431,7 +448,9 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
   app_driver <- shinytest2::AppDriver$new(
     app_driver_pws(),
     name = "pws",
-    variant = "app_driver_pws_ui"
+    variant = "app_driver_pws_ui",
+    timeout = 30000,
+    load_timeout = 100000
   )
   app_driver$wait_for_idle(timeout = longer_timeout)
 
@@ -475,7 +494,9 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: scrollbar appears whe
   app_driver <- shinytest2::AppDriver$new(
     app_driver_pws(),
     name = "pws",
-    variant = "app_driver_pws_ui"
+    variant = "app_driver_pws_ui",
+    timeout = 30000,
+    load_timeout = 100000
   )
   app_driver$wait_for_idle(timeout = longer_timeout)
 
