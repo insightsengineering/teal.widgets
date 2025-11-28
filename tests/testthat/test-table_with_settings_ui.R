@@ -31,6 +31,7 @@ app_driver_tws <- function() {
 }
 
 longer_timeout <- 80000
+longer_duration <- 1000
 
 # nolint start
 # JS code to click the expand button popup.
@@ -195,13 +196,13 @@ testthat::test_that(
       timeout = 30000,
       load_timeout = 100000
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle(duration = longer_duration, timeout = longer_timeout * 4)
 
     testthat::expect_false(is_visible("#table_with_settings-table_out_main", app_driver))
     testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
 
     app_driver$run_js(click_expand_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout * 4)
+    app_driver$wait_for_idle(duration = longer_duration, timeout = longer_timeout * 4)
 
     table_content <- app_driver$get_text("#table_with_settings-table_out_main")
 
@@ -210,7 +211,8 @@ testthat::test_that(
     testthat::expect_true(is_visible("#bslib-full-screen-overlay", app_driver))
     # Close modal.
     app_driver$run_js("document.querySelector('#bslib-full-screen-overlay .bslib-full-screen-exit').click();")
-    app_driver$wait_for_idle(timeout = longer_timeout)
+
+    app_driver$wait_for_idle(duration = longer_duration, timeout = longer_timeout * 4)
     testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
 
     # Review the main table content.
@@ -327,16 +329,15 @@ testthat::test_that(
       timeout = 30000,
       load_timeout = 100000
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle(duration = longer_duration, timeout = longer_timeout * 4)
 
     app_driver$run_js(click_download_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle(duration = longer_duration, timeout = longer_timeout * 4)
 
     filename <- app_driver$get_download("table_with_settings-downbutton-data_download")
     testthat::expect_match(filename, "txt$", fixed = FALSE)
 
     content <- readLines(filename)
-
     check_table(content)
 
     app_driver$stop()

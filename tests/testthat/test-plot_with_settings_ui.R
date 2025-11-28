@@ -289,9 +289,7 @@ testthat::test_that(
 
     testthat::expect_false(is_visible("#plot_with_settings-slider_ui", app_driver))
 
-    # nolint start
     app_driver$run_js(click_resize_popup)
-    # nolint end
     app_driver$wait_for_idle(timeout = longer_timeout)
 
 
@@ -331,7 +329,8 @@ testthat::test_that(
       load_timeout = 100000
     )
     app_driver$wait_for_idle(timeout = longer_timeout)
-
+    app_driver$run_js(click_resize_popup)
+    app_driver$wait_for_idle(timeout = longer_timeout)
     app_driver$set_inputs(`plot_with_settings-height` = 1000)
     app_driver$set_inputs(`plot_with_settings-width_resize_switch` = 350)
 
