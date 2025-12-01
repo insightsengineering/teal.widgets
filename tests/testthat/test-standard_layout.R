@@ -44,9 +44,7 @@ describe("Tests for standard_layout options", {
   it("checks snapshot with encoding and null forms", {
     # Given
     mock_layout <- standard_layout(output = mock_output, encoding = mock_form, forms = NULL)
-    testthat::skip_if_not_installed("withr")
-    withr::local_seed(1)
     # Then
-    expect_true(grepl(as.character(mock_form), as.character(mock_layout)))
+    expect_true(grepl(as.character(mock_form), as.character(mock_layout), fixed = TRUE))
   })
 })
