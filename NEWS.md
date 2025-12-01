@@ -1,5 +1,7 @@
 # teal.widgets 0.5.1
-* Improve unit test coverage (#318)
+
+### Miscellaneous
+* Improve unit test coverage (#318).
 
 # teal.widgets 0.5.0
 
