@@ -1,3 +1,11 @@
+withr::local_options( # Set longer timeouts for slow tests
+  list(
+    shinytest2.timeout = 4 * 30 * 1000,
+    shinytest2.load_timeout = 4 * 60 * 1000,
+    shinytest2.duration = 2 * 0.5 * 1000
+  )
+)
+
 #' Table with settings app
 #'
 #' @description Example table with setting app for testing using \code{shinytest2}
@@ -29,9 +37,6 @@ app_driver_tws <- function() {
     }
   )
 }
-
-longer_timeout <- 80000
-longer_duration <- 1000
 
 # nolint start
 # JS code to click the expand button popup.
@@ -70,14 +75,14 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings is initialized with 2 buttons and a table",
   {
     skip_if_too_deep(5)
+
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout * 4)
+    app_driver$wait_for_idle()
 
     # Check if there is an table.
     testthat::expect_true(is_visible("#table_with_settings-table_out_main > .rtables-container", app_driver))
@@ -98,17 +103,16 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     testthat::expect_false(is_visible("#table_with_settings-downbutton-data_download", app_driver))
     testthat::expect_false(is_visible("#table_with_settings-downbutton-file_format", app_driver))
     testthat::expect_false(is_visible("#table_with_settings-downbutton-file_name", app_driver))
 
     app_driver$run_js(click_download_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     testthat::expect_equal(
       app_driver$get_text("#table_with_settings-downbutton-file_format-label"),
@@ -164,20 +168,19 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     app_driver$run_js(click_download_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     pagination_text <- app_driver$get_text(".paginate-ui")
     testthat::expect_match(pagination_text, "Paginate table:\n", fixed = TRUE)
     testthat::expect_match(pagination_text, "lines / page\n", fixed = TRUE)
 
     app_driver$click(selector = "input[value='.csv']")
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     testthat::expect_false(is_visible(".paginate-ui", app_driver))
 
@@ -193,16 +196,15 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(duration = longer_duration, timeout = longer_timeout * 4)
+    app_driver$wait_for_idle()
 
     testthat::expect_false(is_visible("#table_with_settings-table_out_main", app_driver))
     testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
 
     app_driver$run_js(click_expand_popup)
-    app_driver$wait_for_idle(duration = longer_duration, timeout = longer_timeout * 4)
+    app_driver$wait_for_idle()
 
     table_content <- app_driver$get_text("#table_with_settings-table_out_main")
 
@@ -212,7 +214,7 @@ testthat::test_that(
     # Close modal.
     app_driver$run_js("document.querySelector('#bslib-full-screen-overlay .bslib-full-screen-exit').click();")
 
-    app_driver$wait_for_idle(duration = longer_duration, timeout = longer_timeout * 4)
+    app_driver$wait_for_idle()
     testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
 
     # Review the main table content.
@@ -232,15 +234,14 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     app_driver$run_js(click_expand_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
     app_driver$run_js(click_download_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     testthat::expect_equal(
       app_driver$get_text("#table_with_settings-downbutton-file_format-label"),
@@ -300,15 +301,14 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     app_driver$run_js(click_expand_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
     app_driver$run_js(click_download_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     pagination_text <- app_driver$get_text(".paginate-ui")
     testthat::expect_match(pagination_text, "Paginate table:\n", fixed = TRUE)
@@ -326,13 +326,12 @@ testthat::test_that(
       app_driver_tws(),
       name = "tws",
       variant = "app_driver_tws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(duration = longer_duration, timeout = longer_timeout * 4)
+    app_driver$wait_for_idle()
 
     app_driver$run_js(click_download_popup)
-    app_driver$wait_for_idle(duration = longer_duration, timeout = longer_timeout * 4)
+    app_driver$wait_for_idle()
 
     filename <- app_driver$get_download("table_with_settings-downbutton-data_download")
     testthat::expect_match(filename, "txt$", fixed = FALSE)
@@ -350,16 +349,15 @@ testthat::test_that("e2e teal.widgets::table_with_settings: expanded table can b
     app_driver_tws(),
     name = "tws",
     variant = "app_driver_tws_ui",
-    timeout = 30000,
-    load_timeout = 100000
+    wait = FALSE
   )
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   app_driver$run_js(click_expand_popup)
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   app_driver$run_js(click_download_popup)
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   filename <- app_driver$get_download("table_with_settings-downbutton-data_download")
   testthat::expect_match(filename, "txt$", fixed = FALSE)

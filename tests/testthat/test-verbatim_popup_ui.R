@@ -42,44 +42,44 @@ testthat::test_that(
         title = modal_title
       ),
       name = "vpu",
-      variant = "app_driver_vpu_ui"
+      variant = "app_driver_vpu_ui",
+      wait = FALSE
     )
-
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
 
     popup_button_element <- "#verbatim_popup-button"
     testthat::expect_equal(
-      app_driver$get_text(popup_button_element),
+      trimws(app_driver$get_text(popup_button_element)),
       ui_popup_button_label
     )
 
     # Click the button.
     app_driver$click(selector = popup_button_element)
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
 
     # Verify the content of the popped modal is as expected.
     testthat::expect_equal(
-      app_driver$get_text(".modal-title"),
+      trimws(app_driver$get_text(".modal-title")),
       modal_title
     )
 
     testthat::expect_equal(
-      app_driver$get_text("#verbatim_popup-copy_button1"),
+      trimws(app_driver$get_text("#verbatim_popup-copy_button1")),
       "Copy to Clipboard"
     )
     testthat::expect_equal(
-      app_driver$get_text(".modal-footer button:nth-of-type(1)"),
+      trimws(app_driver$get_text(".modal-footer button:nth-of-type(1)")),
       "Dismiss"
     )
 
     testthat::expect_equal(
-      app_driver$get_text("#verbatim_popup-verbatim_content"),
+      trimws(app_driver$get_text("#verbatim_popup-verbatim_content")),
       verbatim_content_text
     )
 
     # Modal is closed, once the button is clicked.
     app_driver$click(selector = ".modal-body button[data-dismiss='modal']")
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
     testthat::expect_null(app_driver$get_html("#shiny-modal-wrapper"))
 
     app_driver$stop()
@@ -122,7 +122,7 @@ testthat::test_that(
       name = "verbatim_popup_disabled",
       variant = "app_driver_vpu_disabled"
     )
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
 
     popup_button_selector <- "#verbatim_popup-button"
 
@@ -132,7 +132,7 @@ testthat::test_that(
 
     # Toggle to disabled state
     app_driver$click("toggle_disable")
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
 
     # Button should now be disabled
     button_html <- app_driver$get_html(popup_button_selector)
@@ -140,7 +140,7 @@ testthat::test_that(
 
     # Toggle back to enabled state
     app_driver$click("toggle_disable")
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
 
     # Button should be enabled again
     button_html <- app_driver$get_html(popup_button_selector)

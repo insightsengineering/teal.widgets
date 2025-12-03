@@ -18,7 +18,6 @@ is_draw <- function(plot_fun) {
   res
 }
 
-
 is_visible <- function(element, app_driver) {
   any(
     unlist(
