@@ -96,9 +96,10 @@ testthat::test_that(
     app_driver <- shinytest2::AppDriver$new(
       app_driver_osi(),
       name = "osi",
-      variant = "app_driver_osi_ui"
+      variant = "app_driver_osi_ui",
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
     gv <- app_driver$get_values()
     output <- list(
       c1_out = "[1] \"A\" \"B\"", c2_out = "[1] \"A\"", c3_out = "NULL",

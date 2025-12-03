@@ -1,3 +1,11 @@
+withr::local_options( # Set longer timeouts for slow tests
+  list(
+    shinytest2.timeout = 4 * 30 * 1000,
+    shinytest2.load_timeout = 4 * 60 * 1000,
+    shinytest2.duration = 2 * 0.5 * 1000
+  )
+)
+
 #' Plot with settings app
 #'
 #' @description Example plot with setting app for testing using \code{shinytest2}
@@ -45,8 +53,6 @@ app_driver_pws <- function() {
     }
   )
 }
-
-longer_timeout <- 80000
 
 # JS code to click the resize button popup.
 # nolint start
@@ -112,10 +118,9 @@ testthat::test_that(
       app_driver_pws(),
       name = "pws",
       variant = "app_driver_pws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     # Check if there is an image.
     testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
@@ -136,13 +141,12 @@ testthat::test_that(
       app_driver_pws(),
       name = "pws",
       variant = "app_driver_pws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     app_driver$run_js(click_download_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     testthat::expect_equal(
       app_driver$get_text("#plot_with_settings-downbutton-file_format-label"),
@@ -200,10 +204,9 @@ testthat::test_that(
       variant = "app_driver_pws_ui",
       height = 1000,
       width = 1000,
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
     app_driver$get_text(paste0(
       "#plot_with_settings-plot-with-settings > div > div > ",
       "div.teal-widgets.settings-buttons > bslib-tooltip.resize-button > div:nth-child(1)"
@@ -214,7 +217,7 @@ testthat::test_that(
     app_driver$set_inputs(`plot_with_settings-expbut` = TRUE)
 
     # Expand the plot and evaluate the output
-    app_driver$run_js(click_expand_popup, timeout = longer_timeout)
+    app_driver$run_js(click_expand_popup)
     testthat::expect_true(is_visible("#bslib-full-screen-overlay", app_driver))
 
     # Resize button
@@ -240,13 +243,12 @@ testthat::test_that(
       app_driver_pws(),
       name = "pws",
       variant = "app_driver_pws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     app_driver$run_js(click_download_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
     testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
 
     testthat::expect_equal(
@@ -282,15 +284,14 @@ testthat::test_that(
       variant = "app_driver_pws_ui",
       height = 1000,
       width = 1000,
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     testthat::expect_false(is_visible("#plot_with_settings-slider_ui", app_driver))
 
     app_driver$run_js(click_resize_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
 
     testthat::expect_identical(
@@ -325,12 +326,11 @@ testthat::test_that(
       app_driver_pws(),
       name = "pws",
       variant = "app_driver_pws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
     app_driver$run_js(click_resize_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
     app_driver$set_inputs(`plot_with_settings-height` = 1000)
     app_driver$set_inputs(`plot_with_settings-width_resize_switch` = 350)
 
@@ -350,13 +350,12 @@ testthat::test_that(
       app_driver_pws(),
       name = "pws",
       variant = "app_driver_pws_ui",
-      timeout = 30000,
-      load_timeout = 100000
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     app_driver$run_js(click_download_popup)
-    app_driver$wait_for_idle(timeout = longer_timeout)
+    app_driver$wait_for_idle()
 
     filename <- app_driver$get_download("plot_with_settings-downbutton-data_download")
     testthat::expect_match(filename, "png$", fixed = FALSE)
@@ -373,13 +372,12 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
     variant = "app_driver_pws_ui",
     height = 1000,
     width = 1000,
-    timeout = 30000,
-    load_timeout = 100000
+    wait = FALSE
   )
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   app_driver$run_js(click_expand_popup)
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "src")
   values <- app_driver$get_values()
@@ -393,11 +391,11 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
     400L
   )
   app_driver$run_js(click_resize_popup)
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   app_driver$set_inputs(`plot_with_settings-height` = 1000)
   app_driver$set_inputs(`plot_with_settings-width` = 350)
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
   values_resized <- app_driver$get_values()
 
   testthat::expect_equal(
@@ -426,16 +424,15 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
     app_driver_pws(),
     name = "pws",
     variant = "app_driver_pws_ui",
-    timeout = 30000,
-    load_timeout = 100000
+    wait = FALSE
   )
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   app_driver$run_js(click_expand_popup)
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   app_driver$run_js(click_download_popup)
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   filename <- app_driver$get_download("plot_with_settings-downbutton-data_download")
   testthat::expect_match(filename, "png$", fixed = FALSE)
@@ -449,13 +446,12 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
     app_driver_pws(),
     name = "pws",
     variant = "app_driver_pws_ui",
-    timeout = 30000,
-    load_timeout = 100000
+    wait = FALSE
   )
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   app_driver$run_js(click_resize_popup)
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_main", attr = "src")
 
@@ -495,15 +491,14 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: scrollbar appears whe
     app_driver_pws(),
     name = "pws",
     variant = "app_driver_pws_ui",
-    timeout = 30000,
-    load_timeout = 100000
+    wait = FALSE
   )
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   app_driver$run_js(click_expand_popup)
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
   app_driver$run_js(click_resize_popup)
-  app_driver$wait_for_idle(timeout = longer_timeout)
+  app_driver$wait_for_idle()
 
   app_driver$set_inputs(`plot_with_settings-height` = 10000)
   app_driver$set_inputs(`plot_with_settings-width` = 350)

@@ -49,9 +49,10 @@ testthat::test_that(
     app_driver <- shinytest2::AppDriver$new(
       app_driver_gdr(),
       name = "gdr",
-      variant = "app_driver_gdr_ui"
+      variant = "app_driver_gdr_ui",
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
     testthat::expect_true(is_visible("#my_table_module-data_table", app_driver))
 
     # Check initial value
@@ -61,7 +62,7 @@ testthat::test_that(
 
     # Change rows value
     app_driver$click(selector = "#show_25")
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
 
     # Check value again
     dt_state <- app_driver$get_values(input = "my_table_module-data_table_state")

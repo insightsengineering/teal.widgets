@@ -7,23 +7,25 @@ app_driver_db <- function(input_id, label, elements = character(), buckets) {
       buckets = buckets
     )
   )
-
-  shinytest2::AppDriver$new(
-    shiny::shinyApp(ui, function(input, output) {})
-  )
+  shiny::shinyApp(ui, function(input, output) {})
 }
 
 testthat::test_that(
   "e2e: teal.widgets::draggable_buckets: initializes without input",
   {
     skip_if_too_deep(5)
-    app_driver <- app_driver_db(
-      input_id = "id",
-      label = "Choices",
-      elements = c("a", "b"),
-      buckets = c("bucket1", "bucket2")
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_db(
+        input_id = "id",
+        label = "Choices",
+        elements = c("a", "b"),
+        buckets = c("bucket1", "bucket2")
+      ),
+      name = "db",
+      variant = "app_driver_db_ui",
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
     testthat::expect_true(is_visible("#id.draggableBuckets.shiny-bound-input", app_driver))
     testthat::expect_identical(
       app_driver$get_value(input = "id"),
@@ -40,16 +42,21 @@ testthat::test_that(
   "e2e: teal.widgets::draggable_buckets: initializes with default inputs",
   {
     skip_if_too_deep(5)
-    app_driver <- app_driver_db(
-      input_id = "id",
-      label = "Choices",
-      elements = character(),
-      buckets = list(
-        "Ref" = "B: Placebo",
-        "Comp" = c("A: Drug X", "C: Combination")
-      )
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_db(
+        input_id = "id",
+        label = "Choices",
+        elements = character(),
+        buckets = list(
+          "Ref" = "B: Placebo",
+          "Comp" = c("A: Drug X", "C: Combination")
+        )
+      ),
+      name = "db",
+      variant = "app_driver_db_ui",
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
     values <- app_driver$get_value(input = "id")
     testthat::expect_identical(
       app_driver$get_value(input = "id"),
@@ -66,16 +73,21 @@ testthat::test_that(
   "e2e: teal.widgets::draggable_buckets: moving elements between buckets updates input",
   {
     skip_if_too_deep(5)
-    app_driver <- app_driver_db(
-      input_id = "id",
-      label = "Choices",
-      elements = character(),
-      buckets = list(
-        "Ref" = "B: Placebo",
-        "Comp" = c("A: Drug X", "C: Combination")
-      )
+    app_driver <- shinytest2::AppDriver$new(
+      app_driver_db(
+        input_id = "id",
+        label = "Choices",
+        elements = character(),
+        buckets = list(
+          "Ref" = "B: Placebo",
+          "Comp" = c("A: Drug X", "C: Combination")
+        )
+      ),
+      name = "db",
+      variant = "app_driver_db_ui",
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
     app_driver$run_js(
       "
       // Find the buckets
@@ -89,7 +101,7 @@ testthat::test_that(
       refBucket.appendChild(element);
       "
     )
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
     testthat::expect_identical(
       app_driver$get_value(input = "id")$Ref,
       list("B: Placebo", "A: Drug X")

@@ -17,9 +17,10 @@ testthat::test_that(
     app_driver <- shinytest2::AppDriver$new(
       app_driver_osivmm(),
       name = "osivmm",
-      variant = "app_driver_osivmm_ui"
+      variant = "app_driver_osivmm_ui",
+      wait = FALSE
     )
-    app_driver$wait_for_idle(timeout = default_idle_timeout)
+    app_driver$wait_for_idle()
     testthat::expect_false(is_visible("#a1-label", app_driver))
     testthat::expect_true(is_visible("#a2-label", app_driver))
     app_driver$stop()
