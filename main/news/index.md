@@ -1,8 +1,10 @@
 # Changelog
 
-## teal.widgets 0.5.1.9000
+## teal.widgets 0.5.1.9001
 
 ## teal.widgets 0.5.1
+
+CRAN release: 2025-12-02
 
 #### Miscellaneous
 
