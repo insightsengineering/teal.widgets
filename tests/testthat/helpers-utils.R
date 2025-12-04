@@ -34,19 +34,34 @@ is_draw <- function(plot_fun) {
 #' visibility.
 #' @return `logical(1)` whether the element is visible.
 #' @keywords internal
-expect_visible <- function(element, app_driver, timeout, expectation_fun = testthat::expect_no_error) {
-  expectation_fun(
-    app_driver$wait_for_js(
-      sprintf(
-        "Array.from(document.querySelectorAll('%s')).map(el => el.checkVisibility()).some(Boolean)",
-        element
-      ),
-      timeout
-    )
-  )
-}
+expect_visible <- function(element, app_driver, timeout) {
+  tryCatch(
+    {
+      app_driver$wait_for_js(
+        sprintf(
+          "Array.from(document.querySelectorAll('%s')).map(el => el.checkVisibility()).some(Boolean)",
+          element
+        ),
+        timeout
+      )
+      testthat::pass()
+    },
+    error = function(err) testthat::fail(sprintf("Element '%s' not visible.", element))
+  )}
 
 #' @describeIn expect_visible Check if an element is hidden for a given timeout.
-expect_hidden <- function(element, app_driver, timeout = 20 * 1000) {
-  expect_visible(element, app_driver, timeout, expectation_fun = testthat::expect_error)
+expect_hidden <- function(element, app_driver, timeout) {
+  tryCatch(
+    {
+      app_driver$wait_for_js(
+        sprintf(
+          "!Array.from(document.querySelectorAll('%s')).map(el => el.checkVisibility()).some(Boolean)",
+          element
+        ),
+        timeout
+      )
+      testthat::pass()
+    },
+    error = function(err) testthat::fail(sprintf("Element '%s' not visible.", element))
+  )
 }
