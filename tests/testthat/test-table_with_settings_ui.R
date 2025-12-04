@@ -111,6 +111,7 @@ testthat::test_that(
     expect_hidden("#table_with_settings-downbutton-file_format", app_driver)
     expect_hidden("#table_with_settings-downbutton-file_name", app_driver)
 
+    expect_visible("i.fas.fa-download[data-bs-toggle=\"popover\"]", app_driver)
     app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle()
 
@@ -172,6 +173,7 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
+    expect_visible("i.fas.fa-download[data-bs-toggle=\"popover\"]", app_driver)
     app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle()
 
@@ -203,11 +205,12 @@ testthat::test_that(
     expect_hidden("#table_with_settings-table_out_main", app_driver)
     expect_hidden("#bslib-full-screen-overlay", app_driver)
 
+    expect_visible("#table_with_settings-table-with-settings > bslib-tooltip > button", app_driver)
     app_driver$run_js(click_expand_popup)
     app_driver$wait_for_idle()
 
+    expect_visible("#table_with_settings-table_out_main", app_driver)
     table_content <- app_driver$get_text("#table_with_settings-table_out_main")
-
     check_table(table_content)
 
     expect_visible("#bslib-full-screen-overlay", app_driver)
@@ -238,8 +241,10 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
+    expect_visible("#table_with_settings-table-with-settings > bslib-tooltip > button", app_driver)
     app_driver$run_js(click_expand_popup)
     app_driver$wait_for_idle()
+    expect_visible("i.fas.fa-download[data-bs-toggle=\"popover\"]", app_driver)
     app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle()
 
@@ -305,8 +310,11 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
+    expect_visible("#table_with_settings-table-with-settings > bslib-tooltip > button", app_driver)
     app_driver$run_js(click_expand_popup)
     app_driver$wait_for_idle()
+
+    expect_visible("i.fas.fa-download[data-bs-toggle=\"popover\"]", app_driver)
     app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle()
 
@@ -330,9 +338,11 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
+    expect_visible("i.fas.fa-download[data-bs-toggle=\"popover\"]", app_driver)
     app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle()
 
+    expect_visible("#table_with_settings-downbutton-data_download", app_driver)
     filename <- app_driver$get_download("table_with_settings-downbutton-data_download")
     testthat::expect_match(filename, "txt$", fixed = FALSE)
 
@@ -353,9 +363,11 @@ testthat::test_that("e2e teal.widgets::table_with_settings: expanded table can b
   )
   app_driver$wait_for_idle()
 
+  expect_visible("#table_with_settings-table-with-settings > bslib-tooltip > button", app_driver)
   app_driver$run_js(click_expand_popup)
   app_driver$wait_for_idle()
 
+  expect_visible("i.fas.fa-download[data-bs-toggle=\"popover\"]", app_driver)
   app_driver$run_js(click_download_popup)
   app_driver$wait_for_idle()
 
