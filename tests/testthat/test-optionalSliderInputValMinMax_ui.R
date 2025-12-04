@@ -21,8 +21,8 @@ testthat::test_that(
       wait = FALSE
     )
     app_driver$wait_for_idle()
-    testthat::expect_false(is_visible("#a1-label", app_driver))
-    testthat::expect_true(is_visible("#a2-label", app_driver))
+    expect_hidden("#a1-label", app_driver)
+    expect_visible("#a2-label", app_driver)
     app_driver$stop()
   }
 )

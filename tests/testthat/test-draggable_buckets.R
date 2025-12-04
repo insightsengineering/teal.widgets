@@ -26,7 +26,7 @@ testthat::test_that(
       wait = FALSE
     )
     app_driver$wait_for_idle()
-    testthat::expect_true(is_visible("#id.draggableBuckets.shiny-bound-input", app_driver))
+    expect_visible("#id.draggableBuckets.shiny-bound-input", app_driver)
     testthat::expect_identical(
       app_driver$get_value(input = "id"),
       list(

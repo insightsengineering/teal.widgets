@@ -1,11 +1,3 @@
-withr::local_options( # Set longer timeouts for slow tests
-  list(
-    shinytest2.timeout = 4 * 30 * 1000,
-    shinytest2.load_timeout = 4 * 60 * 1000,
-    shinytest2.duration = 2 * 0.5 * 1000
-  )
-)
-
 #' Plot with settings app
 #'
 #' @description Example plot with setting app for testing using \code{shinytest2}
@@ -123,10 +115,10 @@ testthat::test_that(
     app_driver$wait_for_idle()
 
     # Check if there is an image.
-    testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
+    expect_visible("#plot_with_settings-plot_main > img", app_driver)
 
     # Check if the settings buttons are visible.
-    testthat::expect_true(is_visible(".teal-widgets.settings-buttons", app_driver))
+    expect_visible(".teal-widgets.settings-buttons", app_driver)
 
     app_driver$stop()
   }
@@ -170,7 +162,7 @@ testthat::test_that(
       sprintf("plot_%s", gsub("-", "", Sys.Date()))
     )
 
-    testthat::expect_true(is_visible("#plot_with_settings-downbutton-data_download", app_driver))
+    expect_visible("#plot_with_settings-downbutton-data_download", app_driver)
 
     download_button <-
       app_driver$get_html("#plot_with_settings-downbutton-data_download > i") %>%
@@ -218,16 +210,16 @@ testthat::test_that(
 
     # Expand the plot and evaluate the output
     app_driver$run_js(click_expand_popup)
-    testthat::expect_true(is_visible("#bslib-full-screen-overlay", app_driver))
+    expect_visible("#bslib-full-screen-overlay", app_driver)
 
     # Resize button
-    testthat::expect_true(is_visible("#plot_with_settings-expbut > i", app_driver))
+    expect_visible("#plot_with_settings-expbut > i", app_driver)
 
     # Download button
-    testthat::expect_true(is_visible(paste0(
+    expect_visible(paste0(
       "#plot_with_settings-plot-with-settings > div > div > div.teal-widgets.settings-buttons",
       " > bslib-tooltip.download-button > div:nth-child(2) > bslib-popover > i"
-    ), app_driver))
+    ), app_driver)
 
     # Dismiss button
     testthat::expect_equal(app_driver$get_text("#bslib-full-screen-overlay"), "Close ")
@@ -249,7 +241,7 @@ testthat::test_that(
 
     app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle()
-    testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
+    expect_visible("#plot_with_settings-plot_main > img", app_driver)
 
     testthat::expect_equal(
       app_driver$get_text("#plot_with_settings-downbutton-file_format-label"),
@@ -288,7 +280,7 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    testthat::expect_false(is_visible("#plot_with_settings-slider_ui", app_driver))
+    expect_hidden("#plot_with_settings-slider_ui", app_driver)
 
     app_driver$run_js(click_resize_popup)
     app_driver$wait_for_idle()

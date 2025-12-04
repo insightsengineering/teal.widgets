@@ -85,10 +85,10 @@ testthat::test_that(
     app_driver$wait_for_idle()
 
     # Check if there is an table.
-    testthat::expect_true(is_visible("#table_with_settings-table_out_main > .rtables-container", app_driver))
+    expect_visible("#table_with_settings-table_out_main > .rtables-container", app_driver)
 
     # Check if the settings buttons are visible.
-    testthat::expect_true(is_visible(".teal-widgets.settings-buttons", app_driver))
+    expect_visible(".teal-widgets.settings-buttons", app_driver)
     app_driver$stop()
   }
 )
@@ -107,9 +107,9 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    testthat::expect_false(is_visible("#table_with_settings-downbutton-data_download", app_driver))
-    testthat::expect_false(is_visible("#table_with_settings-downbutton-file_format", app_driver))
-    testthat::expect_false(is_visible("#table_with_settings-downbutton-file_name", app_driver))
+    expect_hidden("#table_with_settings-downbutton-data_download", app_driver)
+    expect_hidden("#table_with_settings-downbutton-file_format", app_driver)
+    expect_hidden("#table_with_settings-downbutton-file_name", app_driver)
 
     app_driver$run_js(click_download_popup)
     app_driver$wait_for_idle()
@@ -182,7 +182,7 @@ testthat::test_that(
     app_driver$click(selector = "input[value='.csv']")
     app_driver$wait_for_idle()
 
-    testthat::expect_false(is_visible(".paginate-ui", app_driver))
+    expect_hidden(".paginate-ui", app_driver)
 
     app_driver$stop()
   }
@@ -200,8 +200,8 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    testthat::expect_false(is_visible("#table_with_settings-table_out_main", app_driver))
-    testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
+    expect_hidden("#table_with_settings-table_out_main", app_driver)
+    expect_hidden("#bslib-full-screen-overlay", app_driver)
 
     app_driver$run_js(click_expand_popup)
     app_driver$wait_for_idle()
@@ -210,12 +210,12 @@ testthat::test_that(
 
     check_table(table_content)
 
-    testthat::expect_true(is_visible("#bslib-full-screen-overlay", app_driver))
+    expect_visible("#bslib-full-screen-overlay", app_driver)
     # Close modal.
     app_driver$run_js("document.querySelector('#bslib-full-screen-overlay .bslib-full-screen-exit').click();")
 
     app_driver$wait_for_idle()
-    testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
+    expect_hidden("#bslib-full-screen-overlay", app_driver)
 
     # Review the main table content.
     main_table_content <- app_driver$get_text("#table_with_settings-table_out_main")
@@ -268,7 +268,7 @@ testthat::test_that(
       sprintf("table_%s", gsub("-", "", Sys.Date()))
     )
 
-    testthat::expect_true(is_visible("#table_with_settings-downbutton-data_download", app_driver))
+    expect_visible("#table_with_settings-downbutton-data_download", app_driver)
 
     download_button <-
       app_driver$get_html("#table_with_settings-downbutton-data_download > i") %>%
