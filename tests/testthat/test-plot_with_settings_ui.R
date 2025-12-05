@@ -1,3 +1,11 @@
+withr::local_options( # Set longer timeouts for slow tests
+  list(
+    shinytest2.timeout = 4 * 30 * 1000,
+    shinytest2.load_timeout = 4 * 60 * 1000,
+    shinytest2.duration = 2 * 0.5 * 1000
+  )
+)
+
 #' Plot with settings app
 #'
 #' @description Example plot with setting app for testing using \code{shinytest2}
