@@ -434,7 +434,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
   )
   app_driver$wait_for_idle()
 
-  app_driver$run_js(click_resize_popup)
+  app_driver$wait_for_js(click_resize_popup)
   app_driver$wait_for_idle()
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_main", attr = "src")
@@ -479,9 +479,9 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: scrollbar appears whe
   )
   app_driver$wait_for_idle()
 
-  app_driver$run_js(click_expand_popup)
+  app_driver$wait_for_js(click_expand_popup)
   app_driver$wait_for_idle()
-  app_driver$run_js(click_resize_popup)
+  app_driver$wait_for_js(click_resize_popup)
   app_driver$wait_for_idle()
 
   app_driver$set_inputs(`plot_with_settings-height` = 10000)
