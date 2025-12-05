@@ -13,3 +13,20 @@ withr::local_options(
   ),
   .local_envir = testthat::test_env()
 )
+
+# JS code to click the expand button popup.
+click_button_js <- function(selector) {
+  sprintf("(btn = document.querySelector(\"%s\")) ? (btn.click(), true) : false;", selector)
+}
+
+# JS code to click the download button popup inside the expanded modal.
+popover_action_js <- function(selector, action = c("show", "hide")) {
+  action <- match.arg(action)
+  js_code <- "
+    if (popoverTrigger = document.querySelector(\"%s\")) {
+      bootstrap.Popover.getOrCreateInstance(popoverTrigger).%s(); // initialize if doesn't exist
+      true;
+    } else { false; }
+    "
+  sprintf(js_code, selector, action)
+}
