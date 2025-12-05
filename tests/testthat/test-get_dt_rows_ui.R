@@ -53,7 +53,7 @@ testthat::test_that(
       wait = FALSE
     )
     app_driver$wait_for_idle()
-    testthat::expect_true(is_visible("#my_table_module-data_table", app_driver))
+    expect_visible("#my_table_module-data_table", app_driver)
 
     # Check initial value
     dt_state <- app_driver$get_values(input = "my_table_module-data_table_state")

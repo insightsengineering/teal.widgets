@@ -112,7 +112,7 @@ testthat::test_that(
       )
 
       output_sel <- paste0("#c", i, "_out")
-      testthat::expect_true(is_visible(sel, app_driver))
+      expect_visible(sel, app_driver)
       testthat::expect_equal(gv$output[[i]], output[[i]])
     }
 
