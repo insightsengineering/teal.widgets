@@ -2,13 +2,16 @@
 withr::local_options(
   list(
     shinytest2.timeout = getOption(
-      "shinytest2.timeout", default = Sys.getenv("SHINYTEST2_TIMEOUT", unset = 30 * 1000)
+      "shinytest2.timeout",
+      default = Sys.getenv("SHINYTEST2_TIMEOUT", unset = 30 * 1000)
     ),
     shinytest2.load_timeout = getOption(
-      "shinytest2.load_timeout", default = Sys.getenv("SHINYTEST2_LOAD_TIMEOUT", unset =  60 * 1000)
+      "shinytest2.load_timeout",
+      default = Sys.getenv("SHINYTEST2_LOAD_TIMEOUT", unset = 60 * 1000)
     ),
     shinytest2.duration = getOption(
-      "shinytest2.duration", default = Sys.getenv("SHINYTEST2_DURATION", unset = 0.5 * 1000)
+      "shinytest2.duration",
+      default = Sys.getenv("SHINYTEST2_DURATION", unset = 0.5 * 1000)
     )
   ),
   .local_envir = testthat::test_env()
@@ -39,34 +42,40 @@ expect_visible <- function(selector, app_driver, timeout) {
   )
   checkmate::assert_r6(app_driver, "AppDriver")
 
-  tryCatch({
-    app_driver$wait_for_js(
-      sprintf(
-        "Array.from(document.querySelectorAll(\"%s\")).map(el => el.checkVisibility()).some(Boolean)",
-        selector
-      ),
-      timeout
-    )
-    testthat::pass()
-  }, error = function(err) {
-    testthat::fail(sprintf("CSS selector '%s' does not produce any visible elements.", selector))
-  })
+  tryCatch(
+    {
+      app_driver$wait_for_js(
+        sprintf(
+          "Array.from(document.querySelectorAll(\"%s\")).map(el => el.checkVisibility()).some(Boolean)",
+          selector
+        ),
+        timeout
+      )
+      testthat::pass()
+    },
+    error = function(err) {
+      testthat::fail(sprintf("CSS selector '%s' does not produce any visible elements.", selector))
+    }
+  )
 }
 
 #' @describeIn expect_visible Check if an element is hidden for a given timeout.
 expect_hidden <- function(element, app_driver, timeout) {
   checkmate::assert_string(element)
   checkmate::assert_r6(app_driver, "AppDriver")
-  tryCatch({
-    app_driver$wait_for_js(
-      sprintf(
-        "!Array.from(document.querySelectorAll('%s')).map(el => el.checkVisibility()).some(Boolean)",
-        element
-      ),
-      timeout
-    )
-    testthat::pass()
-  }, error = function(err) testthat::fail(sprintf("Element '%s' is visible.", element)))
+  tryCatch(
+    {
+      app_driver$wait_for_js(
+        sprintf(
+          "!Array.from(document.querySelectorAll('%s')).map(el => el.checkVisibility()).some(Boolean)",
+          element
+        ),
+        timeout
+      )
+      testthat::pass()
+    },
+    error = function(err) testthat::fail(sprintf("Element '%s' is visible.", element))
+  )
 }
 
 # JS code to click the expand button popup.
