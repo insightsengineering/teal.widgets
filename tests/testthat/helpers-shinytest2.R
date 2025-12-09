@@ -98,7 +98,9 @@ popover_action_js <- function(selector, action = c("show", "hide")) {
     if (grepl("[\"]", selector)) "Cannot contain double quotes (\") in CSS selectors" else TRUE
   )
   action <- match.arg(action)
-  sprintf("(el = document.querySelector(\"%s\")) ? (bootstrap.Popover.getOrCreateInstance(el).%s(), true) : false;",
-   selector,
-   action)
+  sprintf(
+    "(el = document.querySelector(\"%s\")) ? (bootstrap.Popover.getOrCreateInstance(el).%s(), true) : false;",
+    selector,
+    action
+  )
 }
