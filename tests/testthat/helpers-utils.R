@@ -17,16 +17,3 @@ is_draw <- function(plot_fun) {
   }
   res
 }
-
-is_visible <- function(element, app_driver) {
-  any(
-    unlist(
-      app_driver$get_js(
-        sprintf(
-          "Array.from(document.querySelectorAll('%s')).map(el => el.checkVisibility())",
-          element
-        )
-      )
-    )
-  )
-}

@@ -55,25 +55,15 @@ app_driver_pws <- function() {
 }
 
 # JS code to click the resize button popup.
-# nolint start
-click_resize_popup <- "// Select the element with the popover
-                      const popoverTrigger = document.querySelector('i.fas.fa-maximize[data-bs-toggle=\"popover\"]');
-                      // Initialize the popover if it isn't already initialized
-                      const popover = bootstrap.Popover.getOrCreateInstance(popoverTrigger);
-                      // Show the popover programmatically
-                      popover.show();"
+click_resize_popup <- popover_action_js("i.fas.fa-maximize[data-bs-toggle='popover']", action = "show")
 
 # JS code to click the expand button popup.
-click_expand_popup <- "document.querySelector('#plot_with_settings-plot-with-settings > bslib-tooltip > button').click()"
+click_expand_popup <- click_button_js(
+  "#plot_with_settings-plot-with-settings > bslib-tooltip > button[aria-label='Expand card']"
+)
 
 # JS code to click the download button popup inside the expanded modal.
-click_download_popup <- "// Select the element with the popover
-                      const popoverTrigger = document.querySelector('i.fas.fa-download[data-bs-toggle=\"popover\"]');
-                      // Initialize the popover if it isn't already initialized
-                      const popover = bootstrap.Popover.getOrCreateInstance(popoverTrigger);
-                      // Show the popover programmatically
-                      popover.show();"
-# nolint end
+click_download_popup <- popover_action_js("i.fas.fa-download[data-bs-toggle='popover']", action = "show")
 
 get_active_module_pws_output <- function(app_driver, pws, attr) {
   testthat::skip_if_not_installed("rvest")
@@ -123,10 +113,10 @@ testthat::test_that(
     app_driver$wait_for_idle()
 
     # Check if there is an image.
-    testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
+    expect_visible("#plot_with_settings-plot_main > img", app_driver)
 
-    # Check if the settings buttons are visible.
-    testthat::expect_true(is_visible(".teal-widgets.settings-buttons", app_driver))
+
+    expect_visible(".teal-widgets.settings-buttons", app_driver)
 
     app_driver$stop()
   }
@@ -145,7 +135,7 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    app_driver$run_js(click_download_popup)
+    app_driver$wait_for_js(click_download_popup)
     app_driver$wait_for_idle()
 
     testthat::expect_equal(
@@ -170,7 +160,7 @@ testthat::test_that(
       sprintf("plot_%s", gsub("-", "", Sys.Date()))
     )
 
-    testthat::expect_true(is_visible("#plot_with_settings-downbutton-data_download", app_driver))
+    expect_visible("#plot_with_settings-downbutton-data_download", app_driver)
 
     download_button <-
       app_driver$get_html("#plot_with_settings-downbutton-data_download > i") %>%
@@ -217,17 +207,17 @@ testthat::test_that(
     app_driver$set_inputs(`plot_with_settings-expbut` = TRUE)
 
     # Expand the plot and evaluate the output
-    app_driver$run_js(click_expand_popup)
-    testthat::expect_true(is_visible("#bslib-full-screen-overlay", app_driver))
+    app_driver$wait_for_js(click_expand_popup)
+    expect_visible("#bslib-full-screen-overlay", app_driver)
 
     # Resize button
-    testthat::expect_true(is_visible("#plot_with_settings-expbut > i", app_driver))
+    expect_visible("#plot_with_settings-expbut > i", app_driver)
 
     # Download button
-    testthat::expect_true(is_visible(paste0(
+    expect_visible(paste0(
       "#plot_with_settings-plot-with-settings > div > div > div.teal-widgets.settings-buttons",
       " > bslib-tooltip.download-button > div:nth-child(2) > bslib-popover > i"
-    ), app_driver))
+    ), app_driver)
 
     # Dismiss button
     testthat::expect_equal(app_driver$get_text("#bslib-full-screen-overlay"), "Close ")
@@ -247,9 +237,9 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    app_driver$run_js(click_download_popup)
+    app_driver$wait_for_js(click_download_popup)
     app_driver$wait_for_idle()
-    testthat::expect_true(is_visible("#plot_with_settings-plot_main > img", app_driver))
+    expect_visible("#plot_with_settings-plot_main > img", app_driver)
 
     testthat::expect_equal(
       app_driver$get_text("#plot_with_settings-downbutton-file_format-label"),
@@ -288,9 +278,9 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    testthat::expect_false(is_visible("#plot_with_settings-slider_ui", app_driver))
+    expect_hidden("#plot_with_settings-slider_ui", app_driver)
 
-    app_driver$run_js(click_resize_popup)
+    app_driver$wait_for_js(click_resize_popup)
     app_driver$wait_for_idle()
 
 
@@ -329,7 +319,7 @@ testthat::test_that(
       wait = FALSE
     )
     app_driver$wait_for_idle()
-    app_driver$run_js(click_resize_popup)
+    app_driver$wait_for_js(click_resize_popup)
     app_driver$wait_for_idle()
     app_driver$set_inputs(`plot_with_settings-height` = 1000)
     app_driver$set_inputs(`plot_with_settings-width_resize_switch` = 350)
@@ -354,9 +344,10 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    app_driver$run_js(click_download_popup)
+    app_driver$wait_for_js(click_download_popup)
     app_driver$wait_for_idle()
 
+    expect_visible("#plot_with_settings-downbutton-data_download i[aria-label='download icon']", app_driver)
     filename <- app_driver$get_download("plot_with_settings-downbutton-data_download")
     testthat::expect_match(filename, "png$", fixed = FALSE)
 
@@ -376,7 +367,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   )
   app_driver$wait_for_idle()
 
-  app_driver$run_js(click_expand_popup)
+  app_driver$wait_for_js(click_expand_popup)
   app_driver$wait_for_idle()
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_modal", attr = "src")
@@ -390,7 +381,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
     values$output$`plot_with_settings-plot_main`$height,
     400L
   )
-  app_driver$run_js(click_resize_popup)
+  app_driver$wait_for_js(click_resize_popup)
   app_driver$wait_for_idle()
 
   app_driver$set_inputs(`plot_with_settings-height` = 1000)
@@ -428,12 +419,13 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   )
   app_driver$wait_for_idle()
 
-  app_driver$run_js(click_expand_popup)
+  app_driver$wait_for_js(click_expand_popup)
   app_driver$wait_for_idle()
 
-  app_driver$run_js(click_download_popup)
+  app_driver$wait_for_js(click_download_popup)
   app_driver$wait_for_idle()
 
+  expect_visible("#plot_with_settings-downbutton-data_download i[aria-label='download icon']", app_driver)
   filename <- app_driver$get_download("plot_with_settings-downbutton-data_download")
   testthat::expect_match(filename, "png$", fixed = FALSE)
 
@@ -450,7 +442,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
   )
   app_driver$wait_for_idle()
 
-  app_driver$run_js(click_resize_popup)
+  app_driver$wait_for_js(click_resize_popup)
   app_driver$wait_for_idle()
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_main", attr = "src")
@@ -495,9 +487,9 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: scrollbar appears whe
   )
   app_driver$wait_for_idle()
 
-  app_driver$run_js(click_expand_popup)
+  app_driver$wait_for_js(click_expand_popup)
   app_driver$wait_for_idle()
-  app_driver$run_js(click_resize_popup)
+  app_driver$wait_for_js(click_resize_popup)
   app_driver$wait_for_idle()
 
   app_driver$set_inputs(`plot_with_settings-height` = 10000)

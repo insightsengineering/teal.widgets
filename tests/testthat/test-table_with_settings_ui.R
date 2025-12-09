@@ -38,26 +38,28 @@ app_driver_tws <- function() {
   )
 }
 
-# nolint start
 # JS code to click the expand button popup.
-click_expand_popup <- "document.querySelector('#table_with_settings-table-with-settings > bslib-tooltip > button').click()"
+click_expand_popup <- click_button_js(
+  "#table_with_settings-table-with-settings > bslib-tooltip > button[aria-label='Expand card']"
+)
 
 # JS code to click the download button popup inside the expanded modal.
-click_download_popup <- "// Select the element with the popover
-                      const popoverTrigger = document.querySelector('i.fas.fa-download[data-bs-toggle=\"popover\"]');
-                      // Initialize the popover if it isn't already initialized
-                      const popover = bootstrap.Popover.getOrCreateInstance(popoverTrigger);
-                      // Show the popover programmatically
-                      popover.show();"
+click_download_popup <- popover_action_js(
+  paste(
+    "#table_with_settings-table-with-settings .settings-buttons >",
+    ".download-button > [data-bs-toggle='tooltip'] bslib-popover > [aria-label='download icon']"
+  ),
+  action = "show"
+)
 
 # JS code to click the download button popup inside the expanded modal.
-click_closed_download_popup <- "// Select the element with the popover
-                      const popoverTrigger = document.querySelector('i.fas.fa-download[data-bs-toggle=\"popover\"]');
-                      // Initialize the popover if it isn't already initialized
-                      const popover = bootstrap.Popover.getOrCreateInstance(popoverTrigger);
-                      // Show the popover programmatically
-                      popover.hide();"
-# nolint end
+click_closed_download_popup <- popover_action_js(
+  paste(
+    "#table_with_settings-table-with-settings .settings-buttons >",
+    ".download-button > [data-bs-toggle='tooltip'] bslib-popover > [aria-label='download icon']"
+  ),
+  action = "hide"
+)
 
 check_table <- function(content) {
   testthat::expect_match(content, "B: Placebo", fixed = TRUE, all = FALSE)
@@ -85,10 +87,10 @@ testthat::test_that(
     app_driver$wait_for_idle()
 
     # Check if there is an table.
-    testthat::expect_true(is_visible("#table_with_settings-table_out_main > .rtables-container", app_driver))
+    expect_visible("#table_with_settings-table_out_main > .rtables-container", app_driver)
 
     # Check if the settings buttons are visible.
-    testthat::expect_true(is_visible(".teal-widgets.settings-buttons", app_driver))
+    expect_visible(".teal-widgets.settings-buttons", app_driver)
     app_driver$stop()
   }
 )
@@ -107,11 +109,11 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    testthat::expect_false(is_visible("#table_with_settings-downbutton-data_download", app_driver))
-    testthat::expect_false(is_visible("#table_with_settings-downbutton-file_format", app_driver))
-    testthat::expect_false(is_visible("#table_with_settings-downbutton-file_name", app_driver))
+    expect_hidden("#table_with_settings-downbutton-data_download", app_driver)
+    expect_hidden("#table_with_settings-downbutton-file_format", app_driver)
+    expect_hidden("#table_with_settings-downbutton-file_name", app_driver)
 
-    app_driver$run_js(click_download_popup)
+    app_driver$wait_for_js(click_download_popup)
     app_driver$wait_for_idle()
 
     testthat::expect_equal(
@@ -138,6 +140,7 @@ testthat::test_that(
       sprintf("table_%s", gsub("-", "", Sys.Date()))
     )
 
+    expect_visible("#table_with_settings-downbutton-data_download > i", app_driver)
     download_button <-
       app_driver$get_html("#table_with_settings-downbutton-data_download > i") %>%
       rvest::read_html()
@@ -172,7 +175,7 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    app_driver$run_js(click_download_popup)
+    app_driver$wait_for_js(click_download_popup)
     app_driver$wait_for_idle()
 
     pagination_text <- app_driver$get_text(".paginate-ui")
@@ -182,7 +185,7 @@ testthat::test_that(
     app_driver$click(selector = "input[value='.csv']")
     app_driver$wait_for_idle()
 
-    testthat::expect_false(is_visible(".paginate-ui", app_driver))
+    expect_hidden(".paginate-ui", app_driver)
 
     app_driver$stop()
   }
@@ -200,24 +203,24 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    testthat::expect_false(is_visible("#table_with_settings-table_out_main", app_driver))
-    testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
+    expect_hidden("#table_with_settings-table_out_main", app_driver)
+    expect_hidden("#bslib-full-screen-overlay", app_driver)
 
-    app_driver$run_js(click_expand_popup)
+    app_driver$wait_for_js(click_expand_popup)
     app_driver$wait_for_idle()
 
-    table_content <- app_driver$get_text("#table_with_settings-table_out_main")
-
+    expect_visible("#bslib-full-screen-overlay", app_driver)
+    table_content <- app_driver$get_text("#table_with_settings-table_out_main .rtables-container")
     check_table(table_content)
 
-    testthat::expect_true(is_visible("#bslib-full-screen-overlay", app_driver))
     # Close modal.
-    app_driver$run_js("document.querySelector('#bslib-full-screen-overlay .bslib-full-screen-exit').click();")
-
+    app_driver$wait_for_js(click_button_js("#bslib-full-screen-overlay .bslib-full-screen-exit"))
     app_driver$wait_for_idle()
-    testthat::expect_false(is_visible("#bslib-full-screen-overlay", app_driver))
+
+    expect_hidden("#bslib-full-screen-overlay", app_driver)
 
     # Review the main table content.
+    expect_visible("#table_with_settings-table_out_main .rtables-container", app_driver)
     main_table_content <- app_driver$get_text("#table_with_settings-table_out_main")
     check_table(main_table_content)
 
@@ -238,9 +241,10 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    app_driver$run_js(click_expand_popup)
+    app_driver$wait_for_js(click_expand_popup)
     app_driver$wait_for_idle()
-    app_driver$run_js(click_download_popup)
+
+    app_driver$wait_for_js(click_download_popup)
     app_driver$wait_for_idle()
 
     testthat::expect_equal(
@@ -268,7 +272,7 @@ testthat::test_that(
       sprintf("table_%s", gsub("-", "", Sys.Date()))
     )
 
-    testthat::expect_true(is_visible("#table_with_settings-downbutton-data_download", app_driver))
+    expect_visible("#table_with_settings-downbutton-data_download", app_driver)
 
     download_button <-
       app_driver$get_html("#table_with_settings-downbutton-data_download > i") %>%
@@ -305,9 +309,10 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    app_driver$run_js(click_expand_popup)
+    app_driver$wait_for_js(click_expand_popup)
     app_driver$wait_for_idle()
-    app_driver$run_js(click_download_popup)
+
+    app_driver$wait_for_js(click_download_popup)
     app_driver$wait_for_idle()
 
     pagination_text <- app_driver$get_text(".paginate-ui")
@@ -330,9 +335,10 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
 
-    app_driver$run_js(click_download_popup)
+    app_driver$wait_for_js(click_download_popup)
     app_driver$wait_for_idle()
 
+    expect_visible("#table_with_settings-downbutton-data_download", app_driver)
     filename <- app_driver$get_download("table_with_settings-downbutton-data_download")
     testthat::expect_match(filename, "txt$", fixed = FALSE)
 
@@ -353,10 +359,10 @@ testthat::test_that("e2e teal.widgets::table_with_settings: expanded table can b
   )
   app_driver$wait_for_idle()
 
-  app_driver$run_js(click_expand_popup)
+  app_driver$wait_for_js(click_expand_popup)
   app_driver$wait_for_idle()
 
-  app_driver$run_js(click_download_popup)
+  app_driver$wait_for_js(click_download_popup)
   app_driver$wait_for_idle()
 
   filename <- app_driver$get_download("table_with_settings-downbutton-data_download")

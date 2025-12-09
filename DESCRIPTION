@@ -47,6 +47,9 @@ Suggests:
     shinyvalidate,
     testthat (>= 3.2.3),
     withr (>= 2.1.0)
+Remotes:
+    insightsengineering/rtables,
+    insightsengineering/formatters
 VignetteBuilder:
     knitr,
     rmarkdown
