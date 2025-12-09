@@ -19,7 +19,7 @@ withr::local_options(
 
 #' Function to check if an element is visible in a shiny app
 #'
-#' The [shinytest2::AppDriver$wait_for_js()] method used to check if the element
+#' The [shinytest2::AppDriver$wait_for_js()] method is used to check if the element
 #' throws an error when the element is not visible.
 #' Therefore, we use different expectation functions to check for visibility ([testthat::expect_no_error()])
 #' and hidden state ([testthat::expect_error()]).
