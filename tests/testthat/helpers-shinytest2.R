@@ -17,12 +17,10 @@ withr::local_options(
   .local_envir = testthat::test_env()
 )
 
-#' Function to check if an element is visible in a shiny app
+#' Function to check if an selector is visible in a shiny app
 #'
-#' The [shinytest2::AppDriver$wait_for_js()] method is used to check if the element
-#' throws an error when the element is not visible.
-#' Therefore, we use different expectation functions to check for visibility ([testthat::expect_no_error()])
-#' and hidden state ([testthat::expect_error()]).
+#' The [shinytest2::AppDriver$wait_for_js()] method is used to check if the selector
+#' throws an error when the selector is not visible.
 #'
 #' @param selector `character(1)` CSS selector of the element to check visibility for.
 #' @param app_driver `shinytest2::AppDriver` AppDriver object of
@@ -31,7 +29,7 @@ withr::local_options(
 #' visible. The default is the timeout set in the [shinytest2::AppDriver] object.
 #' @param expectation_fun `function` expectation function to use for checking
 #' visibility.
-#' @return `logical(1)` whether the element is visible.
+#' @return `logical(1)` whether the selector is visible.
 #' @keywords internal
 expect_visible <- function(selector, app_driver, timeout) {
   checkmate::assert(
@@ -59,22 +57,22 @@ expect_visible <- function(selector, app_driver, timeout) {
   )
 }
 
-#' @describeIn expect_visible Check if an element is hidden for a given timeout.
-expect_hidden <- function(element, app_driver, timeout) {
-  checkmate::assert_string(element)
+#' @describeIn expect_visible Check if an selector is hidden for a given timeout.
+expect_hidden <- function(selector, app_driver, timeout) {
+  checkmate::assert_string(selector)
   checkmate::assert_r6(app_driver, "AppDriver")
   tryCatch(
     {
       app_driver$wait_for_js(
         sprintf(
           "!Array.from(document.querySelectorAll('%s')).map(el => el.checkVisibility()).some(Boolean)",
-          element
+          selector
         ),
         timeout
       )
       testthat::pass()
     },
-    error = function(err) testthat::fail(sprintf("Element '%s' is visible.", element))
+    error = function(err) testthat::fail(sprintf("CSS selector '%s' produces visible elements.", selector))
   )
 }
 
