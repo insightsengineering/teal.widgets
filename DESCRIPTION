@@ -1,7 +1,7 @@
 Package: teal.widgets
 Title: 'shiny' Widgets for 'teal' Applications
-Version: 0.5.1.9001
-Date: 2025-12-03
+Version: 0.5.1.9002
+Date: 2025-12-09
 Authors@R: c(
     person("Dawid", "Kaledkowski", , "dawid.kaledkowski@roche.com", role = c("aut", "cre")),
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = "aut"),
@@ -47,12 +47,12 @@ Suggests:
     shinyvalidate,
     testthat (>= 3.2.3),
     withr (>= 2.1.0)
-Remotes:
-    insightsengineering/rtables,
-    insightsengineering/formatters
 VignetteBuilder:
     knitr,
     rmarkdown
+Remotes:
+    insightsengineering/formatters,
+    insightsengineering/rtables
 Config/Needs/verdepcheck: rstudio/bslib, mllg/checkmate,
     tidyverse/ggplot2, rstudio/htmltools, r-lib/lifecycle,
     insightsengineering/rtables, rstudio/shiny, daattali/shinyjs,
