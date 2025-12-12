@@ -339,6 +339,7 @@ testthat::test_that(
     app_driver$wait_for_idle()
 
     expect_visible("#table_with_settings-downbutton-data_download", app_driver)
+    app_driver$wait_for_value(output = "table_with_settings-table_out_main")
     filename <- app_driver$get_download("table_with_settings-downbutton-data_download")
     testthat::expect_match(filename, "txt$", fixed = FALSE)
 
@@ -365,6 +366,8 @@ testthat::test_that("e2e teal.widgets::table_with_settings: expanded table can b
   app_driver$wait_for_js(click_download_popup)
   app_driver$wait_for_idle()
 
+  expect_visible("#table_with_settings-downbutton-data_download", app_driver)
+  app_driver$wait_for_value(output = "table_with_settings-downbutton-data_download")
   filename <- app_driver$get_download("table_with_settings-downbutton-data_download")
   testthat::expect_match(filename, "txt$", fixed = FALSE)
 
