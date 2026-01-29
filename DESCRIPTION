@@ -37,6 +37,8 @@ Imports:
     styler (>= 1.2.0)
 Suggests:
     DT,
+    gt,
+    gtsummary,
     knitr (>= 1.42),
     lattice (>= 0.18-4),
     magrittr (>= 1.5),

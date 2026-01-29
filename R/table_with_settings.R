@@ -10,12 +10,137 @@ table_with_settings_deps <- function() {
   )
 }
 
+#' Render table object to HTML
+#'
+#' @param x The table object to render
+#' @param ... Additional arguments (currently unused)
+#' @return HTML representation of the table
+#' @keywords internal
+#' @noRd
+render_table_to_html <- function(x, ...) {
+  UseMethod("render_table_to_html", x)
+}
+
+#' @method render_table_to_html default
+#' @keywords internal
+#' @noRd
+render_table_to_html.default <- function(x, ...) {
+  stop(
+    "Unsupported table type. ",
+    "table_with_settings supports rtables (ElementaryTable, TableTree), ",
+    "gtsummary, or gt (gt_tbl) objects."
+  )
+}
+
+#' @method render_table_to_html ElementaryTable
+#' @keywords internal
+#' @noRd
+render_table_to_html.ElementaryTable <- function(x, ...) {
+  rtables::as_html(x)
+}
+
+#' @method render_table_to_html TableTree
+#' @keywords internal
+#' @noRd
+render_table_to_html.TableTree <- function(x, ...) {
+  rtables::as_html(x)
+}
+
+#' @method render_table_to_html gtsummary
+#' @keywords internal
+#' @noRd
+render_table_to_html.gtsummary <- function(x, ...) {
+  
+}
+
+#' @method render_table_to_html gt_tbl
+#' @keywords internal
+#' @noRd
+render_table_to_html.gt_tbl <- function(x, ...) {
+  
+}
+
+#' Export table object to file
+#'
+#' @param x The table object to export
+#' @param file The file path to write to
+#' @param format The file format (".txt", ".csv", or ".pdf")
+#' @param paginate Logical indicating whether to paginate (for rtables)
+#' @param lpp Lines per page for pagination (for rtables)
+#' @param ... Additional arguments (currently unused)
+#' @keywords internal
+#' @noRd
+export_table <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
+  UseMethod("export_table", x)
+}
+
+#' @method export_table default
+#' @keywords internal
+#' @noRd
+export_table.default <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
+  stop("Unsupported table type for download")
+}
+
+#' @method export_table ElementaryTable
+#' @keywords internal
+#' @noRd
+export_table.ElementaryTable <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
+  if (format == ".txt") {
+    rtables::export_as_txt(
+      x = x,
+      file = file,
+      paginate = paginate,
+      lpp = if (paginate) as.numeric(lpp)
+    )
+  } else if (format == ".csv") {
+    result <- rtables::matrix_form(x)$strings
+    utils::write.table(
+      x = result,
+      file = file,
+      sep = ",",
+      col.names = FALSE,
+      row.names = TRUE,
+      append = FALSE
+    )
+  } else {
+    rtables::export_as_pdf(
+      x = x,
+      file = file,
+      paginate = paginate,
+      lpp = if (paginate) as.numeric(lpp)
+    )
+  }
+}
+
+#' @method export_table TableTree
+#' @keywords internal
+#' @noRd
+export_table.TableTree <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
+  export_table.ElementaryTable(x, file, format, paginate, lpp, ...)
+}
+
+#' @method export_table gtsummary
+#' @keywords internal
+#' @noRd
+export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
+  
+}
+
+#' @method export_table gt_tbl
+#' @keywords internal
+#' @noRd
+export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
+  
+}
+
 #' @name table_with_settings
 #'
 #' @title `table_with_settings` module
 #'
 #' @description
-#' Module designed to create a `shiny` table output based on `rtable` object (`ElementaryTable` or `TableTree`) input.
+#' Module designed to create a `shiny` table output based on table objects.
+#' Currently supports `rtables` objects (`ElementaryTable` or `TableTree`).
+#' #TODO: add gtsummary and gt
 #' @inheritParams shiny::moduleServer
 #' @param ... (`character`)\cr
 #'  Useful for providing additional HTML classes for the output tag.
@@ -53,7 +178,9 @@ table_with_settings_ui <- function(id, ...) {
 
 #' @inheritParams shiny::moduleServer
 #' @param table_r (`reactive`)\cr
-#'  reactive expression that yields an `rtable` object (`ElementaryTable` or `TableTree`)
+#'  reactive expression that yields a table object. Currently supported:
+#'  - `rtables` objects (`ElementaryTable` or `TableTree`)
+#' #TODO: add gtsummary and gt
 #' @param show_hide_signal (`reactive logical`) optional\cr
 #'  mechanism to allow modules which call this module to show/hide the table_with_settings UI.
 #'
@@ -64,6 +191,7 @@ table_with_settings_ui <- function(id, ...) {
 #' @export
 #'
 #' @examples
+#' # Example with rtables
 #' library(shiny)
 #' library(rtables)
 #' library(magrittr)
@@ -91,14 +219,12 @@ table_with_settings_ui <- function(id, ...) {
 #' if (interactive()) {
 #'   shinyApp(ui, server)
 #' }
+#' #example with gtsummary TODO
+#' #example with gt TODO
 #'
 table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRUE)) {
   checkmate::assert_class(table_r, c("reactive", "function"))
   checkmate::assert_class(show_hide_signal, c("reactive", "function"))
-
-  if (!requireNamespace("rtables", quietly = TRUE)) {
-    stop("package rtables is required, please install")
-  }
 
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
@@ -112,7 +238,7 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
     })
 
     output$table_out_main <- output$table_out_modal <- renderUI({
-      rtables::as_html(table_r())
+      render_table_to_html(table_r())
     })
 
     type_download_srv_table(
@@ -186,19 +312,21 @@ type_download_srv_table <- function(id, table_reactive) {
       })
 
       output$lpp_warning <- renderUI({
-        catch_warning <- if (input$file_format != ".csv" && input$pagination_switch) {
-          try(rtables::paginate_table(
-            tt = table_reactive(),
+        table_obj <- table_reactive()
+        # Pagination warning only applies to rtables
+        if (inherits(table_obj, c("ElementaryTable", "TableTree")) && input$file_format != ".csv" && input$pagination_switch) {
+          catch_warning <- try(rtables::paginate_table(
+            tt = table_obj,
             lpp = as.numeric(input$lpp)
           ), silent = TRUE)
-        }
 
-        if (inherits(catch_warning, "try-error")) {
-          helpText(
-            class = "error",
-            icon("triangle-exclamation"),
-            "Maximum lines per page includes the reprinted header. Please enter a numeric value or increase the value."
-          )
+          if (inherits(catch_warning, "try-error")) {
+            helpText(
+              class = "error",
+              icon("triangle-exclamation"),
+              "Maximum lines per page includes the reprinted header. Please enter a numeric value or increase the value."
+            )
+          }
         }
       })
 
@@ -207,31 +335,14 @@ type_download_srv_table <- function(id, table_reactive) {
           paste0(input$file_name, input$file_format)
         },
         content = function(file) {
-          if (input$file_format == ".txt") {
-            rtables::export_as_txt(
-              x = table_reactive(),
-              file = file,
-              paginate = input$pagination_switch,
-              lpp = if (input$pagination_switch) as.numeric(input$lpp)
-            )
-          } else if (input$file_format == ".csv") {
-            result <- rtables::matrix_form(table_reactive())$strings
-            utils::write.table(
-              x = result,
-              file = file,
-              sep = ",",
-              col.names = FALSE,
-              row.names = TRUE,
-              append = FALSE
-            )
-          } else {
-            rtables::export_as_pdf(
-              x = table_reactive(),
-              file = file,
-              paginate = input$pagination_switch,
-              lpp = if (input$pagination_switch) as.numeric(input$lpp)
-            )
-          }
+          
+          export_table(
+            x = table_reactive(),
+            file = file,
+            format = input$file_format,
+            paginate = input$pagination_switch,
+            lpp = if (input$pagination_switch) as.numeric(input$lpp)
+          )
         }
       )
     }
