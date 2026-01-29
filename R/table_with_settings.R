@@ -49,16 +49,12 @@ render_table_to_html.TableTree <- function(x, ...) {
 #' @method render_table_to_html gtsummary
 #' @keywords internal
 #' @noRd
-render_table_to_html.gtsummary <- function(x, ...) {
-  
-}
+render_table_to_html.gtsummary <- function(x, ...) {}
 
 #' @method render_table_to_html gt_tbl
 #' @keywords internal
 #' @noRd
-render_table_to_html.gt_tbl <- function(x, ...) {
-  
-}
+render_table_to_html.gt_tbl <- function(x, ...) {}
 
 #' Export table object to file
 #'
@@ -122,16 +118,12 @@ export_table.TableTree <- function(x, file, format, paginate = FALSE, lpp = NULL
 #' @method export_table gtsummary
 #' @keywords internal
 #' @noRd
-export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
-  
-}
+export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {}
 
 #' @method export_table gt_tbl
 #' @keywords internal
 #' @noRd
-export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
-  
-}
+export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {}
 
 #' @name table_with_settings
 #'
@@ -219,8 +211,8 @@ table_with_settings_ui <- function(id, ...) {
 #' if (interactive()) {
 #'   shinyApp(ui, server)
 #' }
-#' #example with gtsummary TODO
-#' #example with gt TODO
+#' # example with gtsummary TODO
+#' # example with gt TODO
 #'
 table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRUE)) {
   checkmate::assert_class(table_r, c("reactive", "function"))
@@ -335,7 +327,6 @@ type_download_srv_table <- function(id, table_reactive) {
           paste0(input$file_name, input$file_format)
         },
         content = function(file) {
-          
           export_table(
             x = table_reactive(),
             file = file,
