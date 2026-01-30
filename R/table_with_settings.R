@@ -134,7 +134,7 @@ export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL
 #' @noRd
 export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
   if (format == ".csv") {
-    df_data <- gt::as_raw_html(x)%>%
+    df_data <- gt::as_raw_html(x) %>%
       rvest::read_html() %>%
       rvest::html_table() %>%
       .[[1]]
