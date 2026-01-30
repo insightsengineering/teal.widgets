@@ -13,7 +13,7 @@ testthat::test_that("table_with_settings_srv: assertions", {
   for (arg in args) {
     testthat::expect_error(
       shiny::testServer(
-        teal.widgets:::table_with_settings_srv,
+        teal.widgets::table_with_settings_srv,
         args = arg
       ),
       "Assertion"
@@ -23,7 +23,7 @@ testthat::test_that("table_with_settings_srv: assertions", {
 
 testthat::test_that("table_with_settings_srv: hiding works", {
   shiny::testServer(
-    teal.widgets:::table_with_settings_srv,
+    teal.widgets::table_with_settings_srv,
     args = list(table_r = table_r, show_hide_signal = reactive(FALSE)),
     expr = {
       testthat::expect_silent(output$table_out_modal$html)
@@ -33,7 +33,7 @@ testthat::test_that("table_with_settings_srv: hiding works", {
 
 testthat::test_that("table_with_settings_srv: return html table", {
   shiny::testServer(
-    teal.widgets:::table_with_settings_srv,
+    teal.widgets::table_with_settings_srv,
     args = list(id = "tws", table_r = table_r),
     expr = {
       testthat::expect_s3_class(output$table_out_modal$html, "html")
@@ -44,7 +44,7 @@ testthat::test_that("table_with_settings_srv: return html table", {
 
 testthat::test_that("table_with_settings_srv: expand works", {
   shiny::testServer(
-    teal.widgets:::table_with_settings_srv,
+    teal.widgets::table_with_settings_srv,
     args = list(id = "tws", table_r = table_r),
     expr = {
       session$setInputs(`expand` = TRUE)
@@ -168,3 +168,34 @@ testthat::test_that("type_download_srv_table: content of the table, txt", {
     }
   )
 })
+
+testthat::test_that("table_with_settings_srv: gtsummary table renders", {
+  gtsummary_r <- shiny::reactive({
+    gtsummary::tbl_summary(mtcars[1:5, 1:3])
+  })
+
+  shiny::testServer(
+    teal.widgets::table_with_settings_srv,
+    args = list(id = "tws", table_r = gtsummary_r),
+    expr = {
+      testthat::expect_s3_class(output$table_out_main$html, "html")
+      testthat::expect_equal(output$table_out_main$html, output$table_out_modal$html)
+    }
+  )
+})
+
+testthat::test_that("table_with_settings_srv: gt table renders", {
+  gt_r <- shiny::reactive({
+    gt::gt(mtcars[1:5, 1:3])
+  })
+
+  shiny::testServer(
+    teal.widgets::table_with_settings_srv,
+    args = list(id = "tws", table_r = gt_r),
+    expr = {
+      testthat::expect_s3_class(output$table_out_main$html, "html")
+      testthat::expect_equal(output$table_out_main$html, output$table_out_modal$html)
+    }
+  )
+})
+
