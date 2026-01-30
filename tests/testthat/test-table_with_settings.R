@@ -198,4 +198,3 @@ testthat::test_that("table_with_settings_srv: gt table renders", {
     }
   )
 })
-
