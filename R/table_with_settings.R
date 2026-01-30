@@ -393,7 +393,6 @@ type_download_srv_table <- function(id, table_reactive) {
           paste0(input$file_name, input$file_format)
         },
         content = function(file) {
-          
           export_table(
             x = table_reactive(),
             file = file,

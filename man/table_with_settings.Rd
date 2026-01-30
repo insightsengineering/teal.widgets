@@ -37,6 +37,7 @@ Supports \code{rtables} objects (\code{ElementaryTable} or \code{TableTree}), \c
 }
 \examples{
 # Example with rtables
+# Example with rtables
 library(shiny)
 library(rtables)
 library(magrittr)
