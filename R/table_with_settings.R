@@ -50,14 +50,15 @@ render_table_to_html.TableTree <- function(x, ...) {
 #' @keywords internal
 #' @noRd
 render_table_to_html.gtsummary <- function(x, ...) {
-  
+  gt_obj <- gtsummary::as_gt(x)
+  htmltools::HTML(gt::as_raw_html(gt_obj))
 }
 
 #' @method render_table_to_html gt_tbl
 #' @keywords internal
 #' @noRd
 render_table_to_html.gt_tbl <- function(x, ...) {
-  
+  htmltools::HTML(gt::as_raw_html(x))
 }
 
 #' Export table object to file
@@ -123,14 +124,27 @@ export_table.TableTree <- function(x, file, format, paginate = FALSE, lpp = NULL
 #' @keywords internal
 #' @noRd
 export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
-  
+  gt_obj <- gtsummary::as_gt(x)
+  # x$data_table can be exported as csv, txt, or pdf
+  export_table.gt_tbl(gt_obj, file, format, paginate, lpp, ...)
 }
 
 #' @method export_table gt_tbl
 #' @keywords internal
 #' @noRd
 export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
-  
+  if (format == ".csv") {
+    df_data <- gt::as_raw_html(x)%>%
+      rvest::read_html() %>%
+      rvest::html_table() %>%
+      .[[1]]
+    utils::write.csv(df_data, file = file, row.names = FALSE)
+  } else if (format == ".pdf") {
+    gt::gtsave(x, filename = file)
+  } else {
+    html_file <- sub("\\.txt$", ".html", file)
+    gt::gtsave(x, filename = html_file)
+  }
 }
 
 #' @name table_with_settings
@@ -139,8 +153,7 @@ export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, .
 #'
 #' @description
 #' Module designed to create a `shiny` table output based on table objects.
-#' Currently supports `rtables` objects (`ElementaryTable` or `TableTree`).
-#' #TODO: add gtsummary and gt
+#' Supports `rtables` objects (`ElementaryTable` or `TableTree`), `gtsummary` objects, or `gt` objects.
 #' @inheritParams shiny::moduleServer
 #' @param ... (`character`)\cr
 #'  Useful for providing additional HTML classes for the output tag.
@@ -178,9 +191,10 @@ table_with_settings_ui <- function(id, ...) {
 
 #' @inheritParams shiny::moduleServer
 #' @param table_r (`reactive`)\cr
-#'  reactive expression that yields a table object. Currently supported:
+#'  reactive expression that yields a table object. Supported types:
 #'  - `rtables` objects (`ElementaryTable` or `TableTree`)
-#' #TODO: add gtsummary and gt
+#'  - `gtsummary` objects
+#'  - `gt` objects (`gt_tbl`)
 #' @param show_hide_signal (`reactive logical`) optional\cr
 #'  mechanism to allow modules which call this module to show/hide the table_with_settings UI.
 #'
@@ -219,8 +233,52 @@ table_with_settings_ui <- function(id, ...) {
 #' if (interactive()) {
 #'   shinyApp(ui, server)
 #' }
-#' #example with gtsummary TODO
-#' #example with gt TODO
+#'
+#' # Example with gtsummary
+#' library(shiny)
+#' library(gtsummary)
+#'
+#' ui <- bslib::page_fluid(
+#'   table_with_settings_ui(
+#'     id = "table_with_settings"
+#'   )
+#' )
+#'
+#' server <- function(input, output, session) {
+#'   table_r <- reactive({
+#'     gtsummary::tbl_summary(mtcars)
+#'   })
+#'
+#'   table_with_settings_srv(id = "table_with_settings", table_r = table_r)
+#' }
+#'
+#' if (interactive()) {
+#'   shinyApp(ui, server)
+#' }
+#'
+#' # Example with gt
+#' library(shiny)
+#' library(gt)
+#'
+#' ui <- bslib::page_fluid(
+#'   table_with_settings_ui(
+#'     id = "table_with_settings"
+#'   )
+#' )
+#'
+#' server <- function(input, output, session) {
+#'   table_r <- reactive({
+#'     mtcars %>%
+#'       gt::gt() %>%
+#'       gt::tab_header(title = "Motor Trend Car Road Tests")
+#'   })
+#'
+#'   table_with_settings_srv(id = "table_with_settings", table_r = table_r)
+#' }
+#'
+#' if (interactive()) {
+#'   shinyApp(ui, server)
+#' }
 #'
 table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRUE)) {
   checkmate::assert_class(table_r, c("reactive", "function"))

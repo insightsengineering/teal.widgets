@@ -18,7 +18,12 @@ UI function.}
 Useful for providing additional HTML classes for the output tag.}
 
 \item{table_r}{(\code{reactive})\cr
-reactive expression that yields an \code{rtable} object (\code{ElementaryTable} or \code{TableTree})}
+reactive expression that yields a table object. Supported types:
+\itemize{
+\item \code{rtables} objects (\code{ElementaryTable} or \code{TableTree})
+\item \code{gtsummary} objects
+\item \code{gt} objects (\code{gt_tbl})
+}}
 
 \item{show_hide_signal}{(\verb{reactive logical}) optional\cr
 mechanism to allow modules which call this module to show/hide the table_with_settings UI.}
@@ -27,9 +32,11 @@ mechanism to allow modules which call this module to show/hide the table_with_se
 A \code{shiny} module.
 }
 \description{
-Module designed to create a \code{shiny} table output based on \code{rtable} object (\code{ElementaryTable} or \code{TableTree}) input.
+Module designed to create a \code{shiny} table output based on table objects.
+Supports \code{rtables} objects (\code{ElementaryTable} or \code{TableTree}), \code{gtsummary} objects, or \code{gt} objects.
 }
 \examples{
+# Example with rtables
 library(shiny)
 library(rtables)
 library(magrittr)
@@ -49,6 +56,52 @@ server <- function(input, output, session) {
     tbl <- build_table(l, DM)
 
     tbl
+  })
+
+  table_with_settings_srv(id = "table_with_settings", table_r = table_r)
+}
+
+if (interactive()) {
+  shinyApp(ui, server)
+}
+
+# Example with gtsummary
+library(shiny)
+library(gtsummary)
+
+ui <- bslib::page_fluid(
+  table_with_settings_ui(
+    id = "table_with_settings"
+  )
+)
+
+server <- function(input, output, session) {
+  table_r <- reactive({
+    gtsummary::tbl_summary(mtcars)
+  })
+
+  table_with_settings_srv(id = "table_with_settings", table_r = table_r)
+}
+
+if (interactive()) {
+  shinyApp(ui, server)
+}
+
+# Example with gt
+library(shiny)
+library(gt)
+
+ui <- bslib::page_fluid(
+  table_with_settings_ui(
+    id = "table_with_settings"
+  )
+)
+
+server <- function(input, output, session) {
+  table_r <- reactive({
+    mtcars \%>\%
+      gt::gt() \%>\%
+      gt::tab_header(title = "Motor Trend Car Road Tests")
   })
 
   table_with_settings_srv(id = "table_with_settings", table_r = table_r)
