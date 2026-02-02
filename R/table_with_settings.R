@@ -125,7 +125,6 @@ export_table.TableTree <- function(x, file, format, paginate = FALSE, lpp = NULL
 #' @noRd
 export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
   gt_obj <- gtsummary::as_gt(x)
-  # x$data_table can be exported as csv, txt, or pdf
   export_table.gt_tbl(gt_obj, file, format, paginate, lpp, ...)
 }
 
