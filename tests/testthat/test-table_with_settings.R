@@ -31,12 +31,15 @@ testthat::test_that("table_with_settings_srv: hiding works", {
   )
 })
 
-testthat::test_that("table_with_settings_srv: return html table", {
+testthat::test_that("table_with_settings_srv: return html table with content", {
   shiny::testServer(
     teal.widgets::table_with_settings_srv,
     args = list(id = "tws", table_r = table_r),
     expr = {
+      html_content <- as.character(output$table_out_main$html)
       testthat::expect_s3_class(output$table_out_main$html, "html")
+      testthat::expect_true(grepl("Species|setosa|versicolor|virginica", html_content, ignore.case = TRUE))
+      testthat::expect_true(grepl("Sepal\\.Length|Sepal Length", html_content, ignore.case = TRUE))
     }
   )
 })
@@ -168,7 +171,7 @@ testthat::test_that("type_download_srv_table: content of the table, txt", {
   )
 })
 
-testthat::test_that("table_with_settings_srv: gtsummary table renders", {
+testthat::test_that("table_with_settings_srv: gtsummary table renders with content", {
   gtsummary_r <- shiny::reactive({
     gtsummary::tbl_summary(mtcars[1:5, 1:3])
   })
@@ -177,12 +180,15 @@ testthat::test_that("table_with_settings_srv: gtsummary table renders", {
     teal.widgets::table_with_settings_srv,
     args = list(id = "tws", table_r = gtsummary_r),
     expr = {
+      html_content <- as.character(output$table_out_main$html)
       testthat::expect_s3_class(output$table_out_main$html, "html")
+      testthat::expect_true(grepl("mpg|cyl|disp", html_content, ignore.case = TRUE))
+      testthat::expect_true(grepl("<table", html_content, ignore.case = TRUE))
     }
   )
 })
 
-testthat::test_that("table_with_settings_srv: gt table renders", {
+testthat::test_that("table_with_settings_srv: gt table renders with content", {
   gt_r <- shiny::reactive({
     gt::gt(mtcars[1:5, 1:3])
   })
@@ -191,7 +197,10 @@ testthat::test_that("table_with_settings_srv: gt table renders", {
     teal.widgets::table_with_settings_srv,
     args = list(id = "tws", table_r = gt_r),
     expr = {
+      html_content <- as.character(output$table_out_main$html)
       testthat::expect_s3_class(output$table_out_main$html, "html")
+      testthat::expect_true(grepl("mpg|cyl|disp", html_content, ignore.case = TRUE))
+      testthat::expect_true(grepl("<table", html_content, ignore.case = TRUE))
     }
   )
 })
