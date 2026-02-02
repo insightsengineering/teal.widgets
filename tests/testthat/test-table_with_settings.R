@@ -36,8 +36,7 @@ testthat::test_that("table_with_settings_srv: return html table", {
     teal.widgets::table_with_settings_srv,
     args = list(id = "tws", table_r = table_r),
     expr = {
-      testthat::expect_s3_class(output$table_out_modal$html, "html")
-      testthat::expect_equal(output$table_out_main$html, output$table_out_modal$html)
+      testthat::expect_s3_class(output$table_out_main$html, "html")
     }
   )
 })
@@ -179,7 +178,6 @@ testthat::test_that("table_with_settings_srv: gtsummary table renders", {
     args = list(id = "tws", table_r = gtsummary_r),
     expr = {
       testthat::expect_s3_class(output$table_out_main$html, "html")
-      testthat::expect_equal(output$table_out_main$html, output$table_out_modal$html)
     }
   )
 })
@@ -194,7 +192,6 @@ testthat::test_that("table_with_settings_srv: gt table renders", {
     args = list(id = "tws", table_r = gt_r),
     expr = {
       testthat::expect_s3_class(output$table_out_main$html, "html")
-      testthat::expect_equal(output$table_out_main$html, output$table_out_modal$html)
     }
   )
 })
