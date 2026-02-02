@@ -142,8 +142,8 @@ export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, .
   } else if (format == ".pdf") {
     gt::gtsave(x, filename = file)
   } else {
-    html_file <- sub("\\.txt$", ".html", file)
-    gt::gtsave(x, filename = html_file)
+    html_content <- gt::as_raw_html(x)
+    writeLines(html_content, file)
   }
 }
 
