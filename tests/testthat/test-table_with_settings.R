@@ -39,7 +39,7 @@ testthat::test_that("table_with_settings_srv: return html table with content", {
       html_content <- as.character(output$table_out_main$html)
       testthat::expect_s3_class(output$table_out_main$html, "html")
       testthat::expect_true(grepl("Species|setosa|versicolor|virginica", html_content, ignore.case = TRUE))
-      testthat::expect_true(grepl("Sepal\\.Length|Sepal Length", html_content, ignore.case = TRUE))
+      testthat::expect_true(grepl("Mean|5\\.0", html_content))
     }
   )
 })
