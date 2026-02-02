@@ -28,7 +28,7 @@ Imports:
     graphics,
     grDevices,
     gt,
-    gtsummary,
+    gtsummary (>= 2.5.0,
     htmltools (>= 0.5.4),
     lifecycle (>= 0.2.0),
     methods,
