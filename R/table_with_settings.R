@@ -151,7 +151,11 @@ export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, .
 export_table_raw <- function(x) {
   html_content <- gt::as_raw_html(x)
   html_parsed <- rvest::read_html(html_content)
-  rvest::html_table(html_parsed)[[1]]
+  
+  # xml_remove modifies the object so no need to ovewrite
+  xml2::xml_remove(rvest::html_nodes(html_parsed, "caption, .gt_heading"))
+  
+  rvest::html_table(html_parsed, fill = TRUE)[[1]]
 }
 
 #' @name table_with_settings
