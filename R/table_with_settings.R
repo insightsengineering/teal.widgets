@@ -345,8 +345,8 @@ type_download_srv_table <- function(id, table_reactive) {
         # Pagination warning only applies to rtables
         if (
           inherits(table_obj, c("ElementaryTable", "TableTree")) &&
-          input$file_format != ".csv" &&
-          input$pagination_switch
+            input$file_format != ".csv" &&
+            input$pagination_switch
         ) {
           catch_warning <- try(rtables::paginate_table(
             tt = table_obj,
