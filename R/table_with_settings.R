@@ -83,7 +83,7 @@ export_table.default <- function(x, file, format, paginate = FALSE, lpp = NULL, 
 }
 
 export_table_rtables <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
-    if (format == ".txt") {
+  if (format == ".txt") {
     rtables::export_as_txt(
       x = x,
       file = file,
