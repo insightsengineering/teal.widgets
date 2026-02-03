@@ -125,7 +125,7 @@ export_table.TableTree <- function(x, file, format, paginate = FALSE, lpp = NULL
 #' @noRd
 export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
   gt_obj <- gtsummary::as_gt(x)
-  export_table.gt_tbl(gt_obj, file, format, paginate, lpp, ...)
+  export_table(gt_obj, file, format, paginate, lpp, ...)
 }
 
 #' @method export_table gt_tbl
@@ -133,17 +133,25 @@ export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL
 #' @noRd
 export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
   if (format == ".csv") {
-    html_content <- gt::as_raw_html(x)
-    html_parsed <- rvest::read_html(html_content)
-    html_tables <- rvest::html_table(html_parsed)
-    df_data <- html_tables[[1]]
-    utils::write.csv(df_data, file = file, row.names = FALSE)
+    utils::write.csv(export_table_raw(x), file = file, row.names = FALSE)
   } else if (format == ".pdf") {
     gt::gtsave(x, filename = file)
   } else {
-    html_content <- gt::as_raw_html(x)
-    writeLines(html_content, file)
+    utils::write.table(
+      x = export_table_raw(x),
+      file = file,
+      sep = "\t",
+      quote = FALSE,
+      row.names = FALSE,
+      col.names = TRUE
+    )
   }
+}
+
+export_table_raw <- function(x) {
+  html_content <- gt::as_raw_html(x)
+  html_parsed <- rvest::read_html(html_content)
+  rvest::html_table(html_parsed)[[1]]
 }
 
 #' @name table_with_settings
@@ -204,75 +212,39 @@ table_with_settings_ui <- function(id, ...) {
 #' @export
 #'
 #' @examples
-#' # Example with rtables
 #' library(shiny)
 #' library(rtables)
+#' library(gtsummary)
+#' library(gt)
 #' library(magrittr)
 #'
 #' ui <- bslib::page_fluid(
-#'   table_with_settings_ui(
-#'     id = "table_with_settings"
-#'   )
+#'   table_with_settings_ui(id = "rtables_table"),
+#'   table_with_settings_ui(id = "gtsummary_table"),
+#'   table_with_settings_ui(id = "gt_table")
 #' )
 #'
 #' server <- function(input, output, session) {
-#'   table_r <- reactive({
+#'   table_r_rtables <- reactive({
 #'     l <- basic_table() %>%
 #'       split_cols_by("ARM") %>%
 #'       analyze(c("SEX", "AGE"))
-#'
-#'     tbl <- build_table(l, DM)
-#'
-#'     tbl
+#'     build_table(l, DM)
 #'   })
 #'
-#'   table_with_settings_srv(id = "table_with_settings", table_r = table_r)
-#' }
-#'
-#' if (interactive()) {
-#'   shinyApp(ui, server)
-#' }
-#'
-#' # Example with gtsummary
-#' library(shiny)
-#' library(gtsummary)
-#'
-#' ui <- bslib::page_fluid(
-#'   table_with_settings_ui(
-#'     id = "table_with_settings"
-#'   )
-#' )
-#'
-#' server <- function(input, output, session) {
-#'   table_r <- reactive({
+#'   table_r_gtsummary <- reactive({
 #'     gtsummary::tbl_summary(mtcars)
 #'   })
 #'
-#'   table_with_settings_srv(id = "table_with_settings", table_r = table_r)
-#' }
-#'
-#' if (interactive()) {
-#'   shinyApp(ui, server)
-#' }
-#'
-#' # Example with gt
-#' library(shiny)
-#' library(gt)
-#'
-#' ui <- bslib::page_fluid(
-#'   table_with_settings_ui(
-#'     id = "table_with_settings"
-#'   )
-#' )
-#'
-#' server <- function(input, output, session) {
-#'   table_r <- reactive({
+#'   table_r_gt <- reactive({
 #'     mtcars %>%
 #'       gt::gt() %>%
 #'       gt::tab_header(title = "Motor Trend Car Road Tests")
 #'   })
 #'
-#'   table_with_settings_srv(id = "table_with_settings", table_r = table_r)
+#'   table_with_settings_srv(id = "rtables_table", table_r = table_r_rtables)
+#'   table_with_settings_srv(id = "gtsummary_table", table_r = table_r_gtsummary)
+#'   table_with_settings_srv(id = "gt_table", table_r = table_r_gt)
 #' }
 #'
 #' if (interactive()) {
