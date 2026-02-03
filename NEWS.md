@@ -4,7 +4,7 @@
 
 ### Enhancements
 * Added support for `gt` and `gtsummary` object to `table_with_settings` (#337)
-* `gt`, `gtsummary` and `rvest` packages were added to `Imports`.
+* `gt`, `gtsummary`, `xml2` and `rvest` packages were added to `Imports`.
 
 ### Miscellaneous
 * Improve unit test coverage (#318).
