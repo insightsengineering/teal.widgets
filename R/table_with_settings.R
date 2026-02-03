@@ -10,6 +10,9 @@ table_with_settings_deps <- function() {
   )
 }
 
+render_table_to_html_rtables <- function(x, ...) {
+  rtables::as_html(x)
+}
 
 #' Render table object to HTML
 #'
@@ -42,10 +45,6 @@ render_table_to_html.ElementaryTable <- render_table_to_html_rtables
 #' @keywords internal
 #' @noRd
 render_table_to_html.TableTree <- render_table_to_html_rtables
-
-render_table_to_html_rtables <- function(x, ...) {
-  rtables::as_html(x)
-}
 
 #' @method render_table_to_html gtsummary
 #' @keywords internal
@@ -83,16 +82,6 @@ export_table.default <- function(x, file, format, paginate = FALSE, lpp = NULL, 
   stop("Unsupported table type for download")
 }
 
-#' @method export_table ElementaryTable
-#' @keywords internal
-#' @noRd
-export_table.ElementaryTable <- export_table_rtables
-
-#' @method export_table TableTree
-#' @keywords internal
-#' @noRd
-export_table.TableTree <- export_table_rtables
-
 export_table_rtables <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
     if (format == ".txt") {
     rtables::export_as_txt(
@@ -120,6 +109,16 @@ export_table_rtables <- function(x, file, format, paginate = FALSE, lpp = NULL, 
     )
   }
 }
+
+#' @method export_table ElementaryTable
+#' @keywords internal
+#' @noRd
+export_table.ElementaryTable <- export_table_rtables
+
+#' @method export_table TableTree
+#' @keywords internal
+#' @noRd
+export_table.TableTree <- export_table_rtables
 
 #' @method export_table gtsummary
 #' @keywords internal
