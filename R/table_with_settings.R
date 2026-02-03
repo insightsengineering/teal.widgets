@@ -343,7 +343,11 @@ type_download_srv_table <- function(id, table_reactive) {
       output$lpp_warning <- renderUI({
         table_obj <- table_reactive()
         # Pagination warning only applies to rtables
-        if (inherits(table_obj, c("ElementaryTable", "TableTree")) && input$file_format != ".csv" && input$pagination_switch) {
+        if (
+          inherits(table_obj, c("ElementaryTable", "TableTree")) &&
+          input$file_format != ".csv" &&
+          input$pagination_switch
+        ) {
           catch_warning <- try(rtables::paginate_table(
             tt = table_obj,
             lpp = as.numeric(input$lpp)
@@ -353,7 +357,10 @@ type_download_srv_table <- function(id, table_reactive) {
             helpText(
               class = "error",
               icon("triangle-exclamation"),
-              "Maximum lines per page includes the reprinted header. Please enter a numeric value or increase the value."
+              paste0(
+                "Maximum lines per page includes the reprinted header.",
+                "Please enter a numeric value or increase the value."
+              )
             )
           }
         }
