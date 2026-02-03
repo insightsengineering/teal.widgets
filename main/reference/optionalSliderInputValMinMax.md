@@ -59,6 +59,7 @@ argument `value_min_max`
 ## Examples
 
 ``` r
+
 ui <- bslib::page_fluid(
   shinyjs::useShinyjs(),
   optionalSliderInputValMinMax("a1", "b1", 1), # Hidden

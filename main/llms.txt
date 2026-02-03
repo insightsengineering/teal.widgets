@@ -57,12 +57,14 @@ include:
 ## Installation
 
 ``` r
+
 install.packages('teal.widgets')
 ```
 
 Alternatively, you might want to use the development version.
 
 ``` r
+
 # install.packages("pak")
 pak::pak("insightsengineering/teal.widgets")
 ```

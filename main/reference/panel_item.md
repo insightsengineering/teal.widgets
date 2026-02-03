@@ -41,6 +41,7 @@ panel_item(title, ..., collapsed = TRUE, input_id = NULL)
 ## Examples
 
 ``` r
+
 library(shiny)
 panel_item(
   title = "Display",
@@ -60,12 +61,12 @@ panel_item(
 )
 #> <div class="accordion-item" data-value="Display">
 #>   <div class="accordion-header">
-#>     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-8780" aria-expanded="false" aria-controls="bslib-accordion-panel-8780">
+#>     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-6138" aria-expanded="false" aria-controls="bslib-accordion-panel-6138">
 #>       <div class="accordion-icon"></div>
 #>       <div class="accordion-title">Display</div>
 #>     </button>
 #>   </div>
-#>   <div id="bslib-accordion-panel-8780" class="accordion-collapse collapse">
+#>   <div id="bslib-accordion-panel-6138" class="accordion-collapse collapse">
 #>     <div class="accordion-body" open="TRUE">
 #>       <div id="check" class="form-group shiny-input-checkboxgroup shiny-input-container" role="group" aria-labelledby="check-label">
 #>         <label class="control-label" id="check-label" for="check">Tables display</label>
