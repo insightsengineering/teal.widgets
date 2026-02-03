@@ -36,75 +36,39 @@ Module designed to create a \code{shiny} table output based on table objects.
 Supports \code{rtables} objects (\code{ElementaryTable} or \code{TableTree}), \code{gtsummary} objects, or \code{gt} objects.
 }
 \examples{
-# Example with rtables
 library(shiny)
 library(rtables)
+library(gtsummary)
+library(gt)
 library(magrittr)
 
 ui <- bslib::page_fluid(
-  table_with_settings_ui(
-    id = "table_with_settings"
-  )
+  table_with_settings_ui(id = "rtables_table"),
+  table_with_settings_ui(id = "gtsummary_table"),
+  table_with_settings_ui(id = "gt_table")
 )
 
 server <- function(input, output, session) {
-  table_r <- reactive({
+  table_r_rtables <- reactive({
     l <- basic_table() \%>\%
       split_cols_by("ARM") \%>\%
       analyze(c("SEX", "AGE"))
-
-    tbl <- build_table(l, DM)
-
-    tbl
+    build_table(l, DM)
   })
 
-  table_with_settings_srv(id = "table_with_settings", table_r = table_r)
-}
-
-if (interactive()) {
-  shinyApp(ui, server)
-}
-
-# Example with gtsummary
-library(shiny)
-library(gtsummary)
-
-ui <- bslib::page_fluid(
-  table_with_settings_ui(
-    id = "table_with_settings"
-  )
-)
-
-server <- function(input, output, session) {
-  table_r <- reactive({
+  table_r_gtsummary <- reactive({
     gtsummary::tbl_summary(mtcars)
   })
 
-  table_with_settings_srv(id = "table_with_settings", table_r = table_r)
-}
-
-if (interactive()) {
-  shinyApp(ui, server)
-}
-
-# Example with gt
-library(shiny)
-library(gt)
-
-ui <- bslib::page_fluid(
-  table_with_settings_ui(
-    id = "table_with_settings"
-  )
-)
-
-server <- function(input, output, session) {
-  table_r <- reactive({
+  table_r_gt <- reactive({
     mtcars \%>\%
       gt::gt() \%>\%
       gt::tab_header(title = "Motor Trend Car Road Tests")
   })
 
-  table_with_settings_srv(id = "table_with_settings", table_r = table_r)
+  table_with_settings_srv(id = "rtables_table", table_r = table_r_rtables)
+  table_with_settings_srv(id = "gtsummary_table", table_r = table_r_gtsummary)
+  table_with_settings_srv(id = "gt_table", table_r = table_r_gt)
 }
 
 if (interactive()) {
