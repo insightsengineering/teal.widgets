@@ -10,6 +10,7 @@ table_with_settings_deps <- function() {
   )
 }
 
+
 #' Render table object to HTML
 #'
 #' @param x The table object to render
@@ -35,14 +36,14 @@ render_table_to_html.default <- function(x, ...) {
 #' @method render_table_to_html ElementaryTable
 #' @keywords internal
 #' @noRd
-render_table_to_html.ElementaryTable <- function(x, ...) {
-  rtables::as_html(x)
-}
+render_table_to_html.ElementaryTable <- render_table_to_html_rtables
 
 #' @method render_table_to_html TableTree
 #' @keywords internal
 #' @noRd
-render_table_to_html.TableTree <- function(x, ...) {
+render_table_to_html.TableTree <- render_table_to_html_rtables
+
+render_table_to_html_rtables <- function(x, ...) {
   rtables::as_html(x)
 }
 
@@ -51,7 +52,7 @@ render_table_to_html.TableTree <- function(x, ...) {
 #' @noRd
 render_table_to_html.gtsummary <- function(x, ...) {
   gt_obj <- gtsummary::as_gt(x)
-  htmltools::HTML(gt::as_raw_html(gt_obj))
+  render_table_to_html(gt_obj)
 }
 
 #' @method render_table_to_html gt_tbl
@@ -85,8 +86,15 @@ export_table.default <- function(x, file, format, paginate = FALSE, lpp = NULL, 
 #' @method export_table ElementaryTable
 #' @keywords internal
 #' @noRd
-export_table.ElementaryTable <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
-  if (format == ".txt") {
+export_table.ElementaryTable <- export_table_rtables
+
+#' @method export_table TableTree
+#' @keywords internal
+#' @noRd
+export_table.TableTree <- export_table_rtables
+
+export_table_rtables <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
+    if (format == ".txt") {
     rtables::export_as_txt(
       x = x,
       file = file,
@@ -111,13 +119,6 @@ export_table.ElementaryTable <- function(x, file, format, paginate = FALSE, lpp 
       lpp = if (paginate) as.numeric(lpp)
     )
   }
-}
-
-#' @method export_table TableTree
-#' @keywords internal
-#' @noRd
-export_table.TableTree <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
-  export_table.ElementaryTable(x, file, format, paginate, lpp, ...)
 }
 
 #' @method export_table gtsummary
