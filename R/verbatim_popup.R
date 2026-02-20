@@ -120,7 +120,7 @@ button_click_observer <- function(click_event,
   shiny::observeEvent(
     click_event(),
     handlerExpr = {
-      mc <- req(modal_content())
+      modal_content <- req(modal_content())
       shiny::showModal(
         div(
           class = "teal-widgets button-click-observer",
@@ -135,7 +135,7 @@ button_click_observer <- function(click_event,
                   onclick = paste0("copyToClipboard('", copied_area_id, "')")
                 )
               ),
-              tags$pre(id = copied_area_id, mc),
+              tags$pre(id = copied_area_id, modal_content),
             ),
             title = modal_title,
             footer = shiny::tagList(
