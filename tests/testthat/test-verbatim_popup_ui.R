@@ -153,6 +153,7 @@ testthat::test_that(
 testthat::test_that("snapshot test for verbatim_popup_ui", {
   testthat::skip_if_not_installed("withr")
   testthat::skip_if_not_installed("shiny", minimum_version = "1.12.1")
+  testthat::skip_if_not_installed("bslib", minimum_version = "0.10")
   withr::local_seed(1)
   testthat::expect_snapshot(verbatim_popup_ui("STH", "STH2"))
 })
