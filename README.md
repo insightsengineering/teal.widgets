@@ -52,17 +52,3 @@ To understand how to use this package, please refer to the [package website](htt
 ## Getting help
 
 If you encounter a bug or you have a feature request - please file an issue. For questions, discussions and staying up to date, please use the "teal" channel in the [`pharmaverse` slack workspace](https://pharmaverse.slack.com).
-
-## Stargazers and Forkers
-
-### Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/insightsengineering/teal.widgets.svg)](https://starchart.cc/insightsengineering/teal.widgets)
-
-### Stargazers
-
-[![Stargazers repo roster for @insightsengineering/teal.widgets](http://reporoster.com/stars/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/stargazers)
-
-### Forkers
-
-[![Forkers repo roster for @insightsengineering/teal.widgets](http://reporoster.com/forks/insightsengineering/teal.widgets)](https://github.com/insightsengineering/teal.widgets/network/members)
