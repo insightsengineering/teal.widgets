@@ -1,6 +1,19 @@
 # Changelog
 
+## teal.widgets 0.6.0
+
+CRAN release: 2026-02-24
+
+#### Enhancements
+
+- Added support for `gt` and `gtsummary` object to `table_with_settings`
+  ([\#337](https://github.com/insightsengineering/teal.widgets/issues/337))
+- `gt`, `gtsummary`, `xml2` and `rvest` packages were added to
+  `Imports`.
+
 ## teal.widgets 0.5.1
+
+CRAN release: 2025-12-02
 
 #### Miscellaneous
 

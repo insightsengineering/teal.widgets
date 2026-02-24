@@ -69,6 +69,7 @@ to prefix it directly to a specific package, like
 ## Loading libraries and data
 
 ``` r
+
 library(shiny)
 library(ggplot2)
 library(teal.widgets)

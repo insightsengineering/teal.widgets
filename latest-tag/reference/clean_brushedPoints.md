@@ -29,6 +29,7 @@ A `data.frame` of selected rows.
 ## Examples
 
 ``` r
+
 brush <- list(
   mapping = list(
     x = "AGE",

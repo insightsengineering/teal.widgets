@@ -29,6 +29,7 @@ panel_group(..., id = NULL)
 ## Examples
 
 ``` r
+
 library(shiny)
 panel_group(
   panel_item(
@@ -74,15 +75,15 @@ panel_group(
 #>   `bslib::accordion_panel()` functions instead. This function will be removed
 #>   in the next release.
 #> <div class="container-fluid">
-#>   <div id="bslib-accordion-5974" class="accordion" data-require-bs-version="5" data-require-bs-caller="accordion()">
+#>   <div id="bslib-accordion-5995" class="accordion" data-require-bs-version="5" data-require-bs-caller="accordion()">
 #>     <div class="accordion-item" data-value="Display">
 #>       <div class="accordion-header">
-#>         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-8231" aria-controls="bslib-accordion-panel-8231" aria-expanded="true">
+#>         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-3572" aria-controls="bslib-accordion-panel-3572" aria-expanded="true">
 #>           <div class="accordion-icon"></div>
 #>           <div class="accordion-title">Display</div>
 #>         </button>
 #>       </div>
-#>       <div id="bslib-accordion-panel-8231" class="accordion-collapse collapse show">
+#>       <div id="bslib-accordion-panel-3572" class="accordion-collapse collapse show">
 #>         <div class="accordion-body" open="TRUE">
 #>           <div id="check" class="form-group shiny-input-checkboxgroup shiny-input-container" role="group" aria-labelledby="check-label">
 #>             <label class="control-label" id="check-label" for="check">Tables display</label>
@@ -129,12 +130,12 @@ panel_group(
 #>     </div>
 #>     <div class="accordion-item" data-value="Pre-processing">
 #>       <div class="accordion-header">
-#>         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-5103" aria-expanded="false" aria-controls="bslib-accordion-panel-5103">
+#>         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-8156" aria-expanded="false" aria-controls="bslib-accordion-panel-8156">
 #>           <div class="accordion-icon"></div>
 #>           <div class="accordion-title">Pre-processing</div>
 #>         </button>
 #>       </div>
-#>       <div id="bslib-accordion-panel-5103" class="accordion-collapse collapse">
+#>       <div id="bslib-accordion-panel-8156" class="accordion-collapse collapse">
 #>         <div class="accordion-body" open="FALSE">
 #>           <div id="filtering" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="filtering-label">
 #>             <label class="control-label" id="filtering-label" for="filtering">What to filter</label>

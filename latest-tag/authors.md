@@ -21,17 +21,17 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/insightsengineering/teal.widgets/blob/v0.5.1/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/insightsengineering/teal.widgets/blob/v0.6.0/DESCRIPTION)
 
 Kaledkowski D, Rucki P, Hallal M, Burkoff N, Nasinski M, Pagacz K, Zhao
-J (2025). *teal.widgets: 'shiny' Widgets for 'teal' Applications*. R
-package version 0.5.1,
+J (2026). *teal.widgets: 'shiny' Widgets for 'teal' Applications*. R
+package version 0.6.0,
 <https://insightsengineering.github.io/teal.widgets/>.
 
     @Manual{,
       title = {teal.widgets: 'shiny' Widgets for 'teal' Applications},
       author = {Dawid Kaledkowski and Pawel Rucki and Mahmoud Hallal and Nikolas Burkoff and Maciej Nasinski and Konrad Pagacz and Junlue Zhao},
-      year = {2025},
-      note = {R package version 0.5.1},
+      year = {2026},
+      note = {R package version 0.6.0},
       url = {https://insightsengineering.github.io/teal.widgets/},
     }

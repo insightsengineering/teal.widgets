@@ -29,6 +29,7 @@ window. For example, this is useful for displaying wide tables.
 ## Examples
 
 ``` r
+
 white_small_well(shiny::htmlOutput("summary"))
 #> <div class="well well-sm" style="background-color: white;">
 #>   <div id="summary" class="shiny-html-output"></div>
