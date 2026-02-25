@@ -1,10 +1,12 @@
-# teal.widgets 0.5.1.9006
+# teal.widgets 0.6.0.9000
 
-# teal.widgets 0.5.1
+# teal.widgets 0.6.0
 
 ### Enhancements
 * Added support for `gt` and `gtsummary` object to `table_with_settings` (#337)
 * `gt`, `gtsummary`, `xml2` and `rvest` packages were added to `Imports`.
+
+# teal.widgets 0.5.1
 
 ### Miscellaneous
 * Improve unit test coverage (#318).
