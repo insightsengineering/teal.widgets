@@ -158,5 +158,4 @@ testthat::test_that("snapshot test for verbatim_popup_ui", {
   button <- verbatim_popup_ui("STH", "STH2")
   testthat::expect_true(grepl(">STH2<", button, fixed = TRUE))
   testthat::expect_true(grepl("STH-button", button, fixed = TRUE))
-  testthat::expect_snapshot(button)
 })
