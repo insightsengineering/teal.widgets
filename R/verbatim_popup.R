@@ -75,13 +75,12 @@ verbatim_popup_srv <- function(id, verbatim_content, title, style = FALSE, disab
   checkmate::assert_class(disabled, classes = "reactive")
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
-    modal_content <- format_content(verbatim_content, style)
     button_click_observer(
       click_event = shiny::reactive(input$button),
       copy_button_id = ns("copy_button"),
       copied_area_id = ns("verbatim_content"),
       modal_title = title,
-      modal_content = modal_content,
+      modal_content = format_content(verbatim_content, style),
       disabled = disabled
     )
   })
@@ -121,7 +120,7 @@ button_click_observer <- function(click_event,
   shiny::observeEvent(
     click_event(),
     handlerExpr = {
-      req(modal_content())
+      modal_content <- req(modal_content())
       shiny::showModal(
         div(
           class = "teal-widgets button-click-observer",
@@ -136,7 +135,7 @@ button_click_observer <- function(click_event,
                   onclick = paste0("copyToClipboard('", copied_area_id, "')")
                 )
               ),
-              tags$pre(id = copied_area_id, modal_content()),
+              tags$pre(id = copied_area_id, modal_content),
             ),
             title = modal_title,
             footer = shiny::tagList(
