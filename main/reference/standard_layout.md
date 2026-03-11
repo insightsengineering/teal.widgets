@@ -19,27 +19,27 @@ standard_layout(
 
 - output:
 
-  (`shiny.tag`)  
+  (`shiny.tag`)\
   object with the output element (table, plot, listing) such as for
   example returned by
   [`shiny::plotOutput()`](https://rdrr.io/pkg/shiny/man/plotOutput.html).
 
 - encoding:
 
-  (`shiny.tag`)  
+  (`shiny.tag`)\
   object containing the encoding elements. If this element is `NULL`
   then no encoding side panel on the right is created.
 
 - forms:
 
-  (`tagList`)  
+  (`tagList`)\
   for example
   [`shiny::actionButton()`](https://rdrr.io/pkg/shiny/man/actionButton.html)
   that are placed below the encodings panel
 
 - pre_output:
 
-  (`shiny.tag`) optional,  
+  (`shiny.tag`) optional,\
   with text placed before the output to put the output into context. For
   example a title.
 
@@ -94,19 +94,19 @@ standard_layout(
 #>           <div class="standard-layout-post-output"></div>
 #>         </div>
 #>       </div>
-#>       <aside id="bslib-sidebar-4661" class="sidebar" hidden>
+#>       <aside id="bslib-sidebar-5610" class="sidebar" hidden>
 #>         <div class="sidebar-content bslib-gap-spacing">
 #>           <div>
 #>             <div>
 #>               <label class="text-primary">Encodings</label>
 #>               <div class="accordion-item" data-value="Tests">
 #>                 <div class="accordion-header">
-#>                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-8311" aria-expanded="false" aria-controls="bslib-accordion-panel-8311">
+#>                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-7522" aria-expanded="false" aria-controls="bslib-accordion-panel-7522">
 #>                     <div class="accordion-icon"></div>
 #>                     <div class="accordion-title">Tests</div>
 #>                   </button>
 #>                 </div>
-#>                 <div id="bslib-accordion-panel-8311" class="accordion-collapse collapse">
+#>                 <div id="bslib-accordion-panel-7522" class="accordion-collapse collapse">
 #>                   <div class="accordion-body" open="FALSE">
 #>                     <div>
 #>                       <script>
@@ -142,7 +142,7 @@ standard_layout(
 #>           </div>
 #>         </div>
 #>       </aside>
-#>       <button class="collapse-toggle" type="button" title="Toggle sidebar" aria-expanded="true" aria-controls="bslib-sidebar-4661"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-chevron-left collapse-icon" style="height:;width:;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path></svg></button>
+#>       <button class="collapse-toggle" type="button" title="Toggle sidebar" aria-expanded="true" aria-controls="bslib-sidebar-5610"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-chevron-left collapse-icon" style="height:;width:;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path></svg></button>
 #>       <script data-bslib-sidebar-init>bslib.Sidebar.initCollapsibleAll()</script>
 #>     </div>
 #>   </div>

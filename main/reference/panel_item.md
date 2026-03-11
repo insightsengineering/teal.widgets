@@ -1,6 +1,6 @@
 # Panel item widget
 
-**\[deprecated\]**  
+**\[deprecated\]**\
 Designed to be grouped using
 [`panel_group`](https://insightsengineering.github.io/teal.widgets/reference/panel_group.md)
 element. Used to handle `shiny` inputs in the encoding panel.
@@ -15,7 +15,7 @@ panel_item(title, ..., collapsed = TRUE, input_id = NULL)
 
 - title:
 
-  (`character`)  
+  (`character`)\
   title of panel
 
 - ...:
@@ -24,12 +24,12 @@ panel_item(title, ..., collapsed = TRUE, input_id = NULL)
 
 - collapsed:
 
-  (`logical`) optional,  
+  (`logical`) optional,\
   whether to initially collapse panel
 
 - input_id:
 
-  (`character`) optional  
+  (`character`) optional\
   name of the panel item element. If supplied, this will register a
   shiny input variable that indicates whether the panel item is open or
   collapsed and is accessed with `input$input_id`.
@@ -61,12 +61,12 @@ panel_item(
 )
 #> <div class="accordion-item" data-value="Display">
 #>   <div class="accordion-header">
-#>     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-1802" aria-expanded="false" aria-controls="bslib-accordion-panel-1802">
+#>     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-5064" aria-expanded="false" aria-controls="bslib-accordion-panel-5064">
 #>       <div class="accordion-icon"></div>
 #>       <div class="accordion-title">Display</div>
 #>     </button>
 #>   </div>
-#>   <div id="bslib-accordion-panel-1802" class="accordion-collapse collapse">
+#>   <div id="bslib-accordion-panel-5064" class="accordion-collapse collapse">
 #>     <div class="accordion-body" open="TRUE">
 #>       <div id="check" class="form-group shiny-input-checkboxgroup shiny-input-container" role="group" aria-labelledby="check-label">
 #>         <label class="control-label" id="check-label" for="check">Tables display</label>

@@ -20,7 +20,7 @@ resolve_ggplot2_args(
 
 - user_plot:
 
-  (`ggplot2_args`)  
+  (`ggplot2_args`)\
   end user setup for theme and labs in the specific plot. Created with
   the
   [`ggplot2_args()`](https://insightsengineering.github.io/teal.widgets/reference/ggplot2_args.md)
@@ -28,14 +28,14 @@ resolve_ggplot2_args(
 
 - user_default:
 
-  (`ggplot2_args`)  
+  (`ggplot2_args`)\
   end user setup for module default theme and labs. Created with the
   [`ggplot2_args()`](https://insightsengineering.github.io/teal.widgets/reference/ggplot2_args.md)
   function. The `NULL` value is supported.
 
 - module_plot:
 
-  (`ggplot2_args`)  
+  (`ggplot2_args`)\
   module creator setup for theme and labs in the specific plot. Created
   with the
   [`ggplot2_args()`](https://insightsengineering.github.io/teal.widgets/reference/ggplot2_args.md)
@@ -43,7 +43,7 @@ resolve_ggplot2_args(
 
 - app_default:
 
-  (`ggplot2_args`)  
+  (`ggplot2_args`)\
   Application level setting. Can be `NULL`.
 
 ## Value

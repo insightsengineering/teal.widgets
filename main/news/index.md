@@ -1,5 +1,7 @@
 # Changelog
 
+## teal.widgets 0.6.0.9001
+
 ## teal.widgets 0.6.0
 
 CRAN release: 2026-02-24

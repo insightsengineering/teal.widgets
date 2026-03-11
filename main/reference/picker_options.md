@@ -12,10 +12,10 @@ picker_options(choices)
 
 - choices:
 
-  (`choices_labeled` or `character`)  
+  (`choices_labeled` or `character`)\
   choices vector
 
 ## Value
 
-(`list`)  
+(`list`)\
 to be passed as `choicesOpt` argument.

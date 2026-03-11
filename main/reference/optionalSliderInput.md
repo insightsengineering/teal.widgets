@@ -33,7 +33,7 @@ optionalSliderInput(inputId, label, min, max, value, label_help = NULL, ...)
 
 - label_help:
 
-  (`shiny.tag`) optional  
+  (`shiny.tag`) optional\
   object of class `shiny.tag`, e.g. an object returned by
   [`shiny::helpText()`](https://rdrr.io/pkg/shiny/man/helpText.html)
 

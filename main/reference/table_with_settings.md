@@ -21,12 +21,12 @@ table_with_settings_srv(id, table_r, show_hide_signal = reactive(TRUE))
 
 - ...:
 
-  (`character`)  
+  (`character`)\
   Useful for providing additional HTML classes for the output tag.
 
 - table_r:
 
-  (`reactive`)  
+  (`reactive`)\
   reactive expression that yields a table object. Supported types:
 
   - `rtables` objects (`ElementaryTable` or `TableTree`)
@@ -37,7 +37,7 @@ table_with_settings_srv(id, table_r, show_hide_signal = reactive(TRUE))
 
 - show_hide_signal:
 
-  (`reactive logical`) optional  
+  (`reactive logical`) optional\
   mechanism to allow modules which call this module to show/hide the
   table_with_settings UI.
 

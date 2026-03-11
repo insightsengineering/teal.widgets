@@ -12,12 +12,12 @@ extract_choices_labels(choices, values = NULL)
 
 - choices:
 
-  (`list` or `vector`)  
+  (`list` or `vector`)\
   select choices
 
 - values:
 
-  optional  
+  optional\
   choices subset for which labels should be extracted, `NULL` for all
   choices.
 

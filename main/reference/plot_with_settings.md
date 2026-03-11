@@ -30,7 +30,7 @@ plot_with_settings_srv(
 
 - plot_r:
 
-  (`reactive` or `function`)  
+  (`reactive` or `function`)\
   `reactive` expression or a simple `function` to draw a plot. A simple
   `function` is needed e.g. for base plots like `plot(1)` as the output
   can not be caught when downloading. Take into account that simple
@@ -39,13 +39,13 @@ plot_with_settings_srv(
 
 - height:
 
-  (`numeric`) optional  
+  (`numeric`) optional\
   vector with three elements c(VAL, MIN, MAX), where VAL is the starting
   value of the slider in the main and expanded plot display.
 
 - width:
 
-  (`numeric`) optional  
+  (`numeric`) optional\
   vector with three elements `c(VAL, MIN, MAX)`, where VAL is the
   starting value of the slider in the main and expanded plot display;
   `NULL` for default display.
@@ -57,21 +57,21 @@ plot_with_settings_srv(
 
 - brushing:
 
-  (`logical`) optional  
+  (`logical`) optional\
   mechanism to enable / disable brushing on the main plot. All the
   brushing data is stored as a reactive object in the `"brush"` element
   of returned list. See the example for details.
 
 - clicking:
 
-  (`logical`)  
+  (`logical`)\
   a mechanism to enable / disable clicking on data points on the main
   plot. All the clicking data is stored as a reactive object in the
   `"click"` element of returned list. See the example for details.
 
 - dblclicking:
 
-  (`logical`) optional  
+  (`logical`) optional\
   mechanism to enable / disable double-clicking on data points on the
   main plot. All the double clicking data is stored as a reactive object
   in the the `"dblclick"` element of returned list. See the example for
@@ -79,14 +79,14 @@ plot_with_settings_srv(
 
 - hovering:
 
-  (`logical(1)`) optional  
+  (`logical(1)`) optional\
   mechanism to enable / disable hovering over data points on the main
   plot. All the hovering data is stored as a reactive object in the
   `"hover"` element of returned list. See the example for details.
 
 - graph_align:
 
-  (`character(1)`) optional,  
+  (`character(1)`) optional,\
   one of `"left"` (default), `"center"`, `"right"` or `"justify"`. The
   alignment of the graph on the main page.
 

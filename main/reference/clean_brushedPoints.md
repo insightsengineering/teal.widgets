@@ -14,12 +14,12 @@ clean_brushedPoints(data, brush)
 
 - data:
 
-  (`data.frame`)  
+  (`data.frame`)\
   A data.frame from which to select rows.
 
 - brush:
 
-  (`list`)  
+  (`list`)\
   The data from a brush e.g. `input$plot_brush`.
 
 ## Value

@@ -20,7 +20,7 @@ resolve_basic_table_args(
 
 - user_table:
 
-  (`basic_table_args`)  
+  (`basic_table_args`)\
   end user setup for
   [`rtables::basic_table()`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)
   of a specific table. Created with the
@@ -29,7 +29,7 @@ resolve_basic_table_args(
 
 - user_default:
 
-  (`basic_table_args`)  
+  (`basic_table_args`)\
   end user default setup for
   [`rtables::basic_table()`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)
   of a specific table. Created with the
@@ -38,7 +38,7 @@ resolve_basic_table_args(
 
 - module_table:
 
-  (`ggplot2_args`)  
+  (`ggplot2_args`)\
   module creator setup for
   [`rtables::basic_table()`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)
   of a specific table. Created with the
@@ -47,7 +47,7 @@ resolve_basic_table_args(
 
 - app_default:
 
-  (`basic_table_args`)  
+  (`basic_table_args`)\
   Application level setting. Can be `NULL`.
 
 ## Value

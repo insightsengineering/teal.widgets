@@ -30,7 +30,7 @@ optionalSliderInputValMinMax(
 
 - value_min_max:
 
-  (`numeric(1)` or `numeric(3)`)  
+  (`numeric(1)` or `numeric(3)`)\
   If of length 1 then the value gets set to that number and the
   `sliderInput` will be hidden. Otherwise, if it is of length three the
   three elements will map to `value`, `min` and `max` of the
@@ -39,7 +39,7 @@ optionalSliderInputValMinMax(
 
 - label_help:
 
-  (`shiny.tag`) optional  
+  (`shiny.tag`) optional\
   object of class `shiny.tag`, e.g. an object returned by
   [`shiny::helpText()`](https://rdrr.io/pkg/shiny/man/helpText.html)
 

@@ -12,10 +12,10 @@ variable_type_icons(var_type)
 
 - var_type:
 
-  (`character`)  
+  (`character`)\
   of R internal types (classes).
 
 ## Value
 
-(`character`)  
+(`character`)\
 vector of HTML icons corresponding to data type in each column.
