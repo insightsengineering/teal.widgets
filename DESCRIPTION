@@ -26,6 +26,7 @@ Imports:
     checkmate (>= 2.1.0),
     ggplot2 (>= 3.4.3),
     graphics,
+    grid,
     grDevices,
     gt (>= 1.3.0),
     gtsummary (>= 2.5.0),
