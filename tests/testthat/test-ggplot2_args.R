@@ -209,54 +209,49 @@ testthat::test_that("parse_ggplot2_args handles evaluated element_text with depa
   testthat::expect_identical(result$text$size, 20)
 })
 
-testthat::test_that("to_call passes through already-quoted calls unchanged", {
-  q <- quote(ggplot2::element_text(size = 20))
-  testthat::expect_identical(teal.widgets:::to_call(q), q)
+testthat::test_that("parse_ggplot2_args preserves already-quoted theme calls unchanged", {
+  parsed <- parse_ggplot2_args(
+    ggplot2_args(theme = list(text = quote(ggplot2::element_text(size = 20))))
+  )
+  testthat::expect_identical(
+    parsed$theme,
+    quote(ggplot2::theme(text = ggplot2::element_text(size = 20)))
+  )
 })
 
-testthat::test_that("to_call passes through atomic values unchanged", {
-  testthat::expect_identical(teal.widgets:::to_call("red"), "red")
-  testthat::expect_identical(teal.widgets:::to_call(42), 42)
-  testthat::expect_identical(teal.widgets:::to_call(TRUE), TRUE)
-  testthat::expect_null(teal.widgets:::to_call(NULL))
+testthat::test_that("parse_ggplot2_args handles element_rect with deparse round-trip", {
+  parsed <- parse_ggplot2_args(
+    ggplot2_args(theme = list(panel.background = ggplot2::element_rect(fill = "blue", colour = "black")))
+  )
+  result <- eval(parse(text = deparse(parsed$theme)))
+  testthat::expect_identical(result$panel.background$fill, "blue")
+  testthat::expect_identical(result$panel.background$colour, "black")
 })
 
-testthat::test_that("to_call reconstructs element_text", {
-  result <- teal.widgets:::to_call(ggplot2::element_text(size = 20))
-  testthat::expect_true(is.call(result))
-  # Verify round-trip
-  evaled <- eval(result)
-  testthat::expect_identical(evaled$size, 20)
+testthat::test_that("parse_ggplot2_args handles element_text with custom margin via round-trip", {
+  parsed <- parse_ggplot2_args(
+    ggplot2_args(
+      theme = list(title = ggplot2::element_text(size = 14, margin = ggplot2::margin(5, 10, 5, 10)))
+    )
+  )
+  result <- eval(parse(text = deparse(parsed$theme)))
+  testthat::expect_identical(result$title$size, 14)
+  testthat::expect_equal(as.numeric(result$title$margin), c(5, 10, 5, 10))
 })
 
-testthat::test_that("to_call reconstructs element_rect", {
-  result <- teal.widgets:::to_call(ggplot2::element_rect(fill = "blue", colour = "black"))
-  testthat::expect_true(is.call(result))
-  evaled <- eval(result)
-  testthat::expect_identical(evaled$fill, "blue")
-  testthat::expect_identical(evaled$colour, "black")
+testthat::test_that("parse_ggplot2_args handles rel() in theme via round-trip", {
+  parsed <- parse_ggplot2_args(
+    ggplot2_args(theme = list(text = ggplot2::element_text(size = ggplot2::rel(1.5))))
+  )
+  result <- eval(parse(text = deparse(parsed$theme)))
+  testthat::expect_identical(result$text$size, ggplot2::rel(1.5))
 })
 
-testthat::test_that("to_call reconstructs element_text with custom margin via round-trip", {
-  original <- ggplot2::element_text(size = 14, margin = ggplot2::margin(5, 10, 5, 10))
-  result <- teal.widgets:::to_call(original)
-  testthat::expect_true(is.call(result))
-  deparsed <- deparse(result)
-  evaled <- eval(parse(text = deparsed))
-  testthat::expect_identical(evaled$size, 14)
-  testthat::expect_equal(as.numeric(evaled$margin), c(5, 10, 5, 10))
-})
-
-testthat::test_that("to_call reconstructs rel()", {
-  result <- teal.widgets:::to_call(ggplot2::rel(1.5))
-  testthat::expect_true(is.call(result))
-  testthat::expect_identical(eval(result), ggplot2::rel(1.5))
-})
-
-testthat::test_that("to_call warns for unrecognized non-atomic objects", {
-  # An arbitrary list that isn't a ggplot2 element
+testthat::test_that("parse_ggplot2_args warns for unrecognized non-atomic theme objects", {
   testthat::expect_warning(
-    teal.widgets:::to_call(structure(list(), class = "some_custom_thing")),
+    parse_ggplot2_args(
+      ggplot2_args(theme = list(text = structure(list(), class = "some_custom_thing")))
+    ),
     "could not be converted to a call"
   )
 })
