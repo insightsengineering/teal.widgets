@@ -216,44 +216,44 @@ to_call <- function(x) {
 
 #' @keywords internal
 element_to_call <- function(x) {
-  cls <- sub("^.*::", "", class(x)[1])
-  fn <- str2lang(paste0("ggplot2::", cls))
-  constructor <- utils::getFromNamespace(cls, "ggplot2")
+  element_class <- sub("^.*::", "", class(x)[1])
+  fn_symbol <- str2lang(paste0("ggplot2::", element_class))
+  constructor <- utils::getFromNamespace(element_class, "ggplot2")
   default_obj <- tryCatch(constructor(), error = function(e) NULL)
   # "color" is an alias for "colour" in ggplot2
-  param_names <- setdiff(names(formals(constructor)), c("...", "inherit.blank", "color"))
+  param_names <- setdiff(names(formals(constructor)), c("...", "color"))
 
   args <- list()
-  for (nm in param_names) {
-    val <- tryCatch(x[[nm]], error = function(e) NULL)
-    if (is.null(val)) next
+  for (param_name in param_names) {
+    value <- tryCatch(x[[param_name]], error = function(e) NULL)
+    if (is.null(value)) next
     if (!is.null(default_obj)) {
-      default_val <- tryCatch(default_obj[[nm]], error = function(e) NULL)
-      if (identical(val, default_val)) next
+      default_value <- tryCatch(default_obj[[param_name]], error = function(e) NULL)
+      if (identical(value, default_value)) next
     }
-    args[[nm]] <- to_call(val)
+    args[[param_name]] <- to_call(value)
   }
-  as.call(c(list(fn), args))
+  as.call(c(list(fn_symbol), args))
 }
 
 #' @keywords internal
 margin_to_call <- function(x) {
-  vals <- as.numeric(x)
-  u <- grid::unitType(x)[1]
+  values <- as.numeric(x)
+  unit_type <- grid::unitType(x)[1]
   default_margin <- ggplot2::margin()
-  if (identical(vals, as.numeric(default_margin)) && identical(u, grid::unitType(default_margin)[1])) {
+  if (identical(values, as.numeric(default_margin)) && identical(unit_type, grid::unitType(default_margin)[1])) {
     return(quote(ggplot2::margin()))
   }
-  as.call(list(str2lang("ggplot2::margin"), vals[1], vals[2], vals[3], vals[4], u))
+  as.call(list(str2lang("ggplot2::margin"), values[1], values[2], values[3], values[4], unit_type))
 }
 
 #' @keywords internal
 unit_to_call <- function(x) {
-  vals <- as.numeric(x)
-  u <- grid::unitType(x)
-  if (length(vals) == 1L) {
-    as.call(list(str2lang("grid::unit"), vals, u[1]))
+  values <- as.numeric(x)
+  unit_type <- grid::unitType(x)
+  if (length(values) == 1L) {
+    as.call(list(str2lang("grid::unit"), values, unit_type[1]))
   } else {
-    as.call(list(str2lang("grid::unit"), vals, u))
+    as.call(list(str2lang("grid::unit"), values, unit_type))
   }
 }
