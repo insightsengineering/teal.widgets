@@ -1,9 +1,22 @@
-withr::local_options( # Set longer timeouts for slow tests
+withr::local_options(
   list(
-    shinytest2.timeout = 4 * 30 * 1000,
-    shinytest2.load_timeout = 4 * 60 * 1000,
-    shinytest2.duration = 2 * 0.5 * 1000
-  )
+    shinytest2.timeout = max(
+      getOption("shinytest2.timeout", default = 0),
+      as.numeric(Sys.getenv("SHINYTEST2_TIMEOUT", unset = 0)),
+      30 * 1000
+    ),
+    shinytest2.load_timeout = max(
+      getOption("shinytest2.load_timeout", default = 0),
+      as.numeric(Sys.getenv("SHINYTEST2_LOAD_TIMEOUT", unset = 0)),
+      20 * 10000
+    ),
+    shinytest2.duration = max(
+      getOption("shinytest2.duration", default = 0),
+      as.numeric(Sys.getenv("SHINYTEST2_DURATION", unset = 0)),
+      0.5 * 1000
+    )
+  ),
+  .local_envir = testthat::test_env()
 )
 
 #' Plot with settings app
@@ -321,10 +334,8 @@ testthat::test_that(
     app_driver$wait_for_idle()
     app_driver$wait_for_js(click_resize_popup)
     app_driver$wait_for_idle()
-    app_driver$set_inputs(`plot_with_settings-height` = 1000, timeout_ = 10000)
-    app_driver$set_inputs(
-      `plot_with_settings-width_resize_switch` = 350, timeout_ = 10000
-    )
+    app_driver$set_inputs(`plot_with_settings-height` = 1000)
+    app_driver$set_inputs(`plot_with_settings-width_resize_switch` = 350)
 
     testthat::expect_null(
       app_driver$get_html(".shiny-output-error-validation"),
@@ -386,8 +397,8 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver$wait_for_js(click_resize_popup)
   app_driver$wait_for_idle()
 
-  app_driver$set_inputs(`plot_with_settings-height` = 1000, timeout_ = 10000)
-  app_driver$set_inputs(`plot_with_settings-width` = 350, timeout_ = 10000)
+  app_driver$set_inputs(`plot_with_settings-height` = 1000)
+  app_driver$set_inputs(`plot_with_settings-width` = 350)
   app_driver$wait_for_idle()
   values_resized <- app_driver$get_values()
 
