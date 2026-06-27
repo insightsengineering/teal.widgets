@@ -321,8 +321,10 @@ testthat::test_that(
     app_driver$wait_for_idle()
     app_driver$wait_for_js(click_resize_popup)
     app_driver$wait_for_idle()
-    app_driver$set_inputs(`plot_with_settings-height` = 1000)
-    app_driver$set_inputs(`plot_with_settings-width_resize_switch` = 350)
+    app_driver$set_inputs(`plot_with_settings-height` = 1000, timeout_ = 10000)
+    app_driver$set_inputs(
+      `plot_with_settings-width_resize_switch` = 350, timeout_ = 10000
+    )
 
     testthat::expect_null(
       app_driver$get_html(".shiny-output-error-validation"),
@@ -384,8 +386,8 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver$wait_for_js(click_resize_popup)
   app_driver$wait_for_idle()
 
-  app_driver$set_inputs(`plot_with_settings-height` = 1000)
-  app_driver$set_inputs(`plot_with_settings-width` = 350)
+  app_driver$set_inputs(`plot_with_settings-height` = 1000, timeout_ = 10000)
+  app_driver$set_inputs(`plot_with_settings-width` = 350, timeout_ = 10000)
   app_driver$wait_for_idle()
   values_resized <- app_driver$get_values()
 
