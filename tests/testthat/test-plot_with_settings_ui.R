@@ -398,6 +398,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
   app_driver$wait_for_idle()
 
   app_driver$set_inputs(`plot_with_settings-height` = 1000)
+  app_driver$wait_for_idle()
   app_driver$set_inputs(`plot_with_settings-width` = 350)
   app_driver$wait_for_idle()
   values_resized <- app_driver$get_values()
@@ -471,7 +472,9 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
   )
 
   app_driver$set_inputs(`plot_with_settings-height` = 1000)
+  app_driver$wait_for_idle()
   app_driver$set_inputs(`plot_with_settings-width` = 350)
+  app_driver$wait_for_idle()
 
   testthat::expect_equal(
     get_active_module_pws_output(app_driver, pws = "plot_main", attr = "width"),
@@ -506,7 +509,9 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: scrollbar appears whe
   app_driver$wait_for_idle()
 
   app_driver$set_inputs(`plot_with_settings-height` = 10000)
+  app_driver$wait_for_idle()
   app_driver$set_inputs(`plot_with_settings-width` = 350)
+  app_driver$wait_for_idle()
   scrollable <- is_scrollable(app_driver, ".card-body.html-fill-container")
   testthat::expect_true(scrollable$any)
   testthat::expect_true(scrollable$vertical)
