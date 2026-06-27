@@ -68,7 +68,17 @@ app_driver_pws <- function() {
 }
 
 # JS code to click the resize button popup.
-click_resize_popup <- popover_action_js("i.fas.fa-maximize[data-bs-toggle='popover']", action = "show")
+click_resize_popup <- popover_action_js(
+  "i.fas.fa-maximize[data-bs-toggle='popover']",
+  action = "show"
+)
+
+# JS condition that resolves once the slider_ui content has been rendered.
+slider_ui_rendered_js <- paste0(
+  "document.getElementById('plot_with_settings-slider_ui')",
+  " && ",
+  "document.getElementById('plot_with_settings-slider_ui').children.length > 0"
+)
 
 # JS code to click the expand button popup.
 click_expand_popup <- click_button_js(
@@ -334,7 +344,7 @@ testthat::test_that(
     app_driver$wait_for_idle()
     app_driver$wait_for_js(click_resize_popup)
     app_driver$wait_for_js(
-      "document.getElementById('plot_with_settings-height') !== null"
+      "document.getElementById('plot_with_settings-slider_ui') && document.getElementById('plot_with_settings-slider_ui').children.length > 0"
     )
     app_driver$set_inputs(`plot_with_settings-height` = 1000)
     app_driver$set_inputs(`plot_with_settings-width_resize_switch` = 350)
@@ -397,9 +407,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
     400L
   )
   app_driver$wait_for_js(click_resize_popup)
-  app_driver$wait_for_js(
-    "document.getElementById('plot_with_settings-height') !== null"
-  )
+  app_driver$wait_for_js(slider_ui_rendered_js)
 
   app_driver$set_inputs(`plot_with_settings-height` = 1000)
   app_driver$wait_for_idle()
@@ -461,9 +469,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
   app_driver$wait_for_idle()
 
   app_driver$wait_for_js(click_resize_popup)
-  app_driver$wait_for_js(
-    "document.getElementById('plot_with_settings-height') !== null"
-  )
+  app_driver$wait_for_js(slider_ui_rendered_js)
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_main", attr = "src")
 
@@ -512,9 +518,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: scrollbar appears whe
   app_driver$wait_for_js(click_expand_popup)
   app_driver$wait_for_idle()
   app_driver$wait_for_js(click_resize_popup)
-  app_driver$wait_for_js(
-    "document.getElementById('plot_with_settings-height') !== null"
-  )
+  app_driver$wait_for_js(slider_ui_rendered_js)
 
   app_driver$set_inputs(`plot_with_settings-height` = 10000)
   app_driver$wait_for_idle()
