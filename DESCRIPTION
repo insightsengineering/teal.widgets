@@ -1,7 +1,7 @@
 Package: teal.widgets
 Title: 'shiny' Widgets for 'teal' Applications
-Version: 0.6.0.9001
-Date: 2026-03-11
+Version: 0.6.0.9002
+Date: 2026-06-29
 Authors@R: c(
     person("Dawid", "Kaledkowski", , "dawid.kaledkowski@roche.com", role = c("aut", "cre")),
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = "aut"),
@@ -61,9 +61,9 @@ Config/Needs/verdepcheck: rstudio/bslib, mllg/checkmate,
     rstudio/rmarkdown, rstudio/shinytest2, rstudio/shinyvalidate,
     r-lib/testthat, r-lib/withr
 Config/Needs/website: insightsengineering/nesttemplate
+Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-Config/roxygen2/version: 8.0.0
