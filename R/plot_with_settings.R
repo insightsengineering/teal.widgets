@@ -33,6 +33,8 @@ plot_with_settings_ui <- function(id) {
               bslib::popover(
                 id = ns("expbut"),
                 trigger = icon("maximize"),
+                # This should be removed once https://github.com/rstudio/bslib/issues/1326 is fixed
+                tags$span(HTML("&nbsp;"), style = "visibility: hidden; height: 0px; display: block;"),
                 uiOutput(ns("slider_ui")),
                 uiOutput(ns("width_warning"))
               )
