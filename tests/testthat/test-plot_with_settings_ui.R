@@ -344,7 +344,10 @@ testthat::test_that(
     app_driver$wait_for_idle()
     app_driver$wait_for_js(click_resize_popup)
     app_driver$wait_for_js(
-      "document.getElementById('plot_with_settings-slider_ui') && document.getElementById('plot_with_settings-slider_ui').children.length > 0"
+      paste0(
+        "document.getElementById('plot_with_settings-slider_ui') && ",
+        "document.getElementById('plot_with_settings-slider_ui').children.length > 0"
+      )
     )
     app_driver$set_inputs(`plot_with_settings-height` = 1000)
     app_driver$set_inputs(`plot_with_settings-width_resize_switch` = 350)
