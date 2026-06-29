@@ -476,6 +476,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_main", attr = "src")
 
+  app_driver$wait_for_idle(duration = 1500)
   testthat::expect_equal(
     get_active_module_pws_output(app_driver, pws = "plot_main", attr = "width"),
     "500"
