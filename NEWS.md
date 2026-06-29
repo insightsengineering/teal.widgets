@@ -1,5 +1,8 @@
 # teal.widgets 0.6.0.9001
 
+### Bug fixes
+* Fixed problem with resize plot popup that does not render content with newer version of shiny (#350).
+
 # teal.widgets 0.6.0
 
 ### Enhancements
