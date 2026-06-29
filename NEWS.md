@@ -1,10 +1,11 @@
 # teal.widgets 0.6.1
 
-* Fix snapshot failure during R CMD Check (#341).
-* Update maintainer.
-
 ### Bug fixes
+* Fix snapshot failure during R CMD Check (#341).
 * Fixed problem with resize plot popup that does not render content with newer version of shiny (#350).
+
+### Miscellaneous
+* Update maintainer.
 
 # teal.widgets 0.6.0
 
