@@ -50,5 +50,5 @@ nrow(clean_brushedPoints(data, brush))
 #> [1] 12
 data$AGE[1:10] <- NA
 nrow(clean_brushedPoints(data, brush))
-#> [1] 8
+#> [1] 5
 ```

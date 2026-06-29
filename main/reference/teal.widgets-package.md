@@ -21,6 +21,8 @@ Useful links:
 
 Authors:
 
+- Dawid Kaledkowski <dawid.kaledkowski@roche.com>
+
 - Pawel Rucki <pawel.rucki@roche.com>
 
 - Mahmoud Hallal <mahmoud.hallal@roche.com>
