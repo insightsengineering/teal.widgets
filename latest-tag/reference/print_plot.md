@@ -12,12 +12,12 @@ print_plot(plot, plot_type)
 
 - plot:
 
-  (`reactive`)  
+  (`reactive`)\
   reactive expression to draw a plot
 
 - plot_type:
 
-  (`reactive`)  
+  (`reactive`)\
   reactive plot type (`gg`, `trel`, `grob`, `other`)
 
 ## Value

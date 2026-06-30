@@ -14,12 +14,12 @@ clean_brushedPoints(data, brush)
 
 - data:
 
-  (`data.frame`)  
+  (`data.frame`)\
   A data.frame from which to select rows.
 
 - brush:
 
-  (`list`)  
+  (`list`)\
   The data from a brush e.g. `input$plot_brush`.
 
 ## Value
@@ -50,5 +50,5 @@ nrow(clean_brushedPoints(data, brush))
 #> [1] 12
 data$AGE[1:10] <- NA
 nrow(clean_brushedPoints(data, brush))
-#> [1] 8
+#> [1] 5
 ```
