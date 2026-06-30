@@ -10,7 +10,7 @@ Authors@R: c(
     person("Maciej", "Nasinski", role = "aut"),
     person("Konrad", "Pagacz", role = "aut"),
     person("Junlue", "Zhao", role = "aut"),
-    person("Dony", "Unardi", , "unardid@gene.com", role = c("rev", "cre")),
+    person("Dony", "Unardi", , "unardid@gene.com", role = c("aut", "cre")),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
 Description: Collection of 'shiny' widgets to support 'teal' applications.
