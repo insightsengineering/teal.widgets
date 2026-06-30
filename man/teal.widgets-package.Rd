@@ -20,10 +20,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Dony Unardi \email{unardid@gene.com} [reviewer]
+\strong{Maintainer}: Dony Unardi \email{unardid@gene.com}
 
 Authors:
 \itemize{
+  \item Dony Unardi \email{unardid@gene.com}
   \item Dawid Kaledkowski \email{dawid.kaledkowski@roche.com}
   \item Pawel Rucki \email{pawel.rucki@roche.com}
   \item Mahmoud Hallal \email{mahmoud.hallal@roche.com}
