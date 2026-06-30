@@ -13,12 +13,12 @@ picker_options_content(var_name, var_label, var_type)
 
 - var_name:
 
-  (`character`)  
+  (`character`)\
   variable name
 
 - var_label:
 
-  (`character`)  
+  (`character`)\
   variable alternative name - for example variable label
 
 - var_type:

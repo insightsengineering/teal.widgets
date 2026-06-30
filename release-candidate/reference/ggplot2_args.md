@@ -18,14 +18,14 @@ ggplot2_args(labs = list(), theme = list())
 
 - labs:
 
-  (named `list`)  
+  (named `list`)\
   where all fields have to match
   [`ggplot2::labs()`](https://ggplot2.tidyverse.org/reference/labs.html)
   arguments.
 
 - theme:
 
-  (named `list`)  
+  (named `list`)\
   where all fields have to match
   [`ggplot2::theme()`](https://ggplot2.tidyverse.org/reference/theme.html)
   arguments.

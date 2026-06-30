@@ -1,6 +1,6 @@
 # Panel group widget
 
-**\[deprecated\]**  
+**\[deprecated\]**\
 Designed to group
 [`panel_item`](https://insightsengineering.github.io/teal.widgets/reference/panel_item.md)
 elements. Used to handle `shiny` inputs in the encoding panel.
@@ -15,12 +15,12 @@ panel_group(..., id = NULL)
 
 - ...:
 
-  (`shiny.tag`)  
+  (`shiny.tag`)\
   panels created by `panel_group()`
 
 - id:
 
-  optional, (`character`)  
+  optional, (`character`)\
 
 ## Value
 
@@ -29,6 +29,7 @@ panel_group(..., id = NULL)
 ## Examples
 
 ``` r
+
 library(shiny)
 panel_group(
   panel_item(
@@ -74,15 +75,15 @@ panel_group(
 #>   `bslib::accordion_panel()` functions instead. This function will be removed
 #>   in the next release.
 #> <div class="container-fluid">
-#>   <div id="bslib-accordion-1837" class="accordion" data-require-bs-version="5" data-require-bs-caller="accordion()">
+#>   <div id="bslib-accordion-4390" class="accordion" data-require-bs-version="5" data-require-bs-caller="accordion()">
 #>     <div class="accordion-item" data-value="Display">
 #>       <div class="accordion-header">
-#>         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-5784" aria-controls="bslib-accordion-panel-5784" aria-expanded="true">
+#>         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-1920" aria-controls="bslib-accordion-panel-1920" aria-expanded="true">
 #>           <div class="accordion-icon"></div>
 #>           <div class="accordion-title">Display</div>
 #>         </button>
 #>       </div>
-#>       <div id="bslib-accordion-panel-5784" class="accordion-collapse collapse show">
+#>       <div id="bslib-accordion-panel-1920" class="accordion-collapse collapse show">
 #>         <div class="accordion-body" open="TRUE">
 #>           <div id="check" class="form-group shiny-input-checkboxgroup shiny-input-container" role="group" aria-labelledby="check-label">
 #>             <label class="control-label" id="check-label" for="check">Tables display</label>
@@ -129,12 +130,12 @@ panel_group(
 #>     </div>
 #>     <div class="accordion-item" data-value="Pre-processing">
 #>       <div class="accordion-header">
-#>         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-7538" aria-expanded="false" aria-controls="bslib-accordion-panel-7538">
+#>         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-4819" aria-expanded="false" aria-controls="bslib-accordion-panel-4819">
 #>           <div class="accordion-icon"></div>
 #>           <div class="accordion-title">Pre-processing</div>
 #>         </button>
 #>       </div>
-#>       <div id="bslib-accordion-panel-7538" class="accordion-collapse collapse">
+#>       <div id="bslib-accordion-panel-4819" class="accordion-collapse collapse">
 #>         <div class="accordion-body" open="FALSE">
 #>           <div id="filtering" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="filtering-label">
 #>             <label class="control-label" id="filtering-label" for="filtering">What to filter</label>

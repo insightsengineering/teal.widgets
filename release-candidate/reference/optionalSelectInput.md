@@ -61,7 +61,7 @@ updateOptionalSelectInput(
 
 - sep:
 
-  (`character(1)`)  
+  (`character(1)`)\
   A separator string to split the `choices` or `selected` inputs into
   the values of the different columns.
 
@@ -74,31 +74,31 @@ updateOptionalSelectInput(
 
 - label_help:
 
-  (`shiny.tag`) optional,  
+  (`shiny.tag`) optional,\
   e.g. an object returned by
   [`shiny::helpText()`](https://rdrr.io/pkg/shiny/man/helpText.html).
 
 - fixed:
 
-  (`logical(1)`) optional,  
+  (`logical(1)`) optional,\
   whether to block user to select choices.
 
 - fixed_on_single:
 
-  (`logical(1)`) optional,  
+  (`logical(1)`) optional,\
   whether to block user to select a choice when there is only one or
   less choice. When `FALSE`, user is still able to select or deselect
   the choice.
 
 - width:
 
-  (`character(1)`)  
+  (`character(1)`)\
   The width of the input passed to `pickerInput` e.g. `'auto'`, `'fit'`,
   `'100px'` or `'75%'`
 
 - session:
 
-  (`shiny.session`)  
+  (`shiny.session`)\
 
 ## Value
 

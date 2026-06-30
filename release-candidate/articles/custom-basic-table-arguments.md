@@ -50,6 +50,7 @@ order:
 ## Example - Single-Table Module
 
 ``` r
+
 library(shiny)
 library(teal.widgets)
 library(magrittr)

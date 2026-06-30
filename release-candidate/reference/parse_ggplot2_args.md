@@ -16,13 +16,13 @@ parse_ggplot2_args(
 
 - ggplot2_args:
 
-  (`ggplot2_args`)  
+  (`ggplot2_args`)\
   This argument could be a result of the
   [`resolve_ggplot2_args()`](https://insightsengineering.github.io/teal.widgets/reference/resolve_ggplot2_args.md).
 
 - ggtheme:
 
-  (`character(1)`)  
+  (`character(1)`)\
   name of the `ggplot2` theme to be applied, e.g. `"dark"`.
 
 ## Value

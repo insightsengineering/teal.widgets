@@ -15,7 +15,7 @@ nested_closeable_modal(id, ..., modal_args = list(easyClose = TRUE))
 
 - id:
 
-  (`character(1)`) `shiny` module id for the component.  
+  (`character(1)`) `shiny` module id for the component.\
   Note that this id can be used to show/hide this modal with the
   appended `jQuery` methods show/hide.
 
