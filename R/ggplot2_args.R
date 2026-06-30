@@ -167,7 +167,7 @@ parse_ggplot2_args <- function(ggplot2_args = teal.widgets::ggplot2_args(),
     NULL
   }
 
-  theme_args <- ggplot2_args$theme
+  theme_args <- lapply(ggplot2_args$theme, to_call)
 
   theme_f <- if (length(theme_args)) {
     as.call(c(list(quote(ggplot2::theme)), theme_args))
@@ -178,4 +178,82 @@ parse_ggplot2_args <- function(ggplot2_args = teal.widgets::ggplot2_args(),
   final_list <- Filter(Negate(is.null), list(labs = labs_f, ggtheme = default_theme, theme = theme_f))
   # For empty final_list we want to return empty list, not empty named list
   `if`(length(final_list) == 0, list(), final_list)
+}
+
+#' Convert an evaluated ggplot2 theme element to its call representation
+#'
+#' Ensures that evaluated element objects (e.g. from `element_text(size = 20)`)
+#' produce clean, deparseable calls instead of opaque `structure(...)` output
+#' that may fail to reconstruct correctly after a deparse/parse round-trip.
+#'
+#' Already-unevaluated calls and plain atomic values pass through unchanged.
+#'
+#' @param x An R object, typically a value from the `theme` list of a
+#'   [ggplot2_args()] object.
+#' @return A call or atomic value suitable for embedding in an `as.call()`
+#'   expression.
+#' @keywords internal
+to_call <- function(x) {
+  if (is.null(x) || is.call(x) || is.name(x)) return(x)
+  if (inherits(x, "element_blank")) return(quote(ggplot2::element_blank()))
+  if (inherits(x, "waiver")) return(quote(ggplot2::waiver()))
+  if (inherits(x, "rel")) {
+    return(as.call(list(str2lang("ggplot2::rel"), as.numeric(x))))
+  }
+  # Check both bare and namespaced class (ggplot2 < 4.0 vs >= 4.0)
+  if (inherits(x, "margin") || inherits(x, "ggplot2::margin")) return(margin_to_call(x))
+  if (inherits(x, "unit")) return(unit_to_call(x))
+  if (inherits(x, "element")) return(element_to_call(x))
+  if (is.atomic(x)) return(x)
+  warning(
+    "Theme argument of class ", paste(class(x), collapse = "/"),
+    " could not be converted to a call. ",
+    "Wrap the value in quote() to ensure a clean deparse/parse round-trip.",
+    call. = FALSE
+  )
+  x
+}
+
+#' @keywords internal
+element_to_call <- function(x) {
+  element_class <- sub("^.*::", "", class(x)[1])
+  fn_symbol <- str2lang(paste0("ggplot2::", element_class))
+  constructor <- utils::getFromNamespace(element_class, "ggplot2")
+  default_obj <- tryCatch(constructor(), error = function(e) NULL)
+  # "color" is an alias for "colour" in ggplot2
+  param_names <- setdiff(names(formals(constructor)), c("...", "color"))
+
+  args <- list()
+  for (param_name in param_names) {
+    value <- tryCatch(x[[param_name]], error = function(e) NULL)
+    if (is.null(value)) next
+    if (!is.null(default_obj)) {
+      default_value <- tryCatch(default_obj[[param_name]], error = function(e) NULL)
+      if (identical(value, default_value)) next
+    }
+    args[[param_name]] <- to_call(value)
+  }
+  as.call(c(list(fn_symbol), args))
+}
+
+#' @keywords internal
+margin_to_call <- function(x) {
+  values <- as.numeric(x)
+  unit_type <- grid::unitType(x)[1]
+  default_margin <- ggplot2::margin()
+  if (identical(values, as.numeric(default_margin)) && identical(unit_type, grid::unitType(default_margin)[1])) {
+    return(quote(ggplot2::margin()))
+  }
+  as.call(list(str2lang("ggplot2::margin"), values[1], values[2], values[3], values[4], unit_type))
+}
+
+#' @keywords internal
+unit_to_call <- function(x) {
+  values <- as.numeric(x)
+  unit_type <- grid::unitType(x)
+  if (length(values) == 1L) {
+    as.call(list(str2lang("grid::unit"), values, unit_type[1]))
+  } else {
+    as.call(list(str2lang("grid::unit"), values, unit_type))
+  }
 }
