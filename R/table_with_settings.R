@@ -27,7 +27,7 @@ render_table_to_html <- function(x, ...) {
 
 #' @method render_table_to_html default
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 render_table_to_html.default <- function(x, ...) {
   stop(
     "Unsupported table type. ",
@@ -38,17 +38,17 @@ render_table_to_html.default <- function(x, ...) {
 
 #' @method render_table_to_html ElementaryTable
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 render_table_to_html.ElementaryTable <- render_table_to_html_rtables
 
 #' @method render_table_to_html TableTree
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 render_table_to_html.TableTree <- render_table_to_html_rtables
 
 #' @method render_table_to_html gtsummary
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 render_table_to_html.gtsummary <- function(x, ...) {
   gt_obj <- gtsummary::as_gt(x)
   render_table_to_html(gt_obj)
@@ -56,7 +56,7 @@ render_table_to_html.gtsummary <- function(x, ...) {
 
 #' @method render_table_to_html gt_tbl
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 render_table_to_html.gt_tbl <- function(x, ...) {
   htmltools::HTML(gt::as_raw_html(x))
 }
@@ -77,7 +77,7 @@ export_table <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
 
 #' @method export_table default
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 export_table.default <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
   stop("Unsupported table type for download")
 }
@@ -112,17 +112,17 @@ export_table_rtables <- function(x, file, format, paginate = FALSE, lpp = NULL, 
 
 #' @method export_table ElementaryTable
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 export_table.ElementaryTable <- export_table_rtables
 
 #' @method export_table TableTree
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 export_table.TableTree <- export_table_rtables
 
 #' @method export_table gtsummary
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
   gt_obj <- gtsummary::as_gt(x)
   export_table(gt_obj, file, format, paginate, lpp, ...)
@@ -130,7 +130,7 @@ export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL
 
 #' @method export_table gt_tbl
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
   if (format == ".csv") {
     utils::write.csv(export_table_raw(x), file = file, row.names = FALSE)

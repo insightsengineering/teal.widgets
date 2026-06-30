@@ -1,15 +1,16 @@
 Package: teal.widgets
 Title: 'shiny' Widgets for 'teal' Applications
-Version: 0.6.0.9002
-Date: 2026-06-29
+Version: 0.6.1
+Date: 2026-06-30
 Authors@R: c(
-    person("Dawid", "Kaledkowski", , "dawid.kaledkowski@roche.com", role = c("aut", "cre")),
+    person("Dawid", "Kaledkowski", , "dawid.kaledkowski@roche.com", role = "aut"),
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = "aut"),
     person("Mahmoud", "Hallal", , "mahmoud.hallal@roche.com", role = "aut"),
     person("Nikolas", "Burkoff", role = "aut"),
     person("Maciej", "Nasinski", role = "aut"),
     person("Konrad", "Pagacz", role = "aut"),
     person("Junlue", "Zhao", role = "aut"),
+    person("Dony", "Unardi", , "unardid@gene.com", role = c("aut", "cre")),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
 Description: Collection of 'shiny' widgets to support 'teal' applications.

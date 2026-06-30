@@ -1,9 +1,22 @@
-withr::local_options( # Set longer timeouts for slow tests
+withr::local_options(
   list(
-    shinytest2.timeout = 4 * 30 * 1000,
-    shinytest2.load_timeout = 4 * 60 * 1000,
-    shinytest2.duration = 2 * 0.5 * 1000
-  )
+    shinytest2.timeout = max(
+      getOption("shinytest2.timeout", default = 0),
+      as.numeric(Sys.getenv("SHINYTEST2_TIMEOUT", unset = 0)),
+      30 * 1000
+    ),
+    shinytest2.load_timeout = max(
+      getOption("shinytest2.load_timeout", default = 0),
+      as.numeric(Sys.getenv("SHINYTEST2_LOAD_TIMEOUT", unset = 0)),
+      20 * 10000
+    ),
+    shinytest2.duration = max(
+      getOption("shinytest2.duration", default = 0),
+      as.numeric(Sys.getenv("SHINYTEST2_DURATION", unset = 0)),
+      0.5 * 1000
+    )
+  ),
+  .local_envir = testthat::test_env()
 )
 
 #' Plot with settings app
@@ -55,7 +68,17 @@ app_driver_pws <- function() {
 }
 
 # JS code to click the resize button popup.
-click_resize_popup <- popover_action_js("i.fas.fa-maximize[data-bs-toggle='popover']", action = "show")
+click_resize_popup <- popover_action_js(
+  "i.fas.fa-maximize[data-bs-toggle='popover']",
+  action = "show"
+)
+
+# JS condition that resolves once the slider_ui content has been rendered.
+slider_ui_rendered_js <- paste0(
+  "document.getElementById('plot_with_settings-slider_ui')",
+  " && ",
+  "document.getElementById('plot_with_settings-slider_ui').children.length > 0"
+)
 
 # JS code to click the expand button popup.
 click_expand_popup <- click_button_js(
@@ -320,7 +343,12 @@ testthat::test_that(
     )
     app_driver$wait_for_idle()
     app_driver$wait_for_js(click_resize_popup)
-    app_driver$wait_for_idle()
+    app_driver$wait_for_js(
+      paste0(
+        "document.getElementById('plot_with_settings-slider_ui') && ",
+        "document.getElementById('plot_with_settings-slider_ui').children.length > 0"
+      )
+    )
     app_driver$set_inputs(`plot_with_settings-height` = 1000)
     app_driver$set_inputs(`plot_with_settings-width_resize_switch` = 350)
 
@@ -382,9 +410,10 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
     400L
   )
   app_driver$wait_for_js(click_resize_popup)
-  app_driver$wait_for_idle()
+  app_driver$wait_for_js(slider_ui_rendered_js)
 
   app_driver$set_inputs(`plot_with_settings-height` = 1000)
+  app_driver$wait_for_idle()
   app_driver$set_inputs(`plot_with_settings-width` = 350)
   app_driver$wait_for_idle()
   values_resized <- app_driver$get_values()
@@ -443,10 +472,11 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
   app_driver$wait_for_idle()
 
   app_driver$wait_for_js(click_resize_popup)
-  app_driver$wait_for_idle()
+  app_driver$wait_for_js(slider_ui_rendered_js)
 
   plot_before <- get_active_module_pws_output(app_driver, pws = "plot_main", attr = "src")
 
+  app_driver$wait_for_idle(duration = 1500)
   testthat::expect_equal(
     get_active_module_pws_output(app_driver, pws = "plot_main", attr = "width"),
     "500"
@@ -458,7 +488,9 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
   )
 
   app_driver$set_inputs(`plot_with_settings-height` = 1000)
+  app_driver$wait_for_idle()
   app_driver$set_inputs(`plot_with_settings-width` = 350)
+  app_driver$wait_for_idle()
 
   testthat::expect_equal(
     get_active_module_pws_output(app_driver, pws = "plot_main", attr = "width"),
@@ -490,10 +522,12 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: scrollbar appears whe
   app_driver$wait_for_js(click_expand_popup)
   app_driver$wait_for_idle()
   app_driver$wait_for_js(click_resize_popup)
-  app_driver$wait_for_idle()
+  app_driver$wait_for_js(slider_ui_rendered_js)
 
   app_driver$set_inputs(`plot_with_settings-height` = 10000)
+  app_driver$wait_for_idle()
   app_driver$set_inputs(`plot_with_settings-width` = 350)
+  app_driver$wait_for_idle()
   scrollable <- is_scrollable(app_driver, ".card-body.html-fill-container")
   testthat::expect_true(scrollable$any)
   testthat::expect_true(scrollable$vertical)
