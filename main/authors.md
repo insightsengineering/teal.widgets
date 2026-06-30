@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **Dawid Kaledkowski**. Author, maintainer.
+- **Dawid Kaledkowski**. Author.
 
 - **Pawel Rucki**. Author.
 
@@ -16,6 +16,8 @@
 
 - **Junlue Zhao**. Author.
 
+- **Dony Unardi**. Author, maintainer.
+
 - **F. Hoffmann-La Roche AG**. Copyright holder, funder.
 
 ## Citation
@@ -24,14 +26,14 @@ Source:
 [`DESCRIPTION`](https://github.com/insightsengineering/teal.widgets/blob/main/DESCRIPTION)
 
 Kaledkowski D, Rucki P, Hallal M, Burkoff N, Nasinski M, Pagacz K, Zhao
-J (2026). *teal.widgets: 'shiny' Widgets for 'teal' Applications*. R
-package version 0.6.0.9002,
+J, Unardi D (2026). *teal.widgets: 'shiny' Widgets for 'teal'
+Applications*. R package version 0.6.1,
 <https://insightsengineering.github.io/teal.widgets/>.
 
     @Manual{,
       title = {teal.widgets: 'shiny' Widgets for 'teal' Applications},
-      author = {Dawid Kaledkowski and Pawel Rucki and Mahmoud Hallal and Nikolas Burkoff and Maciej Nasinski and Konrad Pagacz and Junlue Zhao},
+      author = {Dawid Kaledkowski and Pawel Rucki and Mahmoud Hallal and Nikolas Burkoff and Maciej Nasinski and Konrad Pagacz and Junlue Zhao and Dony Unardi},
       year = {2026},
-      note = {R package version 0.6.0.9002},
+      note = {R package version 0.6.1},
       url = {https://insightsengineering.github.io/teal.widgets/},
     }

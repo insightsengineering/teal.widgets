@@ -1,12 +1,20 @@
 # Changelog
 
-## teal.widgets 0.6.0.9002
+## teal.widgets 0.6.1
+
+CRAN release: 2026-06-30
 
 #### Bug fixes
 
+- Fix snapshot failure during R CMD Check
+  ([\#341](https://github.com/insightsengineering/teal.widgets/issues/341)).
 - Fixed problem with resize plot popup that does not render content with
   newer version of shiny
   ([\#350](https://github.com/insightsengineering/teal.widgets/issues/350)).
+
+#### Miscellaneous
+
+- Update maintainer.
 
 ## teal.widgets 0.6.0
 
