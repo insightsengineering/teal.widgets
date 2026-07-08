@@ -14,6 +14,25 @@ render_table_to_html_rtables <- function(x, ...) {
   rtables::as_html(x)
 }
 
+file_download_format <- function(x, filename) {
+  UseMethod("file_download_format", x)
+}
+
+#' @method file_download_format default
+#' @keywords internal
+#' @exportS3Method
+file_download_format.default <- function(x, filename) {
+  filename
+}
+
+#' @method file_download_format tbl_split
+#' @keywords internal
+#' @exportS3Method
+file_download_format.tbl_split <- function(x, filename) {
+  new_filename <- tools::file_path_sans_ext(filename)
+  paste0(new_filename, ".zip")
+}
+
 #' Render table object to HTML
 #'
 #' @param x The table object to render
@@ -59,6 +78,20 @@ render_table_to_html.gtsummary <- function(x, ...) {
 #' @exportS3Method
 render_table_to_html.gt_tbl <- function(x, ...) {
   htmltools::HTML(gt::as_raw_html(x))
+}
+
+#' @method render_table_to_html tbl_split
+#' @keywords internal
+#' @exportS3Method
+render_table_to_html.tbl_split <- function(x, ...) {
+  tables <- lapply(seq_along(x), function(tbl) {
+    label <- attr(x[[tbl]], "variable_level", exact = TRUE)
+    htmltools::tags$div(
+      if (!rlang::is_empty(label)) htmltools::tags$h4("Variable level:", label),
+      teal.widgets:::render_table_to_html(x[[tbl]])
+    )
+  })
+  htmltools::tags$div(tables)
 }
 
 #' Export table object to file
@@ -146,6 +179,26 @@ export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, .
       col.names = TRUE
     )
   }
+}
+
+#' @method export_table tbl_split
+#' @keywords internal
+#' @exportS3Method
+export_table.tbl_split <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
+  ext <- format  # ".pdf" or ".txt"
+  tmp_dir <- tempfile()
+  dir.create(tmp_dir)
+  on.exit(unlink(tmp_dir, recursive = TRUE))
+
+  base_name <- tools::file_path_sans_ext(basename(file))
+
+  tmp_files <- lapply(seq_along(x), function(i) {
+    tmp_file <- file.path(tmp_dir, paste0(base_name, "_", i, ext))
+    export_table(x[[i]], file = tmp_file, format = format, paginate = paginate, lpp = lpp, ...)
+    tmp_file
+  })
+
+  zip(zipfile = file, files = unlist(tmp_files), flags = "-j")  # -j: junk paths
 }
 
 export_table_raw <- function(x) {
@@ -372,7 +425,7 @@ type_download_srv_table <- function(id, table_reactive) {
 
       output$data_download <- downloadHandler(
         filename = function() {
-          paste0(input$file_name, input$file_format)
+          file_download_format(table_reactive(), paste0(input$file_name, input$file_format))
         },
         content = function(file) {
           export_table(
