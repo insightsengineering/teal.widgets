@@ -99,7 +99,7 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings: the click on the download button opens a download menu
   with file type, file name and download button",
   {
-    testthat::skip_if_not_installed("rvest")
+    skip_if_not_installed("rvest")
     skip_if_too_deep(5)
     skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(

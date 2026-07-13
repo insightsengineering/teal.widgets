@@ -89,7 +89,7 @@ click_expand_popup <- click_button_js(
 click_download_popup <- popover_action_js("i.fas.fa-download[data-bs-toggle='popover']", action = "show")
 
 get_active_module_pws_output <- function(app_driver, pws, attr) {
-  testthat::skip_if_not_installed("rvest")
+  skip_if_not_installed("rvest")
   app_driver$get_html("html") %>%
     rvest::read_html() %>%
     rvest::html_elements(sprintf("#plot_with_settings-%s > img", pws)) %>%
@@ -151,7 +151,7 @@ testthat::test_that(
   {
     skip_if_too_deep(5)
     skip_if_not_installed("shinytest2")
-    testthat::skip_if_not_installed("rvest")
+    skip_if_not_installed("rvest")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",

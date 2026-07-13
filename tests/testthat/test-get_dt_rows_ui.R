@@ -1,5 +1,5 @@
 app_driver_gdr <- function() {
-  testthat::skip_if_not_installed("DT")
+  skip_if_not_installed("DT")
   ui <- function(id) {
     ns <- NS(id)
     tagList(

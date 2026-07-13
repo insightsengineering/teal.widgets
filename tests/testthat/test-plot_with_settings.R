@@ -65,7 +65,7 @@ plot_funs <- list(
       ggplot2::geom_point())
   },
   function() {
-    testthat::skip_if_not_installed("lattice")
+    skip_if_not_installed("lattice")
     lattice::densityplot(1)
   },
   function() {
@@ -236,7 +236,7 @@ testthat::test_that("type_download_srv download all types of files and change th
 })
 
 testthat::test_that("type_download_srv downloads a png file with different dimensions", {
-  testthat::skip_if_not_installed("png")
+  skip_if_not_installed("png")
 
   shiny::testServer(
     teal.widgets:::type_download_srv,
@@ -253,7 +253,7 @@ testthat::test_that("type_download_srv downloads a png file with different dimen
 })
 
 testthat::test_that("type_download_srv downloads a png file using default dimensions input dimensions are NULL", {
-  testthat::skip_if_not_installed("png")
+  skip_if_not_installed("png")
 
   shiny::testServer(
     teal.widgets:::type_download_srv,
@@ -316,7 +316,7 @@ plot_with_settings_args <- list(
 )
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - base", {
-  testthat::skip_if_not_installed("png")
+  skip_if_not_installed("png")
 
   plot_with_settings_args$plot_r <- function() plot(1)
   shiny::testServer(
@@ -340,7 +340,7 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 })
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - ggplot2", {
-  testthat::skip_if_not_installed("png")
+  skip_if_not_installed("png")
 
   plot_with_settings_args$plot_r <- function() {
     ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
@@ -367,7 +367,7 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 })
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - grob", {
-  testthat::skip_if_not_installed("png")
+  skip_if_not_installed("png")
 
   plot_with_settings_args$plot_r <- function() {
     ggplot2::ggplotGrob(
@@ -396,8 +396,8 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 })
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - trellis", {
-  testthat::skip_if_not_installed("png")
-  testthat::skip_if_not_installed("lattice")
+  skip_if_not_installed("png")
+  skip_if_not_installed("lattice")
 
   plot_with_settings_args$plot_r <- function() {
     lattice::densityplot(1)
@@ -423,7 +423,7 @@ testthat::test_that("plot_with_settings_srv set dimensions and download a png fi
 })
 
 testthat::test_that("plot_with_settings_srv set dimensions and download a png file - WRONG type", {
-  testthat::skip_if_not_installed("png")
+  skip_if_not_installed("png")
 
   plot_with_settings_args$plot_r <- function() 2
 
