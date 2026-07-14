@@ -185,7 +185,7 @@ export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, .
 #' @keywords internal
 #' @exportS3Method
 export_table.tbl_split <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
-  ext <- format  # ".pdf" or ".txt"
+  ext <- format # ".pdf" or ".txt"
   tmp_dir <- tempfile()
   dir.create(tmp_dir)
   on.exit(unlink(tmp_dir, recursive = TRUE))
@@ -198,7 +198,7 @@ export_table.tbl_split <- function(x, file, format, paginate = FALSE, lpp = NULL
     tmp_file
   })
 
-  utils::zip(zipfile = file, files = unlist(tmp_files), flags = "-j")  # -j: junk paths
+  utils::zip(zipfile = file, files = unlist(tmp_files), flags = "-j") # -j: junk paths
 }
 
 export_table_raw <- function(x) {
