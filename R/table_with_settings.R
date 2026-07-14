@@ -199,7 +199,7 @@ export_table.tbl_split <- function(x, file, format, paginate = FALSE, lpp = NULL
     } else {
       base_name <- paste0(base_name, "_", i)
     }
-    tmp_file <- file.path(tmp_dir, base_name)
+    tmp_file <- file.path(tmp_dir, base_name, ext)
     export_table(x[[i]], file = tmp_file, format = format, paginate = paginate, lpp = lpp, ...)
     tmp_file
   })
