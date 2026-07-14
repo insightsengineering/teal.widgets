@@ -1,5 +1,9 @@
 # teal.widgets 0.6.1
 
+### Enhancements
+
+* Added support for `tbl_split` object from `gtsummary` package to `table_with_settings`.
+
 ### Bug fixes
 * Fix snapshot failure during R CMD Check (#341).
 * Fixed problem with resize plot popup that does not render content with newer version of shiny (#350).
