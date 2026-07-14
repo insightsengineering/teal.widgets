@@ -193,13 +193,13 @@ export_table.tbl_split <- function(x, file, format, paginate = FALSE, lpp = NULL
   base_name <- tools::file_path_sans_ext(basename(file_name))
 
   tmp_files <- lapply(seq_along(x), function(i) {
-    label <- attr(x[[i]], "variable_level", exact = TRUE)
+    label <- as.vector(attr(x[[i]], "variable_level", exact = TRUE))
     if (checkmate::test_string(label)) {
-      base_name <- paste0(base_name, "_", i, "_", gsub("[^[:alnum:]]", "_", label))
+      base_name <- paste0(base_name, "_", gsub("[^[:alnum:]]", "_", label), "_", i)
     } else {
       base_name <- paste0(base_name, "_", i)
     }
-    tmp_file <- file.path(tmp_dir, paste0(base_name, "_", i, ext))
+    tmp_file <- file.path(tmp_dir, base_name)
     export_table(x[[i]], file = tmp_file, format = format, paginate = paginate, lpp = lpp, ...)
     tmp_file
   })
@@ -214,7 +214,9 @@ export_table_raw <- function(x) {
   # xml_remove modifies the object so no need to ovewrite
   xml2::xml_remove(rvest::html_nodes(html_parsed, "caption, .gt_heading"))
 
-  rvest::html_table(html_parsed, fill = TRUE)[[1]]
+  tbl <- rvest::html_table(html_parsed, fill = TRUE)[[1]]
+  names(tbl) <- gsub("[\n\r\t]", " ", names(tbl))
+  tbl
 }
 
 #' @name table_with_settings
