@@ -87,8 +87,8 @@ render_table_to_html.tbl_split <- function(x, ...) {
   tables <- lapply(seq_along(x), function(tbl) {
     label <- attr(x[[tbl]], "variable_level", exact = TRUE)
     htmltools::tags$div(
-      if (!rlang::is_empty(label)) htmltools::tags$h4("Variable level:", label),
-      teal.widgets:::render_table_to_html(x[[tbl]])
+      if (checkmate::test_string(label)) htmltools::tags$h4("Variable level:", label),
+      render_table_to_html(x[[tbl]])
     )
   })
   htmltools::tags$div(tables)
