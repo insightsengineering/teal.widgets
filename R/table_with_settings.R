@@ -184,15 +184,21 @@ export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, .
 #' @method export_table tbl_split
 #' @keywords internal
 #' @exportS3Method
-export_table.tbl_split <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
+export_table.tbl_split <- function(x, file, format, paginate = FALSE, lpp = NULL, file_name = file,  ...) {
   ext <- format # ".pdf" or ".txt"
   tmp_dir <- tempfile()
   dir.create(tmp_dir)
   on.exit(unlink(tmp_dir, recursive = TRUE))
 
-  base_name <- tools::file_path_sans_ext(basename(file))
+  base_name <- tools::file_path_sans_ext(basename(file_name))
 
   tmp_files <- lapply(seq_along(x), function(i) {
+    label <- attr(x[[i]], "variable_level", exact = TRUE)
+    if (checkmate::test_string(label)) {
+      base_name <- paste0(base_name, "_", i, "_", gsub("[^[:alnum:]]", "_", label))
+    } else {
+      base_name <- paste0(base_name, "_", i)
+    }
     tmp_file <- file.path(tmp_dir, paste0(base_name, "_", i, ext))
     export_table(x[[i]], file = tmp_file, format = format, paginate = paginate, lpp = lpp, ...)
     tmp_file
@@ -433,7 +439,8 @@ type_download_srv_table <- function(id, table_reactive) {
             file = file,
             format = input$file_format,
             paginate = input$pagination_switch,
-            lpp = if (input$pagination_switch) as.numeric(input$lpp)
+            lpp = if (input$pagination_switch) as.numeric(input$lpp),
+            file_name = input$file_name
           )
         }
       )
