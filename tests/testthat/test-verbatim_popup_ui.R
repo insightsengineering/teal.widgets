@@ -31,10 +31,10 @@ testthat::test_that(
   "e2e: teal.widgets::verbatim_popup is initialized with a button that opens a modal with a verbatim text",
   {
     skip_if_too_deep(5)
+    testthat::skip_if_not_installed("shinytest2")
     ui_popup_button_label <- "Open me"
     modal_title <- "Verbatim popup title"
     verbatim_content_text <- "if (TRUE) { print('Popups are the best') }"
-
     app_driver <- shinytest2::AppDriver$new(
       app_driver_vpu(
         button_label = ui_popup_button_label,
@@ -116,7 +116,7 @@ testthat::test_that(
         })
       }
     )
-
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app,
       name = "verbatim_popup_disabled",

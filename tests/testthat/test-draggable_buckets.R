@@ -14,6 +14,7 @@ testthat::test_that(
   "e2e: teal.widgets::draggable_buckets: initializes without input",
   {
     skip_if_too_deep(5)
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_db(
         input_id = "id",
@@ -42,6 +43,7 @@ testthat::test_that(
   "e2e: teal.widgets::draggable_buckets: initializes with default inputs",
   {
     skip_if_too_deep(5)
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_db(
         input_id = "id",
@@ -73,6 +75,7 @@ testthat::test_that(
   "e2e: teal.widgets::draggable_buckets: moving elements between buckets updates input",
   {
     skip_if_too_deep(5)
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_db(
         input_id = "id",
