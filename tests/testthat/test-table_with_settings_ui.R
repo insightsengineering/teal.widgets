@@ -77,7 +77,7 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings is initialized with 2 buttons and a table",
   {
     skip_if_too_deep(5)
-
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
       name = "tws",
@@ -101,6 +101,7 @@ testthat::test_that(
   {
     testthat::skip_if_not_installed("rvest")
     skip_if_too_deep(5)
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
       name = "tws",
@@ -167,6 +168,7 @@ testthat::test_that(
   for the first button",
   {
     skip_if_too_deep(5)
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
       name = "tws",
@@ -195,6 +197,7 @@ testthat::test_that(
   "e2e: teal.widgets::table_with_settings: the click on expand button opens a modal with a table",
   {
     skip_if_too_deep(5)
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
       name = "tws",
@@ -233,6 +236,7 @@ testthat::test_that(
   such as: file type, file name, pagination",
   {
     skip_if_too_deep(5)
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
       name = "tws",
@@ -301,6 +305,7 @@ testthat::test_that(
   for the modal on the second button",
   {
     skip_if_too_deep(5)
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
       name = "tws",
@@ -327,6 +332,7 @@ testthat::test_that(
   "e2e teal.widgets::table_with_settings: clicking download+download button downloads table in a specified format",
   {
     skip_if_too_deep(5)
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_tws(),
       name = "tws",
@@ -352,6 +358,7 @@ testthat::test_that(
 
 testthat::test_that("e2e teal.widgets::table_with_settings: expanded table can be downloaded", {
   skip_if_too_deep(5)
+  testthat::skip_if_not_installed("shinytest2")
   app_driver <- shinytest2::AppDriver$new(
     app_driver_tws(),
     name = "tws",
