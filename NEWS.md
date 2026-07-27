@@ -1,4 +1,4 @@
-# teal.widgets 0.6.1
+# teal.widgets 0.6.1.9000
 
 ### Bug fixes
 * Fix snapshot failure during R CMD Check (#341).
