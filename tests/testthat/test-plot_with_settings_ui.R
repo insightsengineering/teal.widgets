@@ -89,7 +89,7 @@ click_expand_popup <- click_button_js(
 click_download_popup <- popover_action_js("i.fas.fa-download[data-bs-toggle='popover']", action = "show")
 
 get_active_module_pws_output <- function(app_driver, pws, attr) {
-  skip_if_not_installed("rvest")
+  testthat::skip_if_not_installed("rvest")
   app_driver$get_html("html") %>%
     rvest::read_html() %>%
     rvest::html_elements(sprintf("#plot_with_settings-%s > img", pws)) %>%
@@ -127,7 +127,7 @@ testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: initializes with a plot and the settings buttons",
   {
     skip_if_too_deep(5)
-    skip_if_not_installed("shinytest2")
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
@@ -150,8 +150,8 @@ testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: buttons have proper FA icons and two of them are dropdowns",
   {
     skip_if_too_deep(5)
-    skip_if_not_installed("shinytest2")
-    skip_if_not_installed("rvest")
+    testthat::skip_if_not_installed("shinytest2")
+    testthat::skip_if_not_installed("rvest")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
@@ -213,7 +213,7 @@ testthat::test_that(
   plot height, plot width, plot, download dropdown and dismiss button",
   {
     skip_if_too_deep(5)
-    skip_if_not_installed("shinytest2")
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
@@ -255,7 +255,7 @@ testthat::test_that(
   "e2e: teal.widgets::plot_with_settings: the click on the download button in expand modal opens a download dropdown",
   {
     skip_if_too_deep(5)
-    skip_if_not_installed("shinytest2")
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
@@ -295,7 +295,7 @@ testthat::test_that(
   plot height, plot width, plot, download dropdown and dismiss button",
   {
     skip_if_too_deep(5)
-    skip_if_not_installed("shinytest2")
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
@@ -340,7 +340,7 @@ testthat::test_that(
   on the third button dropdown menu without errors",
   {
     skip_if_too_deep(5)
-    skip_if_not_installed("shinytest2")
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
@@ -370,7 +370,7 @@ testthat::test_that(
   "e2e teal.widgets::plot_with_settings: clicking download+download button downloads image in a specified format",
   {
     skip_if_too_deep(5)
-    skip_if_not_installed("shinytest2")
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_pws(),
       name = "pws",
@@ -392,7 +392,7 @@ testthat::test_that(
 
 testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be resized", {
   skip_if_too_deep(5)
-  skip_if_not_installed("shinytest2")
+  testthat::skip_if_not_installed("shinytest2")
   app_driver <- shinytest2::AppDriver$new(
     app_driver_pws(),
     name = "pws",
@@ -448,7 +448,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
 
 testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be downloaded", {
   skip_if_too_deep(5)
-  skip_if_not_installed("shinytest2")
+  testthat::skip_if_not_installed("shinytest2")
   app_driver <- shinytest2::AppDriver$new(
     app_driver_pws(),
     name = "pws",
@@ -472,7 +472,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: expanded image can be
 
 testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be resized", {
   skip_if_too_deep(5)
-  skip_if_not_installed("shinytest2")
+  testthat::skip_if_not_installed("shinytest2")
   app_driver <- shinytest2::AppDriver$new(
     app_driver_pws(),
     name = "pws",
@@ -521,7 +521,7 @@ testthat::test_that("e2e teal.widgets::plot_with_settings: main image can be res
 
 testthat::test_that("e2e teal.widgets::plot_with_settings: scrollbar appears when image is resized", {
   skip_if_too_deep(5)
-  skip_if_not_installed("shinytest2")
+  testthat::skip_if_not_installed("shinytest2")
   app_driver <- shinytest2::AppDriver$new(
     app_driver_pws(),
     name = "pws",

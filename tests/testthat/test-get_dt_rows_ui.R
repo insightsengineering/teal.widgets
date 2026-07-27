@@ -1,5 +1,5 @@
 app_driver_gdr <- function() {
-  skip_if_not_installed("DT")
+  testthat::skip_if_not_installed("DT")
   ui <- function(id) {
     ns <- NS(id)
     tagList(
@@ -46,7 +46,7 @@ testthat::test_that(
   "e2e: teal.widgets::get_dt_rows: rows are settable and visible",
   {
     skip_if_too_deep(5)
-    skip_if_not_installed("shinytest2")
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_gdr(),
       name = "gdr",

@@ -14,7 +14,7 @@ testthat::test_that(
   "e2e: teal.widgets::optionalSliderInputValMinMax: initializes",
   {
     skip_if_too_deep(5)
-    skip_if_not_installed("shinytest2")
+    testthat::skip_if_not_installed("shinytest2")
     app_driver <- shinytest2::AppDriver$new(
       app_driver_osivmm(),
       name = "osivmm",
@@ -37,7 +37,7 @@ testthat::test_that("we create label help for optionalSliderInputValMinMax", {
 })
 
 testthat::test_that("snapshot test for optionalSliderInput", {
-  skip_if_not_installed("withr")
+  testthat::skip_if_not_installed("withr")
   withr::local_seed(1)
   testthat::expect_snapshot(as.character(optionalSliderInput("my slider", "my label", 0, 10, 2)))
 })
