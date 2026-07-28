@@ -215,7 +215,6 @@ testthat::test_that("type_download_srv_table: downloading tbl_split output types
     args = list(id = "tws", table_reactive = tbl_split_r),
     expr = {
       for (down_type in c(".txt", ".csv", ".pdf")) {
-        print("yada")
         if (down_type == ".pdf") {
           testthat::skip_if_not_installed("webshot2")
         }
