@@ -22,7 +22,7 @@ resolve_basic_table_args(
 
   (`basic_table_args`)\
   end user setup for
-  [`rtables::basic_table()`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)
+  [`rtables::basic_table()`](https://rdrr.io/pkg/rtables/man/basic_table.html)
   of a specific table. Created with the
   [`basic_table_args()`](https://insightsengineering.github.io/teal.widgets/reference/basic_table_args.md)
   function. The `NULL` value is supported.
@@ -31,7 +31,7 @@ resolve_basic_table_args(
 
   (`basic_table_args`)\
   end user default setup for
-  [`rtables::basic_table()`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)
+  [`rtables::basic_table()`](https://rdrr.io/pkg/rtables/man/basic_table.html)
   of a specific table. Created with the
   [`basic_table_args()`](https://insightsengineering.github.io/teal.widgets/reference/basic_table_args.md)
   function. The `NULL` value is supported.
@@ -40,7 +40,7 @@ resolve_basic_table_args(
 
   (`ggplot2_args`)\
   module creator setup for
-  [`rtables::basic_table()`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)
+  [`rtables::basic_table()`](https://rdrr.io/pkg/rtables/man/basic_table.html)
   of a specific table. Created with the
   [`basic_table_args()`](https://insightsengineering.github.io/teal.widgets/reference/basic_table_args.md)
   function. The `NULL` value is supported.

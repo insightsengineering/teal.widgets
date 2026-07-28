@@ -1,12 +1,12 @@
 # Custom basic_table arguments module
 
 This vignette will guide you through implementation of custom
-[`rtables::basic_table`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)
+[`rtables::basic_table`](https://rdrr.io/pkg/rtables/man/basic_table.html)
 arguments for `rtables` tables based modules. We will enable 2 ways of
 updating
-[`rtables::basic_table`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)
+[`rtables::basic_table`](https://rdrr.io/pkg/rtables/man/basic_table.html)
 by the end users. The
-[`rtables::basic_table`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)
+[`rtables::basic_table`](https://rdrr.io/pkg/rtables/man/basic_table.html)
 specification could be updated with the `teal.basic_table_args`
 `options` variable or a `ggplot2_args` argument in a `tm_g_*` module. We
 still take into account default specification set up by the module

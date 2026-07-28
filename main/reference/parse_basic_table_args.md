@@ -19,7 +19,7 @@ parse_basic_table_args(basic_table_args = teal.widgets::basic_table_args())
 ## Value
 
 (`language`) the
-[`rtables::basic_table()`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)
+[`rtables::basic_table()`](https://rdrr.io/pkg/rtables/man/basic_table.html)
 filled with additional arguments.
 
 ## Examples
