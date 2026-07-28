@@ -22,11 +22,15 @@ repos:
           - htmltools
           - lifecycle
           - methods
+          - gt
+          - gtsummary
           - rtables
+          - rvest
           - shiny
           - shinyjs
           - shinyWidgets
           - styler
+          - xml2
       - id: spell-check
         name: Check spelling with `spelling`
         exclude: >
