@@ -301,9 +301,6 @@ testthat::test_that("type_download_srv_table: unsupported type", {
         "file_format" = ".csv"
       )
       testthat::expect_error(output$data_download, "Unsupported table type for download")
-      # testthat::expect_equal(
-      #   basename(output$data_download), paste0(input$file_name, down_type)
-      # )
     }
   )
 })
