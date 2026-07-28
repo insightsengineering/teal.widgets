@@ -9,4 +9,5 @@
 
 #' @import shiny
 #' @importFrom lifecycle badge
+#' @importFrom webshot2 webshot
 NULL
