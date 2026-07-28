@@ -14,6 +14,25 @@ render_table_to_html_rtables <- function(x, ...) {
   rtables::as_html(x)
 }
 
+file_download_format <- function(x, filename) {
+  UseMethod("file_download_format", x)
+}
+
+#' @method file_download_format default
+#' @keywords internal
+#' @exportS3Method
+file_download_format.default <- function(x, filename) {
+  filename
+}
+
+#' @method file_download_format tbl_split
+#' @keywords internal
+#' @exportS3Method
+file_download_format.tbl_split <- function(x, filename) {
+  new_filename <- tools::file_path_sans_ext(filename)
+  paste0(new_filename, ".zip")
+}
+
 #' Render table object to HTML
 #'
 #' @param x The table object to render
@@ -59,6 +78,20 @@ render_table_to_html.gtsummary <- function(x, ...) {
 #' @exportS3Method
 render_table_to_html.gt_tbl <- function(x, ...) {
   htmltools::HTML(gt::as_raw_html(x))
+}
+
+#' @method render_table_to_html tbl_split
+#' @keywords internal
+#' @exportS3Method
+render_table_to_html.tbl_split <- function(x, ...) {
+  tables <- lapply(seq_along(x), function(tbl) {
+    label <- attr(x[[tbl]], "variable_level", exact = TRUE)
+    htmltools::tags$div(
+      if (checkmate::test_string(label)) htmltools::tags$h4("Variable level:", label),
+      render_table_to_html(x[[tbl]])
+    )
+  })
+  htmltools::tags$div(tables)
 }
 
 #' Export table object to file
@@ -148,6 +181,32 @@ export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, .
   }
 }
 
+#' @method export_table tbl_split
+#' @keywords internal
+#' @exportS3Method
+export_table.tbl_split <- function(x, file, format, paginate = FALSE, lpp = NULL, file_name = file, ...) {
+  ext <- format # ".pdf" or ".txt"
+  tmp_dir <- tempfile()
+  dir.create(tmp_dir)
+  on.exit(unlink(tmp_dir, recursive = TRUE))
+
+  base_name <- tools::file_path_sans_ext(basename(file_name))
+
+  tmp_files <- lapply(seq_along(x), function(i) {
+    label <- as.vector(attr(x[[i]], "variable_level", exact = TRUE))
+    if (checkmate::test_string(label)) {
+      base_name <- paste0(base_name, "_", gsub("[^[:alnum:]]", "_", label), "_", i)
+    } else {
+      base_name <- paste0(base_name, "_", i)
+    }
+    tmp_file <- file.path(tmp_dir, paste0(base_name, ext))
+    export_table(x[[i]], file = tmp_file, format = format, paginate = paginate, lpp = lpp, ...)
+    tmp_file
+  })
+
+  utils::zip(zipfile = file, files = unlist(tmp_files), flags = "-j") # -j: junk paths
+}
+
 export_table_raw <- function(x) {
   html_content <- gt::as_raw_html(x)
   html_parsed <- rvest::read_html(html_content)
@@ -155,7 +214,9 @@ export_table_raw <- function(x) {
   # xml_remove modifies the object so no need to ovewrite
   xml2::xml_remove(rvest::html_nodes(html_parsed, "caption, .gt_heading"))
 
-  rvest::html_table(html_parsed, fill = TRUE)[[1]]
+  tbl <- rvest::html_table(html_parsed, fill = TRUE)[[1]]
+  names(tbl) <- gsub("[\n\r\t]", " ", names(tbl))
+  tbl
 }
 
 #' @name table_with_settings
@@ -372,7 +433,7 @@ type_download_srv_table <- function(id, table_reactive) {
 
       output$data_download <- downloadHandler(
         filename = function() {
-          paste0(input$file_name, input$file_format)
+          file_download_format(table_reactive(), paste0(input$file_name, input$file_format))
         },
         content = function(file) {
           export_table(
@@ -380,7 +441,8 @@ type_download_srv_table <- function(id, table_reactive) {
             file = file,
             format = input$file_format,
             paginate = input$pagination_switch,
-            lpp = if (input$pagination_switch) as.numeric(input$lpp)
+            lpp = if (input$pagination_switch) as.numeric(input$lpp),
+            file_name = input$file_name
           )
         }
       )
