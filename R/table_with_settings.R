@@ -230,6 +230,11 @@ export_table_raw <- function(x) {
 #' @param ... (`character`)\cr
 #'  Useful for providing additional HTML classes for the output tag.
 #'
+#' @note The download of [gt::gt()] and [gtsummary::tbl_summary()] tables as PDF requires the `webshot2` package
+#' to be installed.
+#' A once a session warning is displayed if the package is not installed when calling `table_with_settings` with
+#' a reactive table in one of those formats.
+#'
 #' @rdname table_with_settings
 #' @export
 #'
@@ -332,6 +337,7 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
     })
 
     output$table_out_main <- output$table_out_modal <- renderUI({
+      .warning_gt_webshot2(table_r())
       render_table_to_html(table_r())
     })
 
@@ -347,9 +353,21 @@ type_download_ui_table <- function(id) {
   bslib::popover(
     icon("download"),
     tags$div(
-      radioButtons(ns("file_format"),
-        label = "File type",
-        choices = c("formatted txt" = ".txt", "csv" = ".csv", "pdf" = ".pdf"),
+      radioButtons(
+        ns("file_format"),
+        label = tags$span("File type", shinyjs::hidden(
+          tags$div(
+            id = ns("pdf_warning"),
+            style = c(
+              "cursor: help;", "color: var(--bs-gray-600);", "margin-bottom: 0.5rem;",
+              "font-size: 0.875rem;", "padding-left: 0.1rem;"
+            ),
+            icon("circle-info"),
+            title = "Contact app support to enable PDF download by installing the `webshot2` package.",
+            "PDF download is disabled."
+          )
+        )),
+        choices = c("formatted txt" = ".txt", "csv" = ".csv", "pdf" = ".pdf")
       ),
       textInput(ns("file_name"),
         label = "File name (without extension)",
@@ -397,6 +415,18 @@ type_download_srv_table <- function(id, table_reactive) {
   moduleServer(
     id,
     function(input, output, session) {
+      observeEvent(table_reactive(), {
+        if (
+          checkmate::test_multi_class(table_reactive(), c("gt_tbl", "tbl_split", "tbl_summary")) &&
+            !requireNamespace("webshot2", quietly = TRUE)
+        ) {
+          updateRadioButtons(
+            inputId = "file_format",
+            choices = list("formatted txt" = ".txt", "csv" = ".csv")
+          )
+          shinyjs::show("pdf_warning")
+        }
+      })
       observeEvent(input$pagination_switch, {
         if (input$pagination_switch) {
           shinyjs::enable("lpp")

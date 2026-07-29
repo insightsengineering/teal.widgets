@@ -42,3 +42,16 @@ testthat::test_that("apply_plot_modifications, Do not modify plot object", {
   )
   testthat::expect_true(identical(unchanged_plot, ggplot_obj))
 })
+
+testthat::test_that(".warning_gt_webshot2, show warning only once a session", {
+  old_value <- .warnings_env$gt_webshot2_warning
+  withr::defer(.warnings_env$gt_webshot2_warning <- old_value)
+  .warnings_env$gt_webshot2_warning <- NULL
+
+  testthat::expect_warning(
+    .warning_gt_webshot2(gt::gt(head(mtcars)), FALSE)
+  )
+  testthat::expect_no_warning(
+    .warning_gt_webshot2(gt::gt(head(mtcars)), FALSE)
+  )
+})

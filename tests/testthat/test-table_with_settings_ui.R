@@ -117,9 +117,9 @@ testthat::test_that(
     app_driver$wait_for_js(click_download_popup)
     app_driver$wait_for_idle()
 
-    testthat::expect_equal(
-      app_driver$get_text("#table_with_settings-downbutton-file_format-label"),
-      "File type"
+    testthat::expect_match(
+      trimws(app_driver$get_text("#table_with_settings-downbutton-file_format-label")),
+      "^File type"
     )
     testthat::expect_identical(
       app_driver$get_value(input = "table_with_settings-downbutton-file_format"),
@@ -251,9 +251,9 @@ testthat::test_that(
     app_driver$wait_for_js(click_download_popup)
     app_driver$wait_for_idle()
 
-    testthat::expect_equal(
-      app_driver$get_text("#table_with_settings-downbutton-file_format-label"),
-      "File type"
+    testthat::expect_match(
+      trimws(app_driver$get_text("#table_with_settings-downbutton-file_format-label")),
+      "^File type"
     )
     values <- app_driver$get_values()
     testthat::expect_identical(

@@ -21,6 +21,9 @@ testthat::test_that("table_with_settings_srv: assertions", {
   }
 })
 
+# warning is expected to be thrown once per session, so we disable it for testing in this test file
+withr::local_envvar(DISABLE_GT_WEBSHOT2_WARNING = "true")
+
 testthat::test_that("table_with_settings_srv: hiding works", {
   shiny::testServer(
     teal.widgets::table_with_settings_srv,
@@ -201,6 +204,105 @@ testthat::test_that("table_with_settings_srv: gt table renders with content", {
       testthat::expect_s3_class(output$table_out_main$html, "html")
       testthat::expect_true(grepl("mpg|cyl|disp", html_content, ignore.case = TRUE))
       testthat::expect_true(grepl("<table", html_content, ignore.case = TRUE))
+    }
+  )
+})
+
+testthat::test_that("type_download_srv_table: downloading tbl_split output types", {
+  tbl_split_r <- shiny::reactive({
+    gtsummary::tbl_split_by_rows(gtsummary::tbl_summary(gtsummary::trial, by = "trt"), variables = c("marker"))
+  })
+
+  shiny::testServer(
+    teal.widgets:::type_download_srv_table,
+    args = list(id = "tws", table_reactive = tbl_split_r),
+    expr = {
+      for (down_type in c(".txt", ".csv", ".pdf")) {
+        if (down_type == ".pdf") {
+          testthat::skip_if_not_installed("webshot2")
+        }
+        session$setInputs(
+          "pagination_switch" = FALSE,
+          "file_format" = down_type,
+          "file_name" = "testtable"
+        )
+        testthat::expect_true(file.exists(output$data_download))
+        testthat::expect_equal(
+          basename(output$data_download), paste0(input$file_name, ".zip")
+        )
+      }
+    }
+  )
+})
+
+testthat::test_that("table_with_settings_srv: tbl_split table renders with content", {
+  tbl_split_r <- shiny::reactive({
+    gtsummary::tbl_split_by_rows(gtsummary::tbl_summary(gtsummary::trial, by = "trt"), variables = c("marker"))
+  })
+
+  shiny::testServer(
+    teal.widgets::table_with_settings_srv,
+    args = list(id = "tws", table_r = tbl_split_r),
+    expr = {
+      html_content <- as.character(output$table_out_main$html)
+
+      testthat::expect_s3_class(output$table_out_main$html, "html")
+      testthat::expect_true(grepl("Tumor Response", html_content, ignore.case = TRUE))
+      testthat::expect_true(grepl("<table", html_content, ignore.case = TRUE))
+    }
+  )
+})
+
+testthat::test_that("table_with_settings_srv: unsupported table throws error", {
+  shiny::testServer(
+    teal.widgets::table_with_settings_srv,
+    args = list(id = "tws", table_r = reactive(structure(list(a = 1), class = "unsupported"))),
+    expr = {
+      testthat::expect_error(
+        output$table_out_main$html,
+        "Unsupported table type. table_with_settings supports",
+        fixed = TRUE
+      )
+    }
+  )
+})
+
+testthat::test_that("type_download_srv_table: downloading gtsummary output types", {
+  tbl_split_r <- shiny::reactive({
+    gtsummary::tbl_summary(gtsummary::trial, by = "trt")
+  })
+
+  shiny::testServer(
+    teal.widgets:::type_download_srv_table,
+    args = list(id = "tws", table_reactive = tbl_split_r),
+    expr = {
+      for (down_type in c(".txt", ".csv", ".pdf")) {
+        if (down_type == ".pdf") {
+          testthat::skip_if_not_installed("webshot2")
+        }
+        session$setInputs(
+          "pagination_switch" = FALSE,
+          "file_format" = down_type
+        )
+        testthat::expect_true(file.exists(output$data_download))
+        testthat::expect_equal(
+          basename(output$data_download), paste0(input$file_name, down_type)
+        )
+      }
+    }
+  )
+})
+
+testthat::test_that("type_download_srv_table: unsupported type", {
+  shiny::testServer(
+    teal.widgets:::type_download_srv_table,
+    args = list(id = "tws", table_reactive = reactive(structure(list(a = 1), class = "unsupported"))),
+    expr = {
+      session$setInputs(
+        "pagination_switch" = FALSE,
+        "file_format" = ".csv"
+      )
+      testthat::expect_error(output$data_download, "Unsupported table type for download")
     }
   )
 })
