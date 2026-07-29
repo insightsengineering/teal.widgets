@@ -351,17 +351,17 @@ type_download_ui_table <- function(id) {
       radioButtons(
         ns("file_format"),
         label = tags$span("File type", shinyjs::hidden(
-        tags$div(
-          id = ns("pdf_warning"),
-          style = c(
-            "cursor: help;", "color: var(--bs-gray-600);", "margin-bottom: 0.5rem;",
-            "font-size: 0.875rem;", "padding-left: 0.1rem;"
-          ),
-          icon("circle-info"),
-          title = "Contact app support to enable PDF download by installing the `webshot2` package.",
-          "PDF download disabled."
-        )
-      )),
+          tags$div(
+            id = ns("pdf_warning"),
+            style = c(
+              "cursor: help;", "color: var(--bs-gray-600);", "margin-bottom: 0.5rem;",
+              "font-size: 0.875rem;", "padding-left: 0.1rem;"
+            ),
+            icon("circle-info"),
+            title = "Contact app support to enable PDF download by installing the `webshot2` package.",
+            "PDF download disabled."
+          )
+        )),
         choices = c("formatted txt" = ".txt", "csv" = ".csv", "pdf" = ".pdf")
       ),
       textInput(ns("file_name"),
