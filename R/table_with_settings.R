@@ -364,7 +364,7 @@ type_download_ui_table <- function(id) {
             ),
             icon("circle-info"),
             title = "Contact app support to enable PDF download by installing the `webshot2` package.",
-            "PDF download disabled."
+            "PDF download is disabled."
           )
         )),
         choices = c("formatted txt" = ".txt", "csv" = ".csv", "pdf" = ".pdf")
