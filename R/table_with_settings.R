@@ -337,7 +337,7 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
     })
 
     output$table_out_main <- output$table_out_modal <- renderUI({
-      .once_session_gt_webshot2_warning(table_r())
+      .warning_gt_webshot2(table_r())
       render_table_to_html(table_r())
     })
 

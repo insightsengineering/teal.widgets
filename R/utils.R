@@ -20,8 +20,8 @@ apply_plot_modifications <- function(plot_obj, plot_type, dblclicking, ranges) {
   }
 }
 
-.once_session_gt_webshot2_warning <- function(table,
-                                              webshot_installed = requireNamespace("webshot2", quietly = TRUE)) {
+.warning_gt_webshot2 <- function(table, #
+                                 webshot_installed = requireNamespace("webshot2", quietly = TRUE)) {
   if (
     checkmate::test_multi_class(table, c("gt_tbl", "tbl_split", "tbl_summary")) &&
       !webshot_installed &&
