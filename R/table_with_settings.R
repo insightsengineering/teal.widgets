@@ -230,6 +230,11 @@ export_table_raw <- function(x) {
 #' @param ... (`character`)\cr
 #'  Useful for providing additional HTML classes for the output tag.
 #'
+#' @note The download of [gt::gt()] and [gtsummary::tbl_summary()] tables as PDF requires the `webshot2` package
+#' to be installed.
+#' A once a session warning is displayed if the package is not installed when calling `table_with_settings` with
+#' a reactive table in one of those formats.
+#'
 #' @rdname table_with_settings
 #' @export
 #'
