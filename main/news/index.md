@@ -1,6 +1,6 @@
 # Changelog
 
-## teal.widgets 0.6.1.9001
+## teal.widgets 0.6.1.9002
 
 #### Enhancements
 
