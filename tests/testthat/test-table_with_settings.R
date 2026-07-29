@@ -21,6 +21,9 @@ testthat::test_that("table_with_settings_srv: assertions", {
   }
 })
 
+# warning is expected to be thrown once per session, so we disable it for testing in this test file
+withr::local_envvar(DISABLE_GT_WEBSHOT2_WARNING = "true")
+
 testthat::test_that("table_with_settings_srv: hiding works", {
   shiny::testServer(
     teal.widgets::table_with_settings_srv,
