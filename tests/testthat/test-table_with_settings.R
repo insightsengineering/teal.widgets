@@ -220,6 +220,7 @@ testthat::test_that("type_download_srv_table: downloading tbl_split output types
       for (down_type in c(".txt", ".csv", ".pdf")) {
         if (down_type == ".pdf") {
           testthat::skip_if_not_installed("webshot2")
+          testthat::skip_on_cran()
         }
         session$setInputs(
           "pagination_switch" = FALSE,
@@ -279,6 +280,7 @@ testthat::test_that("type_download_srv_table: downloading gtsummary output types
       for (down_type in c(".txt", ".csv", ".pdf")) {
         if (down_type == ".pdf") {
           testthat::skip_if_not_installed("webshot2")
+          testthat::skip_on_cran()
         }
         session$setInputs(
           "pagination_switch" = FALSE,
