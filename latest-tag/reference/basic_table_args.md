@@ -19,7 +19,7 @@ basic_table_args(...)
 - ...:
 
   arguments compatible with
-  [`rtables::basic_table()`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html).
+  [`rtables::basic_table()`](https://rdrr.io/pkg/rtables/man/basic_table.html).
 
 ## Value
 

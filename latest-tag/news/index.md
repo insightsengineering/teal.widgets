@@ -1,5 +1,12 @@
 # Changelog
 
+## teal.widgets 0.7.0
+
+#### Enhancements
+
+- Added support for `tbl_split` object from `gtsummary` package to
+  `table_with_settings`.
+
 ## teal.widgets 0.6.1
 
 CRAN release: 2026-06-30

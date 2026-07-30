@@ -45,6 +45,16 @@ table_with_settings_srv(id, table_r, show_hide_signal = reactive(TRUE))
 
 A `shiny` module.
 
+## Note
+
+The download of [`gt::gt()`](https://gt.rstudio.com/reference/gt.html)
+and
+[`gtsummary::tbl_summary()`](https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html)
+tables as PDF requires the `webshot2` package to be installed. A once a
+session warning is displayed if the package is not installed when
+calling `table_with_settings` with a reactive table in one of those
+formats.
+
 ## Examples
 
 ``` r
