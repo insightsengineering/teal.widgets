@@ -1,8 +1,10 @@
-# teal.widgets 0.6.1.9002
+# teal.widgets 0.7.0
 
 ### Enhancements
 
 * Added support for `tbl_split` object from `gtsummary` package to `table_with_settings`.
+
+# teal.widgets 0.6.1
 
 ### Bug fixes
 * Fix snapshot failure during R CMD Check (#341).
