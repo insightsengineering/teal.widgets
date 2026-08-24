@@ -14,6 +14,25 @@ render_table_to_html_rtables <- function(x, ...) {
   rtables::as_html(x)
 }
 
+file_download_format <- function(x, filename) {
+  UseMethod("file_download_format", x)
+}
+
+#' @method file_download_format default
+#' @keywords internal
+#' @exportS3Method
+file_download_format.default <- function(x, filename) {
+  filename
+}
+
+#' @method file_download_format tbl_split
+#' @keywords internal
+#' @exportS3Method
+file_download_format.tbl_split <- function(x, filename) {
+  new_filename <- tools::file_path_sans_ext(filename)
+  paste0(new_filename, ".zip")
+}
+
 #' Render table object to HTML
 #'
 #' @param x The table object to render
@@ -27,7 +46,7 @@ render_table_to_html <- function(x, ...) {
 
 #' @method render_table_to_html default
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 render_table_to_html.default <- function(x, ...) {
   stop(
     "Unsupported table type. ",
@@ -38,17 +57,17 @@ render_table_to_html.default <- function(x, ...) {
 
 #' @method render_table_to_html ElementaryTable
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 render_table_to_html.ElementaryTable <- render_table_to_html_rtables
 
 #' @method render_table_to_html TableTree
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 render_table_to_html.TableTree <- render_table_to_html_rtables
 
 #' @method render_table_to_html gtsummary
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 render_table_to_html.gtsummary <- function(x, ...) {
   gt_obj <- gtsummary::as_gt(x)
   render_table_to_html(gt_obj)
@@ -56,9 +75,23 @@ render_table_to_html.gtsummary <- function(x, ...) {
 
 #' @method render_table_to_html gt_tbl
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 render_table_to_html.gt_tbl <- function(x, ...) {
   htmltools::HTML(gt::as_raw_html(x))
+}
+
+#' @method render_table_to_html tbl_split
+#' @keywords internal
+#' @exportS3Method
+render_table_to_html.tbl_split <- function(x, ...) {
+  tables <- lapply(seq_along(x), function(tbl) {
+    label <- attr(x[[tbl]], "variable_level", exact = TRUE)
+    htmltools::tags$div(
+      if (checkmate::test_string(label)) htmltools::tags$h4("Variable level:", label),
+      render_table_to_html(x[[tbl]])
+    )
+  })
+  htmltools::tags$div(tables)
 }
 
 #' Export table object to file
@@ -77,7 +110,7 @@ export_table <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
 
 #' @method export_table default
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 export_table.default <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
   stop("Unsupported table type for download")
 }
@@ -112,17 +145,17 @@ export_table_rtables <- function(x, file, format, paginate = FALSE, lpp = NULL, 
 
 #' @method export_table ElementaryTable
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 export_table.ElementaryTable <- export_table_rtables
 
 #' @method export_table TableTree
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 export_table.TableTree <- export_table_rtables
 
 #' @method export_table gtsummary
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
   gt_obj <- gtsummary::as_gt(x)
   export_table(gt_obj, file, format, paginate, lpp, ...)
@@ -130,7 +163,7 @@ export_table.gtsummary <- function(x, file, format, paginate = FALSE, lpp = NULL
 
 #' @method export_table gt_tbl
 #' @keywords internal
-#' @noRd
+#' @exportS3Method
 export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, ...) {
   if (format == ".csv") {
     utils::write.csv(export_table_raw(x), file = file, row.names = FALSE)
@@ -148,6 +181,32 @@ export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, .
   }
 }
 
+#' @method export_table tbl_split
+#' @keywords internal
+#' @exportS3Method
+export_table.tbl_split <- function(x, file, format, paginate = FALSE, lpp = NULL, file_name = file, ...) {
+  ext <- format # ".pdf" or ".txt"
+  tmp_dir <- tempfile()
+  dir.create(tmp_dir)
+  on.exit(unlink(tmp_dir, recursive = TRUE))
+
+  base_name <- tools::file_path_sans_ext(basename(file_name))
+
+  tmp_files <- lapply(seq_along(x), function(i) {
+    label <- as.vector(attr(x[[i]], "variable_level", exact = TRUE))
+    if (checkmate::test_string(label)) {
+      base_name <- paste0(base_name, "_", gsub("[^[:alnum:]]", "_", label), "_", i)
+    } else {
+      base_name <- paste0(base_name, "_", i)
+    }
+    tmp_file <- file.path(tmp_dir, paste0(base_name, ext))
+    export_table(x[[i]], file = tmp_file, format = format, paginate = paginate, lpp = lpp, ...)
+    tmp_file
+  })
+
+  utils::zip(zipfile = file, files = unlist(tmp_files), flags = "-j") # -j: junk paths
+}
+
 export_table_raw <- function(x) {
   html_content <- gt::as_raw_html(x)
   html_parsed <- rvest::read_html(html_content)
@@ -155,7 +214,9 @@ export_table_raw <- function(x) {
   # xml_remove modifies the object so no need to ovewrite
   xml2::xml_remove(rvest::html_nodes(html_parsed, "caption, .gt_heading"))
 
-  rvest::html_table(html_parsed, fill = TRUE)[[1]]
+  tbl <- rvest::html_table(html_parsed, fill = TRUE)[[1]]
+  names(tbl) <- gsub("[\n\r\t]", " ", names(tbl))
+  tbl
 }
 
 #' @name table_with_settings
@@ -168,6 +229,11 @@ export_table_raw <- function(x) {
 #' @inheritParams shiny::moduleServer
 #' @param ... (`character`)\cr
 #'  Useful for providing additional HTML classes for the output tag.
+#'
+#' @note The download of [gt::gt()] and [gtsummary::tbl_summary()] tables as PDF requires the `webshot2` package
+#' to be installed.
+#' A once a session warning is displayed if the package is not installed when calling `table_with_settings` with
+#' a reactive table in one of those formats.
 #'
 #' @rdname table_with_settings
 #' @export
@@ -271,6 +337,7 @@ table_with_settings_srv <- function(id, table_r, show_hide_signal = reactive(TRU
     })
 
     output$table_out_main <- output$table_out_modal <- renderUI({
+      .warning_gt_webshot2(table_r())
       render_table_to_html(table_r())
     })
 
@@ -286,9 +353,21 @@ type_download_ui_table <- function(id) {
   bslib::popover(
     icon("download"),
     tags$div(
-      radioButtons(ns("file_format"),
-        label = "File type",
-        choices = c("formatted txt" = ".txt", "csv" = ".csv", "pdf" = ".pdf"),
+      radioButtons(
+        ns("file_format"),
+        label = tags$span("File type", shinyjs::hidden(
+          tags$div(
+            id = ns("pdf_warning"),
+            style = c(
+              "cursor: help;", "color: var(--bs-gray-600);", "margin-bottom: 0.5rem;",
+              "font-size: 0.875rem;", "padding-left: 0.1rem;"
+            ),
+            icon("circle-info"),
+            title = "Contact app support to enable PDF download by installing the `webshot2` package.",
+            "PDF download is disabled."
+          )
+        )),
+        choices = c("formatted txt" = ".txt", "csv" = ".csv", "pdf" = ".pdf")
       ),
       textInput(ns("file_name"),
         label = "File name (without extension)",
@@ -336,6 +415,18 @@ type_download_srv_table <- function(id, table_reactive) {
   moduleServer(
     id,
     function(input, output, session) {
+      observeEvent(table_reactive(), {
+        if (
+          checkmate::test_multi_class(table_reactive(), c("gt_tbl", "tbl_split", "tbl_summary")) &&
+            !requireNamespace("webshot2", quietly = TRUE)
+        ) {
+          updateRadioButtons(
+            inputId = "file_format",
+            choices = list("formatted txt" = ".txt", "csv" = ".csv")
+          )
+          shinyjs::show("pdf_warning")
+        }
+      })
       observeEvent(input$pagination_switch, {
         if (input$pagination_switch) {
           shinyjs::enable("lpp")
@@ -372,7 +463,7 @@ type_download_srv_table <- function(id, table_reactive) {
 
       output$data_download <- downloadHandler(
         filename = function() {
-          paste0(input$file_name, input$file_format)
+          file_download_format(table_reactive(), paste0(input$file_name, input$file_format))
         },
         content = function(file) {
           export_table(
@@ -380,7 +471,8 @@ type_download_srv_table <- function(id, table_reactive) {
             file = file,
             format = input$file_format,
             paginate = input$pagination_switch,
-            lpp = if (input$pagination_switch) as.numeric(input$lpp)
+            lpp = if (input$pagination_switch) as.numeric(input$lpp),
+            file_name = input$file_name
           )
         }
       )

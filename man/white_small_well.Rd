@@ -16,7 +16,7 @@ An HTML output element with class Small Well and overflow-x property
 Adds Small Well class and overflow-x property to HTML output element.
 }
 \details{
-\code{white_small_well} is intended to be used with \code{\link[shiny:htmlOutput]{shiny::uiOutput()}}.
+\code{white_small_well} is intended to be used with \code{\link[shiny:uiOutput]{shiny::uiOutput()}}.
 The overflow-x property is set to auto so that a scroll bar is added
 when the content overflows at the left and right edges of the output window.
 For example, this is useful for displaying wide tables.

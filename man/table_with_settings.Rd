@@ -35,6 +35,12 @@ A \code{shiny} module.
 Module designed to create a \code{shiny} table output based on table objects.
 Supports \code{rtables} objects (\code{ElementaryTable} or \code{TableTree}), \code{gtsummary} objects, or \code{gt} objects.
 }
+\note{
+The download of \code{\link[gt:gt]{gt::gt()}} and \code{\link[gtsummary:tbl_summary]{gtsummary::tbl_summary()}} tables as PDF requires the \code{webshot2} package
+to be installed.
+A once a session warning is displayed if the package is not installed when calling \code{table_with_settings} with
+a reactive table in one of those formats.
+}
 \examples{
 library(shiny)
 library(rtables)
