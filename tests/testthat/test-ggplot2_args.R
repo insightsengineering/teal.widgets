@@ -179,7 +179,7 @@ testthat::test_that(
   }
 )
 
-testthat::test_that("parse_ggplot2_args, deparse needed to expand ggplot2 objects like element_blank", {
+testthat::test_that("parse_ggplot2_args converts evaluated element objects to clean calls", {
   parse_element <- parse_ggplot2_args(
     resolve_ggplot2_args(
       module_plot = ggplot2_args(
@@ -188,27 +188,72 @@ testthat::test_that("parse_ggplot2_args, deparse needed to expand ggplot2 object
     )
   )
 
-  if (packageVersion("ggplot2") <= "3.5.2") {
-    testthat::expect_true(!identical(
-      parse_element,
-      list(theme = quote(ggplot2::theme(axis.text = list())))
-    ))
+  testthat::expect_identical(
+    parse_element,
+    list(theme = quote(ggplot2::theme(axis.text = ggplot2::element_blank())))
+  )
+})
 
-    testthat::expect_true(identical(
-      deparse(parse_element$theme, 140),
-      deparse(
-        quote(ggplot2::theme(axis.text = structure(list(), class = c("element_blank", "element")))),
-        140
+testthat::test_that("parse_ggplot2_args handles evaluated element_text with deparse round-trip", {
+  parse_element <- parse_ggplot2_args(
+    resolve_ggplot2_args(
+      module_plot = ggplot2_args(
+        theme = list(text = ggplot2::element_text(size = 20))
       )
-    ))
-  } else {
-    p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
-      ggplot2::geom_point()
-    p_with_theme <- p + eval(parse_element$theme)
-    testthat::expect_true(inherits(p_with_theme$theme, "theme"))
-    testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
-    testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
-  }
+    )
+  )
+
+  deparsed <- deparse(parse_element$theme)
+  result <- eval(parse(text = deparsed))
+  testthat::expect_true(inherits(result, "theme"))
+  testthat::expect_identical(result$text$size, 20)
+})
+
+testthat::test_that("parse_ggplot2_args preserves already-quoted theme calls unchanged", {
+  parsed <- parse_ggplot2_args(
+    ggplot2_args(theme = list(text = quote(ggplot2::element_text(size = 20))))
+  )
+  testthat::expect_identical(
+    parsed$theme,
+    quote(ggplot2::theme(text = ggplot2::element_text(size = 20)))
+  )
+})
+
+testthat::test_that("parse_ggplot2_args handles element_rect with deparse round-trip", {
+  parsed <- parse_ggplot2_args(
+    ggplot2_args(theme = list(panel.background = ggplot2::element_rect(fill = "blue", colour = "black")))
+  )
+  result <- eval(parse(text = deparse(parsed$theme)))
+  testthat::expect_identical(result$panel.background$fill, "blue")
+  testthat::expect_identical(result$panel.background$colour, "black")
+})
+
+testthat::test_that("parse_ggplot2_args handles element_text with custom margin via round-trip", {
+  parsed <- parse_ggplot2_args(
+    ggplot2_args(
+      theme = list(title = ggplot2::element_text(size = 14, margin = ggplot2::margin(5, 10, 5, 10)))
+    )
+  )
+  result <- eval(parse(text = deparse(parsed$theme)))
+  testthat::expect_identical(result$title$size, 14)
+  testthat::expect_equal(as.numeric(result$title$margin), c(5, 10, 5, 10))
+})
+
+testthat::test_that("parse_ggplot2_args handles rel() in theme via round-trip", {
+  parsed <- parse_ggplot2_args(
+    ggplot2_args(theme = list(text = ggplot2::element_text(size = ggplot2::rel(1.5))))
+  )
+  result <- eval(parse(text = deparse(parsed$theme)))
+  testthat::expect_identical(result$text$size, ggplot2::rel(1.5))
+})
+
+testthat::test_that("parse_ggplot2_args warns for unrecognized non-atomic theme objects", {
+  testthat::expect_warning(
+    parse_ggplot2_args(
+      ggplot2_args(theme = list(text = structure(list(), class = "some_custom_thing")))
+    ),
+    "could not be converted to a call"
+  )
 })
 
 testthat::test_that(
@@ -225,31 +270,16 @@ testthat::test_that(
       )
     })
 
-    if (packageVersion("ggplot2") <= "3.5.2") {
-      testthat::expect_identical(
-        result,
-        ggplot2_args(
-          labs = list(
-            y = "USER_YLAB_DIRECT",
-            x = "USER_XLAB_DEFAULT",
-            title = "ENV_TITLE",
-            subtitle = "DEVELOPER_SUBTITLE"
-          ),
-          theme = list(axis.text = structure(list(), class = c("element_blank", "element")))
-        )
+    testthat::expect_identical(
+      result$labs,
+      list(
+        y = "USER_YLAB_DIRECT",
+        x = "USER_XLAB_DEFAULT",
+        title = "ENV_TITLE",
+        subtitle = "DEVELOPER_SUBTITLE"
       )
-    } else {
-      testthat::expect_identical(
-        result$labs,
-        list(
-          y = "USER_YLAB_DIRECT",
-          x = "USER_XLAB_DEFAULT",
-          title = "ENV_TITLE",
-          subtitle = "DEVELOPER_SUBTITLE"
-        )
-      )
-      testthat::expect_true(inherits(result$theme$axis.text, "element_blank"))
-    }
+    )
+    testthat::expect_true(inherits(result$theme$axis.text, "element_blank"))
   }
 )
 
@@ -286,18 +316,9 @@ testthat::test_that(
       quote(ggplot2::theme_gray())
     )
 
-    if (packageVersion("ggplot2") <= "3.5.2") {
-      testthat::expect_identical(
-        deparse(parsed_all$theme, 500),
-        'ggplot2::theme(axis.text = structure(list(), class = c("element_blank", "element")))'
-      )
-    } else {
-      p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, wt)) +
-        ggplot2::geom_point()
-      p_with_theme <- p + eval(parsed_all$theme)
-      testthat::expect_true(inherits(p_with_theme$theme, "theme"))
-      testthat::expect_true("axis.text" %in% names(p_with_theme$theme))
-      testthat::expect_true(inherits(p_with_theme$theme$axis.text, "element_blank"))
-    }
+    testthat::expect_identical(
+      parsed_all$theme,
+      quote(ggplot2::theme(axis.text = ggplot2::element_blank()))
+    )
   }
 )
