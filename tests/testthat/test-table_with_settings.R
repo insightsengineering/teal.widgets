@@ -277,6 +277,7 @@ testthat::test_that("type_download_srv_table: downloading gtsummary output types
     teal.widgets:::type_download_srv_table,
     args = list(id = "tws", table_reactive = tbl_split_r),
     expr = {
+      file_name <- paste0("table_", strftime(Sys.time(), format = "%Y%m%d_%H%M%S"))
       for (down_type in c(".txt", ".csv", ".pdf")) {
         if (down_type == ".pdf") {
           testthat::skip_if_not_installed("webshot2")
@@ -284,11 +285,12 @@ testthat::test_that("type_download_srv_table: downloading gtsummary output types
         }
         session$setInputs(
           "pagination_switch" = FALSE,
-          "file_format" = down_type
+          "file_format" = down_type,
+          "file_name" = file_name
         )
         testthat::expect_true(file.exists(output$data_download))
         testthat::expect_equal(
-          basename(output$data_download), paste0(input$file_name, down_type)
+          basename(output$data_download), paste0(file_name, down_type)
         )
       }
     }
