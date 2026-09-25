@@ -5,108 +5,76 @@ output: github_document
 
 ## Package Overview
 
-`teal.widgets` is a **foundational UI-component library** in the `teal` ecosystem:
-a flat set of reusable `shiny` widgets — plot/table output with resize + download,
-layout helpers, and custom inputs — that `teal` modules consume. It sits at the
-bottom of the dependency stack: `teal`, `teal.modules.*`, and analysis-module
-packages depend on it, but it depends on none of them.
+`teal.widgets` is part of the `teal` framework. It provides a set of reusable `shiny`
+widgets that `teal` modules use to build their interface: plot and table outputs with
+resizing and download buttons, layout helpers, and a few custom inputs. Each widget
+works on its own; there is no shared app, router, or state.
 
-It deliberately does **not** build apps, define `teal` modules, or touch the
-`teal_data`/`qenv` reproducibility layer. Each widget is independent — there is no
-central app, router, or shared state.
+The widgets come in two forms:
+
+- **Full modules** are a `<name>_ui()` and `<name>_srv()` pair, for example
+  `plot_with_settings`, `table_with_settings`, and `verbatim_popup`.
+- **Plain helpers** are single functions, such as `standard_layout`,
+  `optionalSelectInput`, `draggable_buckets`, `panel_group`, `white_small_well`, and
+  `get_dt_rows`.
 
 ## Development Context
 
-Widgets come in two forms, both exported:
+Most of the work in this package is about rendering plots and tables and letting the
+user resize and download them.
 
-- **Full modules** pair `<name>_ui(id)` with `<name>_srv(id, ...)` (e.g.
-  `plot_with_settings`, `table_with_settings`, `verbatim_popup`). Note the
-  `_ui`/`_srv` **suffix**, unlike the `ui_`/`srv_` **prefix** used by `teal`
-  modules.
-- **Plain helpers** are single functions (`standard_layout`, `optionalSelectInput`,
-  `draggable_buckets`, `panel_group`, `white_small_well`, `get_dt_rows`).
+### Relationships with other packages
 
-Key code-level context to keep in mind before changing anything:
+`teal.widgets` sits at the bottom of the framework. `teal` and the `teal.modules.*`
+packages depend on it, but it does not depend on any of them.
 
-- **Base and grid plots are first-class.** `plot_with_settings` detects the plot
-  class itself — `ggplot`, `trellis` (lattice), `grob`, and base plots are all
-  supported — so do not assume `ggplot2`. Its `plot_r` argument may be a `reactive`
-  **or** a plain `function`; a plain `function` is needed to capture base plots for
-  download but is less efficient, so prefer `reactive` otherwise.
-- **`*_args` objects flow constructor → `resolve_*` → `parse_*`.** `ggplot2_args()` /
-  `basic_table_args()` capture options, `resolve_*` merges layered defaults
-  (including the global `getOption("teal.ggplot2_args")` /
-  `getOption("teal.basic_table_args")`), and `parse_*` emits the applied args/code.
-  Editing one stage means checking the other two (`R/ggplot2_args.R`,
-  `R/basic_table_args.R`).
-- **Front-end lives in `inst/<widget>/`** as paired `.css`/`.js`, wired via
-  `htmltools::htmlDependency()` (e.g. `plot_with_settings_deps()`). Add JS/CSS as a
-  file there and register it in the dependency function — not as inline
-  `tags$script`.
-- **Adding a new table type.** Follow the S3 pattern: add a method to each of `export_table`,
-  `render_table_to_html`, and `file_download_format` in `R/table_with_settings.R`
-  for the new class. Do not add class checks or `if/else` branches — the existing
-  methods (`TableTree`/`ElementaryTable`, `gt_tbl`, `gtsummary`, `tbl_split`,
-  `default`) are the template.
+Packages it relies on:
 
-### Supporting packages
+- `shiny`, `htmltools`, and `bslib` for the UI and layout.
+- `shinyWidgets` and `shinyjs` for richer inputs and client-side behavior.
+- `rtables`, `gt`, and `gtsummary` for the table types it renders and exports.
+- `ggplot2` and base/grid graphics for plots.
+- `rvest` and `xml2` for reading and editing table HTML.
+- `checkmate` for input validation.
+- `webshot2` (a `Suggests`) is needed to download `gt`, `gtsummary`, or `tbl_split`
+  tables as PDF. When it is missing the module warns once per session; set
+  `DISABLE_GT_WEBSHOT2_WARNING=true` to turn the warning off.
 
-- **`shiny`, `htmltools`, `bslib`** — the module/UI foundation; `bslib` for layout
-  and theming.
-- **`shinyWidgets`, `shinyjs`** — richer inputs and client-side behavior for the
-  custom widgets.
-- **`rtables`, `gt`, `gtsummary`** — the table classes `table_with_settings`
-  renders and exports (see the S3 dispatch note above).
-- **`ggplot2`, `grid`/`grDevices`/`graphics`** — plot rendering across ggplot,
-  grob, and base/grid plots.
-- **`rvest`, `xml2`** — HTML parsing/manipulation for table rendering and export.
-- **`checkmate`** — input validation (`assert_*`) at the top of every function.
-- **`styler`** — used at runtime to format emitted reproducibility code.
-- **`webshot2`** (a `Suggests`) — required for PDF download of
-  `gt` / `gtsummary` / `tbl_split` tables. When absent the module emits a
-  once-per-session warning (`.warning_gt_webshot2()` in `R/utils.R`); silence it
-  with `DISABLE_GT_WEBSHOT2_WARNING=true`.
+### How plots and tables are handled
+
+- **Plots.** `plot_with_settings` works out the plot type on its own (`ggplot`,
+  lattice, `grob`, or base graphics), so it is not limited to `ggplot2`. Its `plot_r`
+  argument can be a `reactive` or a plain `function`; a plain `function` is only needed
+  when a base plot has to be captured for download.
+- **Tables.** `export_table`, `render_table_to_html`, and `file_download_format` (in
+  `R/table_with_settings.R`) use S3 dispatch, with one method per table class
+  (`rtables`, `gt`, `gtsummary`, `tbl_split`).
+- **Plot and table settings.** `ggplot2_args()` and `basic_table_args()` capture the
+  options, `resolve_*()` merges them with the defaults (including the global
+  `getOption("teal.ggplot2_args")` and `getOption("teal.basic_table_args")`), and
+  `parse_*()` produces the final code.
+- **Front-end.** CSS and JS files live in `inst/<widget>/` and are registered with
+  `htmltools::htmlDependency()`.
 
 ### Workflows
 
-Common commands:
-
-```r
-devtools::load_all()                             # interactive load
-devtools::document()                             # regenerate man/ + NAMESPACE (roxygen2 8.1.0)
-devtools::test()                                 # all tests
-devtools::test(filter = "plot_with_settings")    # subset by name
-lintr::lint_package()                            # lint (config in .lintr)
-styler::style_pkg()                              # tidyverse style
-```
-
-```bash
-pre-commit run --all-files    # style + roxygenize + spell-check; run before committing
-```
-
-- **Run the full test suite before trusting green.** `skip_if_too_deep(depth)`
-  (`tests/testthat/helpers-testing-depth.R`) skips a test when `TESTING_DEPTH`
-  (option/env, default `3`) is below its `depth`. A green `devtools::test()` at the
-  default has **not** run the heavy `shinytest2` tests — set `TESTING_DEPTH=5` to
-  run everything. UI tests are split out: `test-<widget>_ui.R` holds the
-  depth-gated `shinytest2` UI tests (helper in
-  `tests/testthat/helpers-shinytest2.R`), while `test-<widget>.R` holds the
-  server/unit tests.
-- **Consider the framework before fixing a bug.** `teal.widgets` is foundational,
-  so a bug that surfaces here may originate downstream (a `teal` module calling a
-  widget incorrectly) or upstream (`rtables`/`gt`/`ggplot2` behavior). Confirm the
-  fault is in this package before changing its code.
-- **Add a regression test when fixing an issue.** Put server/unit coverage in
-  `test-<widget>.R` and `shinytest2` UI coverage in `test-<widget>_ui.R`, gating
-  heavy tests with `skip_if_too_deep()`.
-
-### Conventions
-
-- Never hand-edit `man/*.Rd` or `NAMESPACE` — they are generated; edit roxygen and
-  run `devtools::document()`.
-- Validate inputs with `checkmate::assert_*` at the top of each function.
-- New technical words go in `inst/WORDLIST`.
-- Line length limit is 120 (`.lintr`).
+- Before fixing a bug, remember that `teal.widgets` is at the bottom of the framework,
+  so the cause is often somewhere else: in the `teal` module that calls the widget, or
+  in the package that produced the object being rendered (`rtables`, `gt`, `gtsummary`,
+  `ggplot2`). Confirm the problem is really here before changing widget code, and check
+  whether an issue already exists.
+- To support a new table type, add a method for the new class to each of
+  `export_table`, `render_table_to_html`, and `file_download_format`, instead of
+  branching on class.
+- To change how plot or table settings are applied, edit `ggplot2_args()` /
+  `basic_table_args()`, `resolve_*()`, and `parse_*()` together, since a setting flows
+  through all three.
+- To add front-end assets, put the file in `inst/<widget>/` and register it in the
+  widget's dependency function; do not inline a `tags$script`.
+- Run the full test suite before trusting a green run: set `TESTING_DEPTH=5`, because
+  the default of `3` skips the heavy `shinytest2` tests. Server and unit tests are in
+  `test-<widget>.R`; UI tests are in `test-<widget>_ui.R`.
+- Add a regression test when you fix a bug.
 
 This package is part of the teal framework. The following configuration applies to all packages within the teal framework:
 
