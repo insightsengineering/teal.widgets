@@ -3,8 +3,6 @@ output: github_document
 ---
 # teal.widgets R Package Development Guide
 
-
-
 ## Package Overview
 
 `teal.widgets` is a **foundational UI-component library** in the `teal` ecosystem:
@@ -217,7 +215,6 @@ Do not change versions on your own.
 There is a CI/CD workflow that manages the versions automatically on the `main` branch.
 
 ## CI/CD and Development Workflow
-
 
 ### GitHub Workflows
 

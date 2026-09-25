@@ -1,11 +1,12 @@
 ---
 output: github_document
 ---
-# teal.widgets R Package Development Guide
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# teal.widgets R Package Development Guide
 
 ## Package Overview
 
@@ -127,5 +128,8 @@ common_claude_shared <- common_claude_shared[-1 * seq(gitlab_starts, gitlab_ends
 github_starts <- grep("github starts here", common_claude_shared)
 github_ends <- grep("github ends here", common_claude_shared)
 common_claude_shared <- common_claude_shared[-1 * c(github_starts, github_ends)]
+# collapse consecutive blank lines so the rendered markdown passes markdownlint (MD012)
+is_blank <- common_claude_shared == ""
+common_claude_shared <- common_claude_shared[!(is_blank & c(FALSE, head(is_blank, -1)))]
 cat(common_claude_shared, sep = "\n")
 ```
