@@ -10,13 +10,14 @@ widgets that `teal` modules use to build their interface: plot and table outputs
 resizing and download buttons, layout helpers, and a few custom inputs. Each widget
 works on its own; there is no shared app, router, or state.
 
-The widgets come in two forms:
+All widgets are exported for `teal` module developers, in two forms:
 
-- **Full modules** are a `<name>_ui()` and `<name>_srv()` pair, for example
-  `plot_with_settings`, `table_with_settings`, and `verbatim_popup`.
-- **Plain helpers** are single functions, such as `standard_layout`,
-  `optionalSelectInput`, `draggable_buckets`, `panel_group`, `white_small_well`, and
-  `get_dt_rows`.
+- **Full modules** are a `<name>_ui()` and `<name>_srv()` pair wired into your app's UI
+  and server, for example `plot_with_settings`, `table_with_settings`, and
+  `verbatim_popup`.
+- **Standalone functions** are called directly, with no server counterpart to wire up,
+  such as `optionalSelectInput`, `optionalSliderInput`, `draggable_buckets`,
+  `standard_layout`, `panel_group`, `white_small_well`, and `get_dt_rows`.
 
 ## Development Context
 
@@ -28,8 +29,7 @@ This package provides reusable `shiny` widgets for `teal` modules:
 - **Inputs** — customized versions of `shiny`/`shinyWidgets` controls built for
   `teal`'s needs (`optionalSelectInput`, `optionalSliderInput`, `draggable_buckets`).
 - **Layout helpers** — arrange module UI (`standard_layout`, `panel_group`,
-  `white_small_well`).
-- **Popups** — display code or content in a modal (`verbatim_popup`,
+  `white_small_well`) and display code or content in a modal (`verbatim_popup`,
   `nested_closeable_modal`).
 
 ### Relationships with other packages
@@ -46,14 +46,13 @@ Packages it relies on:
 - `rvest` and `xml2` for reading and editing table HTML.
 - `checkmate` for input validation.
 - `webshot2` (a `Suggests`) is needed to download `gt`, `gtsummary`, or `tbl_split`
-  tables as PDF. When it is missing the module warns once per session; set
-  `DISABLE_GT_WEBSHOT2_WARNING=true` to turn the warning off.
+  tables as PDF.
 
 ### How plots and tables are handled
 
 - **Plots.** `plot_with_settings` works out the plot type on its own (`ggplot`,
   lattice, `grob`, or base graphics), so it is not limited to `ggplot2`. Its `plot_r`
-  argument can be a `reactive` or a plain `function`; a plain `function` is only needed
+  argument can be a `reactive` or a `function`; a `function` is only needed
   when a base plot has to be captured for download.
 - **Tables.** `export_table`, `render_table_to_html`, and `file_download_format` (in
   `R/table_with_settings.R`) use S3 dispatch, with one method per table class
@@ -80,7 +79,7 @@ Packages it relies on:
   through all three.
 - To add front-end assets, put the file in `inst/<widget>/` and register it in the
   widget's dependency function; do not inline a `tags$script`.
-- Run the full test suite before trusting a green run: set `TESTING_DEPTH=5`, because
+- Run the full test suite before trusting a green run: set environment variable `TESTING_DEPTH=5`, because
   the default of `3` skips the heavy `shinytest2` tests. Server and unit tests are in
   `test-<widget>.R`; UI tests are in `test-<widget>_ui.R`.
 - Add a regression test when you fix a bug.
