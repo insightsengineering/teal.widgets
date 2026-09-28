@@ -76,7 +76,7 @@ Packages it relies on:
   through all three.
 - To add front-end assets, put the file in `inst/<widget>/` and register it in the
   widget's dependency function; do not inline a `tags$script`.
-- Run the full test suite before trusting a green run: set `TESTING_DEPTH=5`, because
+- Run the full test suite before trusting a green run: set environament variable `TESTING_DEPTH=5`, because
   the default of `3` skips the heavy `shinytest2` tests. Server and unit tests are in
   `test-<widget>.R`; UI tests are in `test-<widget>_ui.R`.
 - Add a regression test when you fix a bug.
