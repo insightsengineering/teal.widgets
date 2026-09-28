@@ -168,13 +168,7 @@ export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, .
   if (format == ".csv") {
     utils::write.csv(export_table_raw(x), file = file, row.names = FALSE)
   } else if (format == ".pdf") {
-    # `gt::gtsave()` requires the filename to carry an extension, but the shiny
-    # download handler supplies an extensionless temp path. Save to a temp file
-    # that keeps the extension, then copy the result back to `file`.
-    tmp_file <- tempfile(fileext = format)
-    on.exit(unlink(tmp_file), add = TRUE)
-    gt::gtsave(x, filename = tmp_file)
-    file.copy(tmp_file, file, overwrite = TRUE)
+    gt::gtsave(x, filename = file)
   } else {
     utils::write.table(
       x = export_table_raw(x),
