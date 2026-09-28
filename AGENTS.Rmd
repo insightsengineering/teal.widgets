@@ -49,7 +49,7 @@ Packages it relies on:
 
 - **Plots.** `plot_with_settings` works out the plot type on its own (`ggplot`,
   lattice, `grob`, or base graphics), so it is not limited to `ggplot2`. Its `plot_r`
-  argument can be a `reactive` or a plain `function`; a plain `function` is only needed
+  argument can be a `reactive` or a `function`; a `function` is only needed
   when a base plot has to be captured for download.
 - **Tables.** `export_table`, `render_table_to_html`, and `file_download_format` (in
   `R/table_with_settings.R`) use S3 dispatch, with one method per table class
