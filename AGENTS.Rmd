@@ -25,8 +25,18 @@ The widgets come in two forms:
 
 ## Development Context
 
-Most of the work in this package is about rendering plots and tables and letting the
-user resize and download them.
+This package provides reusable `shiny` widgets for `teal` modules:
+
+- **Outputs** — plots and tables the user can resize and download
+  (`plot_with_settings`, `table_with_settings`), configured through the settings
+  pipeline (`ggplot2_args()` / `basic_table_args()`).
+- **Inputs** — customized versions of `shiny`/`shinyWidgets` controls built for
+  `teal`'s needs (`optionalSelectInput`, `optionalSliderInput`, `draggable_buckets`).
+- **Layout helpers** — arrange module UI (`standard_layout`, `panel_group`,
+  `white_small_well`).
+- **Popups** — display code or content in a modal (`verbatim_popup`,
+  `nested_closeable_modal`).
+- **Utilities** — small helpers such as `get_dt_rows()` and `clean_brushedPoints()`.
 
 ### Relationships with other packages
 
