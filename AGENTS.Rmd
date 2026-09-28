@@ -42,8 +42,7 @@ Packages it relies on:
 - `rvest` and `xml2` for reading and editing table HTML.
 - `checkmate` for input validation.
 - `webshot2` (a `Suggests`) is needed to download `gt`, `gtsummary`, or `tbl_split`
-  tables as PDF. When it is missing the module warns once per session; set
-  `DISABLE_GT_WEBSHOT2_WARNING=true` to turn the warning off.
+  tables as PDF. 
 
 ### How plots and tables are handled
 
