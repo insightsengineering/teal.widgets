@@ -14,6 +14,7 @@ DSS
 env
 funder
 ggplot
+Gitlab
 gtsummary
 Hallal
 Hoffmann
@@ -24,6 +25,7 @@ linters
 Maciej
 Mahmoud
 md
+miscellanea
 namespacing
 Nasinski
 Nikolas
@@ -46,4 +48,6 @@ tinyverse
 UI
 Unardi
 upvote
+widget's
 Zhao
+’s

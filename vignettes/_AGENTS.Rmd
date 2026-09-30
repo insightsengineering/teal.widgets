@@ -1,5 +1,13 @@
 ---
-output: github_document
+# This file generates AGENTS.md in the package root.
+# It is not part of the package build or the pkgdown site.
+# To regenerate it, run from the package root:
+#   rmarkdown::render("vignettes/_AGENTS.Rmd", output_dir = ".", output_file = "AGENTS.md")
+output:
+  github_document:
+    html_preview: false
+params:
+  url: "https://raw.githubusercontent.com/insightsengineering/teal/refs/heads/main/SHARED_AGENTS.md"
 ---
 
 ```{r setup, include=FALSE}
@@ -89,21 +97,12 @@ Packages it relies on:
   `test-<widget>.R`; UI tests are in `test-<widget>_ui.R`.
 - Add a regression test when you fix a bug.
 
-This package is part of the teal framework. The following configuration applies to all packages within the teal framework:
-
 ```{r teal_content, echo=FALSE, results='asis'}
 # Append common shared instructions from teal framework
-common_claude_url <- "https://raw.githubusercontent.com/insightsengineering/teal/refs/heads/add_common_claude%40main/SHARED_CLAUDE.md" # nolint: line_length_linter.
+common_claude_url <- params$url
 common_claude_path <- tempfile()
 download.file(url = common_claude_url, destfile = common_claude_path, quiet = TRUE)
 common_claude_shared <- readLines(common_claude_path)
-# remove CI gitlab content and github section comments
-gitlab_starts <- grep("gitlab starts here", common_claude_shared)
-gitlab_ends <- grep("gitlab ends here", common_claude_shared)
-common_claude_shared <- common_claude_shared[-1 * seq(gitlab_starts, gitlab_ends)]
-github_starts <- grep("github starts here", common_claude_shared)
-github_ends <- grep("github ends here", common_claude_shared)
-common_claude_shared <- common_claude_shared[-1 * c(github_starts, github_ends)]
 # collapse consecutive blank lines so the rendered markdown passes markdownlint (MD012)
 is_blank <- common_claude_shared == ""
 common_claude_shared <- common_claude_shared[!(is_blank & c(FALSE, head(is_blank, -1)))]
