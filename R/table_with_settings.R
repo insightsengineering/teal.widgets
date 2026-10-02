@@ -168,7 +168,9 @@ export_table.gt_tbl <- function(x, file, format, paginate = FALSE, lpp = NULL, .
   if (format == ".csv") {
     utils::write.csv(export_table_raw(x), file = file, row.names = FALSE)
   } else if (format == ".pdf") {
-    gt::gtsave(x, filename = file)
+    pdf_file <- paste0(file, format)
+    gt::gtsave(x, filename = pdf_file)
+    file.rename(pdf_file, file)
   } else {
     utils::write.table(
       x = export_table_raw(x),
