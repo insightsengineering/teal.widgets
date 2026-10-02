@@ -68,59 +68,57 @@ to prefix it directly to a specific package, like
 
 ## Loading libraries and data
 
-``` r
-
-library(shiny)
-library(ggplot2)
-library(teal.widgets)
-
-options("teal.ggplot2_args" = ggplot2_args(labs = list(caption = "Caption from options")))
-
-user_ggplot2_args <- list(
-  default = ggplot2_args(
-    labs = list(title = "User default title"),
-    theme = list(legend.position = "right", legend.direction = "vertical")
-  ),
-  plot1 = ggplot2_args(
-    labs = list(title = "User title"),
-    theme = list(legend.position = "right", legend.direction = "vertical")
-  )
-)
-
-ui <- fluidPage(
-  shinyjs::useShinyjs(),
-  tags$div(plotOutput("plot1"))
-)
-
-server <- function(input, output, session) {
-  dev_ggplot2_args <- ggplot2_args(
-    labs = list(subtitle = "Dev substitle"),
-    theme = list(legend.position = "none")
-  )
-
-  f_ggplot2_expr <- parse_ggplot2_args(
-    resolve_ggplot2_args(
-      user_plot = user_ggplot2_args$plot1,
-      user_default = user_ggplot2_args$default,
-      module_plot = dev_ggplot2_args
-    )
-  )
-
-  plot_expr <- substitute(
-    expr = {
-      gg <- ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, color = Species)) +
-        geom_point() +
-        ggplot_expr_labs +
-        ggplot_expr_theme
-      print(gg)
-    },
-    env = list(ggplot_expr_labs = f_ggplot2_expr$labs, ggplot_expr_theme = f_ggplot2_expr$theme)
-  )
-  print(plot_expr)
-  output$plot1 <- renderPlot(eval(plot_expr))
-}
-
-if (interactive()) {
-  shinyApp(ui, server)
-}
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`shiny`](https://shiny.posit.co/)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`teal.widgets`](https://insightsengineering.github.io/teal.widgets/)`)`\
+\
+[`options`](https://rdrr.io/r/base/options.html)`(``"teal.ggplot2_args"`` ``=`` `[`ggplot2_args`](https://insightsengineering.github.io/teal.widgets/reference/ggplot2_args.md)`(``labs ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``caption ``=`` ``"Caption from options"``)``)``)`\
+\
+`user_ggplot2_args`` ``<-`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`  default ``=`` `[`ggplot2_args`](https://insightsengineering.github.io/teal.widgets/reference/ggplot2_args.md)`(`\
+`    labs ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"User default title"``)``,`\
+`    theme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``legend.position ``=`` ``"right"``, legend.direction ``=`` ``"vertical"``)`\
+`  ``)``,`\
+`  plot1 ``=`` `[`ggplot2_args`](https://insightsengineering.github.io/teal.widgets/reference/ggplot2_args.md)`(`\
+`    labs ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"User title"``)``,`\
+`    theme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``legend.position ``=`` ``"right"``, legend.direction ``=`` ``"vertical"``)`\
+`  ``)`\
+`)`\
+\
+`ui`` ``<-`` `[`fluidPage`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`\
+`  ``shinyjs``::`[`useShinyjs`](https://rdrr.io/pkg/shinyjs/man/useShinyjs.html)`(``)``,`\
+`  ``tags``$``div``(`[`plotOutput`](https://rdrr.io/pkg/shiny/man/plotOutput.html)`(``"plot1"``)``)`\
+`)`\
+\
+`server`` ``<-`` ``function``(``input``, ``output``, ``session``)`` ``{`\
+`  ``dev_ggplot2_args`` ``<-`` `[`ggplot2_args`](https://insightsengineering.github.io/teal.widgets/reference/ggplot2_args.md)`(`\
+`    labs ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``subtitle ``=`` ``"Dev substitle"``)``,`\
+`    theme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``legend.position ``=`` ``"none"``)`\
+`  ``)`\
+\
+`  ``f_ggplot2_expr`` ``<-`` `[`parse_ggplot2_args`](https://insightsengineering.github.io/teal.widgets/reference/parse_ggplot2_args.md)`(`\
+`    `[`resolve_ggplot2_args`](https://insightsengineering.github.io/teal.widgets/reference/resolve_ggplot2_args.md)`(`\
+`      user_plot ``=`` ``user_ggplot2_args``$``plot1``,`\
+`      user_default ``=`` ``user_ggplot2_args``$``default``,`\
+`      module_plot ``=`` ``dev_ggplot2_args`\
+`    ``)`\
+`  ``)`\
+\
+`  ``plot_expr`` ``<-`` `[`substitute`](https://rdrr.io/r/base/substitute.html)`(`\
+`    expr ``=`` ``{`\
+`      ``gg`` ``<-`` `[`ggplot`](https://ggplot2.tidyverse.org/reference/ggplot.html)`(``iris``, `[`aes`](https://ggplot2.tidyverse.org/reference/aes.html)`(``x ``=`` ``Sepal.Length``, y ``=`` ``Petal.Length``, color ``=`` ``Species``)``)`` ``+`\
+`        `[`geom_point`](https://ggplot2.tidyverse.org/reference/geom_point.html)`(``)`` ``+`\
+`        ``ggplot_expr_labs`` ``+`\
+`        ``ggplot_expr_theme`\
+`      `[`print`](https://rdrr.io/r/base/print.html)`(``gg``)`\
+`    ``}``,`\
+`    env ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ggplot_expr_labs ``=`` ``f_ggplot2_expr``$``labs``, ggplot_expr_theme ``=`` ``f_ggplot2_expr``$``theme``)`\
+`  ``)`\
+`  `[`print`](https://rdrr.io/r/base/print.html)`(``plot_expr``)`\
+`  ``output``$``plot1`` ``<-`` `[`renderPlot`](https://rdrr.io/pkg/shiny/man/renderPlot.html)`(`[`eval`](https://rdrr.io/r/base/eval.html)`(``plot_expr``)``)`\
+`}`\
+\
+`if`` ``(`[`interactive`](https://rdrr.io/r/base/interactive.html)`(``)``)`` ``{`\
+`  `[`shinyApp`](https://rdrr.io/pkg/shiny/man/shinyApp.html)`(``ui``, ``server``)`\
+`}`

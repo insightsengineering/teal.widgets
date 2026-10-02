@@ -56,18 +56,14 @@ include:
 
 ## Installation
 
-``` r
-
-install.packages('teal.widgets')
-```
+\
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``'teal.widgets'``)`
 
 Alternatively, you might want to use the development version.
 
-``` r
-
-# install.packages("pak")
-pak::pak("insightsengineering/teal.widgets")
-```
+\
+`# install.packages("pak")`\
+`pak``::`[`pak`](https://pak.r-lib.org/reference/pak.html)`(``"insightsengineering/teal.widgets"``)`
 
 ## Usage
 

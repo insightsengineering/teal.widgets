@@ -66,12 +66,6 @@ library(rtables)
 #> The following object is masked from ‘package:base’:
 #> 
 #>     %||%
-#> Loading required package: magrittr
-#> 
-#> Attaching package: ‘magrittr’
-#> The following objects are masked from ‘package:testthat’:
-#> 
-#>     equals, is_less_than, not
 #> 
 #> Attaching package: ‘rtables’
 #> The following object is masked from ‘package:utils’:
@@ -85,6 +79,11 @@ library(gt)
 #> 
 #>     html
 library(magrittr)
+#> 
+#> Attaching package: ‘magrittr’
+#> The following objects are masked from ‘package:testthat’:
+#> 
+#>     equals, is_less_than, not
 
 ui <- bslib::page_fluid(
   table_with_settings_ui(id = "rtables_table"),
