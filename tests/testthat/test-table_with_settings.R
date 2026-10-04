@@ -77,7 +77,7 @@ testthat::test_that("type_download_srv_table: downloading different output types
   )
 })
 
-testthat::test_that("type_download_srv_table: downloading different output types, no name", {
+testthat::test_that("type_download_srv_table: no name shows a file name warning", {
   shiny::testServer(
     teal.widgets:::type_download_srv_table,
     args = list(id = "tws", table_reactive = table_r),
@@ -85,10 +85,8 @@ testthat::test_that("type_download_srv_table: downloading different output types
       for (down_type in c(".txt", ".csv", ".pdf")) {
         session$setInputs(`pagination_switch` = FALSE)
         session$setInputs(`file_format` = down_type)
-        testthat::expect_true(file.exists(output$data_download))
-        testthat::expect_equal(
-          basename(output$data_download), paste0(down_type)
-        )
+        testthat::expect_false(file_name_valid())
+        testthat::expect_match(as.character(output$file_name_warning$html), "meaningful file name")
       }
     }
   )
@@ -122,6 +120,7 @@ testthat::test_that("type_download_srv_table: pagination, lpp to small", {
       for (down_type in c(".txt", ".pdf")) {
         session$setInputs(`pagination_switch` = TRUE)
         session$setInputs(`lpp` = 1)
+        session$setInputs(`file_name` = "testtable")
         session$setInputs(`file_format` = down_type)
         testthat::expect_error(output$data_download, "Lines of repeated context")
       }
@@ -136,6 +135,7 @@ testthat::test_that("type_download_srv_table: content of the table, csv", {
     expr = {
       session$setInputs(`pagination_switch` = TRUE)
       session$setInputs(`lpp` = 10)
+      session$setInputs(`file_name` = "testtable")
       session$setInputs(`file_format` = ".csv")
       csv <- read.csv(output$data_download)
       testthat::expect_equal(
@@ -159,6 +159,7 @@ testthat::test_that("type_download_srv_table: content of the table, txt", {
     expr = {
       session$setInputs(`pagination_switch` = TRUE)
       session$setInputs(`lpp` = 10)
+      session$setInputs(`file_name` = "testtable")
       session$setInputs(`file_format` = ".txt")
       txt <- read.delim(output$data_download, sep = "")
       testthat::expect_equal(
@@ -284,7 +285,8 @@ testthat::test_that("type_download_srv_table: downloading gtsummary output types
         }
         session$setInputs(
           "pagination_switch" = FALSE,
-          "file_format" = down_type
+          "file_format" = down_type,
+          "file_name" = "testtable"
         )
         testthat::expect_true(file.exists(output$data_download))
         testthat::expect_equal(
@@ -302,9 +304,34 @@ testthat::test_that("type_download_srv_table: unsupported type", {
     expr = {
       session$setInputs(
         "pagination_switch" = FALSE,
-        "file_format" = ".csv"
+        "file_format" = ".csv",
+        "file_name" = "testtable"
       )
       testthat::expect_error(output$data_download, "Unsupported table type for download")
     }
   )
+})
+
+testthat::test_that("type_download_srv_table: warns about non-meaningful file names for all table types", {
+  tables <- list(
+    rtables = table_r,
+    gt = shiny::reactive(gt::gt(mtcars[1:2, 1:2])),
+    gtsummary = shiny::reactive(gtsummary::tbl_summary(gtsummary::trial[, c("trt", "age")]))
+  )
+  for (tbl_r in tables) {
+    shiny::testServer(
+      teal.widgets:::type_download_srv_table,
+      args = list(id = "tws", table_reactive = tbl_r),
+      expr = {
+        for (bad in c("tbl", "  ab   ", "        ", "_-!@#$%^&", "")) {
+          session$setInputs(file_name = bad)
+          testthat::expect_false(file_name_valid())
+          testthat::expect_match(as.character(output$file_name_warning$html), "meaningful file name")
+        }
+        session$setInputs(file_name = "testtable")
+        testthat::expect_true(file_name_valid())
+        testthat::expect_null(output$file_name_warning)
+      }
+    )
+  }
 })

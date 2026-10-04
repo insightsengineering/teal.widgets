@@ -198,19 +198,15 @@ download_srv_args <- list(
   default_h = function() 300
 )
 
-testthat::test_that("type_download_srv download all types of files with default name", {
+testthat::test_that("type_download_srv: no name shows a file name warning", {
   shiny::testServer(
     teal.widgets:::type_download_srv,
     args = download_srv_args,
     expr = {
       for (type in c("png", "pdf", "svg")) {
         session$setInputs(`file_format` = type)
-        session$setInputs(`data_download` = 1)
-        testthat::expect_true(file.exists(output$data_download))
-        testthat::expect_identical(
-          basename(output$data_download),
-          paste0(".", type)
-        )
+        testthat::expect_false(file_name_valid())
+        testthat::expect_match(as.character(output$file_name_warning$html), "meaningful file name")
       }
     }
   )
@@ -242,6 +238,7 @@ testthat::test_that("type_download_srv downloads a png file with different dimen
     teal.widgets:::type_download_srv,
     args = download_srv_args,
     expr = {
+      session$setInputs(`file_name` = "testplot")
       session$setInputs(`file_format` = "png")
       session$setInputs(`data_download` = 1)
       testthat::expect_identical(
@@ -267,6 +264,7 @@ testthat::test_that("type_download_srv downloads a png file using default dimens
       default_h = function() 300
     ),
     expr = {
+      session$setInputs(`file_name` = "testplot")
       session$setInputs(`file_format` = "png")
       session$setInputs(`data_download` = 1)
       testthat::expect_identical(
@@ -277,6 +275,22 @@ testthat::test_that("type_download_srv downloads a png file using default dimens
   )
 })
 
+testthat::test_that("type_download_srv: warns about non-meaningful file names", {
+  shiny::testServer(
+    teal.widgets:::type_download_srv,
+    args = download_srv_args,
+    expr = {
+      for (bad in c("plt", "  ab   ", "        ", "_-!@#$%^&", "")) {
+        session$setInputs(file_name = bad)
+        testthat::expect_false(file_name_valid())
+        testthat::expect_match(as.character(output$file_name_warning$html), "meaningful file name")
+      }
+      session$setInputs(file_name = "testplot")
+      testthat::expect_true(file_name_valid())
+      testthat::expect_null(output$file_name_warning)
+    }
+  )
+})
 
 testthat::test_that("plot_with_settings_srv assert error", {
   args <- list(
