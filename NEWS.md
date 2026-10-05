@@ -4,6 +4,10 @@
 
 * Added support for `tbl_split` object from `gtsummary` package to `table_with_settings`.
 
+### Bug fixes
+
+* Fixed PDF download of `gt` and `gtsummary` tables in `table_with_settings`. The download button of `table_with_settings` and `plot_with_settings` is now hidden, and a warning is shown, until the file name contains at least one letter or number (#363, #365).
+
 # teal.widgets 0.6.1
 
 ### Bug fixes

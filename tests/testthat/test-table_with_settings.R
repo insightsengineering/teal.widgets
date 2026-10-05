@@ -77,7 +77,7 @@ testthat::test_that("type_download_srv_table: downloading different output types
   )
 })
 
-testthat::test_that("type_download_srv_table: no name shows a file name warning", {
+testthat::test_that("type_download_srv_table: downloading different output types, no name", {
   shiny::testServer(
     teal.widgets:::type_download_srv_table,
     args = list(id = "tws", table_reactive = table_r),
@@ -85,8 +85,10 @@ testthat::test_that("type_download_srv_table: no name shows a file name warning"
       for (down_type in c(".txt", ".csv", ".pdf")) {
         session$setInputs(`pagination_switch` = FALSE)
         session$setInputs(`file_format` = down_type)
-        testthat::expect_false(file_name_valid())
-        testthat::expect_match(as.character(output$file_name_warning$html), "meaningful file name")
+        testthat::expect_true(file.exists(output$data_download))
+        testthat::expect_equal(
+          basename(output$data_download), paste0(down_type)
+        )
       }
     }
   )
@@ -323,14 +325,16 @@ testthat::test_that("type_download_srv_table: warns about non-meaningful file na
       teal.widgets:::type_download_srv_table,
       args = list(id = "tws", table_reactive = tbl_r),
       expr = {
-        for (bad in c("tbl", "  ab   ", "        ", "_-!@#$%^&", "")) {
+        for (bad in c("        ", "_-!@#$%^&", "....", "")) {
           session$setInputs(file_name = bad)
           testthat::expect_false(file_name_valid())
           testthat::expect_match(as.character(output$file_name_warning$html), "meaningful file name")
         }
-        session$setInputs(file_name = "testtable")
-        testthat::expect_true(file_name_valid())
-        testthat::expect_null(output$file_name_warning)
+        for (good in c("df", "testtable")) {
+          session$setInputs(file_name = good)
+          testthat::expect_true(file_name_valid())
+          testthat::expect_null(output$file_name_warning)
+        }
       }
     )
   }

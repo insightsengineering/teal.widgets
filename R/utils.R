@@ -44,17 +44,16 @@ apply_plot_modifications <- function(plot_obj, plot_type, dblclicking, ranges) {
 #' Validate the download file name
 #'
 #' Hides the `data_download` button and renders `output$file_name_warning` when `input$file_name`
-#' is not meaningful, i.e. it has 3 characters or fewer or contains only special characters or whitespace.
+#' does not contain any letter or number, e.g. it is empty or only whitespace or special characters.
 #'
 #' @param input,output Shiny module `input` and `output` objects.
 #'
 #' @return `reactive` returning `TRUE` when the file name is valid.
 #'
-#' @keywords internal
+#' @noRd
 file_name_validation_srv <- function(input, output) {
   file_name_valid <- reactive({
-    file_name <- trimws(as.character(input$file_name))
-    checkmate::test_string(file_name) && nchar(file_name) > 3 && grepl("[[:alnum:]]", file_name)
+    isTRUE(grepl("[[:alnum:]]", input$file_name))
   })
 
   observeEvent(file_name_valid(), {
@@ -66,10 +65,7 @@ file_name_validation_srv <- function(input, output) {
       helpText(
         class = "error",
         icon("triangle-exclamation"),
-        paste(
-          "Please provide a meaningful file name:",
-          "more than 3 characters and not only special characters or whitespace."
-        )
+        "Please provide a meaningful file name: it must contain at least one letter or number."
       )
     }
   })
