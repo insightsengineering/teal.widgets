@@ -373,6 +373,7 @@ type_download_ui_table <- function(id) {
         label = "File name (without extension)",
         value = paste0("table_", strftime(Sys.time(), format = "%Y%m%d_%H%M%S"))
       ),
+      uiOutput(ns("file_name_warning")),
       conditionalPanel(
         condition = paste0("input['", ns("file_format"), "'] != '.csv'"),
         tags$div(
@@ -434,6 +435,8 @@ type_download_srv_table <- function(id, table_reactive) {
           shinyjs::disable("lpp")
         }
       })
+
+      file_name_valid <- file_name_validation_srv(input, output)
 
       output$lpp_warning <- renderUI({
         table_obj <- table_reactive()
