@@ -2,6 +2,7 @@ CMD
 Closeable
 Draggable
 Hoffmann
+JS
 POSIXt
 UI
 deparseable
@@ -9,3 +10,4 @@ draggable
 funder
 ggplot
 pre
+widget's
